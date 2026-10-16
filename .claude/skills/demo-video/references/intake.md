@@ -14,7 +14,8 @@ path), and the format (a closing question card, then "Thanks for watching", were
 - **Ask well:** in Claude Code use AskUserQuestion with concrete options plus "Other"; in Codex ask
   a plain numbered list.
 - **Read every artifact the requester provides before writing the brief:** transcripts end to
-  end, PR bodies and diffs, plan ACs, the JTBD rows, the claim register.
+  end, PR bodies and diffs, plan acceptance criteria, any workflow or jobs-to-be-done docs, the
+  claim register if the project keeps one.
 - **Missing artifacts never block.** Not everyone has a transcript or a persona. Write "none
   provided" in the brief, work from the answers and the defaults, and keep claims modest: without
   customer evidence there is no empathy line about "your" workflow and no prevalence claim.
@@ -26,13 +27,13 @@ path), and the format (a closing question card, then "Thanks for watching", were
 
 | # | Question | Feeds |
 |---|----------|-------|
-| 1 | **Feature** — PRs, Jira key, plan path | Gate 1 (capability check, claim register) |
+| 1 | **Feature** — PRs, ticket ID, plan or spec path | Gate 1 (capability check, claim register) |
 | 2 | **Viewer and goal** — who, and feedback or interest? Live call or async? | Tone, length, closing |
 | 3 | **Customer evidence** — transcripts, recordings, notes, exports | The viewer's real moment, the empathy line, the problem framing |
 | 4 | **Personas and cast** — on-screen cast, demo org; which persona agent reviews | Fixture, gate 8 |
-| 5 | **Workflow** — JTBD IDs from `docs/product/jtbd/` (`/jtbd` LOOKUP), `agents/evidence/` loops, or the requester's words | The "before"; which beats to show |
+| 5 | **Workflow** — the project's workflow or jobs-to-be-done docs, if any, or the requester's words | The "before"; which beats to show |
 | 6 | **Must show / must not show** | Script, capability check |
-| 7 | **Environment and data** — stack, database, reusable recordings, who captures | Gates 3–4 |
+| 7 | **Environment and data** — how to run the app, origins to record, how the recorder signs in, isolated database or seed, debug overlays, reusable recordings, who captures | Gates 3–4 |
 | 8 | **Format** — length, phone/desktop, voice, deliverables | Gates 6–7, 10 |
 
 Defaults when an answer is missing: calm first-person presenter, about 2 minutes, 1920x1080 at
@@ -41,13 +42,15 @@ used.
 
 ## Worked example — the Tallgrass field-training demo (de-identified)
 
-What the intake would have produced on day one, had it existed. The customer is described by role
+An example project: a learning feature in an HR product. The product details are that product's;
+read it for the shape of a good brief. What the intake would have produced on day one, had it
+existed. The customer is described by role
 only; their call transcript stayed a local file and nothing from it is quoted here.
 
 1. **Feature:** Learning — training templates with a release schedule counted from each person's
    start date, assignment rules, the employee portal with personal-email sign-in, and the Learning
-   overview. Evidence: the merged learning PRs on `main` at the demo commit; later the portal UI
-   refresh (PR #784) and the course landing page (PR #822) forced a re-capture.
+   overview. Evidence: the merged learning PRs on `main` at the demo commit; later a portal UI
+   refresh and a new course landing page (two later PRs) forced a re-capture.
 2. **Viewer and goal:** first viewer is an L&D and performance lead at a construction firm (the
    reference customer); the same video then goes to similar field-heavy customers. Goal: product
    feedback and some interest. Async video, then discussed on a recurring design-partner call.
@@ -66,10 +69,10 @@ only; their call transcript stayed a local file and nothing from it is quoted he
    customer, and the legacy tool groups per release step) — the line became a conditional.
 4. **Personas and cast:** fictional org Tallgrass Constructors (16 people); worker Caleb, a
    pipefitter with a personal email; Luis (overdue), Owen (no due date); the presenter speaks as the
-   admin. Persona review: `dana`, the fictional L&D lead (PR #722, not merged at the time — it ran
-   from its PR worktree).
+   admin. Persona review: `dana`, a project-defined persona agent playing the fictional L&D lead
+   (not merged at the time — it ran from its PR worktree).
 5. **Workflow:** the customer's grouping-per-release and job-title-exclusion workarounds, and the
-   site-visit sign-off loop (from the call); no JTBD row covered field training at the time.
+   site-visit sign-off loop (from the call); no workflow doc covered field training at the time.
 6. **Must show:** personal-email sign-in on a phone; a three-course program released on days 0, 7
    and 14 from the start date; one assignment rule; the worker's progress; overdue and no-deadline
    lists. **Must not show:** sending the portal link (no admin action existed for training-only

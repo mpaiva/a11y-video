@@ -6,7 +6,7 @@
 #   "en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl",
 # ]
 # [tool.uv]
-# exclude-newer = "2026-10-03T00:00:00Z"   # the repo's 7-day cooldown; voice.py.lock pins every package by hash
+# exclude-newer = "2026-10-03T00:00:00Z"   # a 7-day cooldown; voice.py.lock pins every package by hash
 # ///
 """Generate Kokoro narration takes for a demo walkthrough.
 
@@ -18,7 +18,7 @@ speed, starts its takes over; the replaced files move to <dir>/assets/voice/_rep
 Kokoro-82M (Apache-2.0) runs on this machine: there is no API key, and no text leaves it. The first run downloads Python 3.12 (when it is not installed), the packages and the model
 (about 1 GB) into uv's and Hugging Face's caches; later runs start in seconds.
 
-lines.json (see examples/tallgrass-field-training/voice-lines.json):
+lines.json (see examples/voice-lines.json; a full film: examples/tallgrass-field-training/voice-lines.json):
   {"voice": "af_heart", "speed": 1, "takes": 1,
    "lines": {"caleb-intro": "So this is Caleb. He's a pipefitter, …", …}}
 

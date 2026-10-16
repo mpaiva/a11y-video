@@ -2,7 +2,8 @@
 
 `film-reviewer` reviews every draft second by second against this list before the requester sees
 it. **P0 must be fixed** before the draft is shown; P1 is fixed in the same pass when cheap; P2 is
-polish. Every item here was a real finding on a Tallgrass draft.
+polish. Every item here was a real finding on a Tallgrass draft (the worked example); the
+product details are that app's, the failure each one names happens in any app.
 
 ## P0 — the customer would read it as a bug, or it breaks a rule
 
@@ -17,8 +18,8 @@ polish. Every item here was a real finding on a Tallgrass draft.
 | **Contradictory counts, dates or states** | "1 of 2" in a three-course program; phone "Due Oct 6" against schedule "due Oct 4"; "Queued" after the opening showed him doing the course | Fix the fixture (`fixture.md`), then re-capture |
 | **Story-order spoiler** | Draft 5 order put the assignment list (Caleb "2 of 3") before he finished course two | Reframe or reorder |
 | **Wrong product term or label** | "Hired Sep 20" / "Hire date" on screen with a start-date anchor | Use footage with the right label; report the label bug |
-| **Debug overlay** | The palm-tree / TanStack devtools badge | Hide it in the recorder overlay |
-| **Test clutter** | CCST/IT catalog items, "Demo" and "Recording take" templates | Avoid the view; never rename into invented content |
+| **Debug overlay** | A devtools badge (TanStack Query's palm tree) | Add it to `DEMO_HIDE_SELECTORS` |
+| **Test clutter** | Test catalog items, "Demo" and "Recording take" templates | Avoid the view; never rename into invented content |
 | **Voice says what the screen does not show** | "We'll email you" with no delivered email; "Four people match" without the count | Change the line or the footage |
 | **Rule broken** | End card, question to the viewer, "Thanks for watching", hype line, presenter acting as the worker | Follow `narration.md` |
 

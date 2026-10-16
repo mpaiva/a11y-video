@@ -4,18 +4,20 @@
 > Written at gate 0 (intake). Later gates cite this file, not the conversation.
 
 ## Intake answers
-1. **Feature:** <PRs, Jira key, plan path>
+1. **Feature:** <PRs, ticket ID, plan or spec path>
 2. **Viewer and goal:** <who, role or segment; feedback or interest; live call or async>
 3. **Customer evidence (paraphrased, de-identified):**
    - <what the customer said they struggle with, in your words — no names, no quotes, no exports;
      or "none provided">
 
 4. **Personas and cast:** <fictional org, worker, admin/presenter; persona agent for gate 8 or "none">
-5. **Workflow:** <JTBD IDs from `/jtbd` LOOKUP, `agents/evidence/` loops, or the requester's words —
+5. **Workflow:** <IDs from the project's workflow or jobs-to-be-done docs, or the requester's words —
    or "none cover this">
 6. **Must show:** <beats, each to be confirmed built at gate 1>
    **Must not show or say:** <unbuilt features, unsupported claims, real names, …>
-7. **Environment and data:** <stack, isolated database, recordings to reuse, who captures>
+7. **Environment and data:** <how to run the app; origins to record (`DEMO_ADMIN_URL`, phone or
+   portal link); recorder sign-in (`DEMO_STORAGE_STATE`, `DEMO_LOGIN_PATH` or a `signIn` function);
+   isolated database or seed; debug overlays to hide; recordings to reuse; who captures>
 8. **Format:** <length · 1920x1080 · 30 fps · phone and/or desktop · voice · deliverables>
 
 ## Defaults applied

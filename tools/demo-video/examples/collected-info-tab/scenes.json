@@ -1,5 +1,5 @@
 {
-  "_note": "Worked example for ffmpeg-cut.mjs: the Collected info tab demo (APD-629), seven full-frame scenes, one narration take each (scene 6 has three). rawDir and voiceDir point at capture and voice folders that exist only on the machine that made the demo; copy this file next to your own raw/ and video/assets/voice/ folders and change the ids, timings and holds.",
+  "_note": "Worked example for ffmpeg-cut.mjs: a 'Collected info' tab demo from an example project, seven full-frame scenes, one narration take each (scene 6 has three). rawDir and voiceDir point at capture and voice folders that exist only on the machine that made the demo; copy this file next to your own raw/ and video/assets/voice/ folders and change the ids, timings and holds.",
   "rawDir": "raw",
   "voiceDir": "video/assets/voice",
   "crossfade": 0.3,

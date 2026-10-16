@@ -3,14 +3,15 @@ the editor rebuilds the cut from your takes.
 
 WHAT EXISTS
 - Brief and script: `<demo folder>/BRIEF.md` (scenes and voice lines).
-- Recorder: `tools/demo-video/rec-lib.mjs` in the employee-events repo (usage in
-  `tools/demo-video/README.md`). Match its conventions exactly: headless Chromium via the CDP
+- Recorder: `tools/demo-video/rec-lib.mjs` (usage in `tools/demo-video/README.md`; sign-in, origin
+  and overlay settings in its header). Match its conventions exactly: headless Chromium via the CDP
   screencast at 30 fps; a visible cursor on eased paths (0.4–0.85 s per move); 170–330 ms hover
   before each click with a soft ring; typing at 80–155 ms per key with jitter; smooth wheel
   scrolling, never scrollIntoView jumps; phone 412x839 at DPR 2; admin 1280x720 at DPR 2.5; only the
-  TanStack devtools badge hidden.
-- App checkout: `<path>` at `<commit or "origin/main at or after <sha>">`. Re-apply any local
-  label patch the brief names (`<patch>`); do not commit or push.
+  debug overlays in `DEMO_HIDE_SELECTORS` hidden (`<selectors>`).
+- App checkout: `<path>` at `<commit or "origin/main at or after <sha>">`, run with `<command>`;
+  admin origin `<url>`, sign-in by `<storage state | login route | signIn function>`. Re-apply any
+  local label patch the brief names (`<patch>`); do not commit or push.
 
 SET UP
 1. Isolated Postgres on `<host:port>` only. Leave existing databases untouched. Make one copy per

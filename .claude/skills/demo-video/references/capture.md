@@ -26,7 +26,8 @@ Use `tools/demo-video/rec-lib.mjs` (its `README.md` has the API):
 - **Typing:** 80–155 ms per key with jitter, a little longer after spaces, rare longer pauses.
 - **Scrolling:** eased wheel steps at about 60 Hz, never `scrollIntoView` jumps; the cursor parks
   over plain content first, because the wheel scrolls what is under it.
-- **Overlay hides only** the TanStack devtools badge. Nothing in the app is altered or painted.
+- **Overlay hides only** debug overlays (`DEMO_HIDE_SELECTORS`; default the TanStack Query devtools
+  badge). Nothing in the app is altered or painted.
 - **One continuous take per scene**, natural 0.3–0.8 s pauses, and a `mark(name)` at every key
   event. Each take writes `<take>.mp4` and `<take>-marks.json` (marks, duration, frames).
 
@@ -36,8 +37,8 @@ Use `tools/demo-video/rec-lib.mjs` (its `README.md` has the API):
   - `-60 dB`, d=1.5 s — ffmpeg's default; counts cursor-only motion as frozen.
   - `-90 dB`, d=1.5 s — flags truly static picture.
   No static stretch longer than about 1.5 s mid-take unless the narration points at that screen.
-- Check the take for debug badges, test clutter, "Hired …" labels and completion timestamps
-  before keeping it (the phone script threw an error if any appeared).
+- Check the take for debug badges, test clutter, wrong labels and anything the brief keeps off
+  screen before keeping it (the Tallgrass phone script threw an error if any appeared).
 - Note which database copy the take used.
 - Record every take of the demo into **one capture folder** and set it as the EDL's `rawDir`;
   `sources` and `stills` name files in it. A take reused from an earlier session may be named by
@@ -47,14 +48,13 @@ Use `tools/demo-video/rec-lib.mjs` (its `README.md` has the API):
 
 The worker scenes are mobile web in a phone-sized browser — never call it a native app.
 
-- **Chromium with Pixel emulation works end to end:** sign-in, launch, the Skillsoft (Percipio)
-  player, video, all 7 questions, pass, and "Completed, Vendor-confirmed" about 5 s later.
-- **WebKit (iPhone) fails on plain http:** the portal's `Secure` `__Host-` session and launch
-  cookies are dropped, so sign-in shows "Your sign-in expired" and the launch fails. It needs an
-  https address; record phone scenes in Chromium unless the stack runs on https. Test a real
-  iPhone before telling customers it works there.
-- Percipio shows an "Open in the Percipio app" banner (it has a close ×) and has no link back to
-  the portal.
+- **Chromium with Pixel emulation** is the dependable choice. In Tallgrass it ran end to end:
+  sign-in, launching a third-party course player, video, quiz, pass, and the completion syncing back.
+- **WebKit (iPhone) drops `Secure` and `__Host-` cookies on plain http**, so an app that sets them
+  shows a sign-in loop or a failed launch. Record phone scenes in Chromium unless the stack runs on
+  https, and test a real iPhone before telling customers it works there.
+- Third-party pages can carry their own banners ("Open in the app") and may have no link back to
+  your app. Plan the cut around them.
 - Reuse genuine vendor playback footage when the course was already completed — say so in the
   provenance notes; never stage a completion.
 
@@ -65,7 +65,7 @@ PNG from the same state, so the edit can switch from video to still without a ju
 
 ## Order, resets and timing
 
-Learned on the APD-629 demo, where four of five film reviews found the same continuity fault.
+Learned on a second demo (a "Collected info" tab), where four of five film reviews found the same continuity fault.
 
 - **Record scenes in story order**, from a fixture whose first state is the story's start.
 - **A reset through the product is not a reset.** Re-saving the original value through an editor records a

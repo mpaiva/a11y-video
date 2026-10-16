@@ -1,0 +1,9 @@
+{
+  "voice": "af_heart",
+  "speed": 1,
+  "takes": 1,
+  "lines": {
+    "intro": "So this is the dashboard. Here's what I want to show you.",
+    "outro": "So I set it up once… and it runs on its own from here."
+  }
+}

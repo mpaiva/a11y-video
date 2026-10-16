@@ -8,7 +8,7 @@
 Order for a new cut: init → voice.py → pick-takes.py --write-edl → stage → check → build →
 `npm run check` → `npm run render -- --quality draft --fps 30 -o ../draft-1.mp4` (in the project).
 
-EDL shape (worked example: examples/tallgrass-field-training/edl.json):
+EDL shape (worked example from a fictional demo: examples/tallgrass-field-training/edl.json):
   title, canvas {width, height, background}, duration, fadeOut {at}
   rawDir      the capture folder; `sources` and `stills` paths are relative to it unless absolute.
               Relative rawDir/voiceDir resolve against the EDL file's folder; `~` is expanded.
@@ -18,9 +18,9 @@ EDL shape (worked example: examples/tallgrass-field-training/edl.json):
   stills      {"<asset path>": {"from": "<file in rawDir, or absolute>", "at": <seconds> | "end"}}
               frames extracted by `stage` with ffmpeg ("end" = the take's last frame)
   font        asset path for the caption font; `stage` copies Public Sans from
-              $DEMO_APP_DIR/packages/ui/node_modules/@fontsource/public-sans and fails if it is
-              not there (run `pnpm install` in events/onboarding, or point DEMO_APP_DIR at a
-              checkout that has node_modules). Omit `font` to use the system sans-serif.
+              $DEMO_APP_DIR/node_modules/@fontsource/public-sans (default: this folder) and fails
+              if it is not there (run `npm install` in tools/demo-video). Omit `font` to use the
+              system sans-serif.
   roomTone    {src, gain}; `stage` generates src with ffmpeg if it is missing
   phone       {left, top, width, height, radius}   the full phone pose
   desktop[]   {id, src | still, start, duration, mediaStart?, hold?, note?}   inside #cam
@@ -43,7 +43,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 HYPERFRAMES_VERSION = '0.8.96'   # pinned by `init`; `npm run upgrade` in the project moves it
-FONT_REL = 'packages/ui/node_modules/@fontsource/public-sans/files/public-sans-latin-400-normal.woff2'
+FONT_REL = 'node_modules/@fontsource/public-sans/files/public-sans-latin-400-normal.woff2'
 # Band-limited pink noise at about -60 dBFS RMS (peak about -47 dBFS); the EDL gain lifts it.
 ROOM_TONE_FILTER = 'highpass=f=90,lowpass=f=2500,volume=-38.5dB'
 
@@ -122,12 +122,11 @@ def media_paths(edl):
 
 
 def font_source():
-    app = Path(os.environ.get('DEMO_APP_DIR', HERE.parent.parent / 'events/onboarding')).expanduser()
+    app = Path(os.environ.get('DEMO_APP_DIR', HERE)).expanduser()
     return app / FONT_REL
 
 
-FONT_FIX = ('run `pnpm install` in events/onboarding, or set DEMO_APP_DIR to an events/onboarding '
-            'checkout that has node_modules')
+FONT_FIX = f'run `npm install` in {HERE}, or set DEMO_APP_DIR to a folder whose node_modules has it'
 
 
 # ── init ─────────────────────────────────────────────────────────────────────

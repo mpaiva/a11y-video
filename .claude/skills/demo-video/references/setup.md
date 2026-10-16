@@ -32,9 +32,9 @@ Mac password, so the requester runs it themselves: suggest `! <command>` in Clau
 | Tool | What it does for the video | Install |
 |------|----------------------------|---------|
 | Homebrew (`brew`) | Installs the other tools on a Mac. | See `doctor.sh` |
-| Node.js and pnpm | Run the app, the screen recorder and HyperFrames. | `brew install node`, `npm install -g pnpm` |
-| Chromium (Playwright) | The browser the recorder drives. The cursor moves, clicks and types at human speed. | `pnpm test:e2e:install` in `events/onboarding` |
-| App packages | Playwright (browser control) and the Public Sans font the video uses. | `pnpm install` in `events/onboarding` |
+| Node.js | Runs the screen recorder and HyperFrames. | `brew install node` |
+| Tool packages | Playwright (browser control) and the Public Sans font the video uses. | `npm install` in `tools/demo-video` |
+| Chromium (Playwright) | The browser the recorder drives. The cursor moves, clicks and types at human speed. | `npx playwright install chromium` in `tools/demo-video`, after `npm install` (it installs the Chromium that the pinned Playwright expects) |
 | HyperFrames | The video editor. A video is a web page with a timeline; HyperFrames renders it to MP4. Its skills teach the agent how to use it. | `npx --yes hyperframes@latest skills`. In Claude Code you can add the plugin instead: `/plugin marketplace add heygen-com/hyperframes`, then `/plugin install hyperframes@hyperframes`. |
 | Kokoro | Makes the narrator's voice from the script. It is an open speech model that runs on this Mac, so it needs no key and the script stays on the machine. Voice: `af_heart`. | Nothing to install by hand: `uv` fetches it. The first `voice.py` run downloads Python 3.12 (when it is not installed), the packages and the model (about 1 GB, a few minutes) into uv's and Hugging Face's caches. `doctor.sh` prints the one-line command that does this ahead of time. |
 | ffmpeg | Cuts, measures and checks video and audio: loudness, frozen frames, frame strips. | `brew install ffmpeg` |
@@ -43,9 +43,11 @@ Mac password, so the requester runs it themselves: suggest `! <command>` in Clau
 
 ## 3. The app
 
-The video shows the real app on a demo database. If the requester has never run the app, use
-`/run-app` and let it set up the stack. Then follow `fixture.md` to make the isolated demo
-database. Never record against a shared or production database.
+The video shows the real app on a demo database. If the requester has never run the app, follow
+the project's own run instructions (its README, a run skill or script) to set up the stack. Then
+follow `fixture.md` to make the isolated demo database. Never record against a shared or production
+database. Point the recorder at the app with `DEMO_ADMIN_URL` and tell it how to sign in (header of
+`tools/demo-video/rec-lib.mjs`).
 
 ## 4. The model
 
@@ -73,21 +75,20 @@ node, uv, ffmpeg, Git Bash (for `qa.sh`), eSpeak NG, the recorder's Chromium and
   itself; the Microsoft Store `python` shortcut is only a stub, so do not use it.
 - **No whisper-cpp:** there is no winget package. `qa.sh` falls back to faster-whisper `small.en` through
   `uv run` (the first run downloads the model) and writes `transcript.txt`.
-- **Recorder:** never run `pnpm` on Windows node_modules (the app runs in WSL, see `/run-app`). Install
-  Playwright in a scratch folder in the demo folder: `npm install @playwright/test` then
-  `npx playwright install chromium`, and set `DEMO_APP_DIR` to that folder and `DEMO_ADMIN_URL` to the admin
-  origin. Windows Chromium reaches a stack running in WSL through 127.0.0.1. A takes file outside the repo
-  imports `rec-lib.mjs` by a `file:///C:/...` URL.
-- **Which stack answered:** `pnpm app local` takes the default ports (3000, 5173, 5174) only when they are
-  free; otherwise it picks free ones and prints them on the `APP_READY` line. Another session's stack can
-  answer on the defaults, so read `APP_READY` and check the port you record.
+- **Recorder:** in `tools/demo-video` run `npm install` then `npx playwright install chromium` with
+  Windows node (if the app itself runs in WSL, keep the two `node_modules` apart), and set `DEMO_ADMIN_URL`
+  to the admin origin. Windows Chromium reaches a stack running in WSL through 127.0.0.1. A takes file
+  outside the repo imports `rec-lib.mjs` by a `file:///C:/...` URL.
+- **Which stack answered:** dev servers often move to another port when the default is taken, and another
+  session's stack can answer on the default. Read the port the app's start command printed and check it
+  is the one you record.
 - **Cut without HyperFrames:** `node tools/demo-video/ffmpeg-cut.mjs <scenes.json> <out.mp4> --draft` trims
   each take, scales it, joins the scenes with 0.3 s dissolves, places each narration take, normalises the
   audio to about -16 LUFS and writes `<out>.edl.json` (scene starts and the narrated holds). It encodes with
   `-pix_fmt yuv420p -profile:v high` and limited range: the recorder's frames are full-range 4:4:4, and
   without that the MP4 is `yuvj444p`, which QuickTime and Safari can refuse to play. The scenes file is
   described at the top of `ffmpeg-cut.mjs`, with a worked example in
-  `examples/apd629-collected-info/scenes.json`.
+  `examples/collected-info-tab/scenes.json`.
 - **QA:** run `qa.sh <out.mp4> <dir> <out>.edl.json` under Git Bash with ffmpeg on PATH. The EDL lets the
   freeze rule apply and adds a 10 fps strip around every scene change. On Windows `qa.sh` uses `uv run python`
   where `python3` is only a stub.

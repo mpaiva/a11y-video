@@ -8,7 +8,7 @@
 // qa.sh reads, so `qa.sh <out.mp4> <dir> <out>.edl.json` applies the freeze rule and cuts a 10 fps strip
 // around every scene change).
 //
-// scenes.json (worked example: examples/apd629-collected-info/scenes.json). Paths are relative to the
+// scenes.json (worked example: examples/collected-info-tab/scenes.json). Paths are relative to the
 // scenes file's folder.
 //   { "rawDir": "raw", "voiceDir": "video/assets/voice", "crossfade": 0.3,
 //     "scenes": [

@@ -1,8 +1,8 @@
 # Narration — how the voice should sound
 
-These rules come from the product owner's (Miro's) notes on the Tallgrass demo drafts, 29 Sep –
-1 Oct 2026. Every "before" line below was actually written and rejected; every "after" line is
-what shipped. Read the pairs — they teach faster than the rules.
+These rules come from the product owner's notes on the Tallgrass demo drafts (the worked example: a
+learning feature in an HR product, fictional cast). Every "before" line below was actually written
+and rejected; every "after" line is what shipped. Read the pairs — they teach faster than the rules.
 
 ## The narrator
 
@@ -32,7 +32,7 @@ evidence — never from adjectives, never from invented stakes.
 - **Only behaviour that ran in the app.** Not "we'll email him" unless an email was delivered; not
   "four people match" unless the count is visible at that moment (draft 1 dropped the line when the
   rule drawer hid the count; it came back when a re-capture showed it).
-- **No table stakes.** "Complete, confirmed by Skillsoft" was cut: customers assume completion
+- **No table stakes.** "Complete, confirmed by the vendor" was cut: customers assume completion
   sync works; highlighting it spends time on nothing new.
 - **Match the screen.** "And now he's at two of three" over an almost-empty "You're caught up"
   page confused a reviewer. Fix: "And now he's done two of three. He's caught up… the last one
@@ -65,8 +65,8 @@ lines file. A `b` prefix is British English (`bf_emma`). Do not offer `af_nicole
 - **Pauses come from punctuation.** Measured on the "Day zero, day seven, day fourteen…" line: a
   comma gives a pause of about 0.2 s; an ellipsis, a dash or a full stop gives about 0.4 s. Use
   commas between list items and an ellipsis for the beat before a reveal.
-- **Pronunciation.** When Kokoro says a product or person name wrong, write an inline override:
-  `[Percipio](/pɚsˈɪpiˌO/)`. It is the one bracket form `voice.py` accepts. Listen for names in
+- **Pronunciation.** When Kokoro says a product or person name wrong, write an inline override
+  with its phonemes, for example `[Percipio](/pɚsˈɪpiˌO/)`. It is the one bracket form `voice.py` accepts. Listen for names in
   the first take.
 - **Pace.** `speed` in the lines file sets the pace of every line (0.9 made the "Day zero…" line about 6% longer). Keep
   one speed for the film. A take that does not fit its shot means you re-time the shot; never speed

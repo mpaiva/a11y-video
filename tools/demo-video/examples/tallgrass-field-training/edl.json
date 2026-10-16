@@ -1,8 +1,8 @@
 {
   "title": "Field training walkthrough — Tallgrass worked example",
-  "notes": "rawDir, voiceDir and the two absolute sources below exist only on Miro's machine (the Tallgrass capture folders). A new demo points rawDir at its own capture folder and voiceDir at the folder voice.py wrote. Stage with: build.py stage edl.json --project <dir>.",
-  "rawDir": "~/Downloads/Tallgrass-demo-20260929/live-percipio/narrative-v6/raw",
-  "voiceDir": "~/Downloads/Tallgrass-demo-20260929/live-percipio/narrative-v4-claude/video/assets/voice",
+  "notes": "rawDir, voiceDir and the two absolute sources below exist only on the machine that made the example (its capture folders). A new demo points rawDir at its own capture folder and voiceDir at the folder voice.py wrote. Stage with: build.py stage edl.json --project <dir>.",
+  "rawDir": "~/Downloads/tallgrass-demo/narrative-v6/raw",
+  "voiceDir": "~/Downloads/tallgrass-demo/narrative-v4-claude/video/assets/voice",
   "canvas": { "width": 1920, "height": 1080, "background": "#ecebe8" },
   "duration": 118.75,
   "fadeOut": { "at": 117.95 },
@@ -11,13 +11,13 @@
   "sources": {
     "assets/recordings/admin-build-v6.mp4": "admin-build.mp4",
     "assets/recordings/rule-v6.mp4": "rule.mp4",
-    "assets/recordings/overview.mp4": "~/Downloads/Tallgrass-demo-20260929/live-percipio/narrative-v4-claude/raw/overview.mp4",
+    "assets/recordings/overview.mp4": "~/Downloads/tallgrass-demo/narrative-v4-claude/raw/overview.mp4",
     "assets/recordings/P1-signin.mp4": "P1-signin.mp4",
     "assets/recordings/P2-course-launch.mp4": "P2-course-launch.mp4",
     "assets/recordings/P3-assigned-still.mp4": "P3-assigned-still.mp4",
     "assets/recordings/P4-after.mp4": "P4-after.mp4",
     "assets/recordings/P5-outro-still.mp4": "P5-outro-still.mp4",
-    "assets/recordings/mobile-percipio.webm": "~/Downloads/Tallgrass-demo-20260929/live-percipio/narrative-v3/video/assets/recordings/mobile-percipio.webm",
+    "assets/recordings/mobile-percipio.webm": "~/Downloads/tallgrass-demo/narrative-v3/video/assets/recordings/mobile-percipio.webm",
     "assets/stills/caleb-caughtup-v6.png": "P5-outro-still.png"
   },
   "stills": {
@@ -25,7 +25,7 @@
     "assets/stills/three-courses-v6.png": { "from": "admin-build.mp4", "at": 53.40 },
     "assets/stills/rule-last-v6.png": { "from": "rule.mp4", "at": "end" },
     "assets/stills/preview-hold-v6.png": { "from": "admin-build.mp4", "at": 93.45 },
-    "assets/stills/overview-last.png": { "from": "~/Downloads/Tallgrass-demo-20260929/live-percipio/narrative-v4-claude/raw/overview.mp4", "at": "end" }
+    "assets/stills/overview-last.png": { "from": "~/Downloads/tallgrass-demo/narrative-v4-claude/raw/overview.mp4", "at": "end" }
   },
   "phone": { "left": 714, "top": 40, "width": 492, "height": 1000, "radius": 28 },
   "desktop": [

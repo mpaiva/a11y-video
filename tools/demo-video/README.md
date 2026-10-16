@@ -1,22 +1,26 @@
 # Demo video tools
 
-Scripts behind the `demo-video` skill (`.claude/skills/demo-video/SKILL.md`). They work on a demo
-folder **outside the repo** — raw takes, voice takes and the HyperFrames project never get
-committed.
+Scripts behind the `demo-video` skill (`.claude/skills/demo-video/SKILL.md`). They work with any web
+app you can run locally, on a demo folder **outside the repo** — raw takes, voice takes and the
+HyperFrames project never get committed.
+
+One-time setup in this folder: `npm install` (Playwright and the Public Sans font, pinned in
+`package.json`), then `npx playwright install chromium`.
 
 | Tool | Gate | What it does |
 |------|------|--------------|
 | `doctor.sh` | Setup | Checks every tool the run needs and prints the install command for each missing one. Installs nothing. `references/setup.md` explains each tool in plain words. |
 | `doctor.ps1` | Setup | The Windows counterpart of `doctor.sh`: checks winget, node, uv, ffmpeg, Git Bash, eSpeak NG, the recorder's Chromium and the Kokoro model, prints the install command for each missing one, and "Ready." when all are present. Installs nothing. |
-| `ffmpeg-cut.mjs` | Build | The Windows path for gate 7 (works anywhere ffmpeg and node do): cuts raw takes and narration clips into a full-frame walkthrough from a `scenes.json`, and writes `<out>.edl.json` (scene starts, narrated holds) for `qa.sh`. No HyperFrames or Python. Worked example: `examples/apd629-collected-info/scenes.json`. |
+| `ffmpeg-cut.mjs` | Build | The Windows path for gate 7 (works anywhere ffmpeg and node do): cuts raw takes and narration clips into a full-frame walkthrough from a `scenes.json`, and writes `<out>.edl.json` (scene starts, narrated holds) for `qa.sh`. No HyperFrames or Python. Worked example: `examples/collected-info-tab/scenes.json`. |
 | `rec-lib.mjs` | Capture | Human-paced Playwright recorder: eased cursor, hover-then-click, jittered typing, wheel scrolling, touch taps; CDP screencast at device resolution → constant 30 fps master + marks JSON. |
-| `takes.example.mjs` | Capture | Worked example of a phone take and an admin take (Tallgrass). Copy and adapt. |
+| `takes.example.mjs` | Capture | Worked example of a phone take and an admin take (Tallgrass, an example product). Copy it and replace the routes and selectors with your app's. |
 | `voice.py` | Voice | Kokoro-82M takes per line (default 1), generated on this machine, as `<project>/assets/voice/<line-id>-<n>.mp3`. Run it with `uv run --locked`: its header pins Python 3.12, `voice.py.lock` pins every package by hash, and the script pins the model revision. A take whose inputs changed moves to `assets/voice/_replaced/`. Refuses a line with a `[tag]`, which Kokoro would speak. To change a package, edit the header, set `exclude-newer` to 7 days before today, and run `uv lock --script tools/demo-video/voice.py`. |
 | `pick-takes.py` | Voice | Groups any folder of `<line-id>-<n>.mp3` takes, ranks each line's takes by pitch variation (calmest first) with duration and LUFS, and with `--write-edl` writes the picks into the EDL ("N lines, M takes changed, K pinned"). |
 | `build.py` | Build | `init` (scaffold; npm scripts pinned to one HyperFrames version) · `stage` (copy `sources` from `rawDir`, extract `stills`, copy picked takes from `voiceDir`, copy the font, generate room tone) · `check` (fails on any missing media) · `build` (EDL → `index.html` + `edit.json`). |
 | `transcribe.py` | Review | Transcribes an audio file with faster-whisper `small.en` (CPU, one line per segment). `qa.sh` uses it where `whisper-cli` is absent, as on Windows. Run it with `uv run`; the model downloads on the first run. |
 | `qa.sh` | Review | Format, decode check, freezedetect at −60/−90 dB with the freeze rule (exit 1 on a P1 freeze), 1 fps contact sheets, 10 fps strips around every cut, transcript. Runs under Git Bash on Windows (python through `uv run`, transcript through faster-whisper when `whisper-cli` is absent). |
-| `examples/tallgrass-field-training/` | All | A real EDL and voice-line file from the Tallgrass demo (fictional cast). Its `rawDir`, `voiceDir` and two absolute sources point at capture folders that exist only on Miro's machine. |
+| `examples/tallgrass-field-training/` | All | A real EDL and voice-line file from the Tallgrass demo (fictional cast, example product). Its `rawDir`, `voiceDir` and two absolute sources point at capture folders that exist only on the machine that made it. |
+| `examples/voice-lines.json` | Voice | A two-line starter lines file; `doctor.sh` uses it to fetch the Kokoro model ahead of time. |
 
 ## Typical run
 
@@ -27,9 +31,10 @@ T=tools/demo-video                  # run from the repo root
 # 0. Check the machine (exit 0 = ready)
 $T/doctor.sh
 
-# 1. Capture into $DEMO/raw (app stack on the isolated demo database; see the skill's fixture.md)
-PORTAL_LINK=http://127.0.0.1:5192/portal/<token> node $T/takes.example.mjs phone-signin "$DEMO/raw"
-node $T/takes.example.mjs admin-build "$DEMO/raw"
+# 1. Capture into $DEMO/raw (app stack on the isolated demo database; see the skill's fixture.md).
+#    Copy takes.example.mjs to $DEMO/takes.mjs, rewrite it for your app, then:
+export DEMO_ADMIN_URL=http://localhost:3000 DEMO_STORAGE_STATE=$DEMO/auth.json
+node $DEMO/takes.mjs admin-build "$DEMO/raw"
 
 # 2. Project scaffolding (once). Always use the npm scripts: they run the pinned CLI.
 python3 $T/build.py init "$DEMO/video"
@@ -69,9 +74,13 @@ node tools/demo-video/ffmpeg-cut.mjs "$DEMO/scenes.json" "$DEMO/final-narrated.m
 
 | Variable | Default | Used by |
 |----------|---------|---------|
-| `DEMO_APP_DIR` | `events/onboarding` in this checkout | `rec-lib.mjs` (finds `@playwright/test`) and `build.py stage` (finds `@fontsource/public-sans`). Both need `node_modules`: run `pnpm install` in `events/onboarding`, or — from a worktree without `node_modules` — point this at a checkout's `events/onboarding` that has them. `stage` stops with this advice when the font is missing. |
-| `DEMO_ADMIN_URL` | `http://127.0.0.1:5182` | `rec-lib.mjs` admin sign-in |
-| `PORTAL_LINK`, `PORTAL_CODE` | — / `246810` | `takes.example.mjs` phone take |
+| `DEMO_APP_DIR` | this folder (`tools/demo-video`) | `rec-lib.mjs` (finds `@playwright/test`) and `build.py stage` (finds `@fontsource/public-sans`). Both need `node_modules`: run `npm install` here, or point this at another folder whose `node_modules` has them. `stage` stops with this advice when the font is missing. |
+| `DEMO_ADMIN_URL` | `http://localhost:3000` | `rec-lib.mjs`: the desktop app's origin |
+| `DEMO_STORAGE_STATE` | — | `rec-lib.mjs`: a Playwright `storageState` JSON with a signed-in session (save one with `npx playwright codegen --save-storage=auth.json <url>`) |
+| `DEMO_LOGIN_PATH` | — | `rec-lib.mjs`: a dev-only route that signs in and redirects; used when no storage state is set. Or pass `signIn: async page => …` to `adminBrowser()` |
+| `DEMO_CONTENT_SELECTOR` | `main, [role=main]` (else `body`) | `rec-lib.mjs`: the scrolling content area the cursor parks over before wheel scrolls |
+| `DEMO_HIDE_SELECTORS` | TanStack Query devtools badge | `rec-lib.mjs`: comma-separated debug overlays hidden in every take |
+| `PORTAL_LINK`, `PORTAL_CODE` | — | `takes.example.mjs` phone take (the example app's sign-in link and dev code) |
 | `HF_HOME` / `HF_HUB_CACHE` | `~/.cache/huggingface/hub` | `voice.py` (where the Kokoro model is cached) and `doctor.sh` (checks it is there; `doctor.ps1` reads `HF_HOME` only) |
 | `WHISPER_MODEL` | `~/.cache/hyperframes/whisper/models/ggml-small.en.bin` | `qa.sh` |
 
@@ -82,6 +91,6 @@ the EDL's folders. Nothing here holds a secret.
 
 ## Provenance
 
-Generalized from the Tallgrass field-training demo (29 Sep – 1 Oct 2026): the recorder from the
-Codex capture sessions, the builder from the final edit. Media, databases and customer material
-from that work stay outside the repo.
+Generalized from the Tallgrass field-training demo (an example product, fictional cast): the
+recorder from the Codex capture sessions, the builder from the final edit. Media, databases and
+customer material from that work stay outside the repo.

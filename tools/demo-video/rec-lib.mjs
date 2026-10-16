@@ -3,10 +3,14 @@
 // scrolling, touch taps with a finger indicator. Writes <take>.mp4 (constant 30 fps) and
 // <take>-marks.json. See README.md and .claude/skills/demo-video/references/capture.md.
 //
-// Environment:
-//   DEMO_APP_DIR    directory whose node_modules has @playwright/test
-//                   (default: events/onboarding in this checkout)
-//   DEMO_ADMIN_URL  admin web origin (default: http://127.0.0.1:5182)
+// Environment (every value is specific to the app you record; set the ones it needs):
+//   DEMO_APP_DIR          directory whose node_modules has @playwright/test
+//                         (default: this folder — run `npm install` here)
+//   DEMO_ADMIN_URL        the desktop app's web origin (default: http://localhost:3000)
+//   DEMO_STORAGE_STATE    a Playwright storageState JSON with a signed-in session (optional)
+//   DEMO_LOGIN_PATH       a dev-only sign-in route visited before recording, e.g. /dev/login (optional)
+//   DEMO_CONTENT_SELECTOR the page's scrollable content area (default: main, [role=main]; else body)
+//   DEMO_HIDE_SELECTORS   comma-separated debug overlays to hide (default: TanStack Query devtools)
 import fs from 'node:fs'
 import path from 'node:path'
 import { execFileSync } from 'node:child_process'
@@ -14,11 +18,14 @@ import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
-const appDir = process.env.DEMO_APP_DIR ?? path.resolve(here, '../../events/onboarding')
+const appDir = process.env.DEMO_APP_DIR ?? here
 const require = createRequire(path.join(appDir, 'package.json'))
 export const { chromium } = require('@playwright/test')
 
-export const ADMIN_URL = process.env.DEMO_ADMIN_URL ?? 'http://127.0.0.1:5182'
+export const ADMIN_URL = process.env.DEMO_ADMIN_URL ?? 'http://localhost:3000'
+export const CONTENT_SELECTOR = process.env.DEMO_CONTENT_SELECTOR ?? 'main, [role=main]'
+export const HIDE_SELECTORS = (process.env.DEMO_HIDE_SELECTORS ??
+  'button[aria-label="Open Tanstack query devtools"], .tsqd-parent-container').split(',').map(s => s.trim()).filter(Boolean)
 export const ADMIN_VIEWPORT = { width: 1280, height: 720, deviceScaleFactor: 2.5 } // 3200x1800 masters
 export const PHONE_VIEWPORT = { width: 412, height: 839, deviceScaleFactor: 2 }   // 824x1678 masters
 
@@ -26,15 +33,18 @@ export const sleep = ms => new Promise(r => setTimeout(r, ms))
 export const rand = (a, b) => a + Math.random() * (b - a)
 const minJerk = u => u * u * u * (10 - 15 * u + 6 * u * u)
 
-// Overlay injected into every document: hides the TanStack devtools badge, draws the cursor at
+// Overlay injected into every document: hides debug overlays (HIDE_SELECTORS), draws the cursor at
 // the last real mouse position and a soft ring on mousedown (or a finger dot on touch). Nothing in
 // the app itself is altered.
 export const OVERLAY = `(() => {
+  const hideSel = ${JSON.stringify(HIDE_SELECTORS.join(','))}
+  const hide = () => { if (hideSel) for (const e of document.querySelectorAll(hideSel)) e.style.display = 'none' }
+  new MutationObserver(hide).observe(document, { childList: true, subtree: true })
   const install = () => {
+    hide()
     if (document.getElementById('rec-cursor')) return
     const st = document.createElement('style')
-    st.textContent = 'button[aria-label="Open Tanstack query devtools"],.tsqd-parent-container{display:none!important}' +
-      '#rec-cursor{position:fixed;left:-60px;top:-60px;width:21px;height:28px;z-index:2147483647;pointer-events:none;filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.35))}' +
+    st.textContent = '#rec-cursor{position:fixed;left:-60px;top:-60px;width:21px;height:28px;z-index:2147483647;pointer-events:none;filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.35))}' +
       '#rec-ring{position:fixed;left:-60px;top:-60px;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;border:2px solid rgba(221,135,51,.85);opacity:0;z-index:2147483646;pointer-events:none}' +
       '#rec-touch{position:fixed;left:-60px;top:-60px;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:rgba(40,40,40,.18);border:2px solid rgba(255,255,255,.7);opacity:0;z-index:2147483646;pointer-events:none}'
     document.head.append(st)
@@ -68,7 +78,7 @@ export const OVERLAY = `(() => {
 
 export class Take {
   // dir: output directory; name: take name (files <name>.mp4, <name>-marks.json, <name>-frames/).
-  constructor(page, dir, name, { maxWidth, maxHeight, touch = false, contentSelector = '.admin-shell-content' } = {}) {
+  constructor(page, dir, name, { maxWidth, maxHeight, touch = false, contentSelector = CONTENT_SELECTOR } = {}) {
     Object.assign(this, { page, dir, name, maxWidth, maxHeight, touch, contentSelector })
     this.frames = []; this.offsets = []; this.marks = []; this.x = 0; this.y = 0
     this.frameDir = path.join(dir, name + '-frames')
@@ -127,7 +137,8 @@ export class Take {
     const vh = this.page.viewportSize().height
     // Controls in dialogs, sheets and drawers sit in fixed layers: only require them on screen.
     if (await loc.evaluate(e => !!e.closest('[role=dialog],[role=menu],[role=listbox]'))) { top = 0; bottomPad = 0 }
-    const content = this.contentSelector
+    // The content area under the cursor; a page without one counts all of body.
+    const content = await this.page.evaluate(sel => document.querySelector(sel) ? sel : 'body', this.contentSelector)
     for (let i = 0; i < 4; i++) {
       const b = await loc.boundingBox(); if (!b) throw Error('no box')
       if (b.y >= top && b.y + b.height <= vh - bottomPad) return b
@@ -224,22 +235,31 @@ export class Take {
   }
 }
 
-// Admin browser, signed in through the local admin login route. Returns { browser, ctx, page }.
-export async function adminBrowser({ viewport = ADMIN_VIEWPORT, adminUrl = ADMIN_URL } = {}) {
+// Desktop browser. Signs in one of three ways, first match wins: `storageState` (a Playwright
+// storageState JSON, or $DEMO_STORAGE_STATE), `loginPath` (a dev-only route that sets the session
+// and redirects away, or $DEMO_LOGIN_PATH), or `signIn` (async page => {…} run in a throwaway
+// context). With none, it records signed out. Returns { browser, ctx, page }.
+export async function adminBrowser({ viewport = ADMIN_VIEWPORT, adminUrl = ADMIN_URL,
+  storageState = process.env.DEMO_STORAGE_STATE, loginPath = process.env.DEMO_LOGIN_PATH, signIn } = {}) {
   const browser = await chromium.launch({ headless: true, args: [`--force-device-scale-factor=${viewport.deviceScaleFactor}`] })
-  const auth = await browser.newContext()
-  const ap = await auth.newPage()
-  await ap.goto(`${adminUrl}/api/auth/admin/login`)
-  await ap.waitForURL(u => !String(u).includes('/api/auth/'), { timeout: 20000 })
-  const storageState = await auth.storageState(); await auth.close()
+  if (!storageState && (loginPath || signIn)) {
+    const auth = await browser.newContext()
+    const ap = await auth.newPage()
+    if (signIn) await signIn(ap)
+    else {
+      await ap.goto(adminUrl + loginPath)
+      await ap.waitForURL(u => !String(u).includes(loginPath), { timeout: 20000 })
+    }
+    storageState = await auth.storageState(); await auth.close()
+  }
   const ctx = await browser.newContext({ storageState, viewport: { width: viewport.width, height: viewport.height }, deviceScaleFactor: viewport.deviceScaleFactor })
   await ctx.addInitScript({ content: OVERLAY })
   const page = await ctx.newPage(); page.setDefaultTimeout(15000)
   return { browser, ctx, page }
 }
 
-// Phone browser: Chromium with mobile emulation and touch (WebKit drops the portal's Secure
-// __Host- cookies on plain http — see capture.md). Returns { browser, ctx, page }.
+// Phone browser: Chromium with mobile emulation and touch (WebKit drops Secure / __Host- cookies
+// on plain http — see capture.md). Returns { browser, ctx, page }.
 export async function phoneBrowser({ viewport = PHONE_VIEWPORT } = {}) {
   const browser = await chromium.launch({ headless: true, args: [`--force-device-scale-factor=${viewport.deviceScaleFactor}`] })
   const ctx = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height }, deviceScaleFactor: viewport.deviceScaleFactor, isMobile: true, hasTouch: true })

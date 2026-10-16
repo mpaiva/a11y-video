@@ -26,11 +26,11 @@ field that implements it.
    (pin a line with `"pin": true` to keep a hand pick).
 4. `python3 tools/demo-video/build.py stage edl.json --project <demo>/video` copies the sources,
    extracts the stills, copies each line's picked take from `voiceDir`, copies Public Sans from
-   the repo's `@fontsource/public-sans`, and generates the room tone:
+   `tools/demo-video/node_modules/@fontsource/public-sans`, and generates the room tone:
    `ffmpeg -f lavfi -i "anoisesrc=color=pink:amplitude=1:duration=<seconds>:sample_rate=48000:seed=7" -af "highpass=f=90,lowpass=f=2500,volume=-38.5dB" -ac 2 assets/room-tone.wav`
    (band-limited pink noise, about −60 dBFS RMS, peak about −47 dBFS). The font is required when
-   the EDL names one: if `stage` cannot find it, it stops and says to run `pnpm install` in
-   `events/onboarding` or set `DEMO_APP_DIR` to a checkout that has `node_modules`.
+   the EDL names one: if `stage` cannot find it, it stops and says to run `npm install` in
+   `tools/demo-video` (or set `DEMO_APP_DIR` to a folder whose `node_modules` has it).
 5. `build.py check` fails on any missing media file (font included); `build.py build` writes
    `index.html` and `edit.json`, and refuses a voice line that runs past the duration.
 

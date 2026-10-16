@@ -45,14 +45,19 @@ $espeak = (Has 'espeak-ng') -or (Test-Path 'C:\Program Files\eSpeak NG\espeak-ng
 if ($espeak) { Row OK 'eSpeak NG' "the voice model's pronunciation fallback" '' }
 else { Row MISSING 'eSpeak NG' "the voice model's pronunciation fallback" 'winget install --id eSpeak-NG.eSpeak-NG -e' }
 
+# rec-lib.mjs loads Playwright from DEMO_APP_DIR (default: tools/demo-video, next to this script).
+$toolDir = if ($env:DEMO_APP_DIR) { $env:DEMO_APP_DIR } else { $PSScriptRoot }
+if (Test-Path (Join-Path $toolDir 'node_modules\@playwright\test')) { Row OK 'tool packages' "Playwright for the recorder ($toolDir)" '' }
+else { Row MISSING 'tool packages' "Playwright for the recorder ($toolDir)" "cd $toolDir; npm install" }
+
 $pwRoot = if ($env:PLAYWRIGHT_BROWSERS_PATH) { $env:PLAYWRIGHT_BROWSERS_PATH } else { Join-Path $env:LOCALAPPDATA 'ms-playwright' }
 $pw = Get-ChildItem $pwRoot -Directory -Filter 'chromium*' -ErrorAction SilentlyContinue
 if ($pw) { Row OK 'Playwright Chromium' 'the browser the recorder drives' '' }
-else { Row MISSING 'Playwright Chromium' 'the browser the recorder drives' 'in a scratch folder: npm install @playwright/test, then npx playwright install chromium' }
+else { Row MISSING 'Playwright Chromium' 'the browser the recorder drives' 'in tools/demo-video, after npm install: npx playwright install chromium' }
 
 $hf = if ($env:HF_HOME) { Join-Path $env:HF_HOME 'hub' } else { Join-Path $env:USERPROFILE '.cache\huggingface\hub' }
 if (Test-Path (Join-Path $hf 'models--hexgrad--Kokoro-82M')) { Row OK 'Kokoro model' 'the narrator voice (cached)' '' }
-else { Row MISSING 'Kokoro model' 'the narrator voice (about 1 GB, downloaded by the first voice.py run)' 'uv run --locked tools/demo-video/voice.py <lines.json> --project <dir>' }
+else { Row MISSING 'Kokoro model' 'the narrator voice (about 1 GB, downloaded by the first voice.py run)' 'uv run --locked tools/demo-video/voice.py tools/demo-video/examples/voice-lines.json --project $env:TEMP\kokoro-check intro' }
 
 ''
 if ($linksAdded) { "Note: the WinGet Links folder ($links) was not on this shell's PATH. Add it to your PATH (or open a new shell) before running the other tools." }

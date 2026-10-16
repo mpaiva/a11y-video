@@ -6,7 +6,7 @@
 set -u
 
 REPO="$(cd "$(dirname "$0")/../.." && pwd)"
-APP_DIR="${DEMO_APP_DIR:-$REPO/events/onboarding}"
+APP_DIR="${DEMO_APP_DIR:-$REPO/tools/demo-video}"
 WHISPER_MODEL="${WHISPER_MODEL:-$HOME/.cache/hyperframes/whisper/models/ggml-small.en.bin}"
 KOKORO_CACHE="${HF_HUB_CACHE:-${HF_HOME:-${XDG_CACHE_HOME:-$HOME/.cache}/huggingface}/hub}/models--hexgrad--Kokoro-82M"
 KOKORO_REVISION="$(sed -n "s/^REVISION = '\([0-9a-f]*\)'.*/\1/p" "$REPO/tools/demo-video/voice.py")"
@@ -29,9 +29,6 @@ if has node && [ "$(node -p 'process.versions.node.split(".")[0]')" -ge 20 ]; th
   row OK node "runs the screen recorder and HyperFrames" ""
 else row MISSING node "runs the screen recorder and HyperFrames (v20+)" "brew install node"; fi
 
-if has pnpm; then row OK pnpm "installs the app's packages" ""
-else row MISSING pnpm "installs the app's packages" "npm install -g pnpm"; fi
-
 if has python3; then row OK python3 "runs the builder" ""
 else row MISSING python3 "runs the builder" "brew install python"; fi
 
@@ -48,20 +45,20 @@ if [ -f "$WHISPER_MODEL" ]; then row OK whisper-model "speech model for the tran
 else row MISSING whisper-model "speech model for the transcript" \
   "mkdir -p \"$(dirname "$WHISPER_MODEL")\" && curl -L -o \"$WHISPER_MODEL\" https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-small.en.bin"; fi
 
+FONT="$APP_DIR/node_modules/@fontsource/public-sans/files/public-sans-latin-400-normal.woff2"
+if (cd "$APP_DIR" 2>/dev/null && node -e "require.resolve('@playwright/test')" >/dev/null 2>&1) && [ -f "$FONT" ]; then
+  row OK tool-packages "Playwright and the Public Sans font ($APP_DIR)" ""
+else row MISSING tool-packages "Playwright and the Public Sans font ($APP_DIR)" \
+  "(cd \"$APP_DIR\" && npm install)"; fi
+
 if ls "$HOME/Library/Caches/ms-playwright" "$HOME/.cache/ms-playwright" 2>/dev/null | grep -q '^chromium'; then
   row OK chromium "browser the recorder drives (Playwright's Chromium)" ""
 else row MISSING chromium "browser the recorder drives (Playwright's Chromium)" \
-  "(cd \"$APP_DIR\" && pnpm test:e2e:install)"; fi
-
-FONT="$APP_DIR/packages/ui/node_modules/@fontsource/public-sans/files/public-sans-latin-400-normal.woff2"
-if (cd "$APP_DIR" 2>/dev/null && node -e "require.resolve('@playwright/test')" >/dev/null 2>&1) && [ -f "$FONT" ]; then
-  row OK app-packages "Playwright and the Public Sans font ($APP_DIR)" ""
-else row MISSING app-packages "Playwright and the Public Sans font ($APP_DIR)" \
-  "(cd \"$APP_DIR\" && pnpm install)   # or set DEMO_APP_DIR to a checkout that has node_modules"; fi
+  "(cd \"$APP_DIR\" && npm install && npx playwright install chromium)"; fi
 
 if [ -n "$KOKORO_REVISION" ] && [ -f "$KOKORO_CACHE/snapshots/$KOKORO_REVISION/kokoro-v1_0.pth" ]; then row OK kokoro "speech model for the narrator's voice" ""
 else row MISSING kokoro "speech model for the narrator's voice (about 1 GB, once)" \
-  "uv run --locked \"$REPO/tools/demo-video/voice.py\" \"$REPO/tools/demo-video/examples/tallgrass-field-training/voice-lines.json\" --project \"$KOKORO_CHECK\" count"; fi
+  "uv run --locked \"$REPO/tools/demo-video/voice.py\" \"$REPO/tools/demo-video/examples/voice-lines.json\" --project \"$KOKORO_CHECK\" intro"; fi
 
 if [ -d "$HOME/.claude/skills/hyperframes" ] || [ -d "$HOME/.agents/skills/hyperframes" ] \
   || [ -d "$HOME/.codex/skills/hyperframes" ] || [ -d "$HOME/.claude/plugins/marketplaces/hyperframes" ]; then

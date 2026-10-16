@@ -1,11 +1,13 @@
-// Worked example of natural-motion takes, from the Tallgrass field-training demo (fictional cast).
-// Copy it into your demo folder and change the selectors, names and marks for your story.
+// Worked example of natural-motion takes, from the Tallgrass field-training demo (fictional cast) of
+// an example product. Its routes, labels and test ids belong to that product: copy this file into
+// your demo folder and replace the selectors, names and marks with your app's.
 //
 //   node takes.example.mjs phone-signin <out-dir>   # worker signs in and opens Courses
 //   node takes.example.mjs admin-build  <out-dir>   # admin builds a three-course program
 //
-// Environment: PORTAL_LINK (the worker's portal link, e.g. http://127.0.0.1:5192/portal/<token>),
-// PORTAL_CODE (local dev one-time code), DEMO_ADMIN_URL, DEMO_APP_DIR (see rec-lib.mjs).
+// Environment: PORTAL_LINK (the worker's sign-in link, e.g. http://localhost:3001/portal/<token>),
+// PORTAL_CODE (the app's local dev one-time code), DEMO_ADMIN_URL and the sign-in variables in
+// rec-lib.mjs.
 // Before every take, prove which database the running app uses (fixture.md).
 import fs from 'node:fs'
 import path from 'node:path'
@@ -28,7 +30,7 @@ async function failed(page, err) {
 
 if (which === 'phone-signin') {
   const link = process.env.PORTAL_LINK
-  if (!link) throw Error('set PORTAL_LINK')
+  if (!link || !process.env.PORTAL_CODE) throw Error('set PORTAL_LINK and PORTAL_CODE')
   const { browser, page } = await phoneBrowser()
   try {
     await page.goto(link)
@@ -39,7 +41,7 @@ if (which === 'phone-signin') {
     take.mark('send-code-tap'); await take.tap(page.getByRole('button', { name: 'Send my code' }))
     const code = page.getByRole('textbox', { name: 'Enter the 6-digit code' })
     await code.waitFor(); take.mark('code-screen')
-    await take.tap(code); await take.type(process.env.PORTAL_CODE ?? '246810'); take.mark('code-typed')
+    await take.tap(code); await take.type(process.env.PORTAL_CODE); take.mark('code-typed')
     await sleep(650); take.mark('continue-tap')
     await take.tap(page.getByRole('button', { name: 'Continue', exact: true }))
     await page.getByTestId('portal-my-learning-open-courses').waitFor(); take.mark('workspace')

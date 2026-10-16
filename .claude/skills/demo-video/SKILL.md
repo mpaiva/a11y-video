@@ -1,7 +1,7 @@
 ---
 name: demo-video
 description: >-
-  Make a narrated product walkthrough video of a real ClearCo flow for customer feedback —
+  Make a narrated product walkthrough video of a real flow in any web app, for customer feedback —
   intake interview, capability check, script, demo data, natural-motion screen capture,
   storyboard pick, Kokoro voice, HyperFrames edit, second-by-second film review, final
   renders. Use for "make a demo video", "record a walkthrough for <customer>", "redo the demo
@@ -11,9 +11,27 @@ description: >-
 # Product demo video
 
 A gated recipe for a 1–3 minute narrated walkthrough of a **real** flow in the local app, shown
-to customers to get product feedback. It is not a marketing video. Everything here was learned on
-the Tallgrass field-training demo (29 Sep – 1 Oct 2026, five drafts); the `references/` hold the
-before/after examples, so read them instead of rediscovering them.
+to customers to get product feedback. It is not a marketing video. It works with any web app you
+can run locally. Everything here was learned on real demos, mostly the Tallgrass field-training demo
+(a fictional cast in an example product, five drafts). The `references/` hold the before/after
+examples, so read them instead of rediscovering them. The product details in those examples belong to
+that example product; the lessons apply to any app.
+
+## What the skill needs from the project
+
+Nothing here assumes a particular app or repo layout. Ask for anything below the requester did not
+give (intake question 7), and record it in `BRIEF.md`:
+
+- **How to run the app locally** and which origin(s) to record (`DEMO_ADMIN_URL`, plus any second
+  surface such as a phone or portal link).
+- **How the recorder signs in:** a saved Playwright session (`DEMO_STORAGE_STATE`), a dev-only login
+  route (`DEMO_LOGIN_PATH`), or a `signIn` function in the takes file (`tools/demo-video/rec-lib.mjs`).
+- **How to make isolated demo data** (a separate database or seed you can copy per story state).
+- **Debug overlays to hide** (`DEMO_HIDE_SELECTORS`) and the page's scrolling content area
+  (`DEMO_CONTENT_SELECTOR`), when the defaults do not fit.
+- **Optional project docs:** a claim register (product claims approved for customers), workflow or
+  jobs-to-be-done docs, and persona agents for the customer-reaction review. Use them when they
+  exist; never block on them.
 
 Work files (raw takes, databases, the HyperFrames project, renders) live **outside the repo** in
 one demo folder, e.g. `~/Downloads/<demo-slug>/`. Nothing customer-identifying ever goes on
@@ -39,7 +57,7 @@ section 6.
 | This session: script, build, cut, fixes (gates 2, 7, 9, 10) | Opus 5.5, effort high or xhigh | Motion, timing and pacing are judgment calls. If the session runs another model, ask the requester to switch (`/model opus`) before gate 7. In Codex, stop after gate 6 and continue in Claude Code. |
 | `storyboarder` (gate 5) | Opus 5.5, high | Taste: three distinct options from real stills. |
 | `film-reviewer` (gate 8) | Opus 5.5, xhigh | A review; it must catch one-frame glitches. |
-| `explorer` (gate 1) | its own definition | Read-only code search. |
+| `Explore` (gate 1) | its own definition | Read-only code search. |
 | `reference-breaker` (optional) | Sonnet 5.5, medium | Analysis of a reference video. |
 | Capture (gates 3, 4) | Codex, its configured default | Mechanical: app stack, databases, recorded takes. |
 
@@ -54,14 +72,14 @@ everything else you decide and note. Later gates cite `BRIEF.md`, never the conv
 | # | Gate | Owner | Exit evidence |
 |---|------|-------|---------------|
 | 0 | **Intake interview** | You, with the requester — `references/intake.md` | `BRIEF.md` in the demo folder (from `references/templates/brief.md`) recording every answer, every default applied, the artifacts read (or "none provided" for any the requester did not give), and the open questions. |
-| 1 | **Capability check** | `explorer` agent; `docs/gtm/claim-register.md` is binding | A built / partial / not-built table with `file:line` evidence for every beat in the brief, and the list of things the video must not show or say. A stale claim-register row is flagged to the requester, not silently followed or ignored. |
+| 1 | **Capability check** | `Explore` agent; the project's claim register, if it has one, is binding | A built / partial / not-built table with `file:line` evidence for every beat in the brief, and the list of things the video must not show or say. A stale claim-register row is flagged to the requester, not silently followed or ignored. |
 | 2 | **Narrative and voice script** | You, using `references/narration.md` | Scene list plus one voice line per scene (no style tags — Kokoro reads them aloud), every line describing behaviour that ran in the app, every prevalence claim checked against the brief's customer evidence. Requester approves, and picks the narrator's voice by ear from the first line in three voices (Kokoro has no tone directions, so the voice sets the tone; `references/narration.md`). The pick is in `BRIEF.md`. |
 | 3 | **Demo data** | You or Codex | One isolated database copy per story state (for example *before* and *after* the worker finishes a course), a manifest of what was seeded, and screenshots proving each state. `references/fixture.md` lists the traps. |
 | 4 | **Natural-motion capture** | Codex or you, with `tools/demo-video/rec-lib.mjs` | One continuous take per scene, a `<take>-marks.json` each, freeze detection at −60 and −90 dB, a README with the database used per take. Hand Codex `references/templates/capture-handoff.md`. Spec: `references/capture.md`. |
 | 5 | **Storyboard pick** | `storyboarder` agent | `boards.png` with three options (A/B/C) built only from real stills; the requester picks one; then one still per scene of the pick. Use `references/templates/shot-list.md` as its input. |
 | 6 | **Voice takes** | `uv run --locked tools/demo-video/voice.py` (Kokoro, runs locally) + `pick-takes.py` | One take per line named `<line-id>-<n>.mp3` (repeat Kokoro takes are almost identical; change the words or punctuation instead); `pick-takes.py --write-edl` has written each line's take into its EDL voice line's `take`, unless a line is pinned; loudness numbers recorded. |
 | 7 | **Build and draft render** | You, with the HyperFrames skills (`/hyperframes` first, then `hyperframes-core`) and `tools/demo-video/build.py` (`init` → `stage` → `check` → `build`) | An EDL JSON for the cut whose `rawDir`, `sources`, `stills` and `voiceDir` name every input, `build.py check` green (it fails on any missing media), `npm run check` with no errors (always the project's npm scripts — they run the pinned CLI), a draft from `npm run render -- --quality draft --fps 30 -o ../draft-1.mp4`, `qa.sh` with the freeze rule passing (or each P1 freeze listed), and a transcript that matches the script word for word. Recipes: `references/edit-recipes.md`. |
-| 8 | **Film review** | `film-reviewer` agent, plus a customer-reaction review by the persona agent named in the brief (for example `dana`, the fictional L&D lead, or `daneen` / `marissa` for onboarding-admin viewers); skip the persona part when the brief names none | A P0/P1/P2 table with timestamps and evidence frames, checked against `references/review-checklist.md`, and the persona's reaction in its own words. |
+| 8 | **Film review** | `film-reviewer` agent, plus a customer-reaction review by the persona agent named in the brief (a project-defined agent that plays the target viewer); skip the persona part when the brief names none | A P0/P1/P2 table with timestamps and evidence frames, checked against `references/review-checklist.md`, and the persona's reaction in its own words. |
 | 9 | **Fix and show the draft** | You | Every P0 fixed and re-verified with a 10 fps frame strip around the spot; then the requester watches the draft. One review round per change — fix P0s and clear P1s, then show it. |
 | 10 | **Final renders** | You | After the requester approves: a full-quality narrated render, a silent version with the identical picture (`ffmpeg -i narrated.mp4 -an -c:v copy silent.mp4`), and a `WATCH.md` (sources, takes used, QA results). |
 
