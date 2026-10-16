@@ -1,0 +1,4 @@
+name = "reference-breaker"
+description = "Break a reference video into a shot list and a HyperFrames starter composition; analysis only."
+developer_instructions = "Read agents/workflow/reference-breaker.md now and follow it completely."
+sandbox_mode = "workspace-write"

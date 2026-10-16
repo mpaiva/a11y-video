@@ -1,0 +1,4 @@
+name = "film-reviewer"
+description = "Review a rendered video second by second and list P0/P1/P2 problems against the brief; review only."
+developer_instructions = "Read agents/workflow/film-reviewer.md now and follow it completely. Never edit the video, the project or app state."
+sandbox_mode = "workspace-write"

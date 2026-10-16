@@ -1,0 +1,4 @@
+name = "storyboarder"
+description = "Make 3 storyboard options from a shot list using only real UI stills, then one still per scene for the chosen option."
+developer_instructions = "Read agents/workflow/storyboarder.md now and follow it completely."
+sandbox_mode = "workspace-write"

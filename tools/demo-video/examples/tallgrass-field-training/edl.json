@@ -1,0 +1,122 @@
+{
+  "title": "Field training walkthrough — Tallgrass worked example",
+  "notes": "rawDir, voiceDir and the two absolute sources below exist only on Miro's machine (the Tallgrass capture folders). A new demo points rawDir at its own capture folder and voiceDir at the folder voice.py wrote. Stage with: build.py stage edl.json --project <dir>.",
+  "rawDir": "~/Downloads/Tallgrass-demo-20260929/live-percipio/narrative-v6/raw",
+  "voiceDir": "~/Downloads/Tallgrass-demo-20260929/live-percipio/narrative-v4-claude/video/assets/voice",
+  "canvas": { "width": 1920, "height": 1080, "background": "#ecebe8" },
+  "duration": 118.75,
+  "fadeOut": { "at": 117.95 },
+  "font": "assets/fonts/public-sans.woff2",
+  "roomTone": { "src": "assets/room-tone.wav", "gain": 2.5 },
+  "sources": {
+    "assets/recordings/admin-build-v6.mp4": "admin-build.mp4",
+    "assets/recordings/rule-v6.mp4": "rule.mp4",
+    "assets/recordings/overview.mp4": "~/Downloads/Tallgrass-demo-20260929/live-percipio/narrative-v4-claude/raw/overview.mp4",
+    "assets/recordings/P1-signin.mp4": "P1-signin.mp4",
+    "assets/recordings/P2-course-launch.mp4": "P2-course-launch.mp4",
+    "assets/recordings/P3-assigned-still.mp4": "P3-assigned-still.mp4",
+    "assets/recordings/P4-after.mp4": "P4-after.mp4",
+    "assets/recordings/P5-outro-still.mp4": "P5-outro-still.mp4",
+    "assets/recordings/mobile-percipio.webm": "~/Downloads/Tallgrass-demo-20260929/live-percipio/narrative-v3/video/assets/recordings/mobile-percipio.webm",
+    "assets/stills/caleb-caughtup-v6.png": "P5-outro-still.png"
+  },
+  "stills": {
+    "assets/stills/signin-v6.png": { "from": "P1-signin.mp4", "at": 0 },
+    "assets/stills/three-courses-v6.png": { "from": "admin-build.mp4", "at": 53.40 },
+    "assets/stills/rule-last-v6.png": { "from": "rule.mp4", "at": "end" },
+    "assets/stills/preview-hold-v6.png": { "from": "admin-build.mp4", "at": 93.45 },
+    "assets/stills/overview-last.png": { "from": "~/Downloads/Tallgrass-demo-20260929/live-percipio/narrative-v4-claude/raw/overview.mp4", "at": "end" }
+  },
+  "phone": { "left": 714, "top": 40, "width": 492, "height": 1000, "radius": 28 },
+  "desktop": [
+    { "id": "a-three", "still": "assets/stills/three-courses-v6.png", "start": 15.8, "duration": 4.0, "note": "the finished program, 3 courses (admin-build three-courses mark 53.33)" },
+    { "id": "a-schedule-2", "src": "assets/recordings/admin-build-v6.mp4", "start": 19.8, "duration": 4.89, "mediaStart": 53.40, "note": "3 courses -> release schedule on (54.81) -> start-date anchor (57.11)" },
+    { "id": "a-day7", "src": "assets/recordings/admin-build-v6.mp4", "start": 24.69, "duration": 1.7, "mediaStart": 60.9, "note": "day7-added 61.83" },
+    { "id": "a-day14", "src": "assets/recordings/admin-build-v6.mp4", "start": 26.39, "duration": 1.7, "mediaStart": 65.61, "note": "day14-added 66.50" },
+    { "id": "a-move", "src": "assets/recordings/admin-build-v6.mp4", "start": 28.09, "duration": 4.5, "mediaStart": 69.1, "note": "moved-day7 69.84, moved-day14 72.95" },
+    { "id": "a-timing", "src": "assets/recordings/admin-build-v6.mp4", "start": 32.59, "duration": 4.45, "mediaStart": 74.25, "note": "timing drawer; ends before the drawer blanks and snaps shut" },
+    { "id": "r-rule", "src": "assets/recordings/rule-v6.mp4", "start": 37.04, "duration": 14.4, "mediaStart": 0.8, "note": "assign page -> Edit rule (4.55) -> conditions -> 4 match (11.58) -> Cancel (15.09)" },
+    { "id": "r-list", "src": "assets/recordings/rule-v6.mp4", "start": 51.44, "duration": 4.38, "mediaStart": 22.25, "note": "people + start dates; State column framed out by the cam (Caleb's 2 of 3 comes later in the story)" },
+    { "id": "r-hold", "still": "assets/stills/rule-last-v6.png", "start": 55.82, "duration": 1.18 },
+    { "id": "a-preview", "src": "assets/recordings/admin-build-v6.mp4", "start": 57.0, "duration": 11.35, "mediaStart": 82.135, "note": "Sep 20 preview; ends before the scroll-to-top" },
+    { "id": "a-preview-hold", "still": "assets/stills/preview-hold-v6.png", "start": 68.35, "duration": 1.9, "note": "hides the scroll-to-top under the phone grow" },
+    { "id": "o-overview", "src": "assets/recordings/overview.mp4", "start": 88.4, "duration": 20.6, "mediaStart": 0.4, "note": "overview -> Overdue (Luis) -> Nothing will chase them (Owen)" },
+    { "id": "o-hold", "still": "assets/stills/overview-last.png", "start": 109.0, "duration": 2.5 }
+  ],
+  "phoneClips": [
+    { "id": "p-signin-hold", "still": "assets/stills/signin-v6.png", "start": 0.0, "duration": 2.6 },
+    { "id": "p-signin", "src": "assets/recordings/P1-signin.mp4", "start": 2.6, "duration": 13.2, "mediaStart": 0.0, "note": "sign-in -> Workspace -> Courses, 1 of 3" },
+    { "id": "p-inset", "src": "assets/recordings/P3-assigned-still.mp4", "start": 66.65, "duration": 3.6, "mediaStart": 0.0, "note": "due Oct 4, rises beside the preview" },
+    { "id": "p-launch", "src": "assets/recordings/P2-course-launch.mp4", "start": 70.25, "duration": 0.52, "mediaStart": 1.2, "note": "tap the course tile" },
+    { "id": "p-launch-2", "src": "assets/recordings/P2-course-launch.mp4", "start": 70.77, "duration": 4.38, "mediaStart": 1.767, "note": "course page -> Start; skips one skeleton frame at 1.73" },
+    { "id": "p-play", "src": "assets/recordings/mobile-percipio.webm", "start": 75.15, "duration": 3.2, "mediaStart": 44.3, "note": "genuine vendor playback" },
+    { "id": "p-end", "src": "assets/recordings/mobile-percipio.webm", "start": 78.35, "duration": 3.5, "mediaStart": 431.3, "note": "video end -> Skillsoft end screen" },
+    { "id": "p-after", "src": "assets/recordings/P4-after.mp4", "start": 81.85, "duration": 3.0, "mediaStart": 0.0, "note": "2 of 3, caught up, more training Oct 4" },
+    { "id": "p-after-2", "src": "assets/recordings/P5-outro-still.mp4", "start": 84.85, "duration": 3.55, "mediaStart": 0.3, "hold": true, "note": "still take under the push-in while the 'two of three' line plays" },
+    { "id": "p-outro-hold", "still": "assets/stills/caleb-caughtup-v6.png", "start": 110.9, "duration": 7.85, "note": "no completion timestamps" }
+  ],
+  "phoneBackgrounds": [
+    { "id": "bg-1", "start": 0.0, "duration": 15.8 },
+    { "id": "bg-3", "start": 69.55, "duration": 18.85, "fadeIn": 0.7 },
+    { "id": "bg-11", "start": 110.9, "duration": 7.85, "fadeIn": 0.6 }
+  ],
+  "holds": [
+    { "start": 2.6, "end": 4.2, "why": "narrated: sign-in screen while the intro line names Caleb" },
+    { "start": 8.3, "end": 10.2, "why": "narrated: Workspace while the start-date line begins" },
+    { "start": 47.9, "end": 49.5, "why": "narrated: the two rule conditions while they are read out" },
+    { "start": 52.7, "end": 55.9, "why": "narrated: the assigned people while 'All four get it' plays" },
+    { "start": 71.2, "end": 74.5, "why": "narrated: the course page before the Start tap, while 'He opens it in Skillsoft' plays" },
+    { "start": 106.2, "end": 108.4, "why": "narrated: Owen's no-due-date row while it is described" }
+  ],
+  "caption": { "text": "A few minutes later", "start": 78.35, "duration": 2.6, "left": 1270, "top": 520 },
+  "voice": {
+    "dir": "assets/voice",
+    "targetLufs": -20.2,
+    "lines": [
+      { "id": "v-intro", "line": "caleb-intro", "take": "caleb-intro-2", "start": 0.4 },
+      { "id": "v-portal", "line": "caleb-portal", "take": "caleb-portal-1", "start": 9.1 },
+      { "id": "v-setup", "line": "setup", "take": "setup-2", "start": 15.9 },
+      { "id": "v-schedule", "line": "schedule", "take": "schedule-3", "start": 21.7 },
+      { "id": "v-days", "line": "days", "take": "days-1", "start": 28.4 },
+      { "id": "v-rule", "line": "rule-intro", "take": "rule-intro-3", "start": 37.4 },
+      { "id": "v-conditions", "line": "conditions", "take": "conditions-2", "start": 45.0 },
+      { "id": "v-count", "line": "count", "take": "count-3", "start": 49.6 },
+      { "id": "v-allfour", "line": "all-four", "take": "all-four-2", "start": 51.7 },
+      { "id": "v-preview", "line": "preview", "take": "preview-3", "start": 58.35 },
+      { "id": "v-open", "line": "caleb-open", "take": "caleb-open-1", "start": 73.65 },
+      { "id": "v-done", "line": "caleb-done-v2", "take": "caleb-done-v2-1", "start": 82.4 },
+      { "id": "v-overdue", "line": "overdue", "take": "overdue-1", "start": 91.2 },
+      { "id": "v-nodeadline", "line": "no-deadline", "take": "no-deadline-2", "start": 102.8 },
+      { "id": "v-outro", "line": "outro", "take": "outro-1", "start": 111.7, "cut": 5.6, "note": "voiceDir holds the original ElevenLabs takes. Their outro-1 also said Thanks for watching; the cut ends at the silence before it. After you regenerate the takes with voice.py, remove the cut: a Kokoro take ends at '…on their own schedule.'" }
+    ]
+  },
+  "motion": {
+    "rig": [
+      { "at": 10.5, "set": { "transformOrigin": "246px 250px" } },
+      { "at": 10.6, "to": { "scale": 1.12 }, "duration": 3, "ease": "power1.inOut" },
+      { "at": 15.8, "set": { "opacity": 0 } },
+      { "at": 15.9, "set": { "scale": 1, "transformOrigin": "0 0" } },
+      { "at": 66.64, "set": { "x": -564, "y": 87, "scale": 0.837 } },
+      { "at": 66.65, "to": { "opacity": 1, "y": 47 }, "duration": 0.6, "ease": "power2.out" },
+      { "at": 69.55, "to": { "x": 0, "y": 0, "scale": 1 }, "duration": 0.7, "ease": "power2.inOut" },
+      { "at": 82.0, "set": { "transformOrigin": "246px 250px" } },
+      { "at": 82.15, "to": { "scale": 1.12 }, "duration": 3, "ease": "power1.inOut" },
+      { "at": 88.4, "set": { "opacity": 0 } },
+      { "at": 88.5, "set": { "scale": 1, "transformOrigin": "0 0" } },
+      { "at": 110.9, "to": { "opacity": 1 }, "duration": 0.6, "ease": "none" }
+    ],
+    "cam": [
+      { "at": 0, "set": { "transformOrigin": "1920px 1080px" } },
+      { "at": 41.94, "to": { "scale": 1.2 }, "duration": 1.6, "ease": "power2.inOut" },
+      { "at": 50.8, "to": { "scale": 1 }, "duration": 0.6, "ease": "power2.inOut" },
+      { "at": 51.44, "set": { "scale": 1.55, "transformOrigin": "620px 660px" } },
+      { "at": 57.0, "set": { "scale": 1, "transformOrigin": "1300px 560px" } },
+      { "at": 62.75, "to": { "scale": 1.08 }, "duration": 2, "ease": "power2.inOut" },
+      { "at": 70.3, "set": { "scale": 1, "transformOrigin": "1180px 800px" } },
+      { "at": 93.9, "to": { "scale": 1.15 }, "duration": 1.6, "ease": "power2.inOut" },
+      { "at": 99.8, "to": { "scale": 1 }, "duration": 0.8, "ease": "power2.inOut" },
+      { "at": 100.9, "set": { "transformOrigin": "1000px 730px" } },
+      { "at": 104.1, "to": { "scale": 1.15 }, "duration": 1.6, "ease": "power2.inOut" }
+    ]
+  }
+}

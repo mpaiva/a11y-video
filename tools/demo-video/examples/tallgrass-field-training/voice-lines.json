@@ -1,0 +1,22 @@
+{
+  "voice": "af_heart",
+  "speed": 1,
+  "takes": 1,
+  "lines": {
+    "caleb-intro": "So this is Caleb. He's a pipefitter, and he doesn't have a work email… so he signs in with his personal email and a code.",
+    "caleb-portal": "He started on September twentieth. He's already done the first course, and the second one's due October fourth.",
+    "setup": "Okay, here's how I set that up. It's one program, with three Skillsoft courses.",
+    "schedule": "I turn on the release schedule, and it counts from each person's start date.",
+    "days": "Day zero, day seven, day fourteen… and seven days to finish each one.",
+    "rule-intro": "Then, who gets it. If you've been building a separate grouping for every release… here it's one rule.",
+    "conditions": "Field Operations, started on or after September first.",
+    "count": "Four people match.",
+    "all-four": "All four get it… and new field hires get picked up after onboarding.",
+    "preview": "If I put in Caleb's start date, September twentieth… those are his dates. Due the twenty-seventh, due October fourth, and the last one opens October fourth.",
+    "caleb-open": "He opens it in Skillsoft.",
+    "caleb-done-v2": "And now he's done two of three. He's caught up… the last one opens October fourth.",
+    "overdue": "And in the overview, Luis is in the same program, and he's behind on all three. It shows how late he is, and which rule assigned them.",
+    "no-deadline": "And this is the 'Nothing will chase them' list. Owen has a course with no due date, so nothing's going to follow up on it.",
+    "outro": "So I set it up once… and every new field hire gets it on their own schedule."
+  }
+}
