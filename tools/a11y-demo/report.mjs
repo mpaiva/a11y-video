@@ -17,6 +17,7 @@
 //     "steps": [{ "title", "goal", "video": "<video id>" | null }],
 //     "videos": [{ "id", "stem", "title", "about", "finding" }],
 //     "recommendations": [{ "area", "why", "who" }],
+//     "recommendationsVideo": { "id", "stem", "title", "about" },          optional, shown in that section
 //     "footer": "..." }
 //   Text may hold inline HTML (links, <strong>); it is the author's, not the viewer's.
 import { execFileSync } from 'node:child_process'
@@ -43,7 +44,7 @@ const transcript = stem => fs.readFileSync(path.join(dir, `${stem}.transcript.tx
   .map(([, t, who, text]) => `<li><span class="time">${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}</span> <span class="who">${who}</span> ${esc(text)}</li>`)
   .join('\n')
 
-for (const v of r.videos) {
+for (const v of [...r.videos, ...(r.recommendationsVideo ? [r.recommendationsVideo] : [])]) {
   for (const ext of ['.mp4', '.vtt', '.transcript.txt']) {
     if (!fs.existsSync(path.join(dir, v.stem + ext))) throw new Error(`Missing ${v.stem}${ext} next to ${out}.`)
   }
@@ -66,11 +67,11 @@ const findings = (r.brief?.findings ?? []).map(f => `
 const steps = (r.steps ?? []).map(s => `
       <li><strong>${s.title}.</strong> <span class="goal">Goal: ${s.goal}</span> <span class="status-line">${s.video ? `<a href="#${esc(s.video)}">Video</a>` : 'Not filmed.'}</span></li>`).join('')
 
-const videos = r.videos.map(v => {
+const videoSection = (v, heading = 'h3') => {
   const len = length(v.stem)
   return `
   <section class="video" aria-labelledby="${esc(v.id)}">
-    <h3 id="${esc(v.id)}">${v.title}</h3>
+    <${heading} id="${esc(v.id)}">${v.title}</${heading}>
     <video controls preload="metadata" playsinline aria-describedby="${esc(v.id)}-about">
       <source src="${esc(v.stem)}.mp4" type="video/mp4">
       <track kind="captions" src="${esc(v.stem)}.vtt" srclang="${esc(r.lang ?? 'en')}" label="English">
@@ -88,7 +89,10 @@ ${transcript(v.stem)}
       </ol>
     </details>
   </section>`
-}).join('')
+}
+const videos = r.videos.map(v => videoSection(v)).join('')
+// The recommendations can have a video of their own, shown at the top of their section.
+const recVideo = r.recommendationsVideo ? videoSection(r.recommendationsVideo) : ''
 
 const recommendations = r.recommendations.map(x => `
       <li><strong>${x.area}.</strong> ${x.why}${x.who ? ` <span class="who-line">Who: ${x.who}</span>` : ''}</li>`).join('')
@@ -180,6 +184,7 @@ const page = `<!doctype html>
 
     <h2 id="recommendations">Recommendations: test with people with disabilities</h2>
     <p>${r.recommendationsIntro ?? 'This was a first pass. It shows whether things work as built, not whether they help the people they are for. These need people with disabilities, using their own devices and settings:'}</p>
+    ${recVideo}
     <ol class="recs">${recommendations}
     </ol>
   </main>

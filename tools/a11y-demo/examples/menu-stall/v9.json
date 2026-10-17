@@ -1,0 +1,97 @@
+{
+  "_note": "Series closing video: the recommendations for testing with people with disabilities, each area shown on screen. Keyboard only, on the build closest to the live site (jupiter 1ad6053). The collage beat shows the Home page dropdown on its list value; switching it by typing would need a space, which opens Safari's native menu.",
+  "id": "v9",
+  "url": "http://localhost:4604/",
+  "display": 2,
+  "voiceover": false,
+  "voiceDir": "video/assets/voice",
+  "gap": 0.8,
+  "steps": [
+    {
+      "say": "v9-open"
+    },
+    {
+      "do": "tab",
+      "times": 2
+    },
+    {
+      "do": "enter"
+    },
+    {
+      "say": "v9-describe"
+    },
+    {
+      "do": "escape"
+    },
+    {
+      "say": "v9-readers"
+    },
+    {
+      "do": "tab",
+      "times": 7,
+      "gap": 0.4
+    },
+    {
+      "do": "enter"
+    },
+    {
+      "say": "v9-sentence"
+    },
+    {
+      "do": "escape"
+    },
+    {
+      "say": "v9-motion"
+    },
+    {
+      "do": "chord",
+      "code": 24,
+      "mods": "command down",
+      "label": "Command-Plus: zooms the page"
+    },
+    {
+      "do": "chord",
+      "code": 24,
+      "mods": "command down",
+      "label": "Command-Plus: zooms the page"
+    },
+    {
+      "do": "chord",
+      "code": 24,
+      "mods": "command down",
+      "label": "Command-Plus: zooms the page"
+    },
+    {
+      "say": "v9-zoom"
+    },
+    {
+      "do": "chord",
+      "code": 29,
+      "mods": "command down",
+      "label": "Command-0: back to actual size"
+    },
+    {
+      "say": "v9-voice"
+    },
+    {
+      "do": "enter"
+    },
+    {
+      "do": "tab",
+      "times": 4,
+      "gap": 0.4
+    },
+    {
+      "do": "look"
+    },
+    {
+      "do": "escape"
+    },
+    {
+      "say": "v9-collage"
+    },
+    {
+      "say": "v9-close"
+    }
+  ]
+}

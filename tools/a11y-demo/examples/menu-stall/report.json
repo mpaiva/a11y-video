@@ -4,8 +4,14 @@
   "description": "A first-pass screen-reader test of mpaiva.com's home page, step by step, with what it found, what was fixed, and what still needs testing with people with disabilities.",
   "lang": "en",
   "breadcrumbs": [
-    { "name": "Marcelo Paiva", "href": "https://mpaiva.com/" },
-    { "name": "Accessibility statement", "href": "https://mpaiva.com/accessibility" }
+    {
+      "name": "Marcelo Paiva",
+      "href": "https://mpaiva.com/"
+    },
+    {
+      "name": "Accessibility statement",
+      "href": "https://mpaiva.com/accessibility"
+    }
   ],
   "lede": "A first pass at testing this site's home page with VoiceOver, the screen reader built into the Mac, before testing it with people with disabilities. The goal was to find barriers early and fix them. Each step is a short video; each problem found was fixed and tested again.",
   "brief": {
@@ -14,99 +20,206 @@
       "The test found five problems on the page. Three are fixed and live, one fix is in review, and one, a small one, is still open. One more thing heard was VoiceOver and Safari, not the page."
     ],
     "findings": [
-      { "title": "A hidden menu held VoiceOver for four presses", "status": "fixed",
+      {
+        "title": "A hidden menu held VoiceOver for four presses",
+        "status": "fixed",
         "criterion": "WCAG 4.1.2 Name, Role, Value",
         "plain": "Just after the Set for you button, VoiceOver said “menu” four times and didn’t move. There was no menu on screen: the closed settings panel still held its four dropdowns, and Safari passed them to VoiceOver. Someone listening would think the page had stopped.",
         "fix": "Fixed: the panel is now left empty while it is closed. Live since October 16, 2026.",
-        "video": "reading-pass" },
-      { "title": "Changing a setting wasn’t announced", "status": "fixed",
+        "video": "reading-pass"
+      },
+      {
+        "title": "Changing a setting wasn’t announced",
+        "status": "fixed",
         "criterion": "WCAG 4.1.3 Status Messages",
         "plain": "Turning the drawings off worked, but nothing said so. The note confirming it was only on screen, so someone listening had to go and look for it.",
         "fix": "Fixed: a status line now says what each change did. VoiceOver says “Drawings are off and their captions go with them.” Live since October 17, 2026.",
-        "video": "task" },
-      { "title": "Describe this page opened in silence", "status": "in-review",
+        "video": "task"
+      },
+      {
+        "title": "Describe this page opened in silence",
+        "status": "in-review",
         "criterion": "Not a WCAG failure on its own; it stops the feature doing its job",
         "plain": "The button that describes the page’s layout in words opened its dialog without VoiceOver saying anything. Someone listening wouldn’t know it had opened, though what it says is useful once you find it.",
         "fix": "A fix makes the dialog read its title and first sentences when it opens. It was heard working, and is in review, not yet live.",
-        "video": "describe" },
-      { "title": "Essay links in the drawing strip read their title twice", "status": "fixed",
+        "video": "describe"
+      },
+      {
+        "title": "Essay links in the drawing strip read their title twice",
+        "status": "fixed",
         "criterion": "WCAG 2.4.4 Link Purpose is met; a listening cost",
         "plain": "In the band of drawings, each link read its essay’s title twice, then the whole summary. The links made sense, but a list of them was slow to get through.",
         "fix": "Fixed: each link now says its title once, then the summary. Live since October 16, 2026.",
-        "video": "structure" },
-      { "title": "The strip’s preview is read again after its links", "status": "open",
+        "video": "structure"
+      },
+      {
+        "title": "The strip’s preview is read again after its links",
+        "status": "open",
         "criterion": "No WCAG failure; a listening cost",
         "plain": "Reading the page item by item, the preview card for the drawing in the middle of the strip is read after the strip’s links, so one essay’s title and summary are heard a third time.",
-        "fix": "Open: hiding the preview from screen readers would stop it, while its summary still reaches the link. Not done yet." },
-      { "title": "Choosing from a dropdown reads the old value first", "status": "not-the-page",
+        "fix": "Open: hiding the preview from screen readers would stop it, while its summary still reaches the link. Not done yet."
+      },
+      {
+        "title": "Choosing from a dropdown reads the old value first",
+        "status": "not-the-page",
         "criterion": "VoiceOver in Safari",
         "plain": "When you pick a new value in a dropdown, VoiceOver first reads the value it had before. This happens with Safari’s standard dropdown, not because of the page; the status line now follows it with the right answer.",
-        "video": "task" }
+        "video": "task"
+      }
     ]
   },
   "notes": [
-    { "label": "What these videos are.", "text": "VoiceOver in Safari, on macOS 27, driven by a script so each test can be run again the same way. What you hear from VoiceOver is what it said. The narrator is a synthetic voice, describing what a tester listens for." },
-    { "label": "What they are not.", "text": "An audit, or a claim that the site conforms to WCAG. It is one specialist, one screen reader and one browser, on one page. Nobody who uses a screen reader every day took part: that comes next, in the recommendations." },
-    { "label": "Captions.", "text": "Every video has captions for both voices on screen. They are also in each video as a captions track, and as a file you can download, with a transcript under each video." }
+    {
+      "label": "What these videos are.",
+      "text": "VoiceOver in Safari, on macOS 27, driven by a script so each test can be run again the same way. What you hear from VoiceOver is what it said. The narrator is a synthetic voice, describing what a tester listens for."
+    },
+    {
+      "label": "What they are not.",
+      "text": "An audit, or a claim that the site conforms to WCAG. It is one specialist, one screen reader and one browser, on one page. Nobody who uses a screen reader every day took part: that comes next, in the recommendations."
+    },
+    {
+      "label": "Captions.",
+      "text": "Every video has captions for both voices on screen. They are also in each video as a captions track, and as a file you can download, with a transcript under each video."
+    }
   ],
   "steps": [
-    { "title": "Inspect the page structure before using the screen reader", "goal": "understand the intended structure and find obvious semantic problems.", "video": "structure-code" },
-    { "title": "Test keyboard-only navigation", "goal": "the page works without a mouse, before the screen reader comes in.", "video": "keyboard" },
-    { "title": "A linear reading pass with the screen reader", "goal": "the experience of discovering and understanding the page.", "video": "reading-pass" },
-    { "title": "Structural navigation: headings, landmarks, links", "goal": "finding information without reading the whole page.", "video": "structure" },
-    { "title": "Controls and interactive components", "goal": "controls are understandable and usable, not merely discoverable.", "video": "control" },
-    { "title": "Real user tasks, start to finish", "goal": "people can complete what they came to do.", "video": "task" }
+    {
+      "title": "Inspect the page structure before using the screen reader",
+      "goal": "understand the intended structure and find obvious semantic problems.",
+      "video": "structure-code"
+    },
+    {
+      "title": "Test keyboard-only navigation",
+      "goal": "the page works without a mouse, before the screen reader comes in.",
+      "video": "keyboard"
+    },
+    {
+      "title": "A linear reading pass with the screen reader",
+      "goal": "the experience of discovering and understanding the page.",
+      "video": "reading-pass"
+    },
+    {
+      "title": "Structural navigation: headings, landmarks, links",
+      "goal": "finding information without reading the whole page.",
+      "video": "structure"
+    },
+    {
+      "title": "Controls and interactive components",
+      "goal": "controls are understandable and usable, not merely discoverable.",
+      "video": "control"
+    },
+    {
+      "title": "Real user tasks, start to finish",
+      "goal": "people can complete what they came to do.",
+      "video": "task"
+    }
   ],
   "videos": [
-    { "id": "overview", "stem": "v0-draft-1", "title": "Overview",
-      "about": "What the test is for and how it runs: the goal, the six steps of a screen reader test, and what this series covers." },
-    { "id": "structure-code", "stem": "v1-draft-1", "title": "Step 1: the structure, before the screen reader",
+    {
+      "id": "overview",
+      "stem": "v0-draft-1",
+      "title": "Overview",
+      "about": "What the test is for and how it runs: the goal, the six steps of a screen reader test, and what this series covers."
+    },
+    {
+      "id": "structure-code",
+      "stem": "v1-draft-1",
+      "title": "Step 1: the structure, before the screen reader",
       "about": "Safari’s Web Inspector, before any screen reader: what the page tells assistive technology. The Set for you button says it is collapsed and which panel it controls. That panel is hidden, but its four dropdowns are still inside it, in the page.",
-      "finding": "Something to listen for, not yet a problem: hidden content should stay out of a screen reader’s way. The reading pass in step 3 hears that it doesn’t." },
-    { "id": "keyboard", "stem": "v2-draft-2", "title": "Step 2: the keyboard on its own",
+      "finding": "Something to listen for, not yet a problem: hidden content should stay out of a screen reader’s way. The reading pass in step 3 hears that it doesn’t."
+    },
+    {
+      "id": "keyboard",
+      "stem": "v2-draft-2",
+      "title": "Step 2: the keyboard on its own",
       "about": "No screen reader and no mouse: real key presses, with the focus ring showing where each one lands. The skip link skips the header, and Shift-Tab retraces it in screen order. Set for you opens with Return; typing “n” in the Drawings dropdown chooses “not at all”, and the drawings go. Escape puts focus back on the button, and Space presses Pause motion.",
-      "finding": "For everything tested here, the page works without a mouse. WCAG 2.1.1 Keyboard and 2.4.7 Focus Visible hold." },
-    { "id": "reading-pass", "stem": "v3-draft-2", "title": "Step 3: the reading pass",
+      "finding": "For everything tested here, the page works without a mouse. WCAG 2.1.1 Keyboard and 2.4.7 Focus Visible hold."
+    },
+    {
+      "id": "reading-pass",
+      "stem": "v3-draft-2",
+      "title": "Step 3: the reading pass",
       "about": "VoiceOver reads the home page from the top, one item at a time. Just after the Set for you button it says “menu”, four times, and doesn’t move. There is no menu on screen.",
-      "finding": "A problem under WCAG 4.1.2 Name, Role, Value. The fix and re-test are in the last video of the series." },
-    { "id": "structure", "stem": "v4-draft-1", "title": "Step 4: structural navigation",
+      "finding": "A problem under WCAG 4.1.2 Name, Role, Value. The fix and re-test are in the last video of the series."
+    },
+    {
+      "id": "structure",
+      "stem": "v4-draft-1",
+      "title": "Step 4: structural navigation",
       "about": "Jumping by headings, landmarks and links instead of reading everything. The heading outline holds and every landmark has a name. In the drawing strip, each link reads its essay’s title twice, then the whole summary.",
-      "finding": "Headings: WCAG 1.3.1 holds. Links: WCAG 2.4.4 is met, but the list is slow to get through. The doubled titles are fixed in the current site." },
-    { "id": "control", "stem": "v5-draft-1", "title": "Step 5: the Set for you control",
+      "finding": "Headings: WCAG 1.3.1 holds. Links: WCAG 2.4.4 is met, but the list is slow to get through. The doubled titles are fixed in the current site."
+    },
+    {
+      "id": "control",
+      "stem": "v5-draft-1",
+      "title": "Step 5: the Set for you control",
       "about": "The settings button, closely: its name, role and state, what happens when it opens, each setting inside it, and where Escape leaves you.",
-      "finding": "WCAG 4.1.2 holds: the button says collapsed and expanded, every dropdown has a name and says its value, and Escape puts focus back on the button." },
-    { "id": "task", "stem": "v6-draft-2", "title": "Step 6: a real task, then the fix",
+      "finding": "WCAG 4.1.2 holds: the button says collapsed and expanded, every dropdown has a name and says its value, and Escape puts focus back on the button."
+    },
+    {
+      "id": "task",
+      "stem": "v6-draft-2",
+      "title": "Step 6: a real task, then the fix",
       "about": "Turning the drawings off with VoiceOver, start to finish. It works: the drawings go, for VoiceOver too. But nothing says so: the note that confirms it is only on screen. Then the same task on the fixed version, where the change is announced.",
-      "finding": "A problem under WCAG 4.1.3 Status Messages, fixed: VoiceOver now says “Drawings are off and their captions go with them.” straight after the choice. WCAG 4.1.3 holds." },
-    { "id": "retest", "stem": "v7-draft-2", "title": "Fix and re-test: the hidden menu",
+      "finding": "A problem under WCAG 4.1.3 Status Messages, fixed: VoiceOver now says “Drawings are off and their captions go with them.” straight after the choice. WCAG 4.1.3 holds."
+    },
+    {
+      "id": "retest",
+      "stem": "v7-draft-2",
+      "title": "Fix and re-test: the hidden menu",
       "about": "The same page after the fix for the stall in step 3: the settings panel is now empty while it’s closed. VoiceOver goes from Set for you straight to the next button.",
-      "finding": "WCAG 4.1.2 holds here." },
-    { "id": "describe", "stem": "v8-draft-1", "title": "Extra: Describe this page",
+      "finding": "WCAG 4.1.2 holds here."
+    },
+    {
+      "id": "describe",
+      "stem": "v8-draft-1",
+      "title": "Extra: Describe this page",
       "about": "A screen reader reads a page in a line, one item at a time; it doesn’t say what the page looks like. Describe this page puts the layout into words, so someone who is blind gets a map: what is on the page before reading all of it, and where things are when a sighted colleague points to “the column on the right”.",
-      "finding": "The description works once you reach it, but the dialog opened in silence. A fix is in review; its re-test will be filmed once it is live." }
+      "finding": "The description works once you reach it, but the dialog opened in silence. A fix is in review; its re-test will be filmed once it is live."
+    }
   ],
   "recommendations": [
-    { "area": "Describe this page",
+    {
+      "area": "Describe this page",
       "why": "Whether a written description of the layout actually helps someone build a picture of the page, whether it says too much or too little, and whether people find the button where it is. A screen reader can show the dialog works; only the people it is for can say it helps.",
-      "who": "blind people who use a screen reader every day, on VoiceOver and on JAWS or NVDA." },
-    { "area": "Other screen readers and devices",
+      "who": "blind people who use a screen reader every day, on VoiceOver and on JAWS or NVDA."
+    },
+    {
+      "area": "Other screen readers and devices",
       "why": "This pass used VoiceOver in Safari only, and its biggest finding came from how Safari passes hidden content to VoiceOver. JAWS and NVDA on Windows, VoiceOver on iPhone and TalkBack on Android behave differently.",
-      "who": "people who use each of them daily, on their own devices and settings." },
-    { "area": "Set for you, as a sentence of settings",
+      "who": "people who use each of them daily, on their own devices and settings."
+    },
+    {
+      "area": "Set for you, as a sentence of settings",
       "why": "The panel reads its settings as a sentence, with a dropdown in each part. Whether that reads naturally, and whether the new announcements are enough to know what changed, is a question of experience, not of code.",
-      "who": "screen-reader users, and people with cognitive or learning disabilities." },
-    { "area": "Motion",
+      "who": "screen-reader users, and people with cognitive or learning disabilities."
+    },
+    {
+      "area": "Motion",
       "why": "The band of drawings drifts and the background moves. The pause button and reduced-motion setting were checked to work, not whether they are found in time or whether the motion is comfortable before they are.",
-      "who": "people with vestibular disorders, and people for whom motion makes reading harder, such as some people with ADHD." },
-    { "area": "Zoom and magnification",
+      "who": "people with vestibular disorders, and people for whom motion makes reading harder, such as some people with ADHD."
+    },
+    {
+      "area": "Zoom and magnification",
       "why": "The header stays at the top of the screen, and some text sits over moving colour that the site measures but doesn’t yet grade. How that feels at high zoom or under a screen magnifier wasn’t part of this pass.",
-      "who": "people with low vision who use browser zoom or a screen magnifier." },
-    { "area": "Voice control and switch access",
+      "who": "people with low vision who use browser zoom or a screen magnifier."
+    },
+    {
+      "area": "Voice control and switch access",
       "why": "Controls were checked for names a screen reader announces, not for names people would say aloud, and the home page has more than fifty stops from top to bottom for someone moving one step at a time.",
-      "who": "people who use Voice Control or switch access, and others with motor disabilities." },
-    { "area": "The collage layout",
+      "who": "people who use Voice Control or switch access, and others with motor disabilities."
+    },
+    {
+      "area": "The collage layout",
       "why": "Set for you can swap the home page’s list of essays for a collage of drawings. This pass tested the list only.",
-      "who": "screen-reader and keyboard users." }
+      "who": "screen-reader and keyboard users."
+    }
   ],
-  "footer": "A first pass, made October 16–17, 2026. If something here doesn’t work for you, that is a bug: <a href=\"mailto:mpaiva@gmail.com\">email me</a>, and say what you were trying to do and what you were using."
+  "footer": "A first pass, made October 16–17, 2026. If something here doesn’t work for you, that is a bug: <a href=\"mailto:mpaiva@gmail.com\">email me</a>, and say what you were trying to do and what you were using.",
+  "recommendationsVideo": {
+    "id": "recommendations-video",
+    "stem": "v9-draft-1",
+    "title": "The recommendations, on screen",
+    "about": "Each area that needs testing with people with disabilities, shown on the page as it is named: the Describe this page dialog, the Set for you sentence, the moving drawings, the page zoomed in, and the Home page setting that switches to the collage."
+  }
 }

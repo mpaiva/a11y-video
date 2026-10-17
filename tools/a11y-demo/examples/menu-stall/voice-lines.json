@@ -60,6 +60,16 @@
     "v8-in": "There it is: a dialog called The home page. I'll step into it.",
     "v8-like": "This is what the button is for. It starts with a picture: the front page of a magazine, the newest essays taking most of the page, and a narrower column beside them. Then it walks the layout from top to bottom, in order.",
     "v8-close": "Escape closes it, and puts me back on the button. What it says is useful. The gap is the opening: VoiceOver in Safari should hear that the dialog appeared. And nobody who relies on a description like this has told me yet whether it helps. That's the next test, with people.",
-    "v8-close2": "Escape closes it, and puts me back on the button. What it says is useful. The gap is the opening: when the dialog appears, VoiceOver should say so. And nobody who relies on a description like this has told me yet whether it helps. That's the next test, with people."
+    "v8-close2": "Escape closes it, and puts me back on the button. What it says is useful. The gap is the opening: when the dialog appears, VoiceOver should say so. And nobody who relies on a description like this has told me yet whether it helps. That's the next test, with people.",
+    "v9-open": "Last, what this first pass can't tell me. A screen reader shows whether things work as built, not whether they help the people they're for. These need people with disabilities, on their own devices and settings.",
+    "v9-describe": "First, Describe this page. Does a written description of the layout help someone picture the page? Is it too long, or too short? Blind people who use a screen reader every day should tell us, on VoiceOver and on JAWS or NVDA.",
+    "v9-readers": "Second, other screen readers and devices. This pass used VoiceOver in Safari only, and its biggest finding came from how Safari passes hidden content to VoiceOver. JAWS, NVDA, VoiceOver on iPhone and TalkBack all behave differently.",
+    "v9-sentence": "Third, Set for you reads its settings as a sentence. Whether that feels natural, and whether the new announcements are enough, is for screen reader users, and people with cognitive or learning disabilities, to say.",
+    "v9-motion": "Fourth, motion. The drawings drift and the background moves. The pause button works… but is it found in time, and is the motion comfortable before it is? People with vestibular disorders can tell us.",
+    "v9-zoom": "Fifth, zoom and magnification. Zoomed in, the header stays at the top, and some text sits over moving colour. People with low vision who use zoom or a screen magnifier should try it.",
+    "v9-voice": "Sixth, voice control and switch access. Names were checked for what a screen reader says, not for what people say aloud, and the home page has more than fifty stops for someone moving one step at a time.",
+    "v9-collage": "And last, this dropdown. Set for you can turn the home page into a collage of drawings. This pass tested the list only.",
+    "v9-close": "That's the end of the first pass. Five problems found on the page: three fixed and live, one fix in review, and one still open. The next test is with people.",
+    "v9-collage2": "And last, the collage. Set for you can turn the home page into a field of drawings. This pass tested the list only."
   }
 }

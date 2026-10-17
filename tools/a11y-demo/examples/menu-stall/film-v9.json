@@ -1,0 +1,1 @@
+{ "_note": "Series closing video: recommendations. v9-collage is swapped for a line that does not point at the dropdown, which Escape has closed by then.", "takesDir": "takes", "voiceDir": "video/assets/voice", "lines": "voice-lines.json", "scenes": [{ "id": "v9", "sayAs": { "v9-collage": "v9-collage2" } }] }
