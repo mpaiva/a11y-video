@@ -151,6 +151,33 @@ export function frontmostSafari(where) {
   if (front !== 'Safari') throw new Error(`${front} came in front of Safari ${where}. The take is not usable.`)
 }
 
+/**
+ * Give the page back keyboard focus, and throw if it won't take it.
+ * Found by a jupiter session (October 17, 2026): after VO-Shift-F4, after voiceOver.start, and after
+ * screencapture -v starts ("System has new window"), document.hasFocus() in Safari is false, though Safari
+ * stays frontmost. While the page is unfocused VoiceOver follows no focus move the page makes (a dialog
+ * focusing its heading was silent, and so was a plain move to a link), and Tab doesn't move activeElement:
+ * the take reports silence a real person would not get. Activating Finder and then Safari restores it; a
+ * plain `activate Safari` while Safari is already in front does not. The element that had focus keeps it.
+ * Filmed, the bounce greys Safari's window for a moment; no Finder window came into the frame.
+ */
+export async function focusPage(where) {
+  osa('tell application "Finder" to activate')
+  await sleep(300)
+  osa('tell application "Safari" to activate')
+  releaseModifiers()
+  for (let waited = 0; ; waited += 100) {
+    if (js('document.hasFocus()') === 'true') {
+      // VoiceOver announces each switch ("Finder", then "Safari, <page>, window"), which isn't the page's.
+      hush()
+      return
+    }
+    if (waited >= 2000) break
+    await sleep(100)
+  }
+  throw new Error(`Safari's page does not have keyboard focus ${where} (document.hasFocus() is false, even after bringing Finder and then Safari to the front). VoiceOver would not follow the page's focus moves, so the take is not usable.`)
+}
+
 /** A command like VO-Shift-Home can leave Shift held, and a held Shift turns Tab into Shift-Tab. */
 export function releaseModifiers() {
   tryOsa('tell application "System Events" to key up {shift, control, option, command}')
@@ -219,6 +246,8 @@ export async function toStart() {
   await sleep(800)
   await voiceOver.perform(kc.moveCursorToKeyboardFocus)
   releaseModifiers()
+  // VO-Shift-F4 leaves the page without keyboard focus (focusPage).
+  await focusPage('after toStart')
   await sleep(400)
   if (/web content/i.test(await heard())) {
     await voiceOver.interact()
@@ -229,9 +258,8 @@ export async function toStart() {
 
 /**
  * Jump to one control, as a tester tabbing straight to it would: focus it, then VoiceOver to the focus.
- * Caution, found by a jupiter session: after VO-Shift-F4 the page no longer holds keyboard focus as far as
- * VoiceOver is concerned, and it ignores focus moves the page makes afterwards (a dialog focusing its
- * heading). When a step depends on the page moving focus, reach the control with Tab instead.
+ * VO-Shift-F4 takes keyboard focus from the page, and VoiceOver then ignores focus moves the page makes (a
+ * dialog focusing its heading), so the page gets it back with focusPage before the step ends.
  */
 export async function focusOn(selector) {
   const found = js(`(() => { const e = document.querySelector(${JSON.stringify(selector)}); if (!e) return "none";
@@ -240,6 +268,7 @@ export async function focusOn(selector) {
   await sleep(500)
   await voiceOver.perform(voiceOver.keyboardCommands.moveCursorToKeyboardFocus, { capture: true })
   releaseModifiers()
+  await focusPage(`after focusing ${selector}`)
 }
 
 /**
