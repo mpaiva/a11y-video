@@ -1,0 +1,13 @@
+{
+  "_note": "The reviewer's lines (am_puck): names the criterion, why it matters, and what changed in the code.",
+  "voice": "am_puck",
+  "speed": 1,
+  "takes": 1,
+  "lines": {
+    "r-hello": "And I'm the reviewer. When something sounds wrong, I'll name the [WCAG](/wˈʌkæɡ/) criterion it falls under, say why it matters, and explain what changed in the code to fix it.",
+    "r-open": "This video is about [WCAG](/wˈʌkæɡ/) two point four point four, Link Purpose. A link should say where it goes, from its own words, or from the text the code ties to it.",
+    "r-finding": "That's a problem under [WCAG](/wˈʌkæɡ/) two point four point four. The story titles are styled text, and each link sits on its own, so nothing in the code ties a link to its story. If you're listening, you'd have to open each one to find out where it goes.",
+    "r-fix": "In the code, each link still shows Read more, and hidden text adds the story's title for screen readers. It looks exactly the same.",
+    "r-holds": "Each link says where it goes. Two point four point four holds here."
+  }
+}

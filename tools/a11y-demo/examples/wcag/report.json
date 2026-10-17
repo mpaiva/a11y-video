@@ -1,0 +1,111 @@
+{
+  "title": "Three WCAG criteria, heard with VoiceOver",
+  "short": "WCAG series",
+  "description": "Three barriers on small example pages, each heard with VoiceOver in Safari, fixed, and heard again: a chart with no text alternative, links that all say Read more, and switches a screen reader can't find.",
+  "lang": "en",
+  "lede": "Three common barriers, one per WCAG guideline, each on a small page built to show it. In each video, a tester uses VoiceOver, the screen reader built into the Mac, and a reviewer names the problem, says why it matters and explains the fix. Then the same commands run again on the fixed page.",
+  "brief": {
+    "summary": [
+      "The pages were built for this series, one barrier each, so each test shows one criterion and nothing else. All three barriers were heard with VoiceOver in Safari, and all three are fixed in the example code. After each fix, the same commands were run again, and VoiceOver said what a viewer can see.",
+      "None of the three would show up for someone using a mouse. The chart, the links and the switches all look fine. They only fail for someone listening."
+    ],
+    "findings": [
+      {
+        "title": "The sales chart read as a file name",
+        "status": "fixed",
+        "criterion": "WCAG 1.1.1 Non-text Content",
+        "plain": "The quarterly report's only content is a bar chart, an image with no text alternative. Reading the page, VoiceOver said “q3-sales.svg image”. Someone listening learns that there's a picture, but not what it shows: sales rising from July to September.",
+        "fix": "Fixed: the image has alt text that names the kind of chart and its numbers. VoiceOver now says “Bar chart of sales in the third quarter, in thousands of dollars: July 120, August 150, September 180.”",
+        "video": "non-text"
+      },
+      {
+        "title": "Every story link said “Read more”",
+        "status": "fixed",
+        "criterion": "WCAG 2.4.4 Link Purpose (In Context)",
+        "plain": "Each of three stories ends in a link that says only “Read more”. Nothing in the code ties a link to its story: the titles are styled text, not headings, and each link sits on its own. Jumping from link to link, as screen-reader users often do, VoiceOver said “Read more, link” three times. There's no way to tell which story each one opens.",
+        "fix": "Fixed: each link still shows “Read more”, and hidden text adds its story's title for screen readers. VoiceOver now says, for example, “Read more about a new bridge opens downtown, link”.",
+        "video": "link-purpose"
+      },
+      {
+        "title": "The notification switches were invisible to VoiceOver",
+        "status": "fixed",
+        "criterion": "WCAG 4.1.2 Name, Role, Value",
+        "plain": "The settings page has two on/off switches that work with a mouse and the keyboard, but they're plain boxes in the code, with no name, no role and no state. Reading the page, VoiceOver said both labels and then “end of main”. It never reached either switch, so to someone listening, the page has nothing to set.",
+        "fix": "Fixed: each switch is a button with the switch role and an on/off state, named by its label. VoiceOver now says “Replies to my comments, on, switch”, and turning one on says “on, Weekly digest, switch”.",
+        "video": "name-role-value"
+      }
+    ]
+  },
+  "notes": [
+    {
+      "label": "What these videos are.",
+      "text": "VoiceOver in Safari, on macOS 27, driven by a script so each test can be run again the same way. What you hear from VoiceOver is what it said. Each video is narrated by two synthetic voices that introduce themselves at the start: the tester, who uses VoiceOver and says what she hears, and the reviewer, who names the WCAG criterion, says why it matters and explains the fix. The captions label them Tester and Reviewer."
+    },
+    {
+      "label": "What they are not.",
+      "text": "An audit, or a claim that any page conforms to WCAG. These are example pages built to show one barrier each, tested by one specialist with one screen reader in one browser. Nobody who uses a screen reader every day took part: that comes next, in the recommendations."
+    },
+    {
+      "label": "Captions.",
+      "text": "Every video has captions for all three voices on screen: the tester, the reviewer and VoiceOver. They are also in each video as a captions track, and as a file you can download, with a transcript under each video."
+    }
+  ],
+  "steps": [
+    {
+      "title": "A linear reading pass with the screen reader",
+      "goal": "the experience of discovering and understanding the page. It found the chart read as a file name, and the switches VoiceOver never reached.",
+      "video": "non-text"
+    },
+    {
+      "title": "Structural navigation: jumping from link to link",
+      "goal": "finding information without reading the whole page. It found three links that all said Read more.",
+      "video": "link-purpose"
+    },
+    {
+      "title": "Controls: name, role and state",
+      "goal": "controls are understandable and usable, not merely discoverable. After the fix, each switch said its name, its role and its state, and changing one was announced.",
+      "video": "name-role-value"
+    }
+  ],
+  "videos": [
+    {
+      "id": "non-text",
+      "stem": "wcag-1-1-1",
+      "title": "1.1.1 Non-text Content: a chart with no text alternative",
+      "about": "The tester and the reviewer introduce themselves. The tester reads the quarterly report with VoiceOver, from the heading down, and the reviewer names the problem and why it matters. Then they run the same reading pass on the fixed page.",
+      "finding": "Before: “q3-sales.svg image”. After: the chart's type and its three numbers."
+    },
+    {
+      "id": "link-purpose",
+      "stem": "wcag-2-4-4",
+      "title": "2.4.4 Link Purpose: three links that say Read more",
+      "about": "The tester and the reviewer introduce themselves. The tester jumps from link to link with VoiceOver (VO-Command-L) through the latest stories, and the reviewer names the problem and why it matters. Then they make the same three jumps on the fixed page.",
+      "finding": "Before: “Read more, link” three times. After: each link names its story."
+    },
+    {
+      "id": "name-role-value",
+      "stem": "wcag-4-1-2",
+      "title": "4.1.2 Name, Role, Value: switches built from boxes",
+      "about": "The tester and the reviewer introduce themselves. The tester reads the notification settings page with VoiceOver, and the reviewer names the problem and why it matters. Then they run the same reading pass on the fixed page, and the tester turns on Weekly digest.",
+      "finding": "Before: VoiceOver never reaches either switch. After: “Replies to my comments, on, switch”; turning on Weekly digest is announced."
+    }
+  ],
+  "recommendations": [
+    {
+      "area": "Chart descriptions",
+      "why": "Alt text can carry three numbers. Whether it's enough for a real chart, or whether people would rather have a data table, or a summary of the trend first, is something only the people who rely on it can say. A screen reader shows the alt text is read, not that it's useful.",
+      "who": "blind people and people with low vision who use a screen reader or magnification, including some who read charts at work"
+    },
+    {
+      "area": "Link wording",
+      "why": "Hidden text fixes the links for a screen reader, but people who use voice control say what they see (“click Read more”), and three links with the same visible name are hard to tell apart by voice. Whether to show the title in the link itself is a choice to make with the people it affects.",
+      "who": "screen-reader users, and people who use voice control, such as Voice Control on the Mac"
+    },
+    {
+      "area": "Switches",
+      "why": "Whether “on” and “off” are clear, whether people expect a switch or a checkbox, and whether the label read twice in a reading pass gets in the way. The fix works as built; how it feels to use is a question for the people using it.",
+      "who": "screen-reader users on the Mac, iPhone and Windows, and keyboard-only users"
+    }
+  ],
+  "footer": "Example pages in tools/a11y-demo/examples/wcag. Tested October 17, 2026, with VoiceOver in Safari on macOS 27."
+}

@@ -1,0 +1,20 @@
+{
+  "_note": "Finding check for 1.1.1 on the after page: VoiceOver only, no narration.",
+  "id": "check-after",
+  "url": "http://localhost:4622/",
+  "display": 2,
+  "panel": "below",
+  "gap": 0.6,
+  "steps": [
+    {
+      "do": "toStart"
+    },
+    {
+      "do": "next",
+      "times": 4
+    },
+    {
+      "wait": 1
+    }
+  ]
+}

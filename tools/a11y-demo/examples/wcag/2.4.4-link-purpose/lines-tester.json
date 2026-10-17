@@ -1,0 +1,13 @@
+{
+  "_note": "The tester's lines (af_heart): drives VoiceOver, says what she hears.",
+  "voice": "af_heart",
+  "speed": 1,
+  "takes": 1,
+  "lines": {
+    "t-hello": "Hi, I'm the tester. I'll use VoiceOver, the screen reader built into the Mac, and tell you what I hear.",
+    "t-open": "Here's a page of the latest stories, in Safari, with VoiceOver on. There are three stories, and each one ends in a link that says Read more. Screen reader users often jump from link to link to see where they can go, so that's what I'll do.",
+    "t-missing": "Three links, and VoiceOver said the same thing each time: Read more, link. Nothing tells me which story each one opens.",
+    "t-again": "The same three jumps, on the fixed page.",
+    "t-heard": "Now each link names its story: a new bridge, library hours, and the farmers market."
+  }
+}

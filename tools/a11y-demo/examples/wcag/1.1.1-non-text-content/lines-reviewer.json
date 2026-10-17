@@ -1,0 +1,13 @@
+{
+  "_note": "The reviewer's lines (am_puck): names the criterion, why it matters, and what changed in the code.",
+  "voice": "am_puck",
+  "speed": 1,
+  "takes": 1,
+  "lines": {
+    "r-hello": "And I'm the reviewer. When something sounds wrong, I'll name the [WCAG](/wˈʌkæɡ/) criterion it falls under, say why it matters, and explain what changed in the code to fix it.",
+    "r-open": "This video is about [WCAG](/wˈʌkæɡ/) one point one point one, Non-text Content. Anything shown as a picture, like a chart, needs a text alternative that gives a listener what the picture gives a viewer.",
+    "r-finding": "That's a problem under [WCAG](/wˈʌkæɡ/) one point one point one. The chart has no text alternative, so VoiceOver falls back to its file name. If you're listening, you know there's a picture, but not that sales went up every month.",
+    "r-fix": "In the code, the image now has alt text. It says it's a bar chart, what it measures, and the three numbers. The chart looks exactly the same.",
+    "r-holds": "A listener gets what the chart shows. One point one point one holds here."
+  }
+}

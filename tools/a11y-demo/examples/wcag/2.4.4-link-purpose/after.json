@@ -1,0 +1,30 @@
+{
+  "_note": "The re-test: the same commands on the fix (2.4.4-link-purpose/after, port 4632).",
+  "id": "after",
+  "url": "http://localhost:4632/",
+  "display": 2,
+  "panel": "below",
+  "voiceDir": "video/assets/voice",
+  "gap": 0.5,
+  "steps": [
+    {
+      "say": "r-fix"
+    },
+    {
+      "say": "t-again"
+    },
+    {
+      "do": "toStart"
+    },
+    {
+      "do": "link",
+      "times": 3
+    },
+    {
+      "say": "t-heard"
+    },
+    {
+      "say": "r-holds"
+    }
+  ]
+}
