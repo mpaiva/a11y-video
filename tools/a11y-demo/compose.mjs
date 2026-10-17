@@ -247,7 +247,10 @@ for (const scene of film.scenes) {
     const found = want.filter(w => got.has(w)).length / want.length
     if (found < 0.8) throw new Error(`Scene ${id}: VoiceOver was expected to say "${s.expect}" after "${s.phrase}", but the transcript of that moment is "${heardText.trim()}". Not captioning it.`)
     console.log(`${id}: heard the expected "${s.expect}" (${Math.round(found * 100)}% of its words)`)
-    s.phrase = `${s.phrase.replace(/[.,]?$/, ',')} ${s.expect}`
+    // Sometimes the phrase log does have them: Describe this page's description, once it was the heading's
+    // aria-describedby, came in the same phrase as the heading. Adding it again captioned it twice, though
+    // VoiceOver said it once (video 8, October 17, 2026).
+    if (!words(s.phrase).join(' ').includes(want.join(' '))) s.phrase = `${s.phrase.replace(/[.,]?$/, ',')} ${s.expect}`
   }
   const vos = marks.steps.filter(s => (s.type === 'vo' || s.type === 'key') && (s.phrase || s.tool))
   // A scene may swap a narrator line for another in the same pause ("sayAs": {"b-intro": "v3-open"}), to
