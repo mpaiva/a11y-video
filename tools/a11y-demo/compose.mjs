@@ -188,6 +188,21 @@ for (const scene of film.scenes) {
 
   // What appears and is heard, on this scene's clock (0 = the scene's first frame).
   const local = at => at + offset - first
+  // A step may expect words after its phrase (a live region's announcement), which the phrase log
+  // leaves out. Caption them only if a transcript of that step's own audio has them.
+  for (const s of marks.steps.filter(s => s.type === 'vo' && s.expect)) {
+    const from = Math.max(0, s.at + offset - 0.3), to = s.end + offset + 2.5
+    const clip = path.join(work, `${id}-expect-${Math.round(s.at * 10)}.wav`)
+    ff(['-ss', String(from), '-to', String(to), '-i', audio, '-af', 'loudnorm=I=-18', '-ar', '16000', '-ac', '1', clip])
+    const model = process.env.WHISPER_MODEL ?? path.join(process.env.HOME, '.cache/hyperframes/whisper/models/ggml-small.en.bin')
+    const heardText = spawnSync('whisper-cli', ['-m', model, '-f', clip, '-nt'], { encoding: 'utf8' }).stdout ?? ''
+    const words = t => t.toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(w => w.length > 2)
+    const want = words(s.expect), got = new Set(words(heardText))
+    const found = want.filter(w => got.has(w)).length / want.length
+    if (found < 0.8) throw new Error(`Scene ${id}: VoiceOver was expected to say "${s.expect}" after "${s.phrase}", but the transcript of that moment is "${heardText.trim()}". Not captioning it.`)
+    console.log(`${id}: heard the expected "${s.expect}" (${Math.round(found * 100)}% of its words)`)
+    s.phrase = `${s.phrase.replace(/[.,]?$/, ',')} ${s.expect}`
+  }
   const vos = marks.steps.filter(s => s.type === 'vo' && s.phrase)
   // A scene may swap a narrator line for another in the same pause ("sayAs": {"b-intro": "v3-open"}), to
   // cut a second video from one take. The new line must fit the pause the take left for the old one.

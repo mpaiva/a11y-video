@@ -36,6 +36,8 @@
     "v6-stale": "When I choose it, VoiceOver reads the old value… calm color. That seems to be VoiceOver in Safari with a standard dropdown. I have to ask again to hear what's set.",
     "v6-silent": "Not at all. It worked… but nothing told me. The panel has a note about it, so I'll go and find it.",
     "v6-note": "There it is. Drawings are off, and their captions go with them. That's a status message, and it's only on screen: it should be announced without me going to look. That's a problem under [WCAG](/wˈʌkæɡ/) four point one point three, Status Messages.",
-    "v6-gone": "And after See the work, VoiceOver goes straight to Latest writing. The drawings are gone for a listener too. The task works… it just doesn't say so."
+    "v6-gone": "And after See the work, VoiceOver goes straight to Latest writing. The drawings are gone for a listener too. The task works… it just doesn't say so.",
+    "v6b-open": "Since then, the panel says what a change did. Here's the same task on the fixed version, the one that's live now.",
+    "v6b-heard": "There it is. Drawings are off, and their captions go with them. It still reads the old value first… but now the result is spoken, without going to look. [WCAG](/wˈʌkæɡ/) four point one point three holds here."
   }
 }

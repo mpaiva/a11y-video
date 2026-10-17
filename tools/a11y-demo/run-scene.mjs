@@ -27,6 +27,9 @@
 //   Commands: next, previous, heading, landmark, link, tab, shiftTab, describe, activate, interact,
 //   stopInteracting, escape, down, up, enter, toStart, and focus with a "selector" (vo-lib.mjs). "gap" defaults to the scene's "gap", else 0.5 s;
 //   "lead" (default 0.4 s) is the silence after each narrator line before the next step.
+//   "expect" on a "do" step: words VoiceOver should say after its phrase, such as a live region's
+//   announcement, which Guidepup's phrase log leaves out. compose.mjs captions them only once a
+//   transcript of that step's audio contains them.
 import { execFileSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
@@ -132,7 +135,8 @@ try {
           phrase = (await vo.voiceOver.itemText()).trim()
           from = 'itemText'
         }
-        marks.steps.push({ type: 'vo', do: step.do, at, end: t(), phrase, ...(from === 'itemText' ? { phraseFrom: from } : {}) })
+        marks.steps.push({ type: 'vo', do: step.do, at, end: t(), phrase, ...(from === 'itemText' ? { phraseFrom: from } : {}),
+          ...(step.expect ? { expect: step.expect } : {}) })
         if (/^VoiceOver off$/i.test(phrase)) throw new Error(`VoiceOver was turned off during scene ${scene.id}.`)
         await vo.sleep((step.gap ?? GAP) * 1000)
       }
