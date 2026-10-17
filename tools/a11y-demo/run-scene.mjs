@@ -10,7 +10,7 @@
 // waits for exactly that long and does nothing, so the narrator is never heard over VoiceOver; compose.mjs
 // lays the line into that gap.
 //
-// scene.json (worked example: examples/menu-stall/before.json). Paths are relative to the scene file.
+// scene.json (worked example: examples/menu-stall/before.json, from the repository's root). Paths are relative to the scene file.
 //   { "id": "before", "url": "http://localhost:4601/", "voiceDir": "../video/assets/voice",
 //     "display": 1,          which display to film (1 = main; A11Y_DEMO_DISPLAY overrides; vo-lib displays())
 //     "panel": "right",      VoiceOver's caption panel beside Safari: "right", "below" or "none"

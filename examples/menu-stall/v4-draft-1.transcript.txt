@@ -1,0 +1,27 @@
+[0.6] Narrator: Step four, structural navigation. Someone using a screen reader rarely reads every item. They jump, by headings, by landmarks, and by links. First, headings.
+[12.1] VoiceOver: heading level 1 I design experiences and ship accessible code that runs them.
+[16.1] VoiceOver: heading level 2 LATEST WRITING
+[18.8] VoiceOver: heading level 3 link Designers don't need Figma anymore
+[22.2] VoiceOver: heading level 3 link Who is an accessibility file for?
+[25.5] Narrator: One level one, a level two for the latest writing, and the essays under it at level three. The outline holds, all the way down. That's WCAG 1.3.1, Info and Relationships.
+[41.8] Narrator: Now landmarks.
+[44.1] VoiceOver: banner visited link Marcelo Paiva
+[47.1] VoiceOver: Main navigation
+[49.4] VoiceOver: main MARCELO PAIVA group
+[52.0] VoiceOver: More essays, by their drawings region
+[54.9] VoiceOver: LATEST WRITING region
+[57.2] VoiceOver: Work, tools and more complementary
+[59.9] Narrator: Each region is announced with a name, so I can tell them apart and jump straight to the one I want.
+[69.5] Narrator: And links. In a list of links, each one has to make sense on its own.
+[74.7] VoiceOver: Marcelo Paiva visited link
+[77.3] VoiceOver: Writing link
+[79.4] VoiceOver: Work link
+[81.6] VoiceOver: Signal link
+[83.8] VoiceOver: Tools link
+[85.9] VoiceOver: Resume link
+[88.1] VoiceOver: Read the writing link
+[90.4] VoiceOver: See the work link
+[92.7] VoiceOver: How do you keep something powerful approachable? link
+[96.0] VoiceOver: Last link How do you keep something powerful approachable? How do you keep something powerful approachable? I spent years being told that good design means less on the screen, and the best interface I ever worked on was one of the densest things I have seen. link
+[104.8] VoiceOver: How do we learn a spec nobody reads? How do we learn a spec nobody reads? Nobody learns a language by reading its dictionary, and I think that explains most of what is wrong with how we teach accessibility. link
+[112.2] Narrator: Here's a problem. The essays in the drawing strip read their title twice, and then the whole summary. The purpose is clear, so WCAG 2.4.4 is met… but a list like this is slow to get through.

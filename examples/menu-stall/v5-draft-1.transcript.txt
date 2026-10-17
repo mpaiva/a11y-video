@@ -1,0 +1,18 @@
+[0.6] Narrator: Step five, the controls. Finding Set for you isn't enough. It has to say what it is, what state it's in, and work from the keyboard.
+[9.6] VoiceOver: Set for you collapsed button
+[17.4] Narrator: Name, Set for you. Role, button. State, collapsed. That's WCAG 4.1.2.
+[24.0] VoiceOver: Set for you expanded button
+[27.0] Narrator: When I press it, the state changes to expanded, and VoiceOver says so. Now the panel, one item at a time.
+[34.7] VoiceOver: THIS SITE, SET FOR YOU group
+[37.2] VoiceOver: THIS SITE, SET FOR YOU
+[39.5] VoiceOver: Show the drawings
+[41.5] VoiceOver: in calm color Drawings collapsed pop up button, group
+[44.9] VoiceOver: , with the theme
+[46.8] VoiceOver: following my device Theme collapsed pop up button, group
+[50.3] VoiceOver: , and motion
+[52.0] VoiceOver: allowed Motion collapsed pop up button, group
+[55.2] VoiceOver: . The home page as
+[57.3] VoiceOver: a list of essays Home page collapsed pop up button, group
+[60.7] Narrator: The settings read as a sentence, and each dropdown has its own name… Drawings, Theme, Motion, Home page… with its current value first.
+[69.8] VoiceOver: Set for you collapsed button
+[72.3] Narrator: And Escape closes it, and puts me back on the button, collapsed again. Focus isn't lost.

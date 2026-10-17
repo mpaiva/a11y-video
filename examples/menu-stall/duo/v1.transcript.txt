@@ -1,0 +1,17 @@
+[0.6] Tester: Step one, before any screen reader: the structure in the code. I'm opening Safari's Web Inspector, and making it larger, to see what this page tells assistive technology.
+[12.1] Keyboard: Command-Option-I: the Web Inspector
+[15.3] Keyboard: Command-Plus: makes the Inspector larger
+[17.5] Keyboard: Command-Plus: larger again
+[19.7] Keyboard: Command-Option-C: the Console
+[21.9] Keyboard: Command-K: clears the Console
+[24.1] Keyboard: Typed inspect(document.querySelector('button[aria-expanded]'))
+[27.9] Tester: This is the Set for you button. Its attributes say aria-expanded, false, and aria-controls points at the panel it opens.
+[36.2] Reviewer: That's what a screen reader needs. Expanded, false, is announced as collapsed, so the person knows there's more behind it.
+[44.5] Keyboard: Command-Option-C: back to the Console
+[46.7] Keyboard: Command-K: clears the Console
+[48.8] Keyboard: Typed panel = document.getElementById(document.querySelector('button[aria-expanded]').getAttribute('aria-controls'))
+[51.4] Keyboard: Typed [panel.hidden, panel.querySelectorAll('select').length]
+[54.7] Tester: That panel is marked hidden, and the four dropdowns are still inside it, in the page.
+[60.2] Reviewer: Hidden content should stay out of a screen reader's way. Nothing's wrong yet… but it's the first thing to listen for, in the reading pass.
+[69.0] Keyboard: Command-0: the Inspector back to normal size
+[71.2] Keyboard: Command-Option-I: closes the Web Inspector

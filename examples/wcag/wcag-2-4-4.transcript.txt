@@ -1,0 +1,16 @@
+[0.6] Tester: Hi, I'm the tester. I'll use VoiceOver, the screen reader built into the Mac, and tell you what I hear.
+[7.5] Reviewer: And I'm the reviewer. When something sounds wrong, I'll name the WCAG criterion it falls under, say why it matters, and explain what changed in the code to fix it.
+[18.0] Reviewer: This video is about WCAG 2.4.4, Link Purpose. A link should say where it goes, from its own words, or from the text the code ties to it.
+[28.7] Tester: Here's a page of the latest stories, in Safari, with VoiceOver on. There are three stories, and each one ends in a link that says Read more. Screen reader users often jump from link to link to see where they can go, so that's what I'll do.
+[47.0] VoiceOver: Read more link
+[49.1] VoiceOver: Read more link
+[54.5] VoiceOver: Read more link
+[56.4] Tester: Three links, and VoiceOver said the same thing each time: Read more, link. Nothing tells me which story each one opens.
+[64.3] Reviewer: That's a problem under WCAG 2.4.4. The story titles are styled text, and each link sits on its own, so nothing in the code ties a link to its story. If you're listening, you'd have to open each one to find out where it goes.
+[81.2] Reviewer: In the code, each link still shows Read more, and hidden text adds the story's title for screen readers. It looks exactly the same.
+[90.1] Tester: The same three jumps, on the fixed page.
+[96.5] VoiceOver: Read more about a new bridge opens downtown link
+[99.6] VoiceOver: Read more about library hours are getting longer link
+[102.9] VoiceOver: Read more about the farmers market moves indoors link
+[105.9] Tester: Now each link names its story: a new bridge, library hours, and the farmers market.
+[112.1] Reviewer: Each link says where it goes. 2.4.4 holds here.

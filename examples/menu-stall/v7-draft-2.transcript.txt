@@ -1,0 +1,14 @@
+[0.6] Narrator: Fix and re-test. The panel is now left empty while it's closed. I'll go straight to Set for you.
+[9.1] VoiceOver: Set for you collapsed button
+[16.5] Narrator: Collapsed, the same as before. Next item.
+[20.4] VoiceOver: Pause motion toggle button
+[22.8] Narrator: That's Pause motion, the next button on the screen. The silence is gone, and 4.1.2 holds here.
+[30.5] VoiceOver: Set for you collapsed button
+[38.2] VoiceOver: Set for you expanded button
+[44.2] VoiceOver: THIS SITE, SET FOR YOU group
+[46.5] VoiceOver: THIS SITE, SET FOR YOU
+[48.5] VoiceOver: Show the drawings
+[50.4] VoiceOver: in calm color Drawings collapsed pop up button
+[53.4] Narrator: And when I open it, the first setting reads out its name and its value… Drawings, in calm color.
+[60.1] VoiceOver: Set for you collapsed button banner
+[62.6] Narrator: Same panel, same settings… it just stopped announcing things that aren't on screen.

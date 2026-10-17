@@ -1,0 +1,46 @@
+[0.6] Tester: Step four, structural navigation. Someone using a screen reader rarely reads every item. They jump, by headings, by landmarks, and by links. First, headings.
+[12.1] VoiceOver: heading level 1 I design experiences and ship accessible code that runs them.
+[16.2] VoiceOver: heading level 2 LATEST WRITING
+[19.0] VoiceOver: Last heading heading level 2 LATEST WRITING
+[22.1] VoiceOver: heading level 3 link Designers don't need Figma anymore
+[25.5] Tester: One level one, a level two for the latest writing, and the essays under it at level three. The outline holds, all the way down.
+[34.1] Reviewer: That's WCAG 1.3.1, Info and Relationships. Headings are how someone using a screen reader skims a page.
+[46.8] Tester: Now landmarks.
+[49.2] VoiceOver: banner visited link Marcelo Paiva
+[52.2] VoiceOver: Last landmark banner
+[54.6] VoiceOver: Main navigation
+[57.0] VoiceOver: main MARCELO PAIVA group
+[59.7] VoiceOver: More essays, by their drawings region
+[62.6] VoiceOver: LATEST WRITING region
+[64.9] Tester: Each region is announced with a name, so I can tell them apart and jump straight to the one I want.
+[74.9] Tester: And links. In a list of links, each one has to make sense on its own.
+[80.1] VoiceOver: Marcelo Paiva visited link
+[82.9] VoiceOver: Writing link
+[85.0] VoiceOver: Work link
+[87.2] VoiceOver: Signal link
+[89.3] VoiceOver: Tools link
+[91.5] VoiceOver: Resume link
+[93.7] VoiceOver: Read the writing link
+[96.0] VoiceOver: See the work link
+[98.4] VoiceOver: How do you keep something powerful approachable? link
+[101.6] VoiceOver: How do we learn a spec nobody reads? How do we learn a spec nobody reads? Nobody learns a language by reading its dictionary, and I think that explains most of what is wrong with how we teach accessibility. link
+[109.3] VoiceOver: Last link How do we learn a spec nobody reads? How do we learn a spec nobody reads? Nobody learns a language by reading its dictionary, and I think that explains most of what is wrong with how we teach accessibility. link
+[112.1] Tester: The essays in the drawing strip read their title twice, and then the whole summary.
+[117.3] Reviewer: Each link still makes sense, so WCAG 2.4.4 is met. But a list of links is how people scan a page, and this one takes several seconds per link. It's worth fixing.
+[129.1] Tester: Something else, on screen. As I moved through the links, rings stayed behind on links I'd already left. Even now, See the work still has one, though I'm in the drawing strip.
+[139.9] Reviewer: That's WCAG 2.4.7, Focus Visible. Someone who sees the screen while using VoiceOver, or a person sitting beside them, needs to find focus at a glance. The page's styles are right: this is a bug in Safari. But people still see it, so the page works around it.
+[159.5] Reviewer: Two fixes. Each link is now described by its summary alone, and a small script makes Safari redraw whatever just lost focus. Here's the same list after both changes.
+[174.9] VoiceOver: Last link Skip to content link
+[177.7] VoiceOver: Marcelo Paiva visited link
+[180.5] VoiceOver: Writing link
+[182.6] VoiceOver: Work link
+[184.9] VoiceOver: Last link Work link
+[187.3] VoiceOver: Signal link
+[189.3] VoiceOver: Tools link
+[191.4] VoiceOver: Resume link
+[193.7] VoiceOver: Read the writing link
+[196.0] VoiceOver: See the work link
+[198.4] VoiceOver: How do you keep something powerful approachable? link
+[201.5] VoiceOver: How do we learn a spec nobody reads? Nobody learns a language by reading its dictionary, and I think that explains most of what is wrong with how we teach accessibility. link
+[208.1] VoiceOver: Should a design system have a file written for machines? Writing rules for a reader who cannot ask a follow-up question turned out to be the clearest thinking I have done about my own design system. link
+[215.0] Tester: Now each essay says its title once, then its summary, and only the link I'm on has a ring.

@@ -6,7 +6,12 @@
 // The videos, their .vtt captions and .transcript.txt files sit next to <out.html>, as compose.mjs
 // writes them; their lengths and transcripts are read from those files.
 //
-// report.json (worked example: examples/menu-stall/report.json):
+// It also writes README.md beside <out.html>: the same report for GitHub, which shows a folder's README
+// under its file list. GitHub strips a <video> whose source is a file in the repository (only videos
+// uploaded through its web editor play inline), so each video there is a still, <stem>.jpg, taken from
+// the video and linked to the .mp4, with its captions file and its transcript.
+//
+// report.json (worked example: examples/menu-stall/report.json, from the repository's root):
 //   { "title": "...", "lede": "...", "lang": "en",
 //     "breadcrumbs": [{ "name": "Site", "href": "https://..." }, ...],      optional
 //     "notes": [{ "label": "What these videos are.", "text": "..." }, ...],  what the test is and isn't
@@ -197,4 +202,75 @@ const page = `<!doctype html>
 </html>
 `
 fs.writeFileSync(out, page)
-console.log(`${out}: ${r.videos.length} videos, ${(r.brief?.findings ?? []).length} findings, ${r.recommendations.length} recommendations`)
+
+// The README. Text from report.json keeps its inline HTML (links, <strong>), which GitHub renders.
+// Transcript lines are the video's own words, so markdown's characters in them are escaped.
+const md = s => String(s).replace(/[\\`*_[\]<>|]/g, c => (c === '<' ? '&lt;' : c === '>' ? '&gt;' : `\\${c}`))
+// A still from 40% of the way in: past the introductions, on the page being tested.
+const still = v => {
+  const file = path.join(dir, `${v.stem}.jpg`)
+  const at = Number(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0',
+    path.join(dir, `${v.stem}.mp4`)], { encoding: 'utf8' }).trim()) * 0.4
+  execFileSync('ffmpeg', ['-v', 'error', '-y', '-ss', at.toFixed(2), '-i', path.join(dir, `${v.stem}.mp4`), '-frames:v', '1',
+    '-vf', 'scale=1280:-2', '-q:v', '4', file])
+  return `${v.stem}.jpg`
+}
+const mdTranscript = stem => fs.readFileSync(path.join(dir, `${stem}.transcript.txt`), 'utf8').split('\n')
+  .map(line => line.match(/^\[([\d.]+)\] ([A-Z][A-Za-z]+): (.*)$/))
+  .filter(Boolean)
+  .map(([, t, who, text]) => `- ${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')} **${who}:** ${md(text)}`)
+  .join('\n')
+const mdVideo = (v, heading = '###') => {
+  const len = length(v.stem)
+  return `<a id="${v.id}"></a>
+
+${heading} ${v.title}
+
+[![Still from the video: ${md(v.title).replace(/\]/g, '')}. Opens the video, ${len}.](${still(v)})](${v.stem}.mp4)
+
+[Watch the video](${v.stem}.mp4) (${len}, captions on screen and as a track) · [captions file](${v.stem}.vtt) · [transcript as text](${v.stem}.transcript.txt)
+
+${v.about}
+${v.finding ? `\n**Finding.** ${v.finding}\n` : ''}
+<details>
+<summary>Transcript</summary>
+
+${mdTranscript(v.stem)}
+
+</details>
+`
+}
+const readme = `# ${r.title}
+
+${r.lede}
+
+Each still opens its video. To watch them in the page, with captions you can turn on and off, download this folder and open [index.html](index.html) in a browser.
+
+## The brief
+
+${(r.brief?.summary ?? []).join('\n\n')}
+
+${(r.brief?.findings ?? []).map(f => `- **${STATUS[f.status] ?? f.status}: ${f.title}.** ${f.plain}${f.fix ? `<br>${f.fix}` : ''}<br>${f.criterion ? `${f.criterion}` : ''}${f.video ? `${f.criterion ? ' · ' : ''}[Watch it](#${f.video})` : ''}`).join('\n')}
+
+${(r.notes ?? []).map(n => `> **${n.label}** ${n.text}`).join('\n>\n')}
+
+## How it was tested
+
+${(r.steps ?? []).map((s, i) => `${i + 1}. **${s.title}.** Goal: ${s.goal} ${s.video ? `[Video](#${s.video})` : 'Not filmed.'}`).join('\n')}
+
+## The videos
+
+${r.videos.map(v => mdVideo(v)).join('\n')}
+## Recommendations: test with people with disabilities
+
+${r.recommendationsIntro ?? 'This was a first pass. It shows whether things work as built, not whether they help the people they are for. These need people with disabilities, using their own devices and settings:'}
+
+${r.recommendationsVideo ? mdVideo(r.recommendationsVideo) : ''}
+${r.recommendations.map(x => `- **${x.area}.** ${x.why}${x.who ? `<br>Who: ${x.who}` : ''}`).join('\n')}
+
+---
+
+${r.footer ?? ''}
+`
+fs.writeFileSync(path.join(dir, 'README.md'), readme)
+console.log(`${out}: ${r.videos.length} videos, ${(r.brief?.findings ?? []).length} findings, ${r.recommendations.length} recommendations, and README.md`)

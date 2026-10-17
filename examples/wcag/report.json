@@ -107,5 +107,5 @@
       "who": "screen-reader users on the Mac, iPhone and Windows, and keyboard-only users"
     }
   ],
-  "footer": "Example pages in tools/a11y-demo/examples/wcag. Tested October 17, 2026, with VoiceOver in Safari on macOS 27."
+  "footer": "Example pages in examples/wcag. Tested October 17, 2026, with VoiceOver in Safari on macOS 27."
 }

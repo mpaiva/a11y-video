@@ -1,0 +1,20 @@
+[0.6] Tester: Step five, the controls. Finding Set for you isn't enough. It has to say what it is, what state it's in, and work from the keyboard.
+[9.7] VoiceOver: Set for you collapsed button
+[17.5] Tester: Set for you, a button, collapsed.
+[20.2] Reviewer: Name, role and state, all three. That's WCAG 4.1.2.
+[25.4] VoiceOver: Set for you expanded button
+[31.1] Tester: When I press it, the state changes to expanded, and VoiceOver says so. Now the panel, one item at a time.
+[38.8] VoiceOver: THIS SITE, SET FOR YOU group
+[41.3] VoiceOver: THIS SITE, SET FOR YOU
+[43.6] VoiceOver: Show the drawings
+[45.7] VoiceOver: in calm color Drawings Drawings collapsed pop up button, group
+[52.6] VoiceOver: , with the theme
+[54.4] VoiceOver: following my device Theme collapsed pop up button, group
+[58.1] VoiceOver: , and motion
+[59.9] VoiceOver: allowed Motion collapsed pop up button, group
+[63.2] VoiceOver: . The home page as
+[65.2] VoiceOver: a list of essays Home page collapsed pop up button, group
+[68.7] Tester: The settings read as a sentence, and each dropdown has its own name… Drawings, Theme, Motion, Home page… with its current value first.
+[77.8] VoiceOver: Set for you collapsed button banner
+[80.2] Tester: And Escape closes it, and puts me back on the button, collapsed again.
+[85.0] Reviewer: Focus isn't lost. Where focus goes when a panel or a dialog closes is one of the most common keyboard problems, and here it's right.

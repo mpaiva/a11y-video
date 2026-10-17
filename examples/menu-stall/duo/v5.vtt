@@ -1,0 +1,105 @@
+WEBVTT
+
+1
+00:00:00.600 --> 00:00:04.330
+Tester: Step five, the controls. Finding Set for you isn't enough.
+
+2
+00:00:04.330 --> 00:00:09.025
+Tester: It has to say what it is, what state it's in, and work from the keyboard.
+
+3
+00:00:09.728 --> 00:00:15.728
+VoiceOver: Set for you collapsed button
+
+4
+00:00:17.546 --> 00:00:19.820
+Tester: Set for you, a button, collapsed.
+
+5
+00:00:20.221 --> 00:00:24.796
+Reviewer: Name, role and state, all three. That's WCAG 4.1.2.
+
+6
+00:00:25.431 --> 00:00:31.066
+VoiceOver: Set for you expanded button
+
+7
+00:00:31.066 --> 00:00:35.828
+Tester: When I press it, the state changes to expanded, and VoiceOver says so.
+
+8
+00:00:35.828 --> 00:00:38.141
+Tester: Now the panel, one item at a time.
+
+9
+00:00:38.771 --> 00:00:41.280
+VoiceOver: THIS SITE, SET FOR YOU group
+
+10
+00:00:41.280 --> 00:00:43.632
+VoiceOver: THIS SITE, SET FOR YOU
+
+11
+00:00:43.632 --> 00:00:45.742
+VoiceOver: Show the drawings
+
+12
+00:00:45.742 --> 00:00:51.742
+VoiceOver: in calm color Drawings Drawings collapsed pop up button, group
+
+13
+00:00:52.614 --> 00:00:54.382
+VoiceOver: , with the theme
+
+14
+00:00:54.382 --> 00:00:58.077
+VoiceOver: following my device Theme collapsed pop up button, group
+
+15
+00:00:58.077 --> 00:00:59.935
+VoiceOver: , and motion
+
+16
+00:00:59.935 --> 00:01:03.178
+VoiceOver: allowed Motion collapsed pop up button, group
+
+17
+00:01:03.178 --> 00:01:05.233
+VoiceOver: . The home page as
+
+18
+00:01:05.233 --> 00:01:08.672
+VoiceOver: a list of essays Home page collapsed pop up button, group
+
+19
+00:01:08.672 --> 00:01:13.005
+Tester: The settings read as a sentence, and each dropdown has its own name…
+
+20
+00:01:13.005 --> 00:01:17.146
+Tester: Drawings, Theme, Motion, Home page… with its current value first.
+
+21
+00:01:17.765 --> 00:01:20.234
+VoiceOver: Set for you collapsed button banner
+
+22
+00:01:20.234 --> 00:01:24.634
+Tester: And Escape closes it, and puts me back on the button, collapsed again.
+
+23
+00:01:25.035 --> 00:01:26.169
+Reviewer: Focus isn't lost.
+
+24
+00:01:26.169 --> 00:01:28.902
+Reviewer: Where focus goes when a panel or a dialog
+
+25
+00:01:28.902 --> 00:01:32.302
+Reviewer: closes is one of the most common keyboard problems,
+
+26
+00:01:32.302 --> 00:01:33.635
+Reviewer: and here it's right.

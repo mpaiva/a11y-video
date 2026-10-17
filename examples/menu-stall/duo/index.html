@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Testing the home page with VoiceOver</title>
+<meta name="description" content="A first-pass screen-reader test of mpaiva.com's home page, step by step, with what it found, what was fixed, and what still needs testing with people with disabilities.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@600;700&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    --page: light-dark(#f7f7f7, #1a1a1a); --raised: light-dark(#ffffff, #242322);
+    --text: light-dark(#1a1a1a, #ececec); --text-2: light-dark(#373636, #cecdcd);
+    --link: light-dark(#0760c6, #93c0fa); --line: light-dark(#dddbdb, #3d3c3b); --focus: light-dark(#0974eb, #9fc8fa);
+    --ok: light-dark(#14662f, #8fd6a4); --open: light-dark(#8a3b00, #f2b483); --review: light-dark(#5a3a99, #c7b2f2);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--text); font: 1.0625rem/1.6 "Public Sans", system-ui, sans-serif; }
+  .wrap { max-width: 48rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
+  .skip { position: absolute; left: -999px; }
+  .skip:focus { left: 1rem; top: 1rem; background: var(--raised); padding: .5rem 1rem; z-index: 1; }
+  a { color: var(--link); text-underline-offset: .15em; }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+  nav.crumbs { font-size: .9375rem; color: var(--text-2); margin-bottom: 2rem; }
+  nav.crumbs ol { list-style: none; padding: 0; margin: 0; display: flex; gap: .5rem; flex-wrap: wrap; }
+  nav.crumbs li + li::before { content: "/"; margin-right: .5rem; }
+  h1, h2, h3 { font-family: "Atkinson Hyperlegible Next", "Public Sans", system-ui, sans-serif; line-height: 1.2; }
+  h1 { font-size: clamp(1.625rem, 1.29rem + 1.67vw, 2.75rem); margin: 0 0 1rem; }
+  h2 { font-size: clamp(1.375rem, 1.19rem + .93vw, 2rem); margin: 3rem 0 1rem; }
+  h3 { font-size: 1.375rem; margin: 2.5rem 0 1rem; }
+  .lede { font-size: 1.1875rem; }
+  .note { background: var(--raised); border: 1px solid var(--line); border-radius: .5rem; padding: 1rem 1.25rem; }
+  .note p { margin: .5rem 0; }
+  ol.findings, ol.recs { padding-left: 0; list-style: none; }
+  .finding-item, ol.recs li { background: var(--raised); border: 1px solid var(--line); border-radius: .5rem; padding: .75rem 1.25rem; margin: .75rem 0; }
+  .finding-item p { margin: .4rem 0; }
+  .finding-head { font-size: 1.0625rem; }
+  .status { display: inline-block; font-size: .8125rem; font-weight: 600; letter-spacing: .02em; padding: .1rem .5rem; border: 1.5px solid currentColor; border-radius: 999px; margin-right: .35rem; }
+  .status-fixed { color: var(--ok); } .status-open { color: var(--open); } .status-in-review { color: var(--review); } .status-not-the-page { color: var(--text-2); }
+  .fix { color: var(--text-2); }
+  ol.steps { padding-left: 1.5rem; } ol.steps li { margin: .75rem 0; }
+  .goal, .status-line, .who-line { display: block; color: var(--text-2); }
+  .video { border-top: 1px solid var(--line); }
+  video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; border-radius: .5rem; }
+  .meta { font-size: .9375rem; color: var(--text-2); margin: .5rem 0 1rem; }
+  .finding { border-left: 4px solid var(--line); padding-left: 1rem; }
+  details { margin-top: 1rem; } summary { cursor: pointer; font-weight: 600; color: var(--link); }
+  ol.transcript { list-style: none; padding: 0; font-size: .9375rem; } ol.transcript li { margin: .5rem 0; }
+  .time { font-variant-numeric: tabular-nums; color: var(--text-2); margin-right: .25rem; }
+  .who { font-weight: 600; margin-right: .25rem; }
+  footer { margin-top: 4rem; color: var(--text-2); font-size: .9375rem; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="https://mpaiva.com/">Marcelo Paiva</a></li>
+      <li><a href="https://mpaiva.com/accessibility">Accessibility statement</a></li>
+      <li><span aria-current="page">Testing with VoiceOver</span></li>
+    </ol>
+  </nav>
+  <main id="main">
+    <h1>Testing the home page with VoiceOver</h1>
+    <p class="lede">A first pass at testing this site’s home page with VoiceOver, the screen reader built into the Mac, before testing it with people with disabilities. The goal was to find barriers early and fix them. Each step is a short video; each problem found is fixed and tested again in the same video.</p>
+
+    <h2 id="brief">The brief</h2>
+    <p>The home page works with a keyboard and a screen reader for most of what was tested. It has a skip link, a clear outline of headings, named regions, and controls that say what they are and what state they are in. Focus is always visible, and Escape always puts it back where you were.</p>
+    <p>The test found five problems on the page. Three are fixed and live, one fix is in review, and one, a small one, is still open. One more thing heard was VoiceOver and Safari, not the page.</p>
+    <ol class="findings">
+      <li class="finding-item">
+        <p class="finding-head"><span class="status status-fixed">Fixed</span> <strong>A hidden menu held VoiceOver for four presses</strong></p>
+        <p>Just after the Set for you button, VoiceOver said “menu” four times and didn’t move. There was no menu on screen: the closed settings panel still held its four dropdowns, and Safari passed them to VoiceOver. Someone listening would think the page had stopped.</p>
+        <p class="fix">Fixed: the panel is now left empty while it is closed. Live since October 16, 2026.</p>
+        <p class="meta">WCAG 4.1.2 Name, Role, Value · <a href="#reading-pass">Watch it</a></p>
+      </li>
+      <li class="finding-item">
+        <p class="finding-head"><span class="status status-fixed">Fixed</span> <strong>Changing a setting wasn’t announced</strong></p>
+        <p>Turning the drawings off worked, but nothing said so. The note confirming it was only on screen, so someone listening had to go and look for it.</p>
+        <p class="fix">Fixed: a status line now says what each change did. VoiceOver says “Drawings are off and their captions go with them.” Live since October 17, 2026.</p>
+        <p class="meta">WCAG 4.1.3 Status Messages · <a href="#task">Watch it</a></p>
+      </li>
+      <li class="finding-item">
+        <p class="finding-head"><span class="status status-in-review">Fix in review</span> <strong>Describe this page read only its name when it opened</strong></p>
+        <p>When the dialog opened, VoiceOver read its name and heading, but not the description under them, the picture of the page, until you went looking. (An earlier draft of this report said the dialog opened in silence; that came from the test runner, not the page.)</p>
+        <p class="fix">A fix gives the heading the description, so VoiceOver reads it the moment the dialog opens. It was heard working, and is in review, not yet live.</p>
+        <p class="meta">Not a WCAG failure on its own; it stops the feature doing its job · <a href="#describe">Watch it</a></p>
+      </li>
+      <li class="finding-item">
+        <p class="finding-head"><span class="status status-fixed">Fixed</span> <strong>Essay links in the drawing strip read their title twice</strong></p>
+        <p>In the band of drawings, each link read its essay’s title twice, then the whole summary. The links made sense, but a list of them was slow to get through.</p>
+        <p class="fix">Fixed: each link now says its title once, then the summary. Live since October 16, 2026.</p>
+        <p class="meta">WCAG 2.4.4 Link Purpose is met; a listening cost · <a href="#structure">Watch it</a></p>
+      </li>
+      <li class="finding-item">
+        <p class="finding-head"><span class="status status-open">Open</span> <strong>The strip’s preview is read again after its links</strong></p>
+        <p>Reading the page item by item, the preview card for the drawing in the middle of the strip is read after the strip’s links, so one essay’s title and summary are heard a third time.</p>
+        <p class="fix">Open: hiding the preview from screen readers would stop it, while its summary still reaches the link. Not done yet.</p>
+        <p class="meta">No WCAG failure; a listening cost · </p>
+      </li>
+      <li class="finding-item">
+        <p class="finding-head"><span class="status status-not-the-page">Not the page</span> <strong>Choosing from a dropdown reads the old value first</strong></p>
+        <p>When you pick a new value in a dropdown, VoiceOver first reads the value it had before. This happens with Safari’s standard dropdown, not because of the page; the status line now follows it with the right answer.</p>
+        
+        <p class="meta">VoiceOver in Safari · <a href="#task">Watch it</a></p>
+      </li>
+    </ol>
+
+    <div class="note">
+      <p><strong>Two voices.</strong> The tester (af_heart) drives VoiceOver and the keyboard and says what she hears. The reviewer (am_puck) names the guideline a problem falls under, explains why it matters, and says what changed in the code. Both are synthetic voices; the captions label them Tester and Reviewer.</p>
+      <p><strong>What these videos are.</strong> VoiceOver in Safari, on macOS 27, driven by a script so each test can be run again the same way. What you hear from VoiceOver is what it said. The narrator is a synthetic voice, describing what a tester listens for.</p>
+      <p><strong>What they are not.</strong> An audit, or a claim that the site conforms to WCAG. It is one specialist, one screen reader and one browser, on one page. Nobody who uses a screen reader every day took part: that comes next, in the recommendations.</p>
+      <p><strong>Captions.</strong> Every video has captions for both voices on screen. They are also in each video as a captions track, and as a file you can download, with a transcript under each video.</p>
+    </div>
+
+    <h2 id="steps">How it was tested</h2>
+    <ol class="steps">
+      <li><strong>Inspect the page structure before using the screen reader.</strong> <span class="goal">Goal: understand the intended structure and find obvious semantic problems.</span> <span class="status-line"><a href="#structure-code">Video</a></span></li>
+      <li><strong>Test keyboard-only navigation.</strong> <span class="goal">Goal: the page works without a mouse, before the screen reader comes in.</span> <span class="status-line"><a href="#keyboard">Video</a></span></li>
+      <li><strong>A linear reading pass with the screen reader.</strong> <span class="goal">Goal: the experience of discovering and understanding the page.</span> <span class="status-line"><a href="#reading-pass">Video</a></span></li>
+      <li><strong>Structural navigation: headings, landmarks, links.</strong> <span class="goal">Goal: finding information without reading the whole page.</span> <span class="status-line"><a href="#structure">Video</a></span></li>
+      <li><strong>Controls and interactive components.</strong> <span class="goal">Goal: controls are understandable and usable, not merely discoverable.</span> <span class="status-line"><a href="#control">Video</a></span></li>
+      <li><strong>Real user tasks, start to finish.</strong> <span class="goal">Goal: people can complete what they came to do.</span> <span class="status-line"><a href="#task">Video</a></span></li>
+    </ol>
+
+    <h2 id="videos">The videos</h2>
+  <section class="video" aria-labelledby="overview">
+    <h3 id="overview">Overview</h3>
+    <video controls preload="metadata" playsinline aria-describedby="overview-about">
+      <source src="v0.mp4" type="video/mp4">
+      <track kind="captions" src="v0.vtt" srclang="en" label="English">
+      <p>Your browser can’t play this video. <a href="v0.mp4">Download it (1:20)</a>.</p>
+    </video>
+    <p class="meta">1:20 · captions on screen, and as a track · <a href="v0.vtt">captions file</a> · <a href="v0.transcript.txt">transcript as text</a></p>
+    <div id="overview-about">
+      <p>The tester and the reviewer introduce themselves and how they split the work, then the goal of the test, why it is a first pass, the six steps, and how each video goes: find, fix, test again.</p>
+      
+    </div>
+    <details>
+      <summary>Transcript</summary>
+      <ol class="transcript">
+<li><span class="time">0:00</span> <span class="who">Tester</span> Hello. This is the home page of Marcelo Paiva's site, in Safari, with VoiceOver on. I'm the tester. I'll drive VoiceOver and the keyboard, and tell you what I hear.</li>
+<li><span class="time">0:11</span> <span class="who">Reviewer</span> And I'm the reviewer. When something sounds wrong, I'll name the guideline it falls under, and explain why it matters to the person it stops. When it's fixed, I'll say what changed in the code.</li>
+<li><span class="time">0:24</span> <span class="who">VoiceOver</span> Marcelo Paiva — Design Engineer web content is in the VoiceOver cursor</li>
+<li><span class="time">0:28</span> <span class="who">Tester</span> The goal is simple. Can someone using VoiceOver understand this page, find what they need, and use its controls, without seeing it?</li>
+<li><span class="time">0:37</span> <span class="who">Reviewer</span> This is a first pass, before testing with people with disabilities. It finds problems early, so they can be fixed, and so the time with people goes on what only they can tell us.</li>
+<li><span class="time">0:48</span> <span class="who">Tester</span> I test in six steps. First, I inspect the page structure in the code. Second, the keyboard on its own. Third, a reading pass with the screen reader, top to bottom. Fourth, jumping by headings, landmarks and links. Fifth, the controls themselves. And sixth, real tasks, start to finish.</li>
+<li><span class="time">1:07</span> <span class="who">Reviewer</span> Each step gets its own short video. When we find a problem, we fix it, and test again in the same video. At the end, we list what still needs testing with people.</li>
+      </ol>
+    </details>
+  </section>
+  <section class="video" aria-labelledby="structure-code">
+    <h3 id="structure-code">Step 1: the structure, before the screen reader</h3>
+    <video controls preload="metadata" playsinline aria-describedby="structure-code-about">
+      <source src="v1.mp4" type="video/mp4">
+      <track kind="captions" src="v1.vtt" srclang="en" label="English">
+      <p>Your browser can’t play this video. <a href="v1.mp4">Download it (1:15)</a>.</p>
+    </video>
+    <p class="meta">1:15 · captions on screen, and as a track · <a href="v1.vtt">captions file</a> · <a href="v1.transcript.txt">transcript as text</a></p>
+    <div id="structure-code-about">
+      <p>Safari’s Web Inspector, before any screen reader: what the page tells assistive technology. The Set for you button says it is collapsed and which panel it controls. That panel is hidden, but its four dropdowns are still inside it, in the page.</p>
+      <p class="finding"><strong>Finding.</strong> Something to listen for, not yet a problem: hidden content should stay out of a screen reader’s way. The reading pass in step 3 hears that it doesn’t.</p>
+    </div>
+    <details>
+      <summary>Transcript</summary>
+      <ol class="transcript">
+<li><span class="time">0:00</span> <span class="who">Tester</span> Step one, before any screen reader: the structure in the code. I'm opening Safari's Web Inspector, and making it larger, to see what this page tells assistive technology.</li>
+<li><span class="time">0:12</span> <span class="who">Keyboard</span> Command-Option-I: the Web Inspector</li>
+<li><span class="time">0:15</span> <span class="who">Keyboard</span> Command-Plus: makes the Inspector larger</li>
+<li><span class="time">0:17</span> <span class="who">Keyboard</span> Command-Plus: larger again</li>
+<li><span class="time">0:19</span> <span class="who">Keyboard</span> Command-Option-C: the Console</li>
+<li><span class="time">0:21</span> <span class="who">Keyboard</span> Command-K: clears the Console</li>
+<li><span class="time">0:24</span> <span class="who">Keyboard</span> Typed inspect(document.querySelector('button[aria-expanded]'))</li>
+<li><span class="time">0:27</span> <span class="who">Tester</span> This is the Set for you button. Its attributes say aria-expanded, false, and aria-controls points at the panel it opens.</li>
+<li><span class="time">0:36</span> <span class="who">Reviewer</span> That's what a screen reader needs. Expanded, false, is announced as collapsed, so the person knows there's more behind it.</li>
+<li><span class="time">0:44</span> <span class="who">Keyboard</span> Command-Option-C: back to the Console</li>
+<li><span class="time">0:46</span> <span class="who">Keyboard</span> Command-K: clears the Console</li>
+<li><span class="time">0:48</span> <span class="who">Keyboard</span> Typed panel = document.getElementById(document.querySelector('button[aria-expanded]').getAttribute('aria-controls'))</li>
+<li><span class="time">0:51</span> <span class="who">Keyboard</span> Typed [panel.hidden, panel.querySelectorAll('select').length]</li>
+<li><span class="time">0:54</span> <span class="who">Tester</span> That panel is marked hidden, and the four dropdowns are still inside it, in the page.</li>
+<li><span class="time">1:00</span> <span class="who">Reviewer</span> Hidden content should stay out of a screen reader's way. Nothing's wrong yet… but it's the first thing to listen for, in the reading pass.</li>
+<li><span class="time">1:09</span> <span class="who">Keyboard</span> Command-0: the Inspector back to normal size</li>
+<li><span class="time">1:11</span> <span class="who">Keyboard</span> Command-Option-I: closes the Web Inspector</li>
+      </ol>
+    </details>
+  </section>
+  <section class="video" aria-labelledby="keyboard">
+    <h3 id="keyboard">Step 2: the keyboard on its own</h3>
+    <video controls preload="metadata" playsinline aria-describedby="keyboard-about">
+      <source src="v2.mp4" type="video/mp4">
+      <track kind="captions" src="v2.vtt" srclang="en" label="English">
+      <p>Your browser can’t play this video. <a href="v2.mp4">Download it (1:56)</a>.</p>
+    </video>
+    <p class="meta">1:56 · captions on screen, and as a track · <a href="v2.vtt">captions file</a> · <a href="v2.transcript.txt">transcript as text</a></p>
+    <div id="keyboard-about">
+      <p>No screen reader and no mouse: real key presses, with the focus ring showing where each one lands. The skip link skips the header, and Shift-Tab retraces it in screen order. Set for you opens with Return; typing “n” in the Drawings dropdown chooses “not at all”, and the drawings go. Escape puts focus back on the button, and Space presses Pause motion.</p>
+      <p class="finding"><strong>Finding.</strong> For everything tested here, the page works without a mouse. WCAG 2.1.1 Keyboard and 2.4.7 Focus Visible hold.</p>
+    </div>
+    <details>
+      <summary>Transcript</summary>
+      <ol class="transcript">
+<li><span class="time">0:00</span> <span class="who">Tester</span> Step two, the keyboard on its own. No screen reader and no mouse, just the keys a keyboard user presses, and the focus ring that shows where I am.</li>
+<li><span class="time">0:10</span> <span class="who">Keyboard</span> Tab → link, Skip to content</li>
+<li><span class="time">0:12</span> <span class="who">Tester</span> The first stop is a skip link. I'll press Return, then Tab, to see whether it really skips the header.</li>
+<li><span class="time">0:19</span> <span class="who">Keyboard</span> Return → main</li>
+<li><span class="time">0:21</span> <span class="who">Keyboard</span> Tab → link, Read the writing</li>
+<li><span class="time">0:23</span> <span class="who">Tester</span> I'm on Read the writing, past the whole header. The skip link works.</li>
+<li><span class="time">0:27</span> <span class="who">Reviewer</span> That's WCAG 2.4.1, Bypass Blocks. Without it, a keyboard user tabs through every link in the header, on every page.</li>
+<li><span class="time">0:37</span> <span class="who">Tester</span> Now back up, with Shift-Tab.</li>
+<li><span class="time">0:40</span> <span class="who">Keyboard</span> Shift-Tab → button, Pause motion</li>
+<li><span class="time">0:42</span> <span class="who">Keyboard</span> Shift-Tab → button, Set for you, collapsed</li>
+<li><span class="time">0:43</span> <span class="who">Tester</span> Pause motion, then Set for you: the same order as on screen, and the focus ring follows every time.</li>
+<li><span class="time">0:51</span> <span class="who">Reviewer</span> That's 2.4.7, Focus Visible. If you can't see where focus is, using a keyboard is guesswork.</li>
+<li><span class="time">0:58</span> <span class="who">Tester</span> I'll open it with Return.</li>
+<li><span class="time">1:01</span> <span class="who">Keyboard</span> Return → button, Set for you, expanded</li>
+<li><span class="time">1:03</span> <span class="who">Keyboard</span> Tab → pop-up button, Drawings, in calm color</li>
+<li><span class="time">1:05</span> <span class="who">Tester</span> It opens, and Tab takes me to the first setting, the drawings. With a dropdown focused, I can type the first letter of a choice. N, for not at all.</li>
+<li><span class="time">1:15</span> <span class="who">Keyboard</span> Typed n</li>
+<li><span class="time">1:17</span> <span class="who">Keyboard</span> Focus is on → pop-up button, Drawings, not at all</li>
+<li><span class="time">1:18</span> <span class="who">Tester</span> The dropdown says not at all, and the drawings are gone. Now Escape.</li>
+<li><span class="time">1:23</span> <span class="who">Keyboard</span> Escape → button, Set for you, collapsed</li>
+<li><span class="time">1:25</span> <span class="who">Tester</span> Escape closes the panel, and puts focus back on the button. Next, Pause motion.</li>
+<li><span class="time">1:31</span> <span class="who">Keyboard</span> Tab → button, Pause motion</li>
+<li><span class="time">1:33</span> <span class="who">Keyboard</span> Space → button, Pause motion, pressed</li>
+<li><span class="time">1:34</span> <span class="who">Tester</span> Space presses it, and the button now says pressed.</li>
+<li><span class="time">1:38</span> <span class="who">Reviewer</span> Tab, Shift-Tab, Return, Escape, Space, and typing to choose. Every control works without a mouse, and focus is never trapped or lost. For what was tested, the goal of step two is met. WCAG 2.1.1, Keyboard, holds here.</li>
+      </ol>
+    </details>
+  </section>
+  <section class="video" aria-labelledby="reading-pass">
+    <h3 id="reading-pass">Step 3: the reading pass, then the fix</h3>
+    <video controls preload="metadata" playsinline aria-describedby="reading-pass-about">
+      <source src="v3.mp4" type="video/mp4">
+      <track kind="captions" src="v3.vtt" srclang="en" label="English">
+      <p>Your browser can’t play this video. <a href="v3.mp4">Download it (2:21)</a>.</p>
+    </video>
+    <p class="meta">2:21 · captions on screen, and as a track · <a href="v3.vtt">captions file</a> · <a href="v3.transcript.txt">transcript as text</a></p>
+    <div id="reading-pass-about">
+      <p>VoiceOver reads the home page from the top, one item at a time. Just after the Set for you button it says “menu”, four times, and doesn’t move. There is no menu on screen. Then the same steps on the fixed page.</p>
+      <p class="finding"><strong>Finding.</strong> A problem under WCAG 4.1.2 Name, Role, Value, fixed: the panel is now empty while it is closed, and VoiceOver goes from Set for you straight to the next button. WCAG 4.1.2 holds.</p>
+    </div>
+    <details>
+      <summary>Transcript</summary>
+      <ol class="transcript">
+<li><span class="time">0:00</span> <span class="who">Tester</span> Step three, the reading pass. The home page from the top, in Safari with VoiceOver, the way someone who can't see the screen would meet it.</li>
+<li><span class="time">0:13</span> <span class="who">VoiceOver</span> Skip to content visited link is in the VoiceOver cursor</li>
+<li><span class="time">0:16</span> <span class="who">Tester</span> The first thing it reaches is a skip link, which is a good start. Now I'll read the header one item at a time.</li>
+<li><span class="time">0:23</span> <span class="who">VoiceOver</span> Describe this page dialog pop up button</li>
+<li><span class="time">0:26</span> <span class="who">VoiceOver</span> banner</li>
+<li><span class="time">0:28</span> <span class="who">VoiceOver</span> visited link Marcelo Paiva</li>
+<li><span class="time">0:31</span> <span class="who">VoiceOver</span> Main navigation</li>
+<li><span class="time">0:33</span> <span class="who">VoiceOver</span> list 5 items</li>
+<li><span class="time">0:35</span> <span class="who">VoiceOver</span> link Writing 1 of 5</li>
+<li><span class="time">0:37</span> <span class="who">VoiceOver</span> link Work 2 of 5</li>
+<li><span class="time">0:39</span> <span class="who">VoiceOver</span> link Signal 3 of 5</li>
+<li><span class="time">0:42</span> <span class="who">VoiceOver</span> link Tools 4 of 5</li>
+<li><span class="time">0:44</span> <span class="who">VoiceOver</span> link Resume 5 of 5</li>
+<li><span class="time">0:46</span> <span class="who">VoiceOver</span> end of list</li>
+<li><span class="time">0:48</span> <span class="who">VoiceOver</span> end of Main navigation</li>
+<li><span class="time">0:50</span> <span class="who">VoiceOver</span> Set for you collapsed button</li>
+<li><span class="time">0:53</span> <span class="who">Tester</span> Set for you… a button, and it tells me it's collapsed. That's what I want to hear. Next item.</li>
+<li><span class="time">0:58</span> <span class="who">Reviewer</span> A name, a role, and a state. That's what WCAG 4.1.2 asks for.</li>
+<li><span class="time">1:05</span> <span class="who">VoiceOver</span> menu</li>
+<li><span class="time">1:07</span> <span class="who">VoiceOver</span> menu</li>
+<li><span class="time">1:12</span> <span class="who">VoiceOver</span> menu</li>
+<li><span class="time">1:14</span> <span class="who">VoiceOver</span> menu</li>
+<li><span class="time">1:19</span> <span class="who">Tester</span> It says menu… and again… and again. Four presses, and it hasn't moved past it.</li>
+<li><span class="time">1:24</span> <span class="who">Reviewer</span> There's no menu on screen. The settings panel is closed, but its four dropdowns are still reaching VoiceOver. That's a problem under WCAG 4.1.2, Name, Role, Value. If you're listening, it sounds like the page has stopped, right at the control that sets the site up for you.</li>
+<li><span class="time">1:44</span> <span class="who">Reviewer</span> The fix: the panel is now left empty while it's closed. Here's the same page after that change.</li>
+<li><span class="time">1:51</span> <span class="who">Tester</span> I'll go straight to Set for you.</li>
+<li><span class="time">1:53</span> <span class="who">VoiceOver</span> Set for you collapsed button</li>
+<li><span class="time">2:01</span> <span class="who">Tester</span> Collapsed, the same as before. Next item.</li>
+<li><span class="time">2:05</span> <span class="who">VoiceOver</span> Pause motion toggle button</li>
+<li><span class="time">2:11</span> <span class="who">Tester</span> That's Pause motion, the next button on the screen. The silence is gone.</li>
+<li><span class="time">2:16</span> <span class="who">Reviewer</span> 4.1.2 holds here.</li>
+      </ol>
+    </details>
+  </section>
+  <section class="video" aria-labelledby="structure">
+    <h3 id="structure">Step 4: structural navigation, then the fix</h3>
+    <video controls preload="metadata" playsinline aria-describedby="structure-about">
+      <source src="v4.mp4" type="video/mp4">
+      <track kind="captions" src="v4.vtt" srclang="en" label="English">
+      <p>Your browser can’t play this video. <a href="v4.mp4">Download it (3:43)</a>.</p>
+    </video>
+    <p class="meta">3:43 · captions on screen, and as a track · <a href="v4.vtt">captions file</a> · <a href="v4.transcript.txt">transcript as text</a></p>
+    <div id="structure-about">
+      <p>Jumping by headings, landmarks and links instead of reading everything. The heading outline holds and every landmark has a name. In the drawing strip, each link reads its essay’s title twice, then the whole summary. Then the same links on the fixed page.</p>
+      <p class="finding"><strong>Finding.</strong> Headings: WCAG 1.3.1 holds. Links: WCAG 2.4.4 is met, but the doubled titles made the list slow to get through. Fixed: each link now says its title once, then its summary.</p>
+    </div>
+    <details>
+      <summary>Transcript</summary>
+      <ol class="transcript">
+<li><span class="time">0:00</span> <span class="who">Tester</span> Step four, structural navigation. Someone using a screen reader rarely reads every item. They jump, by headings, by landmarks, and by links. First, headings.</li>
+<li><span class="time">0:12</span> <span class="who">VoiceOver</span> heading level 1 I design experiences and ship accessible code that runs them.</li>
+<li><span class="time">0:16</span> <span class="who">VoiceOver</span> heading level 2 LATEST WRITING</li>
+<li><span class="time">0:19</span> <span class="who">VoiceOver</span> Last heading heading level 2 LATEST WRITING</li>
+<li><span class="time">0:22</span> <span class="who">VoiceOver</span> heading level 3 link Designers don't need Figma anymore</li>
+<li><span class="time">0:25</span> <span class="who">Tester</span> One level one, a level two for the latest writing, and the essays under it at level three. The outline holds, all the way down.</li>
+<li><span class="time">0:34</span> <span class="who">Reviewer</span> That's WCAG 1.3.1, Info and Relationships. Headings are how someone using a screen reader skims a page.</li>
+<li><span class="time">0:46</span> <span class="who">Tester</span> Now landmarks.</li>
+<li><span class="time">0:49</span> <span class="who">VoiceOver</span> banner visited link Marcelo Paiva</li>
+<li><span class="time">0:52</span> <span class="who">VoiceOver</span> Last landmark banner</li>
+<li><span class="time">0:54</span> <span class="who">VoiceOver</span> Main navigation</li>
+<li><span class="time">0:57</span> <span class="who">VoiceOver</span> main MARCELO PAIVA group</li>
+<li><span class="time">0:59</span> <span class="who">VoiceOver</span> More essays, by their drawings region</li>
+<li><span class="time">1:02</span> <span class="who">VoiceOver</span> LATEST WRITING region</li>
+<li><span class="time">1:04</span> <span class="who">Tester</span> Each region is announced with a name, so I can tell them apart and jump straight to the one I want.</li>
+<li><span class="time">1:14</span> <span class="who">Tester</span> And links. In a list of links, each one has to make sense on its own.</li>
+<li><span class="time">1:20</span> <span class="who">VoiceOver</span> Marcelo Paiva visited link</li>
+<li><span class="time">1:22</span> <span class="who">VoiceOver</span> Writing link</li>
+<li><span class="time">1:25</span> <span class="who">VoiceOver</span> Work link</li>
+<li><span class="time">1:27</span> <span class="who">VoiceOver</span> Signal link</li>
+<li><span class="time">1:29</span> <span class="who">VoiceOver</span> Tools link</li>
+<li><span class="time">1:31</span> <span class="who">VoiceOver</span> Resume link</li>
+<li><span class="time">1:33</span> <span class="who">VoiceOver</span> Read the writing link</li>
+<li><span class="time">1:36</span> <span class="who">VoiceOver</span> See the work link</li>
+<li><span class="time">1:38</span> <span class="who">VoiceOver</span> How do you keep something powerful approachable? link</li>
+<li><span class="time">1:41</span> <span class="who">VoiceOver</span> How do we learn a spec nobody reads? How do we learn a spec nobody reads? Nobody learns a language by reading its dictionary, and I think that explains most of what is wrong with how we teach accessibility. link</li>
+<li><span class="time">1:49</span> <span class="who">VoiceOver</span> Last link How do we learn a spec nobody reads? How do we learn a spec nobody reads? Nobody learns a language by reading its dictionary, and I think that explains most of what is wrong with how we teach accessibility. link</li>
+<li><span class="time">1:52</span> <span class="who">Tester</span> The essays in the drawing strip read their title twice, and then the whole summary.</li>
+<li><span class="time">1:57</span> <span class="who">Reviewer</span> Each link still makes sense, so WCAG 2.4.4 is met. But a list of links is how people scan a page, and this one takes several seconds per link. It's worth fixing.</li>
+<li><span class="time">2:09</span> <span class="who">Tester</span> Something else, on screen. As I moved through the links, rings stayed behind on links I'd already left. Even now, See the work still has one, though I'm in the drawing strip.</li>
+<li><span class="time">2:19</span> <span class="who">Reviewer</span> That's WCAG 2.4.7, Focus Visible. Someone who sees the screen while using VoiceOver, or a person sitting beside them, needs to find focus at a glance. The page's styles are right: this is a bug in Safari. But people still see it, so the page works around it.</li>
+<li><span class="time">2:39</span> <span class="who">Reviewer</span> Two fixes. Each link is now described by its summary alone, and a small script makes Safari redraw whatever just lost focus. Here's the same list after both changes.</li>
+<li><span class="time">2:54</span> <span class="who">VoiceOver</span> Last link Skip to content link</li>
+<li><span class="time">2:57</span> <span class="who">VoiceOver</span> Marcelo Paiva visited link</li>
+<li><span class="time">3:00</span> <span class="who">VoiceOver</span> Writing link</li>
+<li><span class="time">3:02</span> <span class="who">VoiceOver</span> Work link</li>
+<li><span class="time">3:04</span> <span class="who">VoiceOver</span> Last link Work link</li>
+<li><span class="time">3:07</span> <span class="who">VoiceOver</span> Signal link</li>
+<li><span class="time">3:09</span> <span class="who">VoiceOver</span> Tools link</li>
+<li><span class="time">3:11</span> <span class="who">VoiceOver</span> Resume link</li>
+<li><span class="time">3:13</span> <span class="who">VoiceOver</span> Read the writing link</li>
+<li><span class="time">3:16</span> <span class="who">VoiceOver</span> See the work link</li>
+<li><span class="time">3:18</span> <span class="who">VoiceOver</span> How do you keep something powerful approachable? link</li>
+<li><span class="time">3:21</span> <span class="who">VoiceOver</span> How do we learn a spec nobody reads? Nobody learns a language by reading its dictionary, and I think that explains most of what is wrong with how we teach accessibility. link</li>
+<li><span class="time">3:28</span> <span class="who">VoiceOver</span> Should a design system have a file written for machines? Writing rules for a reader who cannot ask a follow-up question turned out to be the clearest thinking I have done about my own design system. link</li>
+<li><span class="time">3:35</span> <span class="who">Tester</span> Now each essay says its title once, then its summary, and only the link I'm on has a ring.</li>
+      </ol>
+    </details>
+  </section>
+  <section class="video" aria-labelledby="control">
+    <h3 id="control">Step 5: the Set for you control</h3>
+    <video controls preload="metadata" playsinline aria-describedby="control-about">
+      <source src="v5.mp4" type="video/mp4">
+      <track kind="captions" src="v5.vtt" srclang="en" label="English">
+      <p>Your browser can’t play this video. <a href="v5.mp4">Download it (1:36)</a>.</p>
+    </video>
+    <p class="meta">1:36 · captions on screen, and as a track · <a href="v5.vtt">captions file</a> · <a href="v5.transcript.txt">transcript as text</a></p>
+    <div id="control-about">
+      <p>The settings button, closely: its name, role and state, what happens when it opens, each setting inside it, and where Escape leaves you.</p>
+      <p class="finding"><strong>Finding.</strong> WCAG 4.1.2 holds: the button says collapsed and expanded, every dropdown has a name and says its value, and Escape puts focus back on the button.</p>
+    </div>
+    <details>
+      <summary>Transcript</summary>
+      <ol class="transcript">
+<li><span class="time">0:00</span> <span class="who">Tester</span> Step five, the controls. Finding Set for you isn't enough. It has to say what it is, what state it's in, and work from the keyboard.</li>
+<li><span class="time">0:09</span> <span class="who">VoiceOver</span> Set for you collapsed button</li>
+<li><span class="time">0:17</span> <span class="who">Tester</span> Set for you, a button, collapsed.</li>
+<li><span class="time">0:20</span> <span class="who">Reviewer</span> Name, role and state, all three. That's WCAG 4.1.2.</li>
+<li><span class="time">0:25</span> <span class="who">VoiceOver</span> Set for you expanded button</li>
+<li><span class="time">0:31</span> <span class="who">Tester</span> When I press it, the state changes to expanded, and VoiceOver says so. Now the panel, one item at a time.</li>
+<li><span class="time">0:38</span> <span class="who">VoiceOver</span> THIS SITE, SET FOR YOU group</li>
+<li><span class="time">0:41</span> <span class="who">VoiceOver</span> THIS SITE, SET FOR YOU</li>
+<li><span class="time">0:43</span> <span class="who">VoiceOver</span> Show the drawings</li>
+<li><span class="time">0:45</span> <span class="who">VoiceOver</span> in calm color Drawings Drawings collapsed pop up button, group</li>
+<li><span class="time">0:52</span> <span class="who">VoiceOver</span> , with the theme</li>
+<li><span class="time">0:54</span> <span class="who">VoiceOver</span> following my device Theme collapsed pop up button, group</li>
+<li><span class="time">0:58</span> <span class="who">VoiceOver</span> , and motion</li>
+<li><span class="time">0:59</span> <span class="who">VoiceOver</span> allowed Motion collapsed pop up button, group</li>
+<li><span class="time">1:03</span> <span class="who">VoiceOver</span> . The home page as</li>
+<li><span class="time">1:05</span> <span class="who">VoiceOver</span> a list of essays Home page collapsed pop up button, group</li>
+<li><span class="time">1:08</span> <span class="who">Tester</span> The settings read as a sentence, and each dropdown has its own name… Drawings, Theme, Motion, Home page… with its current value first.</li>
+<li><span class="time">1:17</span> <span class="who">VoiceOver</span> Set for you collapsed button banner</li>
+<li><span class="time">1:20</span> <span class="who">Tester</span> And Escape closes it, and puts me back on the button, collapsed again.</li>
+<li><span class="time">1:25</span> <span class="who">Reviewer</span> Focus isn't lost. Where focus goes when a panel or a dialog closes is one of the most common keyboard problems, and here it's right.</li>
+      </ol>
+    </details>
+  </section>
+  <section class="video" aria-labelledby="task">
+    <h3 id="task">Step 6: a real task, then the fix</h3>
+    <video controls preload="metadata" playsinline aria-describedby="task-about">
+      <source src="v6.mp4" type="video/mp4">
+      <track kind="captions" src="v6.vtt" srclang="en" label="English">
+      <p>Your browser can’t play this video. <a href="v6.mp4">Download it (3:20)</a>.</p>
+    </video>
+    <p class="meta">3:20 · captions on screen, and as a track · <a href="v6.vtt">captions file</a> · <a href="v6.transcript.txt">transcript as text</a></p>
+    <div id="task-about">
+      <p>Turning the drawings off with VoiceOver, start to finish. It works: the drawings go, for VoiceOver too. But nothing says so: the note that confirms it is only on screen. Then the same task on the fixed version, where the change is announced.</p>
+      <p class="finding"><strong>Finding.</strong> A problem under WCAG 4.1.3 Status Messages, fixed: VoiceOver now says “Drawings are off and their captions go with them.” straight after the choice. WCAG 4.1.3 holds.</p>
+    </div>
+    <details>
+      <summary>Transcript</summary>
+      <ol class="transcript">
+<li><span class="time">0:00</span> <span class="who">Tester</span> Step six, a real task. I'll turn the drawings off, start to finish, with VoiceOver… and find out whether it tells me it worked.</li>
+<li><span class="time">0:09</span> <span class="who">VoiceOver</span> Set for you collapsed button</li>
+<li><span class="time">0:17</span> <span class="who">VoiceOver</span> Set for you expanded button</li>
+<li><span class="time">0:23</span> <span class="who">VoiceOver</span> THIS SITE, SET FOR YOU group</li>
+<li><span class="time">0:25</span> <span class="who">VoiceOver</span> THIS SITE, SET FOR YOU</li>
+<li><span class="time">0:27</span> <span class="who">VoiceOver</span> Show the drawings</li>
+<li><span class="time">0:29</span> <span class="who">VoiceOver</span> in calm color Drawings collapsed pop up button, group</li>
+<li><span class="time">0:33</span> <span class="who">Tester</span> There's the Drawings dropdown, set to calm color. I'll open it, and choose not at all.</li>
+<li><span class="time">0:38</span> <span class="who">VoiceOver</span> menu 3 items ✓ in calm color</li>
+<li><span class="time">0:42</span> <span class="who">VoiceOver</span> in full color</li>
+<li><span class="time">0:44</span> <span class="who">VoiceOver</span> not at all</li>
+<li><span class="time">0:46</span> <span class="who">VoiceOver</span> in calm color Drawings Drawings collapsed pop up button, group</li>
+<li><span class="time">0:53</span> <span class="who">Tester</span> When I choose it, VoiceOver reads the old value… calm color.</li>
+<li><span class="time">0:58</span> <span class="who">Reviewer</span> That seems to be VoiceOver in Safari, with a standard dropdown. It isn't the page.</li>
+<li><span class="time">1:04</span> <span class="who">Tester</span> I'll ask again to hear what's set.</li>
+<li><span class="time">1:06</span> <span class="who">VoiceOver</span> not at all Drawings collapsed pop up button, group is in the VoiceOver cursor</li>
+<li><span class="time">1:11</span> <span class="who">Tester</span> Not at all. It worked… but nothing told me. The panel has a note about it, so I'll go and find it.</li>
+<li><span class="time">1:17</span> <span class="who">VoiceOver</span> , with the theme</li>
+<li><span class="time">1:19</span> <span class="who">VoiceOver</span> following my device Theme collapsed pop up button, group</li>
+<li><span class="time">1:23</span> <span class="who">VoiceOver</span> , and motion</li>
+<li><span class="time">1:24</span> <span class="who">VoiceOver</span> allowed Motion collapsed pop up button, group</li>
+<li><span class="time">1:28</span> <span class="who">VoiceOver</span> . The home page as</li>
+<li><span class="time">1:30</span> <span class="who">VoiceOver</span> a list of essays Home page collapsed pop up button, group</li>
+<li><span class="time">1:33</span> <span class="who">VoiceOver</span> .</li>
+<li><span class="time">1:35</span> <span class="who">VoiceOver</span> end of THIS SITE, SET FOR YOU group</li>
+<li><span class="time">1:37</span> <span class="who">VoiceOver</span> Your device is set to dark, so this site is too. Drawings are off, and their captions go with them. Nothing else on a page depends on them.</li>
+<li><span class="time">1:42</span> <span class="who">Tester</span> There it is. Drawings are off, and their captions go with them.</li>
+<li><span class="time">1:47</span> <span class="who">Reviewer</span> That's a status message, and it's only on screen: it should be announced, without going to look. That's a problem under WCAG 4.1.3, Status Messages. Someone listening can't tell whether their choice worked.</li>
+<li><span class="time">2:01</span> <span class="who">VoiceOver</span> Set for you collapsed button</li>
+<li><span class="time">2:07</span> <span class="who">VoiceOver</span> link See the work</li>
+<li><span class="time">2:15</span> <span class="who">VoiceOver</span> LATEST WRITING region</li>
+<li><span class="time">2:17</span> <span class="who">Tester</span> And after See the work, VoiceOver goes straight to Latest writing. The drawings are gone for a listener too.</li>
+<li><span class="time">2:26</span> <span class="who">Reviewer</span> The fix: a status line that says what each change did. Here's the same task on the fixed version, the one that's live now.</li>
+<li><span class="time">2:35</span> <span class="who">VoiceOver</span> Set for you collapsed button</li>
+<li><span class="time">2:43</span> <span class="who">VoiceOver</span> Set for you expanded button</li>
+<li><span class="time">2:45</span> <span class="who">VoiceOver</span> THIS SITE, SET FOR YOU group</li>
+<li><span class="time">2:47</span> <span class="who">VoiceOver</span> THIS SITE, SET FOR YOU</li>
+<li><span class="time">2:49</span> <span class="who">VoiceOver</span> Show the drawings</li>
+<li><span class="time">2:51</span> <span class="who">VoiceOver</span> in calm color Drawings collapsed pop up button</li>
+<li><span class="time">2:54</span> <span class="who">VoiceOver</span> menu 3 items ✓ in calm color</li>
+<li><span class="time">2:57</span> <span class="who">VoiceOver</span> in full color</li>
+<li><span class="time">2:59</span> <span class="who">VoiceOver</span> not at all</li>
+<li><span class="time">3:01</span> <span class="who">VoiceOver</span> in calm color Drawings Drawings collapsed pop up button, Drawings are off and their captions go with them.</li>
+<li><span class="time">3:10</span> <span class="who">Tester</span> There it is: drawings are off, and their captions go with them, said straight after the choice.</li>
+<li><span class="time">3:16</span> <span class="who">Reviewer</span> 4.1.3 holds here.</li>
+      </ol>
+    </details>
+  </section>
+  <section class="video" aria-labelledby="describe">
+    <h3 id="describe">Extra: Describe this page, then the fix</h3>
+    <video controls preload="metadata" playsinline aria-describedby="describe-about">
+      <source src="v8.mp4" type="video/mp4">
+      <track kind="captions" src="v8.vtt" srclang="en" label="English">
+      <p>Your browser can’t play this video. <a href="v8.mp4">Download it (2:26)</a>.</p>
+    </video>
+    <p class="meta">2:26 · captions on screen, and as a track · <a href="v8.vtt">captions file</a> · <a href="v8.transcript.txt">transcript as text</a></p>
+    <div id="describe-about">
+      <p>A screen reader reads a page in a line, one item at a time; it doesn’t say what the page looks like. Describe this page puts the layout into words, so someone who is blind gets a map: what is on the page before reading all of it, and where things are when a sighted colleague points to “the column on the right”.</p>
+      <p class="finding"><strong>Finding.</strong> The description works, but on opening VoiceOver read only its name and heading. The fix, in review, reads the picture of the page straight away.</p>
+    </div>
+    <details>
+      <summary>Transcript</summary>
+      <ol class="transcript">
+<li><span class="time">0:00</span> <span class="who">Reviewer</span> One more feature to test: Describe this page. A screen reader reads a page one item at a time, in a line. It doesn't say that the essays fill most of the page, or that a narrow column sits beside them.</li>
+<li><span class="time">0:13</span> <span class="who">Reviewer</span> For someone who's blind, a picture of the layout is a map. It says what's on the page before reading all of it, and where things are when a sighted colleague says it's in the column on the right.</li>
+<li><span class="time">0:25</span> <span class="who">VoiceOver</span> system has new window</li>
+<li><span class="time">0:28</span> <span class="who">VoiceOver</span> Describe this page dialog pop up button</li>
+<li><span class="time">0:31</span> <span class="who">Tester</span> It's the second thing on the page, right after the skip link. I'll press it.</li>
+<li><span class="time">0:36</span> <span class="who">VoiceOver</span> The home page web dialog with 9 items heading level 2 The home page</li>
+<li><span class="time">0:41</span> <span class="who">Tester</span> It says the dialog's name, The home page, and its heading… and stops there. The picture of the page isn't read until I go looking.</li>
+<li><span class="time">0:50</span> <span class="who">VoiceOver</span> Close button</li>
+<li><span class="time">0:52</span> <span class="who">VoiceOver</span> This is the front page of a magazine. The newest essays take most of the page, and a narrower column beside them lists everything else.</li>
+<li><span class="time">0:57</span> <span class="who">VoiceOver</span> heading level 3 From top to bottom</li>
+<li><span class="time">1:00</span> <span class="who">VoiceOver</span> list 7 items</li>
+<li><span class="time">1:02</span> <span class="who">VoiceOver</span> 1</li>
+<li><span class="time">1:03</span> <span class="who">VoiceOver</span> At the top, the site header: my name, which goes home, then links to Writing, Work, Signal, Tools and Resume, then Set for you, where you choose the drawings, theme and motion. Beside it is a button that pauses everything that moves.</li>
+<li><span class="time">1:11</span> <span class="who">Tester</span> It starts with a picture: the front page of a magazine, the newest essays taking most of the page, and a narrower column beside them. Then it walks the layout from top to bottom.</li>
+<li><span class="time">1:23</span> <span class="who">Reviewer</span> What it says is useful. But on opening it only says its name, so someone has to explore to find out what the page is like. That's not a guideline failure, but it holds back the whole point of the feature.</li>
+<li><span class="time">1:36</span> <span class="who">VoiceOver</span> At the top, the site header: my name, which goes home, then links to Writing, Work, Signal, Tools and Resume, then Set for you, where you choose the drawings, theme and motion. Beside it is a button that pauses everything that moves.</li>
+<li><span class="time">1:44</span> <span class="who">Reviewer</span> The fix, now live: the heading carries the description, so it's read the moment the dialog opens. Same steps, on the live site.</li>
+<li><span class="time">1:53</span> <span class="who">VoiceOver</span> link Skip to content</li>
+<li><span class="time">1:55</span> <span class="who">VoiceOver</span> Describe this page dialog pop up button</li>
+<li><span class="time">1:58</span> <span class="who">VoiceOver</span> The home page web dialog with 9 items heading level 2 The home page This is the front page of a magazine. The newest essays take most of the page, and a narrower column beside them lists everything else.</li>
+<li><span class="time">2:06</span> <span class="who">Tester</span> This time it reads the picture straight away: the front page of a magazine, the newest essays taking most of the page.</li>
+<li><span class="time">2:14</span> <span class="who">Reviewer</span> Now the feature does its job from the first second. Whether the description helps is for blind people to tell us.</li>
+<li><span class="time">2:22</span> <span class="who">VoiceOver</span> Describe this page dialog pop up button</li>
+      </ol>
+    </details>
+  </section>
+
+    <h2 id="recommendations">Recommendations: test with people with disabilities</h2>
+    <p>This was a first pass. It shows whether things work as built, not whether they help the people they are for. These need people with disabilities, using their own devices and settings:</p>
+    
+  <section class="video" aria-labelledby="recommendations-video">
+    <h3 id="recommendations-video">The recommendations, on screen</h3>
+    <video controls preload="metadata" playsinline aria-describedby="recommendations-video-about">
+      <source src="v9.mp4" type="video/mp4">
+      <track kind="captions" src="v9.vtt" srclang="en" label="English">
+      <p>Your browser can’t play this video. <a href="v9.mp4">Download it (2:41)</a>.</p>
+    </video>
+    <p class="meta">2:41 · captions on screen, and as a track · <a href="v9.vtt">captions file</a> · <a href="v9.transcript.txt">transcript as text</a></p>
+    <div id="recommendations-video-about">
+      <p>Each area that needs testing with people with disabilities, shown on the page as it is named: the Describe this page dialog, the Set for you sentence, the moving drawings, the page zoomed in, and the Home page setting that switches to the collage.</p>
+      
+    </div>
+    <details>
+      <summary>Transcript</summary>
+      <ol class="transcript">
+<li><span class="time">0:00</span> <span class="who">Reviewer</span> Last, what this first pass can't tell us. A screen reader shows whether things work as built, not whether they help the people they're for. These need people with disabilities, on their own devices and settings.</li>
+<li><span class="time">0:13</span> <span class="who">Keyboard</span> Tab → link, Skip to content</li>
+<li><span class="time">0:15</span> <span class="who">Keyboard</span> Tab → button, Describe this page</li>
+<li><span class="time">0:17</span> <span class="who">Keyboard</span> Return → heading, The home page</li>
+<li><span class="time">0:19</span> <span class="who">Tester</span> First, Describe this page. Does a written description of the layout help someone picture the page? Is it too long, or too short? Blind people who use a screen reader every day should tell us, on VoiceOver and on JAWS or NVDA.</li>
+<li><span class="time">0:35</span> <span class="who">Keyboard</span> Escape → button, Describe this page</li>
+<li><span class="time">0:37</span> <span class="who">Reviewer</span> Second, other screen readers and devices. This pass used VoiceOver in Safari only, and its biggest finding came from how Safari passes hidden content to VoiceOver. JAWS, NVDA, VoiceOver on iPhone and TalkBack all behave differently.</li>
+<li><span class="time">0:54</span> <span class="who">Keyboard</span> Tab → link, Marcelo Paiva</li>
+<li><span class="time">0:55</span> <span class="who">Keyboard</span> Tab → link, Writing</li>
+<li><span class="time">0:57</span> <span class="who">Keyboard</span> Tab → link, Work</li>
+<li><span class="time">0:59</span> <span class="who">Keyboard</span> Tab → link, Signal</li>
+<li><span class="time">1:00</span> <span class="who">Keyboard</span> Tab → link, Tools</li>
+<li><span class="time">1:02</span> <span class="who">Keyboard</span> Tab → link, Resume</li>
+<li><span class="time">1:03</span> <span class="who">Keyboard</span> Tab → button, Set for you, collapsed</li>
+<li><span class="time">1:05</span> <span class="who">Keyboard</span> Return → button, Set for you, expanded</li>
+<li><span class="time">1:07</span> <span class="who">Tester</span> Third, Set for you reads its settings as a sentence. Whether that feels natural, and whether the new announcements are enough, is for screen reader users, and people with cognitive or learning disabilities, to say.</li>
+<li><span class="time">1:20</span> <span class="who">Keyboard</span> Escape → button, Set for you, collapsed</li>
+<li><span class="time">1:22</span> <span class="who">Reviewer</span> Fourth, motion. The drawings drift and the background moves. The pause button works… but is it found in time, and is the motion comfortable before it is? People with vestibular disorders can tell us.</li>
+<li><span class="time">1:35</span> <span class="who">Keyboard</span> Command-Plus: zooms the page</li>
+<li><span class="time">1:37</span> <span class="who">Keyboard</span> Command-Plus: zooms the page</li>
+<li><span class="time">1:40</span> <span class="who">Keyboard</span> Command-Plus: zooms the page</li>
+<li><span class="time">1:41</span> <span class="who">Tester</span> Fifth, zoom and magnification. Zoomed in, the header stays at the top, and some text sits over moving colour. People with low vision who use zoom or a screen magnifier should try it.</li>
+<li><span class="time">1:55</span> <span class="who">Keyboard</span> Command-0: back to actual size</li>
+<li><span class="time">1:56</span> <span class="who">Reviewer</span> Sixth, voice control and switch access. Names were checked for what a screen reader says, not for what people say aloud, and the home page has more than fifty stops for someone moving one step at a time.</li>
+<li><span class="time">2:10</span> <span class="who">Keyboard</span> Return → button, Set for you, expanded</li>
+<li><span class="time">2:12</span> <span class="who">Keyboard</span> Tab → pop-up button, Drawings, in calm color</li>
+<li><span class="time">2:13</span> <span class="who">Keyboard</span> Tab → pop-up button, Theme, following my device</li>
+<li><span class="time">2:15</span> <span class="who">Keyboard</span> Tab → pop-up button, Motion, allowed</li>
+<li><span class="time">2:16</span> <span class="who">Keyboard</span> Tab → pop-up button, Home page, a list of essays</li>
+<li><span class="time">2:18</span> <span class="who">Keyboard</span> Focus is on → pop-up button, Home page, a list of essays</li>
+<li><span class="time">2:19</span> <span class="who">Tester</span> And last, the collage. Set for you can turn the home page into a field of drawings. This pass tested the list only.</li>
+<li><span class="time">2:27</span> <span class="who">Keyboard</span> Escape → button, Set for you, collapsed</li>
+<li><span class="time">2:29</span> <span class="who">Tester</span> That's the end of the first pass. Six problems found on the page: five fixed and live, and one still open.</li>
+<li><span class="time">2:36</span> <span class="who">Reviewer</span> The next test is with people.</li>
+      </ol>
+    </details>
+  </section>
+    <ol class="recs">
+      <li><strong>Describe this page.</strong> Whether a written description of the layout actually helps someone build a picture of the page, whether it says too much or too little, and whether people find the button where it is. A screen reader can show the dialog works; only the people it is for can say it helps. <span class="who-line">Who: blind people who use a screen reader every day, on VoiceOver and on JAWS or NVDA.</span></li>
+      <li><strong>Other screen readers and devices.</strong> This pass used VoiceOver in Safari only, and its biggest finding came from how Safari passes hidden content to VoiceOver. JAWS and NVDA on Windows, VoiceOver on iPhone and TalkBack on Android behave differently. <span class="who-line">Who: people who use each of them daily, on their own devices and settings.</span></li>
+      <li><strong>Set for you, as a sentence of settings.</strong> The panel reads its settings as a sentence, with a dropdown in each part. Whether that reads naturally, and whether the new announcements are enough to know what changed, is a question of experience, not of code. <span class="who-line">Who: screen-reader users, and people with cognitive or learning disabilities.</span></li>
+      <li><strong>Motion.</strong> The band of drawings drifts and the background moves. The pause button and reduced-motion setting were checked to work, not whether they are found in time or whether the motion is comfortable before they are. <span class="who-line">Who: people with vestibular disorders, and people for whom motion makes reading harder, such as some people with ADHD.</span></li>
+      <li><strong>Zoom and magnification.</strong> The header stays at the top of the screen, and some text sits over moving colour that the site measures but doesn’t yet grade. How that feels at high zoom or under a screen magnifier wasn’t part of this pass. <span class="who-line">Who: people with low vision who use browser zoom or a screen magnifier.</span></li>
+      <li><strong>Voice control and switch access.</strong> Controls were checked for names a screen reader announces, not for names people would say aloud, and the home page has more than fifty stops from top to bottom for someone moving one step at a time. <span class="who-line">Who: people who use Voice Control or switch access, and others with motor disabilities.</span></li>
+      <li><strong>The collage layout.</strong> Set for you can swap the home page’s list of essays for a collage of drawings. This pass tested the list only. <span class="who-line">Who: screen-reader and keyboard users.</span></li>
+    </ol>
+  </main>
+
+  <footer>
+    <p>A first pass, made October 16–17, 2026. If something here doesn’t work for you, that is a bug: <a href="mailto:mpaiva@gmail.com">email me</a>, and say what you were trying to do and what you were using.</p>
+  </footer>
+</div>
+</body>
+</html>

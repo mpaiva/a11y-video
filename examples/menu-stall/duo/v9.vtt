@@ -1,0 +1,221 @@
+WEBVTT
+
+1
+00:00:00.599 --> 00:00:03.044
+Reviewer: Last, what this first pass can't tell us.
+
+2
+00:00:03.044 --> 00:00:06.084
+Reviewer: A screen reader shows whether things work as built,
+
+3
+00:00:06.084 --> 00:00:08.767
+Reviewer: not whether they help the people they're for.
+
+4
+00:00:08.767 --> 00:00:12.999
+Reviewer: These need people with disabilities, on their own devices and settings.
+
+5
+00:00:13.679 --> 00:00:15.890
+Keyboard: Tab → link, Skip to content
+
+6
+00:00:15.890 --> 00:00:17.904
+Keyboard: Tab → button, Describe this page
+
+7
+00:00:17.904 --> 00:00:19.803
+Keyboard: Return → heading, The home page
+
+8
+00:00:19.803 --> 00:00:21.558
+Tester: First, Describe this page.
+
+9
+00:00:21.558 --> 00:00:26.353
+Tester: Does a written description of the layout help someone picture the page?
+
+10
+00:00:26.353 --> 00:00:28.312
+Tester: Is it too long, or too short?
+
+11
+00:00:28.312 --> 00:00:32.499
+Tester: Blind people who use a screen reader every day should tell us,
+
+12
+00:00:32.499 --> 00:00:34.728
+Tester: on VoiceOver and on JAWS or NVDA.
+
+13
+00:00:35.457 --> 00:00:37.274
+Keyboard: Escape → button, Describe this page
+
+14
+00:00:37.274 --> 00:00:40.196
+Reviewer: Second, other screen readers and devices.
+
+15
+00:00:40.196 --> 00:00:43.048
+Reviewer: This pass used VoiceOver in Safari only,
+
+16
+00:00:43.048 --> 00:00:48.751
+Reviewer: and its biggest finding came from how Safari passes hidden content to VoiceOver.
+
+17
+00:00:48.751 --> 00:00:53.599
+Reviewer: JAWS, NVDA, VoiceOver on iPhone and TalkBack all behave differently.
+
+18
+00:00:54.230 --> 00:00:55.829
+Keyboard: Tab → link, Marcelo Paiva
+
+19
+00:00:55.829 --> 00:00:57.431
+Keyboard: Tab → link, Writing
+
+20
+00:00:57.431 --> 00:00:59.042
+Keyboard: Tab → link, Work
+
+21
+00:00:59.042 --> 00:01:00.660
+Keyboard: Tab → link, Signal
+
+22
+00:01:00.660 --> 00:01:02.272
+Keyboard: Tab → link, Tools
+
+23
+00:01:02.272 --> 00:01:03.895
+Keyboard: Tab → link, Resume
+
+24
+00:01:03.895 --> 00:01:05.506
+Keyboard: Tab → button, Set for you, collapsed
+
+25
+00:01:05.506 --> 00:01:07.301
+Keyboard: Return → button, Set for you, expanded
+
+26
+00:01:07.301 --> 00:01:10.455
+Tester: Third, Set for you reads its settings as a sentence.
+
+27
+00:01:10.455 --> 00:01:14.883
+Tester: Whether that feels natural, and whether the new announcements are enough,
+
+28
+00:01:14.883 --> 00:01:19.676
+Tester: is for screen reader users, and people with cognitive or learning disabilities,
+
+29
+00:01:19.676 --> 00:01:20.101
+Tester: to say.
+
+30
+00:01:20.720 --> 00:01:22.518
+Keyboard: Escape → button, Set for you, collapsed
+
+31
+00:01:22.518 --> 00:01:27.795
+Reviewer: Fourth, motion. The drawings drift and the background moves. The pause button works…
+
+32
+00:01:27.795 --> 00:01:32.067
+Reviewer: but is it found in time, and is the motion comfortable before it is?
+
+33
+00:01:32.067 --> 00:01:34.893
+Reviewer: People with vestibular disorders can tell us.
+
+34
+00:01:35.524 --> 00:01:37.700
+Keyboard: Command-Plus: zooms the page
+
+35
+00:01:37.700 --> 00:01:39.952
+Keyboard: Command-Plus: zooms the page
+
+36
+00:01:39.952 --> 00:01:41.911
+Keyboard: Command-Plus: zooms the page
+
+37
+00:01:41.911 --> 00:01:43.981
+Tester: Fifth, zoom and magnification.
+
+38
+00:01:43.981 --> 00:01:49.365
+Tester: Zoomed in, the header stays at the top, and some text sits over moving colour.
+
+39
+00:01:49.365 --> 00:01:54.335
+Tester: People with low vision who use zoom or a screen magnifier should try it.
+
+40
+00:01:54.956 --> 00:01:56.938
+Keyboard: Command-0: back to actual size
+
+41
+00:01:56.938 --> 00:01:59.368
+Reviewer: Sixth, voice control and switch access.
+
+42
+00:01:59.368 --> 00:02:04.353
+Reviewer: Names were checked for what a screen reader says, not for what people say aloud,
+
+43
+00:02:04.353 --> 00:02:09.463
+Reviewer: and the home page has more than fifty stops for someone moving one step at a time.
+
+44
+00:02:10.088 --> 00:02:12.112
+Keyboard: Return → button, Set for you, expanded
+
+45
+00:02:12.112 --> 00:02:13.725
+Keyboard: Tab → pop-up button, Drawings, in calm color
+
+46
+00:02:13.725 --> 00:02:15.308
+Keyboard: Tab → pop-up button, Theme, following my device
+
+47
+00:02:15.308 --> 00:02:16.930
+Keyboard: Tab → pop-up button, Motion, allowed
+
+48
+00:02:16.930 --> 00:02:18.548
+Keyboard: Tab → pop-up button, Home page, a list of essays
+
+49
+00:02:18.548 --> 00:02:20.048
+Keyboard: Focus is on → pop-up button, Home page, a list of essays
+
+50
+00:02:19.505 --> 00:02:24.929
+Tester: And last, the collage. Set for you can turn the home page into a field of drawings.
+
+51
+00:02:24.929 --> 00:02:26.954
+Tester: This pass tested the list only.
+
+52
+00:02:27.576 --> 00:02:29.391
+Keyboard: Escape → button, Set for you, collapsed
+
+53
+00:02:29.391 --> 00:02:31.630
+Tester: That's the end of the first pass.
+
+54
+00:02:31.630 --> 00:02:36.516
+Tester: Six problems found on the page: five fixed and live, and one still open.
+
+55
+00:02:36.916 --> 00:02:39.041
+Reviewer: The next test is with people.

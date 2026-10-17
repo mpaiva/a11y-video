@@ -1,0 +1,33 @@
+[0.6] Narrator: Last, what this first pass can't tell me. A screen reader shows whether things work as built, not whether they help the people they're for. These need people with disabilities, on their own devices and settings.
+[13.8] Keyboard: Tab → link, Skip to content
+[15.9] Keyboard: Tab → button, Describe this page
+[17.9] Keyboard: Return → heading, The home page
+[19.7] Narrator: First, Describe this page. Does a written description of the layout help someone picture the page? Is it too long, or too short? Blind people who use a screen reader every day should tell us, on VoiceOver and on JAWS or NVDA.
+[35.2] Keyboard: Escape → button, Describe this page
+[37.1] Narrator: Second, other screen readers and devices. This pass used VoiceOver in Safari only, and its biggest finding came from how Safari passes hidden content to VoiceOver. JAWS, NVDA, VoiceOver on iPhone and TalkBack all behave differently.
+[54.8] Keyboard: Tab → link, Marcelo Paiva
+[56.4] Keyboard: Tab → link, Writing
+[58.0] Keyboard: Tab → link, Work
+[59.7] Keyboard: Tab → link, Signal
+[61.5] Keyboard: Tab → link, Tools
+[63.1] Keyboard: Tab → link, Resume
+[64.7] Keyboard: Tab → button, Set for you, collapsed
+[66.4] Keyboard: Return → button, Set for you, expanded
+[68.2] Narrator: Third, Set for you reads its settings as a sentence. Whether that feels natural, and whether the new announcements are enough, is for screen reader users, and people with cognitive or learning disabilities, to say.
+[81.6] Keyboard: Escape → button, Set for you, collapsed
+[83.5] Narrator: Fourth, motion. The drawings drift and the background moves. The pause button works… but is it found in time, and is the motion comfortable before it is? People with vestibular disorders can tell us.
+[97.1] Keyboard: Command-Plus: zooms the page
+[99.3] Keyboard: Command-Plus: zooms the page
+[101.5] Keyboard: Command-Plus: zooms the page
+[103.5] Narrator: Fifth, zoom and magnification. Zoomed in, the header stays at the top, and some text sits over moving colour. People with low vision who use zoom or a screen magnifier should try it.
+[116.5] Keyboard: Command-0: back to actual size
+[118.5] Narrator: Sixth, voice control and switch access. Names were checked for what a screen reader says, not for what people say aloud, and the home page has more than fifty stops for someone moving one step at a time.
+[131.5] Keyboard: Return → button, Set for you, expanded
+[133.5] Keyboard: Tab → pop-up button, Drawings, in calm color
+[135.2] Keyboard: Tab → pop-up button, Theme, following my device
+[136.8] Keyboard: Tab → pop-up button, Motion, allowed
+[138.3] Keyboard: Tab → pop-up button, Home page, a list of essays
+[139.9] Keyboard: Focus is on → pop-up button, Home page, a list of essays
+[141.1] Keyboard: Escape → button, Set for you, collapsed
+[142.8] Narrator: And last, the collage. Set for you can turn the home page into a field of drawings. This pass tested the list only.
+[150.8] Narrator: That's the end of the first pass. Five problems found on the page: three fixed and live, one fix in review, and one still open. The next test is with people.

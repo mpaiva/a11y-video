@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.600 --> 00:00:03.542
+Narrator: One more feature to test: Describe this page.
+
+2
+00:00:03.542 --> 00:00:07.400
+Narrator: A screen reader reads a page one item at a time, in a line.
+
+3
+00:00:07.400 --> 00:00:10.866
+Narrator: It doesn't say that the essays fill most of the page,
+
+4
+00:00:10.866 --> 00:00:13.547
+Narrator: or that a narrow column sits beside them.
+
+5
+00:00:13.547 --> 00:00:16.424
+Narrator: A sighted visitor takes that in at a glance.
+
+6
+00:00:16.826 --> 00:00:20.188
+Narrator: For someone who's blind, a picture of the layout is a map.
+
+7
+00:00:20.188 --> 00:00:23.203
+Narrator: It says what's on the page before reading all of it,
+
+8
+00:00:23.203 --> 00:00:28.015
+Narrator: and where things are when a sighted colleague says it's in the column on the right.
+
+9
+00:00:28.015 --> 00:00:30.450
+Narrator: This button describes the layout in words.
+
+10
+00:00:31.127 --> 00:00:37.126
+VoiceOver: Describe this page dialog pop up button
+
+11
+00:00:39.097 --> 00:00:43.697
+Narrator: It's the second thing on the page, right after the skip link. I'll press it.
+
+12
+00:00:56.720 --> 00:01:00.327
+Narrator: The dialog opened on screen… but VoiceOver didn't say so.
+
+13
+00:01:00.327 --> 00:01:04.694
+Narrator: Someone listening wouldn't know it's there. I'll move on, to find it.
+
+14
+00:01:05.307 --> 00:01:07.884
+VoiceOver: The home page web dialog with 9 items
+
+15
+00:01:07.884 --> 00:01:12.034
+Narrator: There it is: a dialog called The home page. I'll step into it.
+
+16
+00:01:12.664 --> 00:01:16.463
+VoiceOver: In The home page web dialog with 9 items heading level 2 The home page
+
+17
+00:01:16.463 --> 00:01:18.521
+VoiceOver: Close button
+
+18
+00:01:18.521 --> 00:01:23.714
+VoiceOver: This is the front page of a magazine. The newest essays take most of the page, and a narrower column beside them lists everything else.
+
+19
+00:01:23.714 --> 00:01:26.250
+VoiceOver: heading level 3 From top to bottom
+
+20
+00:01:26.250 --> 00:01:28.265
+VoiceOver: list 7 items
+
+21
+00:01:28.265 --> 00:01:29.979
+VoiceOver: 1
+
+22
+00:01:29.979 --> 00:01:35.979
+VoiceOver: At the top, the site header: my name, which goes home, then links to Writing, Work, Signal, Tools and Resume, then Set for you, where you choose the drawings, theme and motion. Beside it is a button that pauses everything that moves.
+
+23
+00:01:38.252 --> 00:01:39.752
+VoiceOver: 2
+
+24
+00:01:39.696 --> 00:01:41.639
+Narrator: This is what the button is for.
+
+25
+00:01:41.639 --> 00:01:45.086
+Narrator: It starts with a picture: the front page of a magazine,
+
+26
+00:01:45.086 --> 00:01:49.912
+Narrator: the newest essays taking most of the page, and a narrower column beside them.
+
+27
+00:01:49.912 --> 00:01:53.296
+Narrator: Then it walks the layout from top to bottom, in order.
+
+28
+00:01:53.907 --> 00:01:56.669
+VoiceOver: Describe this page dialog pop up button
+
+29
+00:01:56.669 --> 00:02:01.266
+Narrator: Escape closes it, and puts me back on the button. What it says is useful.
+
+30
+00:02:01.266 --> 00:02:05.863
+Narrator: The gap is the opening: when the dialog appears, VoiceOver should say so.
+
+31
+00:02:05.863 --> 00:02:11.027
+Narrator: And nobody who relies on a description like this has told me yet whether it helps.
+
+32
+00:02:11.027 --> 00:02:13.169
+Narrator: That's the next test, with people.

@@ -7,7 +7,7 @@
 // background, with an English captions track inside the MP4. Also writes <out>.vtt (the same captions), <out>.transcript.txt and
 // <out>.edl.json (scene starts and narrated holds, the shape qa.sh reads).
 //
-// film.json (worked example: examples/menu-stall/film.json). Paths are relative to the film file.
+// film.json (worked example: examples/menu-stall/film.json, from the repository's root). Paths are relative to the film file.
 //   { "takesDir": "takes", "voiceDir": "video/assets/voice", "lines": "voice-lines.json",
 //     "captionBar": true,     the open captions under the picture, both voices (default on; keep it on)
 //     "lines": ["heart.json", "puck.json"], "speakers": {"af_heart": "Tester", "am_puck": "Reviewer"},

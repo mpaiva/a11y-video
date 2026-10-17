@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Three WCAG criteria, heard with VoiceOver</title>
+<meta name="description" content="Three barriers on small example pages, each heard with VoiceOver in Safari, fixed, and heard again: a chart with no text alternative, links that all say Read more, and switches a screen reader can't find.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@600;700&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    --page: light-dark(#f7f7f7, #1a1a1a); --raised: light-dark(#ffffff, #242322);
+    --text: light-dark(#1a1a1a, #ececec); --text-2: light-dark(#373636, #cecdcd);
+    --link: light-dark(#0760c6, #93c0fa); --line: light-dark(#dddbdb, #3d3c3b); --focus: light-dark(#0974eb, #9fc8fa);
+    --ok: light-dark(#14662f, #8fd6a4); --open: light-dark(#8a3b00, #f2b483); --review: light-dark(#5a3a99, #c7b2f2);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--text); font: 1.0625rem/1.6 "Public Sans", system-ui, sans-serif; }
+  .wrap { max-width: 48rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
+  .skip { position: absolute; left: -999px; }
+  .skip:focus { left: 1rem; top: 1rem; background: var(--raised); padding: .5rem 1rem; z-index: 1; }
+  a { color: var(--link); text-underline-offset: .15em; }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+  nav.crumbs { font-size: .9375rem; color: var(--text-2); margin-bottom: 2rem; }
+  nav.crumbs ol { list-style: none; padding: 0; margin: 0; display: flex; gap: .5rem; flex-wrap: wrap; }
+  nav.crumbs li + li::before { content: "/"; margin-right: .5rem; }
+  h1, h2, h3 { font-family: "Atkinson Hyperlegible Next", "Public Sans", system-ui, sans-serif; line-height: 1.2; }
+  h1 { font-size: clamp(1.625rem, 1.29rem + 1.67vw, 2.75rem); margin: 0 0 1rem; }
+  h2 { font-size: clamp(1.375rem, 1.19rem + .93vw, 2rem); margin: 3rem 0 1rem; }
+  h3 { font-size: 1.375rem; margin: 2.5rem 0 1rem; }
+  .lede { font-size: 1.1875rem; }
+  .note { background: var(--raised); border: 1px solid var(--line); border-radius: .5rem; padding: 1rem 1.25rem; }
+  .note p { margin: .5rem 0; }
+  ol.findings, ol.recs { padding-left: 0; list-style: none; }
+  .finding-item, ol.recs li { background: var(--raised); border: 1px solid var(--line); border-radius: .5rem; padding: .75rem 1.25rem; margin: .75rem 0; }
+  .finding-item p { margin: .4rem 0; }
+  .finding-head { font-size: 1.0625rem; }
+  .status { display: inline-block; font-size: .8125rem; font-weight: 600; letter-spacing: .02em; padding: .1rem .5rem; border: 1.5px solid currentColor; border-radius: 999px; margin-right: .35rem; }
+  .status-fixed { color: var(--ok); } .status-open { color: var(--open); } .status-in-review { color: var(--review); } .status-not-the-page { color: var(--text-2); }
+  .fix { color: var(--text-2); }
+  ol.steps { padding-left: 1.5rem; } ol.steps li { margin: .75rem 0; }
+  .goal, .status-line, .who-line { display: block; color: var(--text-2); }
+  .video { border-top: 1px solid var(--line); }
+  video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; border-radius: .5rem; }
+  .meta { font-size: .9375rem; color: var(--text-2); margin: .5rem 0 1rem; }
+  .finding { border-left: 4px solid var(--line); padding-left: 1rem; }
+  details { margin-top: 1rem; } summary { cursor: pointer; font-weight: 600; color: var(--link); }
+  ol.transcript { list-style: none; padding: 0; font-size: .9375rem; } ol.transcript li { margin: .5rem 0; }
+  .time { font-variant-numeric: tabular-nums; color: var(--text-2); margin-right: .25rem; }
+  .who { font-weight: 600; margin-right: .25rem; }
+  footer { margin-top: 4rem; color: var(--text-2); font-size: .9375rem; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <main id="main">
+    <h1>Three WCAG criteria, heard with VoiceOver</h1>
+    <p class="lede">Three common barriers, one per WCAG guideline, each on a small page built to show it. In each video, a tester uses VoiceOver, the screen reader built into the Mac, and a reviewer names the problem, says why it matters and explains the fix. Then the same commands run again on the fixed page.</p>
+
+    <h2 id="brief">The brief</h2>
+    <p>The pages were built for this series, one barrier each, so each test shows one criterion and nothing else. All three barriers were heard with VoiceOver in Safari, and all three are fixed in the example code. After each fix, the same commands were run again, and VoiceOver said what a viewer can see.</p>
+    <p>None of the three would show up for someone using a mouse. The chart, the links and the switches all look fine. They only fail for someone listening.</p>
+    <ol class="findings">
+      <li class="finding-item">
+        <p class="finding-head"><span class="status status-fixed">Fixed</span> <strong>The sales chart read as a file name</strong></p>
+        <p>The quarterly report's only content is a bar chart, an image with no text alternative. Reading the page, VoiceOver said “q3-sales.svg image”. Someone listening learns that there's a picture, but not what it shows: sales rising from July to September.</p>
+        <p class="fix">Fixed: the image has alt text that names the kind of chart and its numbers. VoiceOver now says “Bar chart of sales in the third quarter, in thousands of dollars: July 120, August 150, September 180.”</p>
+        <p class="meta">WCAG 1.1.1 Non-text Content · <a href="#non-text">Watch it</a></p>
+      </li>
+      <li class="finding-item">
+        <p class="finding-head"><span class="status status-fixed">Fixed</span> <strong>Every story link said “Read more”</strong></p>
+        <p>Each of three stories ends in a link that says only “Read more”. Nothing in the code ties a link to its story: the titles are styled text, not headings, and each link sits on its own. Jumping from link to link, as screen-reader users often do, VoiceOver said “Read more, link” three times. There's no way to tell which story each one opens.</p>
+        <p class="fix">Fixed: each link still shows “Read more”, and hidden text adds its story's title for screen readers. VoiceOver now says, for example, “Read more about a new bridge opens downtown, link”.</p>
+        <p class="meta">WCAG 2.4.4 Link Purpose (In Context) · <a href="#link-purpose">Watch it</a></p>
+      </li>
+      <li class="finding-item">
+        <p class="finding-head"><span class="status status-fixed">Fixed</span> <strong>The notification switches were invisible to VoiceOver</strong></p>
+        <p>The settings page has two on/off switches that work with a mouse and the keyboard, but they're plain boxes in the code, with no name, no role and no state. Reading the page, VoiceOver said both labels and then “end of main”. It never reached either switch, so to someone listening, the page has nothing to set.</p>
+        <p class="fix">Fixed: each switch is a button with the switch role and an on/off state, named by its label. VoiceOver now says “Replies to my comments, on, switch”, and turning one on says “on, Weekly digest, switch”.</p>
+        <p class="meta">WCAG 4.1.2 Name, Role, Value · <a href="#name-role-value">Watch it</a></p>
+      </li>
+    </ol>
+
+    <div class="note">
+      <p><strong>What these videos are.</strong> VoiceOver in Safari, on macOS 27, driven by a script so each test can be run again the same way. What you hear from VoiceOver is what it said. Each video is narrated by two synthetic voices that introduce themselves at the start: the tester, who uses VoiceOver and says what she hears, and the reviewer, who names the WCAG criterion, says why it matters and explains the fix. The captions label them Tester and Reviewer.</p>
+      <p><strong>What they are not.</strong> An audit, or a claim that any page conforms to WCAG. These are example pages built to show one barrier each, tested by one specialist with one screen reader in one browser. Nobody who uses a screen reader every day took part: that comes next, in the recommendations.</p>
+      <p><strong>Captions.</strong> Every video has captions for all three voices on screen: the tester, the reviewer and VoiceOver. They are also in each video as a captions track, and as a file you can download, with a transcript under each video.</p>
+    </div>
+
+    <h2 id="steps">How it was tested</h2>
+    <ol class="steps">
+      <li><strong>A linear reading pass with the screen reader.</strong> <span class="goal">Goal: the experience of discovering and understanding the page. It found the chart read as a file name, and the switches VoiceOver never reached.</span> <span class="status-line"><a href="#non-text">Video</a></span></li>
+      <li><strong>Structural navigation: jumping from link to link.</strong> <span class="goal">Goal: finding information without reading the whole page. It found three links that all said Read more.</span> <span class="status-line"><a href="#link-purpose">Video</a></span></li>
+      <li><strong>Controls: name, role and state.</strong> <span class="goal">Goal: controls are understandable and usable, not merely discoverable. After the fix, each switch said its name, its role and its state, and changing one was announced.</span> <span class="status-line"><a href="#name-role-value">Video</a></span></li>
+    </ol>
+
+    <h2 id="videos">The videos</h2>
+  <section class="video" aria-labelledby="non-text">
+    <h3 id="non-text">1.1.1 Non-text Content: a chart with no text alternative</h3>
+    <video controls preload="metadata" playsinline aria-describedby="non-text-about">
+      <source src="wcag-1-1-1.mp4" type="video/mp4">
+      <track kind="captions" src="wcag-1-1-1.vtt" srclang="en" label="English">
+      <p>Your browser can’t play this video. <a href="wcag-1-1-1.mp4">Download it (2:04)</a>.</p>
+    </video>
+    <p class="meta">2:04 · captions on screen, and as a track · <a href="wcag-1-1-1.vtt">captions file</a> · <a href="wcag-1-1-1.transcript.txt">transcript as text</a></p>
+    <div id="non-text-about">
+      <p>The tester and the reviewer introduce themselves. The tester reads the quarterly report with VoiceOver, from the heading down, and the reviewer names the problem and why it matters. Then they run the same reading pass on the fixed page.</p>
+      <p class="finding"><strong>Finding.</strong> Before: “q3-sales.svg image”. After: the chart's type and its three numbers.</p>
+    </div>
+    <details>
+      <summary>Transcript</summary>
+      <ol class="transcript">
+<li><span class="time">0:00</span> <span class="who">Tester</span> Hi, I'm the tester. I'll use VoiceOver, the screen reader built into the Mac, and tell you what I hear.</li>
+<li><span class="time">0:07</span> <span class="who">Reviewer</span> And I'm the reviewer. When something sounds wrong, I'll name the WCAG criterion it falls under, say why it matters, and explain what changed in the code to fix it.</li>
+<li><span class="time">0:18</span> <span class="who">Reviewer</span> This video is about WCAG 1.1.1, Non-text Content. Anything shown as a picture, like a chart, needs a text alternative that gives a listener what the picture gives a viewer.</li>
+<li><span class="time">0:31</span> <span class="who">Tester</span> Here's a quarterly report, in Safari, with VoiceOver on. Under the heading there's a bar chart of sales for July, August and September. I'll read the page one item at a time, from the link at the top.</li>
+<li><span class="time">0:47</span> <span class="who">VoiceOver</span> heading level 1 Quarterly report</li>
+<li><span class="time">0:50</span> <span class="who">VoiceOver</span> How sales went from July to September.</li>
+<li><span class="time">0:53</span> <span class="who">VoiceOver</span> q3-sales.svg image</li>
+<li><span class="time">0:55</span> <span class="who">VoiceOver</span> end of main</li>
+<li><span class="time">0:57</span> <span class="who">Tester</span> After the sentence under the heading, VoiceOver said q three sales dot S V G, image. That's the file name. It never said what the chart shows.</li>
+<li><span class="time">1:07</span> <span class="who">Reviewer</span> That's a problem under WCAG 1.1.1. The chart has no text alternative, so VoiceOver falls back to its file name. If you're listening, you know there's a picture, but not that sales went up every month.</li>
+<li><span class="time">1:23</span> <span class="who">Reviewer</span> In the code, the image now has alt text. It says it's a bar chart, what it measures, and the three numbers. The chart looks exactly the same.</li>
+<li><span class="time">1:32</span> <span class="who">Tester</span> The same reading pass, on the fixed page.</li>
+<li><span class="time">1:38</span> <span class="who">VoiceOver</span> heading level 1 Quarterly report</li>
+<li><span class="time">1:41</span> <span class="who">VoiceOver</span> How sales went from July to September.</li>
+<li><span class="time">1:44</span> <span class="who">VoiceOver</span> Bar chart of sales in the third quarter, in thousands of dollars: July 120, August 150, September 180. image</li>
+<li><span class="time">1:49</span> <span class="who">VoiceOver</span> end of main</li>
+<li><span class="time">1:51</span> <span class="who">Tester</span> Now VoiceOver reads the chart: what kind of chart it is, and the sales for each month.</li>
+<li><span class="time">1:57</span> <span class="who">Reviewer</span> A listener gets what the chart shows. 1.1.1 holds here.</li>
+      </ol>
+    </details>
+  </section>
+  <section class="video" aria-labelledby="link-purpose">
+    <h3 id="link-purpose">2.4.4 Link Purpose: three links that say Read more</h3>
+    <video controls preload="metadata" playsinline aria-describedby="link-purpose-about">
+      <source src="wcag-2-4-4.mp4" type="video/mp4">
+      <track kind="captions" src="wcag-2-4-4.vtt" srclang="en" label="English">
+      <p>Your browser can’t play this video. <a href="wcag-2-4-4.mp4">Download it (1:58)</a>.</p>
+    </video>
+    <p class="meta">1:58 · captions on screen, and as a track · <a href="wcag-2-4-4.vtt">captions file</a> · <a href="wcag-2-4-4.transcript.txt">transcript as text</a></p>
+    <div id="link-purpose-about">
+      <p>The tester and the reviewer introduce themselves. The tester jumps from link to link with VoiceOver (VO-Command-L) through the latest stories, and the reviewer names the problem and why it matters. Then they make the same three jumps on the fixed page.</p>
+      <p class="finding"><strong>Finding.</strong> Before: “Read more, link” three times. After: each link names its story.</p>
+    </div>
+    <details>
+      <summary>Transcript</summary>
+      <ol class="transcript">
+<li><span class="time">0:00</span> <span class="who">Tester</span> Hi, I'm the tester. I'll use VoiceOver, the screen reader built into the Mac, and tell you what I hear.</li>
+<li><span class="time">0:07</span> <span class="who">Reviewer</span> And I'm the reviewer. When something sounds wrong, I'll name the WCAG criterion it falls under, say why it matters, and explain what changed in the code to fix it.</li>
+<li><span class="time">0:18</span> <span class="who">Reviewer</span> This video is about WCAG 2.4.4, Link Purpose. A link should say where it goes, from its own words, or from the text the code ties to it.</li>
+<li><span class="time">0:28</span> <span class="who">Tester</span> Here's a page of the latest stories, in Safari, with VoiceOver on. There are three stories, and each one ends in a link that says Read more. Screen reader users often jump from link to link to see where they can go, so that's what I'll do.</li>
+<li><span class="time">0:47</span> <span class="who">VoiceOver</span> Read more link</li>
+<li><span class="time">0:49</span> <span class="who">VoiceOver</span> Read more link</li>
+<li><span class="time">0:54</span> <span class="who">VoiceOver</span> Read more link</li>
+<li><span class="time">0:56</span> <span class="who">Tester</span> Three links, and VoiceOver said the same thing each time: Read more, link. Nothing tells me which story each one opens.</li>
+<li><span class="time">1:04</span> <span class="who">Reviewer</span> That's a problem under WCAG 2.4.4. The story titles are styled text, and each link sits on its own, so nothing in the code ties a link to its story. If you're listening, you'd have to open each one to find out where it goes.</li>
+<li><span class="time">1:21</span> <span class="who">Reviewer</span> In the code, each link still shows Read more, and hidden text adds the story's title for screen readers. It looks exactly the same.</li>
+<li><span class="time">1:30</span> <span class="who">Tester</span> The same three jumps, on the fixed page.</li>
+<li><span class="time">1:36</span> <span class="who">VoiceOver</span> Read more about a new bridge opens downtown link</li>
+<li><span class="time">1:39</span> <span class="who">VoiceOver</span> Read more about library hours are getting longer link</li>
+<li><span class="time">1:42</span> <span class="who">VoiceOver</span> Read more about the farmers market moves indoors link</li>
+<li><span class="time">1:45</span> <span class="who">Tester</span> Now each link names its story: a new bridge, library hours, and the farmers market.</li>
+<li><span class="time">1:52</span> <span class="who">Reviewer</span> Each link says where it goes. 2.4.4 holds here.</li>
+      </ol>
+    </details>
+  </section>
+  <section class="video" aria-labelledby="name-role-value">
+    <h3 id="name-role-value">4.1.2 Name, Role, Value: switches built from boxes</h3>
+    <video controls preload="metadata" playsinline aria-describedby="name-role-value-about">
+      <source src="wcag-4-1-2.mp4" type="video/mp4">
+      <track kind="captions" src="wcag-4-1-2.vtt" srclang="en" label="English">
+      <p>Your browser can’t play this video. <a href="wcag-4-1-2.mp4">Download it (2:21)</a>.</p>
+    </video>
+    <p class="meta">2:21 · captions on screen, and as a track · <a href="wcag-4-1-2.vtt">captions file</a> · <a href="wcag-4-1-2.transcript.txt">transcript as text</a></p>
+    <div id="name-role-value-about">
+      <p>The tester and the reviewer introduce themselves. The tester reads the notification settings page with VoiceOver, and the reviewer names the problem and why it matters. Then they run the same reading pass on the fixed page, and the tester turns on Weekly digest.</p>
+      <p class="finding"><strong>Finding.</strong> Before: VoiceOver never reaches either switch. After: “Replies to my comments, on, switch”; turning on Weekly digest is announced.</p>
+    </div>
+    <details>
+      <summary>Transcript</summary>
+      <ol class="transcript">
+<li><span class="time">0:00</span> <span class="who">Tester</span> Hi, I'm the tester. I'll use VoiceOver, the screen reader built into the Mac, and tell you what I hear.</li>
+<li><span class="time">0:07</span> <span class="who">Reviewer</span> And I'm the reviewer. When something sounds wrong, I'll name the WCAG criterion it falls under, say why it matters, and explain what changed in the code to fix it.</li>
+<li><span class="time">0:18</span> <span class="who">Reviewer</span> This video is about WCAG 4.1.2, Name, Role, Value. Every control on a page has to tell a screen reader three things: what it's called, what kind of control it is, and its current state.</li>
+<li><span class="time">0:31</span> <span class="who">Tester</span> Here's a notification settings page, in Safari, with VoiceOver on. On screen there are two switches. Replies to my comments is on, and Weekly digest is off. I'll read the page one item at a time, from the link at the top.</li>
+<li><span class="time">0:49</span> <span class="who">VoiceOver</span> heading level 1 Notifications</li>
+<li><span class="time">0:51</span> <span class="who">VoiceOver</span> Choose what we email you about.</li>
+<li><span class="time">0:54</span> <span class="who">VoiceOver</span> Replies to my comments</li>
+<li><span class="time">0:56</span> <span class="who">VoiceOver</span> Weekly digest</li>
+<li><span class="time">0:58</span> <span class="who">VoiceOver</span> end of main</li>
+<li><span class="time">1:00</span> <span class="who">VoiceOver</span> main</li>
+<li><span class="time">1:05</span> <span class="who">Tester</span> I heard the heading, the sentence under it, and both labels. Then the end of the main content. VoiceOver never reached either switch.</li>
+<li><span class="time">1:13</span> <span class="who">Reviewer</span> That's a problem under WCAG 4.1.2. The switches work with a mouse, but the code gives them no name, no role and no state, so VoiceOver isn't told they're there. If you're listening, it sounds like this page has nothing to set.</li>
+<li><span class="time">1:30</span> <span class="who">Reviewer</span> In the code, each switch is now a button, with the role switch, an on or off state, and the label beside it as its name. It looks exactly the same.</li>
+<li><span class="time">1:40</span> <span class="who">Tester</span> The same reading pass, on the fixed page.</li>
+<li><span class="time">1:46</span> <span class="who">VoiceOver</span> heading level 1 Notifications</li>
+<li><span class="time">1:49</span> <span class="who">VoiceOver</span> Choose what we email you about.</li>
+<li><span class="time">1:51</span> <span class="who">VoiceOver</span> Replies to my comments</li>
+<li><span class="time">1:54</span> <span class="who">VoiceOver</span> Replies to my comments on switch</li>
+<li><span class="time">1:56</span> <span class="who">VoiceOver</span> Weekly digest</li>
+<li><span class="time">1:58</span> <span class="who">VoiceOver</span> Weekly digest off switch</li>
+<li><span class="time">2:01</span> <span class="who">Tester</span> Now each switch says its name, that it's a switch, and whether it's on or off. I'll turn on Weekly digest.</li>
+<li><span class="time">2:08</span> <span class="who">VoiceOver</span> on Weekly digest switch</li>
+<li><span class="time">2:10</span> <span class="who">Tester</span> VoiceOver tells me it's on.</li>
+<li><span class="time">2:13</span> <span class="who">Reviewer</span> Name, role and value are all announced. 4.1.2 holds here.</li>
+      </ol>
+    </details>
+  </section>
+
+    <h2 id="recommendations">Recommendations: test with people with disabilities</h2>
+    <p>This was a first pass. It shows whether things work as built, not whether they help the people they are for. These need people with disabilities, using their own devices and settings:</p>
+    
+    <ol class="recs">
+      <li><strong>Chart descriptions.</strong> Alt text can carry three numbers. Whether it's enough for a real chart, or whether people would rather have a data table, or a summary of the trend first, is something only the people who rely on it can say. A screen reader shows the alt text is read, not that it's useful. <span class="who-line">Who: blind people and people with low vision who use a screen reader or magnification, including some who read charts at work</span></li>
+      <li><strong>Link wording.</strong> Hidden text fixes the links for a screen reader, but people who use voice control say what they see (“click Read more”), and three links with the same visible name are hard to tell apart by voice. Whether to show the title in the link itself is a choice to make with the people it affects. <span class="who-line">Who: screen-reader users, and people who use voice control, such as Voice Control on the Mac</span></li>
+      <li><strong>Switches.</strong> Whether “on” and “off” are clear, whether people expect a switch or a checkbox, and whether the label read twice in a reading pass gets in the way. The fix works as built; how it feels to use is a question for the people using it. <span class="who-line">Who: screen-reader users on the Mac, iPhone and Windows, and keyboard-only users</span></li>
+    </ol>
+  </main>
+
+  <footer>
+    <p>Example pages in examples/wcag. Tested October 17, 2026, with VoiceOver in Safari on macOS 27.</p>
+  </footer>
+</div>
+</body>
+</html>

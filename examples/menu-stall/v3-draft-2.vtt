@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.600 --> 00:00:02.388
+Narrator: Step three, the reading pass.
+
+2
+00:00:02.388 --> 00:00:05.657
+Narrator: The home page from the top, in Safari with VoiceOver,
+
+3
+00:00:05.657 --> 00:00:09.050
+Narrator: the way someone who can't see the screen would meet it.
+
+4
+00:00:14.588 --> 00:00:17.424
+VoiceOver: Skip to content link is in the VoiceOver cursor
+
+5
+00:00:17.424 --> 00:00:22.083
+Narrator: The first thing it reaches is a skip link, which is a good start.
+
+6
+00:00:22.083 --> 00:00:27.674
+Narrator: That's WCAG 2.4.1, Bypass Blocks. Now I'll read the header one item at a time.
+
+7
+00:00:28.290 --> 00:00:31.115
+VoiceOver: Describe this page dialog pop up button
+
+8
+00:00:31.115 --> 00:00:32.657
+VoiceOver: banner
+
+9
+00:00:32.657 --> 00:00:35.113
+VoiceOver: visited link Marcelo Paiva
+
+10
+00:00:35.113 --> 00:00:37.199
+VoiceOver: Main navigation
+
+11
+00:00:37.199 --> 00:00:39.137
+VoiceOver: list 5 items
+
+12
+00:00:39.137 --> 00:00:41.446
+VoiceOver: link Writing 1 of 5
+
+13
+00:00:41.446 --> 00:00:43.703
+VoiceOver: link Work 2 of 5
+
+14
+00:00:43.703 --> 00:00:46.041
+VoiceOver: link Signal 3 of 5
+
+15
+00:00:46.041 --> 00:00:48.287
+VoiceOver: link Tools 4 of 5
+
+16
+00:00:48.287 --> 00:00:50.710
+VoiceOver: link Resume 5 of 5
+
+17
+00:00:50.710 --> 00:00:52.396
+VoiceOver: end of list
+
+18
+00:00:52.396 --> 00:00:54.685
+VoiceOver: end of Main navigation
+
+19
+00:00:54.685 --> 00:00:56.900
+VoiceOver: Set for you collapsed button
+
+20
+00:00:56.900 --> 00:01:00.939
+Narrator: Set for you… a button, and it tells me it's collapsed.
+
+21
+00:01:00.939 --> 00:01:06.325
+Narrator: That's what WCAG 4.1.2 asks for: a name, a role, and a state. Next item.
+
+22
+00:01:06.942 --> 00:01:08.940
+VoiceOver: menu
+
+23
+00:01:08.940 --> 00:01:14.051
+VoiceOver: menu
+
+24
+00:01:14.051 --> 00:01:16.158
+VoiceOver: menu
+
+25
+00:01:16.158 --> 00:01:21.045
+VoiceOver: menu
+
+26
+00:01:21.045 --> 00:01:26.320
+Narrator: It says menu… and again… and again. Four presses, and it hasn't moved past it.
+
+27
+00:01:26.722 --> 00:01:28.397
+Narrator: There's no menu on screen.
+
+28
+00:01:28.397 --> 00:01:30.265
+Narrator: The settings panel is closed,
+
+29
+00:01:30.265 --> 00:01:34.260
+Narrator: but the four dropdowns inside it are still reaching VoiceOver.
+
+30
+00:01:34.260 --> 00:01:37.674
+Narrator: That's a problem under WCAG 4.1.2, Name, Role, Value:
+
+31
+00:01:37.674 --> 00:01:42.313
+Narrator: VoiceOver is handed a menu with no name, for something that isn't there.
+
+32
+00:01:42.313 --> 00:01:45.986
+Narrator: If you're listening, it sounds like the page has stopped,
+
+33
+00:01:45.986 --> 00:01:49.271
+Narrator: right at the control that sets the site up for you.

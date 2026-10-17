@@ -1,0 +1,18 @@
+[0.6] Narrator: One more feature to test: Describe this page. A screen reader reads a page one item at a time, in a line. It doesn't say that the essays fill most of the page, or that a narrow column sits beside them. A sighted visitor takes that in at a glance.
+[16.8] Narrator: For someone who's blind, a picture of the layout is a map. It says what's on the page before reading all of it, and where things are when a sighted colleague says it's in the column on the right. This button describes the layout in words.
+[31.1] VoiceOver: Describe this page dialog pop up button
+[39.1] Narrator: It's the second thing on the page, right after the skip link. I'll press it.
+[56.7] Narrator: The dialog opened on screen… but VoiceOver didn't say so. Someone listening wouldn't know it's there. I'll move on, to find it.
+[65.3] VoiceOver: The home page web dialog with 9 items
+[67.9] Narrator: There it is: a dialog called The home page. I'll step into it.
+[72.7] VoiceOver: In The home page web dialog with 9 items heading level 2 The home page
+[76.5] VoiceOver: Close button
+[78.5] VoiceOver: This is the front page of a magazine. The newest essays take most of the page, and a narrower column beside them lists everything else.
+[83.7] VoiceOver: heading level 3 From top to bottom
+[86.3] VoiceOver: list 7 items
+[88.3] VoiceOver: 1
+[90.0] VoiceOver: At the top, the site header: my name, which goes home, then links to Writing, Work, Signal, Tools and Resume, then Set for you, where you choose the drawings, theme and motion. Beside it is a button that pauses everything that moves.
+[98.3] VoiceOver: 2
+[99.7] Narrator: This is what the button is for. It starts with a picture: the front page of a magazine, the newest essays taking most of the page, and a narrower column beside them. Then it walks the layout from top to bottom, in order.
+[113.9] VoiceOver: Describe this page dialog pop up button
+[116.7] Narrator: Escape closes it, and puts me back on the button. What it says is useful. The gap is the opening: when the dialog appears, VoiceOver should say so. And nobody who relies on a description like this has told me yet whether it helps. That's the next test, with people.

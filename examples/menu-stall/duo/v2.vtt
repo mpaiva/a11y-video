@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.599 --> 00:00:02.854
+Tester: Step two, the keyboard on its own.
+
+2
+00:00:02.854 --> 00:00:07.430
+Tester: No screen reader and no mouse, just the keys a keyboard user presses,
+
+3
+00:00:07.430 --> 00:00:10.150
+Tester: and the focus ring that shows where I am.
+
+4
+00:00:10.791 --> 00:00:12.618
+Keyboard: Tab → link, Skip to content
+
+5
+00:00:12.618 --> 00:00:14.444
+Tester: The first stop is a skip link.
+
+6
+00:00:14.444 --> 00:00:18.768
+Tester: I'll press Return, then Tab, to see whether it really skips the header.
+
+7
+00:00:19.378 --> 00:00:21.457
+Keyboard: Return → main
+
+8
+00:00:21.457 --> 00:00:23.281
+Keyboard: Tab → link, Read the writing
+
+9
+00:00:23.281 --> 00:00:27.481
+Tester: I'm on Read the writing, past the whole header. The skip link works.
+
+10
+00:00:27.883 --> 00:00:30.489
+Reviewer: That's WCAG 2.4.1, Bypass Blocks.
+
+11
+00:00:30.489 --> 00:00:36.883
+Reviewer: Without it, a keyboard user tabs through every link in the header, on every page.
+
+12
+00:00:37.285 --> 00:00:39.361
+Tester: Now back up, with Shift-Tab.
+
+13
+00:00:39.993 --> 00:00:42.050
+Keyboard: Shift-Tab → button, Pause motion
+
+14
+00:00:42.050 --> 00:00:43.865
+Keyboard: Shift-Tab → button, Set for you, collapsed
+
+15
+00:00:43.865 --> 00:00:47.968
+Tester: Pause motion, then Set for you: the same order as on screen,
+
+16
+00:00:47.968 --> 00:00:50.565
+Tester: and the focus ring follows every time.
+
+17
+00:00:50.966 --> 00:00:53.259
+Reviewer: That's 2.4.7, Focus Visible.
+
+18
+00:00:53.259 --> 00:00:58.416
+Reviewer: If you can't see where focus is, using a keyboard is guesswork.
+
+19
+00:00:58.817 --> 00:01:00.892
+Tester: I'll open it with Return.
+
+20
+00:01:01.527 --> 00:01:03.568
+Keyboard: Return → button, Set for you, expanded
+
+21
+00:01:03.568 --> 00:01:05.367
+Keyboard: Tab → pop-up button, Drawings, in calm color
+
+22
+00:01:05.367 --> 00:01:09.358
+Tester: It opens, and Tab takes me to the first setting, the drawings.
+
+23
+00:01:09.358 --> 00:01:14.767
+Tester: With a dropdown focused, I can type the first letter of a choice. N, for not at all.
+
+24
+00:01:15.381 --> 00:01:17.782
+Keyboard: Typed n
+
+25
+00:01:17.782 --> 00:01:19.282
+Keyboard: Focus is on → pop-up button, Drawings, not at all
+
+26
+00:01:18.751 --> 00:01:23.026
+Tester: The dropdown says not at all, and the drawings are gone. Now Escape.
+
+27
+00:01:23.647 --> 00:01:25.452
+Keyboard: Escape → button, Set for you, collapsed
+
+28
+00:01:25.452 --> 00:01:30.977
+Tester: Escape closes the panel, and puts focus back on the button. Next, Pause motion.
+
+29
+00:01:31.598 --> 00:01:33.682
+Keyboard: Tab → button, Pause motion
+
+30
+00:01:33.682 --> 00:01:35.182
+Keyboard: Space → button, Pause motion, pressed
+
+31
+00:01:34.860 --> 00:01:38.010
+Tester: Space presses it, and the button now says pressed.
+
+32
+00:01:38.412 --> 00:01:42.723
+Reviewer: Tab, Shift-Tab, Return, Escape, Space, and typing to choose.
+
+33
+00:01:42.723 --> 00:01:47.897
+Reviewer: Every control works without a mouse, and focus is never trapped or lost.
+
+34
+00:01:47.897 --> 00:01:53.862
+Reviewer: For what was tested, the goal of step two is met. WCAG 2.1.1, Keyboard, holds here.

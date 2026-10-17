@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.599 --> 00:00:02.854
+Narrator: Step two, the keyboard on its own.
+
+2
+00:00:02.854 --> 00:00:07.430
+Narrator: No screen reader and no mouse, just the keys a keyboard user presses,
+
+3
+00:00:07.430 --> 00:00:10.149
+Narrator: and the focus ring that shows where I am.
+
+4
+00:00:10.768 --> 00:00:12.597
+Keyboard: Tab → link, Skip to content
+
+5
+00:00:12.597 --> 00:00:14.424
+Narrator: The first stop is a skip link.
+
+6
+00:00:14.424 --> 00:00:18.748
+Narrator: I'll press Return, then Tab, to see whether it really skips the header.
+
+7
+00:00:19.392 --> 00:00:21.448
+Keyboard: Return → main
+
+8
+00:00:21.448 --> 00:00:23.282
+Keyboard: Tab → link, Read the writing
+
+9
+00:00:23.282 --> 00:00:27.478
+Narrator: I'm on Read the writing, past the whole header. The skip link works.
+
+10
+00:00:27.478 --> 00:00:29.206
+Narrator: Now back up, with Shift-Tab.
+
+11
+00:00:29.827 --> 00:00:31.900
+Keyboard: Shift-Tab → button, Pause motion
+
+12
+00:00:31.900 --> 00:00:33.729
+Keyboard: Shift-Tab → button, Set for you, collapsed
+
+13
+00:00:33.729 --> 00:00:38.400
+Narrator: Pause motion, then Set for you: the same order as on screen,
+
+14
+00:00:38.400 --> 00:00:41.359
+Narrator: and the focus ring follows every time.
+
+15
+00:00:41.359 --> 00:00:45.954
+Narrator: That's WCAG 2.4.7, Focus Visible. I'll open it with Return.
+
+16
+00:00:46.584 --> 00:00:48.647
+Keyboard: Return → button, Set for you, expanded
+
+17
+00:00:48.647 --> 00:00:50.461
+Keyboard: Tab → pop-up button, Drawings, in calm color
+
+18
+00:00:50.461 --> 00:00:54.453
+Narrator: It opens, and Tab takes me to the first setting, the drawings.
+
+19
+00:00:54.453 --> 00:00:59.862
+Narrator: With a dropdown focused, I can type the first letter of a choice. N, for not at all.
+
+20
+00:01:00.466 --> 00:01:02.856
+Keyboard: Typed n
+
+21
+00:01:02.856 --> 00:01:04.355
+Keyboard: Focus is on → pop-up button, Drawings, not at all
+
+22
+00:01:03.829 --> 00:01:07.222
+Narrator: The dropdown says not at all, and the drawings are gone.
+
+23
+00:01:07.222 --> 00:01:10.130
+Narrator: The setting changed without a mouse. Now Escape.
+
+24
+00:01:10.753 --> 00:01:12.597
+Keyboard: Escape → button, Set for you, collapsed
+
+25
+00:01:12.597 --> 00:01:16.659
+Narrator: Escape closes the panel, and puts focus back on the button.
+
+26
+00:01:16.659 --> 00:01:20.722
+Narrator: Focus isn't trapped, and it isn't lost. Next, Pause motion.
+
+27
+00:01:21.345 --> 00:01:23.412
+Keyboard: Tab → button, Pause motion
+
+28
+00:01:23.412 --> 00:01:25.185
+Keyboard: Space → button, Pause motion, pressed
+
+29
+00:01:25.185 --> 00:01:28.335
+Narrator: Space presses it, and the button now says pressed.
+
+30
+00:01:28.737 --> 00:01:33.077
+Narrator: Tab, Shift-Tab, Return, Escape, Space, and typing to choose.
+
+31
+00:01:33.077 --> 00:01:36.188
+Narrator: Every control I used works without a mouse,
+
+32
+00:01:36.188 --> 00:01:39.877
+Narrator: and the focus ring showed me where I was each time.
+
+33
+00:01:39.877 --> 00:01:45.737
+Narrator: For what I tested, the goal of step two is met. WCAG 2.1.1, Keyboard, holds here.

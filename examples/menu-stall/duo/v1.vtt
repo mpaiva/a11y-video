@@ -1,0 +1,101 @@
+WEBVTT
+
+1
+00:00:00.599 --> 00:00:04.613
+Tester: Step one, before any screen reader: the structure in the code.
+
+2
+00:00:04.613 --> 00:00:08.303
+Tester: I'm opening Safari's Web Inspector, and making it larger,
+
+3
+00:00:08.303 --> 00:00:11.475
+Tester: to see what this page tells assistive technology.
+
+4
+00:00:12.115 --> 00:00:15.342
+Keyboard: Command-Option-I: the Web Inspector
+
+5
+00:00:15.342 --> 00:00:17.522
+Keyboard: Command-Plus: makes the Inspector larger
+
+6
+00:00:17.522 --> 00:00:19.731
+Keyboard: Command-Plus: larger again
+
+7
+00:00:19.731 --> 00:00:21.924
+Keyboard: Command-Option-C: the Console
+
+8
+00:00:21.924 --> 00:00:24.110
+Keyboard: Command-K: clears the Console
+
+9
+00:00:24.110 --> 00:00:27.938
+Keyboard: Typed inspect(document.querySelector('button[aria-expanded]'))
+
+10
+00:00:27.938 --> 00:00:30.013
+Tester: This is the Set for you button.
+
+11
+00:00:30.013 --> 00:00:32.691
+Tester: Its attributes say aria-expanded, false,
+
+12
+00:00:32.691 --> 00:00:35.838
+Tester: and aria-controls points at the panel it opens.
+
+13
+00:00:36.240 --> 00:00:38.386
+Reviewer: That's what a screen reader needs.
+
+14
+00:00:38.386 --> 00:00:41.100
+Reviewer: Expanded, false, is announced as collapsed,
+
+15
+00:00:41.100 --> 00:00:43.815
+Reviewer: so the person knows there's more behind it.
+
+16
+00:00:44.450 --> 00:00:46.656
+Keyboard: Command-Option-C: back to the Console
+
+17
+00:00:46.656 --> 00:00:48.803
+Keyboard: Command-K: clears the Console
+
+18
+00:00:48.803 --> 00:00:51.393
+Keyboard: Typed panel = document.getElementById(document.querySelector('button[aria-expanded]').getAttribute('aria-controls'))
+
+19
+00:00:51.393 --> 00:00:54.707
+Keyboard: Typed [panel.hidden, panel.querySelectorAll('select').length]
+
+20
+00:00:54.707 --> 00:00:59.099
+Tester: That panel is marked hidden, and the four dropdowns are still inside it,
+
+21
+00:00:59.099 --> 00:00:59.832
+Tester: in the page.
+
+22
+00:01:00.233 --> 00:01:04.827
+Reviewer: Hidden content should stay out of a screen reader's way. Nothing's wrong yet…
+
+23
+00:01:04.827 --> 00:01:08.408
+Reviewer: but it's the first thing to listen for, in the reading pass.
+
+24
+00:01:09.035 --> 00:01:11.218
+Keyboard: Command-0: the Inspector back to normal size
+
+25
+00:01:11.218 --> 00:01:14.401
+Keyboard: Command-Option-I: closes the Web Inspector

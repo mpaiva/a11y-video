@@ -1,0 +1,23 @@
+[0.6] Narrator: Step three, the reading pass. The home page from the top, in Safari with VoiceOver, the way someone who can't see the screen would meet it.
+[14.6] VoiceOver: Skip to content link is in the VoiceOver cursor
+[17.4] Narrator: The first thing it reaches is a skip link, which is a good start. That's WCAG 2.4.1, Bypass Blocks. Now I'll read the header one item at a time.
+[28.3] VoiceOver: Describe this page dialog pop up button
+[31.1] VoiceOver: banner
+[32.7] VoiceOver: visited link Marcelo Paiva
+[35.1] VoiceOver: Main navigation
+[37.2] VoiceOver: list 5 items
+[39.1] VoiceOver: link Writing 1 of 5
+[41.4] VoiceOver: link Work 2 of 5
+[43.7] VoiceOver: link Signal 3 of 5
+[46.0] VoiceOver: link Tools 4 of 5
+[48.3] VoiceOver: link Resume 5 of 5
+[50.7] VoiceOver: end of list
+[52.4] VoiceOver: end of Main navigation
+[54.7] VoiceOver: Set for you collapsed button
+[56.9] Narrator: Set for you… a button, and it tells me it's collapsed. That's what WCAG 4.1.2 asks for: a name, a role, and a state. Next item.
+[66.9] VoiceOver: menu
+[68.9] VoiceOver: menu
+[74.1] VoiceOver: menu
+[76.2] VoiceOver: menu
+[81.0] Narrator: It says menu… and again… and again. Four presses, and it hasn't moved past it.
+[86.7] Narrator: There's no menu on screen. The settings panel is closed, but the four dropdowns inside it are still reaching VoiceOver. That's a problem under WCAG 4.1.2, Name, Role, Value: VoiceOver is handed a menu with no name, for something that isn't there. If you're listening, it sounds like the page has stopped, right at the control that sets the site up for you.

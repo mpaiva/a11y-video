@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.600 --> 00:00:01.806
+Tester: Hi, I'm the tester.
+
+2
+00:00:01.806 --> 00:00:07.075
+Tester: I'll use VoiceOver, the screen reader built into the Mac, and tell you what I hear.
+
+3
+00:00:07.476 --> 00:00:08.796
+Reviewer: And I'm the reviewer.
+
+4
+00:00:08.796 --> 00:00:13.387
+Reviewer: When something sounds wrong, I'll name the WCAG criterion it falls under,
+
+5
+00:00:13.387 --> 00:00:17.601
+Reviewer: say why it matters, and explain what changed in the code to fix it.
+
+6
+00:00:18.000 --> 00:00:21.654
+Reviewer: This video is about WCAG 1.1.1, Non-text Content.
+
+7
+00:00:21.654 --> 00:00:24.785
+Reviewer: Anything shown as a picture, like a chart,
+
+8
+00:00:24.785 --> 00:00:30.675
+Reviewer: needs a text alternative that gives a listener what the picture gives a viewer.
+
+9
+00:00:31.077 --> 00:00:34.634
+Tester: Here's a quarterly report, in Safari, with VoiceOver on.
+
+10
+00:00:34.634 --> 00:00:39.588
+Tester: Under the heading there's a bar chart of sales for July, August and September.
+
+11
+00:00:39.588 --> 00:00:43.653
+Tester: I'll read the page one item at a time, from the link at the top.
+
+12
+00:00:47.811 --> 00:00:50.347
+VoiceOver: heading level 1 Quarterly report
+
+13
+00:00:50.347 --> 00:00:52.970
+VoiceOver: How sales went from July to September.
+
+14
+00:00:52.970 --> 00:00:55.544
+VoiceOver: q3-sales.svg image
+
+15
+00:00:55.544 --> 00:00:57.303
+VoiceOver: end of main
+
+16
+00:00:57.303 --> 00:01:02.917
+Tester: After the sentence under the heading, VoiceOver said q three sales dot S V G, image.
+
+17
+00:01:02.917 --> 00:01:06.728
+Tester: That's the file name. It never said what the chart shows.
+
+18
+00:01:07.128 --> 00:01:09.450
+Reviewer: That's a problem under WCAG 1.1.1.
+
+19
+00:01:09.450 --> 00:01:14.639
+Reviewer: The chart has no text alternative, so VoiceOver falls back to its file name.
+
+20
+00:01:14.639 --> 00:01:17.916
+Reviewer: If you're listening, you know there's a picture,
+
+21
+00:01:17.916 --> 00:01:20.579
+Reviewer: but not that sales went up every month.
+
+22
+00:01:23.179 --> 00:01:25.696
+Reviewer: In the code, the image now has alt text.
+
+23
+00:01:25.696 --> 00:01:29.851
+Reviewer: It says it's a bar chart, what it measures, and the three numbers.
+
+24
+00:01:29.851 --> 00:01:31.929
+Reviewer: The chart looks exactly the same.
+
+25
+00:01:32.332 --> 00:01:35.032
+Tester: The same reading pass, on the fixed page.
+
+26
+00:01:38.923 --> 00:01:41.475
+VoiceOver: heading level 1 Quarterly report
+
+27
+00:01:41.475 --> 00:01:44.134
+VoiceOver: How sales went from July to September.
+
+28
+00:01:44.134 --> 00:01:49.906
+VoiceOver: Bar chart of sales in the third quarter, in thousands of dollars: July 120, August 150, September 180. image
+
+29
+00:01:49.906 --> 00:01:51.641
+VoiceOver: end of main
+
+30
+00:01:51.641 --> 00:01:55.264
+Tester: Now VoiceOver reads the chart: what kind of chart it is,
+
+31
+00:01:55.264 --> 00:01:57.141
+Tester: and the sales for each month.
+
+32
+00:01:57.543 --> 00:02:02.393
+Reviewer: A listener gets what the chart shows. 1.1.1 holds here.

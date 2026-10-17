@@ -30,7 +30,7 @@ reader or the keyboard can show come first; visual ones (contrast, reflow) need 
 ## Running one
 
 ```sh
-D=~/Downloads/a11y-wcag-series/4.1.2; E=tools/a11y-demo/examples/wcag/4.1.2-name-role-value
+D=~/Downloads/a11y-wcag-series/4.1.2; E=examples/wcag/4.1.2-name-role-value
 mkdir -p "$D" && cp $E/*.json "$D/"
 node tools/a11y-demo/serve-static.mjs $E/before 4611 &
 node tools/a11y-demo/serve-static.mjs $E/after 4612 &

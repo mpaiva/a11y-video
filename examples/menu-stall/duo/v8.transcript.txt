@@ -1,0 +1,23 @@
+[0.6] Reviewer: One more feature to test: Describe this page. A screen reader reads a page one item at a time, in a line. It doesn't say that the essays fill most of the page, or that a narrow column sits beside them.
+[13.7] Reviewer: For someone who's blind, a picture of the layout is a map. It says what's on the page before reading all of it, and where things are when a sighted colleague says it's in the column on the right.
+[25.2] VoiceOver: system has new window
+[28.4] VoiceOver: Describe this page dialog pop up button
+[31.3] Tester: It's the second thing on the page, right after the skip link. I'll press it.
+[36.5] VoiceOver: The home page web dialog with 9 items heading level 2 The home page
+[41.7] Tester: It says the dialog's name, The home page, and its heading… and stops there. The picture of the page isn't read until I go looking.
+[50.4] VoiceOver: Close button
+[52.5] VoiceOver: This is the front page of a magazine. The newest essays take most of the page, and a narrower column beside them lists everything else.
+[57.6] VoiceOver: heading level 3 From top to bottom
+[60.2] VoiceOver: list 7 items
+[62.2] VoiceOver: 1
+[63.9] VoiceOver: At the top, the site header: my name, which goes home, then links to Writing, Work, Signal, Tools and Resume, then Set for you, where you choose the drawings, theme and motion. Beside it is a button that pauses everything that moves.
+[71.8] Tester: It starts with a picture: the front page of a magazine, the newest essays taking most of the page, and a narrower column beside them. Then it walks the layout from top to bottom.
+[83.5] Reviewer: What it says is useful. But on opening it only says its name, so someone has to explore to find out what the page is like. That's not a guideline failure, but it holds back the whole point of the feature.
+[96.2] VoiceOver: At the top, the site header: my name, which goes home, then links to Writing, Work, Signal, Tools and Resume, then Set for you, where you choose the drawings, theme and motion. Beside it is a button that pauses everything that moves.
+[104.1] Reviewer: The fix, now live: the heading carries the description, so it's read the moment the dialog opens. Same steps, on the live site.
+[113.0] VoiceOver: link Skip to content
+[115.3] VoiceOver: Describe this page dialog pop up button
+[118.2] VoiceOver: The home page web dialog with 9 items heading level 2 The home page This is the front page of a magazine. The newest essays take most of the page, and a narrower column beside them lists everything else.
+[126.7] Tester: This time it reads the picture straight away: the front page of a magazine, the newest essays taking most of the page.
+[134.6] Reviewer: Now the feature does its job from the first second. Whether the description helps is for blind people to tell us.
+[142.1] VoiceOver: Describe this page dialog pop up button

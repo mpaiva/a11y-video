@@ -1,0 +1,25 @@
+[0.6] Tester: Step two, the keyboard on its own. No screen reader and no mouse, just the keys a keyboard user presses, and the focus ring that shows where I am.
+[10.8] Keyboard: Tab → link, Skip to content
+[12.6] Tester: The first stop is a skip link. I'll press Return, then Tab, to see whether it really skips the header.
+[19.4] Keyboard: Return → main
+[21.5] Keyboard: Tab → link, Read the writing
+[23.3] Tester: I'm on Read the writing, past the whole header. The skip link works.
+[27.9] Reviewer: That's WCAG 2.4.1, Bypass Blocks. Without it, a keyboard user tabs through every link in the header, on every page.
+[37.3] Tester: Now back up, with Shift-Tab.
+[40.0] Keyboard: Shift-Tab → button, Pause motion
+[42.1] Keyboard: Shift-Tab → button, Set for you, collapsed
+[43.9] Tester: Pause motion, then Set for you: the same order as on screen, and the focus ring follows every time.
+[51.0] Reviewer: That's 2.4.7, Focus Visible. If you can't see where focus is, using a keyboard is guesswork.
+[58.8] Tester: I'll open it with Return.
+[61.5] Keyboard: Return → button, Set for you, expanded
+[63.6] Keyboard: Tab → pop-up button, Drawings, in calm color
+[65.4] Tester: It opens, and Tab takes me to the first setting, the drawings. With a dropdown focused, I can type the first letter of a choice. N, for not at all.
+[75.4] Keyboard: Typed n
+[77.8] Keyboard: Focus is on → pop-up button, Drawings, not at all
+[78.8] Tester: The dropdown says not at all, and the drawings are gone. Now Escape.
+[83.6] Keyboard: Escape → button, Set for you, collapsed
+[85.5] Tester: Escape closes the panel, and puts focus back on the button. Next, Pause motion.
+[91.6] Keyboard: Tab → button, Pause motion
+[93.7] Keyboard: Space → button, Pause motion, pressed
+[94.9] Tester: Space presses it, and the button now says pressed.
+[98.4] Reviewer: Tab, Shift-Tab, Return, Escape, Space, and typing to choose. Every control works without a mouse, and focus is never trapped or lost. For what was tested, the goal of step two is met. WCAG 2.1.1, Keyboard, holds here.

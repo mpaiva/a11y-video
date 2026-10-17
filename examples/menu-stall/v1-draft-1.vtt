@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.599 --> 00:00:04.613
+Narrator: Step one, before any screen reader: the structure in the code.
+
+2
+00:00:04.613 --> 00:00:08.303
+Narrator: I'm opening Safari's Web Inspector, and making it larger,
+
+3
+00:00:08.303 --> 00:00:11.475
+Narrator: to see what this page tells assistive technology.
+
+4
+00:00:12.088 --> 00:00:15.316
+Keyboard: Command-Option-I: the Web Inspector
+
+5
+00:00:15.316 --> 00:00:17.503
+Keyboard: Command-Plus: makes the Inspector larger
+
+6
+00:00:17.503 --> 00:00:19.685
+Keyboard: Command-Plus: larger again
+
+7
+00:00:19.685 --> 00:00:21.869
+Keyboard: Command-Option-C: the Console
+
+8
+00:00:21.869 --> 00:00:24.049
+Keyboard: Command-K: clears the Console
+
+9
+00:00:24.049 --> 00:00:27.900
+Keyboard: Typed inspect(document.querySelector('button[aria-expanded]'))
+
+10
+00:00:27.900 --> 00:00:29.865
+Narrator: This is the Set for you button.
+
+11
+00:00:29.865 --> 00:00:34.432
+Narrator: Its attributes say aria-expanded, false, so it's announced as collapsed…
+
+12
+00:00:34.432 --> 00:00:39.125
+Narrator: and aria-controls points at the panel it opens. That's what I want to see.
+
+13
+00:00:39.753 --> 00:00:41.961
+Keyboard: Command-Option-C: back to the Console
+
+14
+00:00:41.961 --> 00:00:44.156
+Keyboard: Command-K: clears the Console
+
+15
+00:00:44.156 --> 00:00:46.733
+Keyboard: Typed panel = document.getElementById(document.querySelector('button[aria-expanded]').getAttribute('aria-controls'))
+
+16
+00:00:46.733 --> 00:00:50.085
+Keyboard: Typed [panel.hidden, panel.querySelectorAll('select').length]
+
+17
+00:00:50.085 --> 00:00:54.429
+Narrator: That panel is marked hidden, and the four dropdowns are still inside it,
+
+18
+00:00:54.429 --> 00:00:55.153
+Narrator: in the page.
+
+19
+00:00:55.153 --> 00:00:58.533
+Narrator: Hidden content should stay out of a screen reader's way…
+
+20
+00:00:58.533 --> 00:01:02.335
+Narrator: so that's the first thing I'll listen for, in the reading pass.
+
+21
+00:01:02.963 --> 00:01:05.261
+Keyboard: Command-0: the Inspector back to normal size
+
+22
+00:01:05.261 --> 00:01:08.448
+Keyboard: Command-Option-I: closes the Web Inspector

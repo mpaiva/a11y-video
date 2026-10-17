@@ -1,0 +1,45 @@
+[0.6] Tester: Step six, a real task. I'll turn the drawings off, start to finish, with VoiceOver… and find out whether it tells me it worked.
+[9.2] VoiceOver: Set for you collapsed button
+[17.4] VoiceOver: Set for you expanded button
+[23.2] VoiceOver: THIS SITE, SET FOR YOU group
+[25.6] VoiceOver: THIS SITE, SET FOR YOU
+[27.8] VoiceOver: Show the drawings
+[29.6] VoiceOver: in calm color Drawings collapsed pop up button, group
+[33.0] Tester: There's the Drawings dropdown, set to calm color. I'll open it, and choose not at all.
+[38.9] VoiceOver: menu 3 items ✓ in calm color
+[42.0] VoiceOver: in full color
+[44.1] VoiceOver: not at all
+[46.2] VoiceOver: in calm color Drawings Drawings collapsed pop up button, group
+[53.5] Tester: When I choose it, VoiceOver reads the old value… calm color.
+[58.0] Reviewer: That seems to be VoiceOver in Safari, with a standard dropdown. It isn't the page.
+[64.0] Tester: I'll ask again to hear what's set.
+[66.9] VoiceOver: not at all Drawings collapsed pop up button, group is in the VoiceOver cursor
+[71.2] Tester: Not at all. It worked… but nothing told me. The panel has a note about it, so I'll go and find it.
+[77.9] VoiceOver: , with the theme
+[79.6] VoiceOver: following my device Theme collapsed pop up button, group
+[83.2] VoiceOver: , and motion
+[84.9] VoiceOver: allowed Motion collapsed pop up button, group
+[88.0] VoiceOver: . The home page as
+[90.1] VoiceOver: a list of essays Home page collapsed pop up button, group
+[93.5] VoiceOver: .
+[95.2] VoiceOver: end of THIS SITE, SET FOR YOU group
+[97.8] VoiceOver: Your device is set to dark, so this site is too. Drawings are off, and their captions go with them. Nothing else on a page depends on them.
+[102.9] Tester: There it is. Drawings are off, and their captions go with them.
+[107.1] Reviewer: That's a status message, and it's only on screen: it should be announced, without going to look. That's a problem under WCAG 4.1.3, Status Messages. Someone listening can't tell whether their choice worked.
+[121.0] VoiceOver: Set for you collapsed button
+[127.4] VoiceOver: link See the work
+[135.3] VoiceOver: LATEST WRITING region
+[137.5] Tester: And after See the work, VoiceOver goes straight to Latest writing. The drawings are gone for a listener too.
+[146.6] Reviewer: The fix: a status line that says what each change did. Here's the same task on the fixed version, the one that's live now.
+[155.1] VoiceOver: Set for you collapsed button
+[163.0] VoiceOver: Set for you expanded button
+[165.6] VoiceOver: THIS SITE, SET FOR YOU group
+[167.8] VoiceOver: THIS SITE, SET FOR YOU
+[169.7] VoiceOver: Show the drawings
+[171.3] VoiceOver: in calm color Drawings collapsed pop up button
+[174.4] VoiceOver: menu 3 items ✓ in calm color
+[177.3] VoiceOver: in full color
+[179.2] VoiceOver: not at all
+[181.0] VoiceOver: in calm color Drawings Drawings collapsed pop up button, Drawings are off and their captions go with them.
+[190.2] Tester: There it is: drawings are off, and their captions go with them, said straight after the choice.
+[196.0] Reviewer: 4.1.3 holds here.

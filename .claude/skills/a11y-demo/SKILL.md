@@ -103,7 +103,7 @@ When a take shows a violation:
 ## The report
 
 `node tools/a11y-demo/report.mjs <report.json> <out-dir>/index.html` builds the report page from a
-small data file (worked example: `examples/menu-stall/report.json`), next to the videos:
+small data file (worked example: `examples/menu-stall/report.json`; it also writes the folder's `README.md`), next to the videos:
 
 - **The brief, first, in plain language:** what was tested and how, then each finding in one or two
   sentences a non-specialist understands, with its status (fixed, open, in review, or "not the page"
@@ -152,14 +152,17 @@ then label each line by role, not by a name. `examples/menu-stall/duo/` is the w
 
 Work files live outside the repo, in one demo folder (for example `~/Downloads/<demo-slug>/`): the
 builds being filmed, `voice-lines.json`, the scene files, `film.json`, `takes/`, `video/assets/voice/`,
-drafts and finals. `tools/a11y-demo/examples/menu-stall/` is a complete worked example: a nine-video series testing
-mpaiva.com's home page, with its scenes, lines, films, `SERIES.md` plan and `report.json`.
+drafts and finals. `examples/` at the repository's root holds the worked examples, one report per folder,
+each folder's `README.md` being its report with the videos beside it: `examples/menu-stall/` is a
+nine-video series testing mpaiva.com's home page, with its scenes, lines, films, `SERIES.md` plan and
+`report.json`; `examples/menu-stall/duo/` is the same series with two narrators; `examples/wcag/` is
+three WCAG criteria on example pages.
 
 ## Typical run
 
 ```sh
 DEMO=~/Downloads/my-a11y-demo; T=tools/a11y-demo
-cp $T/examples/menu-stall/*.json "$DEMO/"            # then rewrite the lines and scenes for your page
+cp examples/menu-stall/*.json "$DEMO/"               # then rewrite the lines and scenes for your page
 uv run --locked tools/demo-video/voice.py "$DEMO/voice-lines.json" --project "$DEMO/video"
 node $T/run-scene.mjs "$DEMO/before.json" "$DEMO/takes"
 node $T/run-scene.mjs "$DEMO/after.json" "$DEMO/takes"

@@ -1,0 +1,5 @@
+[0.6] Narrator: This is the home page of Marcelo Paiva's site, in Safari, with VoiceOver on. I'm going to listen to it the way someone who can't see the screen would meet it.
+[11.3] VoiceOver: Skip to content link is in the VoiceOver cursor
+[14.5] Narrator: The goal of this test is simple. Can someone using VoiceOver understand this page, find what they need, and use its controls, without seeing it?
+[24.1] Narrator: I test in six steps. First, I inspect the page structure in the code. Second, the keyboard on its own. Third, a reading pass with the screen reader, top to bottom. Fourth, jumping by headings, landmarks and links. Fifth, the controls themselves. And sixth, real tasks, start to finish.
+[43.5] Narrator: In this series, each step gets its own short video, on this same page. Along the way I find a problem in one of its controls… and the last video shows it fixed, and tested again.

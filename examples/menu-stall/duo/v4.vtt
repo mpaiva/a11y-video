@@ -1,0 +1,261 @@
+WEBVTT
+
+1
+00:00:00.600 --> 00:00:02.910
+Tester: Step four, structural navigation.
+
+2
+00:00:02.910 --> 00:00:06.689
+Tester: Someone using a screen reader rarely reads every item.
+
+3
+00:00:06.689 --> 00:00:11.450
+Tester: They jump, by headings, by landmarks, and by links. First, headings.
+
+4
+00:00:12.075 --> 00:00:16.242
+VoiceOver: heading level 1 I design experiences and ship accessible code that runs them.
+
+5
+00:00:16.242 --> 00:00:19.032
+VoiceOver: heading level 2 LATEST WRITING
+
+6
+00:00:19.032 --> 00:00:22.147
+VoiceOver: Last heading heading level 2 LATEST WRITING
+
+7
+00:00:22.147 --> 00:00:25.547
+VoiceOver: heading level 3 link Designers don't need Figma anymore
+
+8
+00:00:25.547 --> 00:00:28.817
+Tester: One level one, a level two for the latest writing,
+
+9
+00:00:28.817 --> 00:00:31.367
+Tester: and the essays under it at level three.
+
+10
+00:00:31.367 --> 00:00:33.722
+Tester: The outline holds, all the way down.
+
+11
+00:00:34.123 --> 00:00:37.602
+Reviewer: That's WCAG 1.3.1, Info and Relationships.
+
+12
+00:00:37.602 --> 00:00:42.572
+Reviewer: Headings are how someone using a screen reader skims a page.
+
+13
+00:00:46.814 --> 00:00:48.539
+Tester: Now landmarks.
+
+14
+00:00:49.153 --> 00:00:52.167
+VoiceOver: banner visited link Marcelo Paiva
+
+15
+00:00:52.167 --> 00:00:54.619
+VoiceOver: Last landmark banner
+
+16
+00:00:54.619 --> 00:00:56.993
+VoiceOver: Main navigation
+
+17
+00:00:56.993 --> 00:00:59.702
+VoiceOver: main MARCELO PAIVA group
+
+18
+00:00:59.702 --> 00:01:02.595
+VoiceOver: More essays, by their drawings region
+
+19
+00:01:02.595 --> 00:01:04.899
+VoiceOver: LATEST WRITING region
+
+20
+00:01:04.899 --> 00:01:07.088
+Tester: Each region is announced with a name,
+
+21
+00:01:07.088 --> 00:01:10.699
+Tester: so I can tell them apart and jump straight to the one I want.
+
+22
+00:01:14.894 --> 00:01:19.469
+Tester: And links. In a list of links, each one has to make sense on its own.
+
+23
+00:01:20.110 --> 00:01:22.883
+VoiceOver: Marcelo Paiva visited link
+
+24
+00:01:22.883 --> 00:01:24.977
+VoiceOver: Writing link
+
+25
+00:01:24.977 --> 00:01:27.191
+VoiceOver: Work link
+
+26
+00:01:27.191 --> 00:01:29.325
+VoiceOver: Signal link
+
+27
+00:01:29.325 --> 00:01:31.450
+VoiceOver: Tools link
+
+28
+00:01:31.450 --> 00:01:33.725
+VoiceOver: Resume link
+
+29
+00:01:33.725 --> 00:01:36.036
+VoiceOver: Read the writing link
+
+30
+00:01:36.036 --> 00:01:38.356
+VoiceOver: See the work link
+
+31
+00:01:38.356 --> 00:01:41.603
+VoiceOver: How do you keep something powerful approachable? link
+
+32
+00:01:41.603 --> 00:01:47.603
+VoiceOver: How do we learn a spec nobody reads? How do we learn a spec nobody reads? Nobody learns a language by reading its dictionary, and I think that explains most of what is wrong with how we teach accessibility. link
+
+33
+00:01:49.336 --> 00:01:52.100
+VoiceOver: Last link How do we learn a spec nobody reads? How do we learn a spec nobody reads? Nobody learns a language by reading its dictionary, and I think that explains most of what is wrong with how we teach accessibility. link
+
+34
+00:01:52.100 --> 00:01:56.850
+Tester: The essays in the drawing strip read their title twice, and then the whole summary.
+
+35
+00:01:57.251 --> 00:02:00.858
+Reviewer: Each link still makes sense, so WCAG 2.4.4 is met.
+
+36
+00:02:00.858 --> 00:02:04.177
+Reviewer: But a list of links is how people scan a page,
+
+37
+00:02:04.177 --> 00:02:07.352
+Reviewer: and this one takes several seconds per link.
+
+38
+00:02:07.352 --> 00:02:08.650
+Reviewer: It's worth fixing.
+
+39
+00:02:09.051 --> 00:02:10.631
+Tester: Something else, on screen.
+
+40
+00:02:10.631 --> 00:02:15.249
+Tester: As I moved through the links, rings stayed behind on links I'd already left.
+
+41
+00:02:15.249 --> 00:02:19.501
+Tester: Even now, See the work still has one, though I'm in the drawing strip.
+
+42
+00:02:19.904 --> 00:02:22.106
+Reviewer: That's WCAG 2.4.7, Focus Visible.
+
+43
+00:02:22.106 --> 00:02:27.644
+Reviewer: Someone who sees the screen while using VoiceOver, or a person sitting beside them,
+
+44
+00:02:27.644 --> 00:02:29.780
+Reviewer: needs to find focus at a glance.
+
+45
+00:02:29.780 --> 00:02:33.317
+Reviewer: The page's styles are right: this is a bug in Safari.
+
+46
+00:02:33.317 --> 00:02:36.854
+Reviewer: But people still see it, so the page works around it.
+
+47
+00:02:39.454 --> 00:02:40.145
+Reviewer: Two fixes.
+
+48
+00:02:40.145 --> 00:02:43.463
+Reviewer: Each link is now described by its summary alone,
+
+49
+00:02:43.463 --> 00:02:47.888
+Reviewer: and a small script makes Safari redraw whatever just lost focus.
+
+50
+00:02:47.888 --> 00:02:50.654
+Reviewer: Here's the same list after both changes.
+
+51
+00:02:54.851 --> 00:02:57.668
+VoiceOver: Last link Skip to content link
+
+52
+00:02:57.668 --> 00:03:00.545
+VoiceOver: Marcelo Paiva visited link
+
+53
+00:03:00.545 --> 00:03:02.629
+VoiceOver: Writing link
+
+54
+00:03:02.629 --> 00:03:04.884
+VoiceOver: Work link
+
+55
+00:03:04.884 --> 00:03:07.271
+VoiceOver: Last link Work link
+
+56
+00:03:07.271 --> 00:03:09.327
+VoiceOver: Signal link
+
+57
+00:03:09.327 --> 00:03:11.396
+VoiceOver: Tools link
+
+58
+00:03:11.396 --> 00:03:13.672
+VoiceOver: Resume link
+
+59
+00:03:13.672 --> 00:03:16.046
+VoiceOver: Read the writing link
+
+60
+00:03:16.046 --> 00:03:18.391
+VoiceOver: See the work link
+
+61
+00:03:18.391 --> 00:03:21.523
+VoiceOver: How do you keep something powerful approachable? link
+
+62
+00:03:21.523 --> 00:03:27.523
+VoiceOver: How do we learn a spec nobody reads? Nobody learns a language by reading its dictionary, and I think that explains most of what is wrong with how we teach accessibility. link
+
+63
+00:03:28.137 --> 00:03:34.137
+VoiceOver: Should a design system have a file written for machines? Writing rules for a reader who cannot ask a follow-up question turned out to be the clearest thinking I have done about my own design system. link
+
+64
+00:03:35.021 --> 00:03:38.564
+Tester: Now each essay says its title once, then its summary,
+
+65
+00:03:38.564 --> 00:03:40.971
+Tester: and only the link I'm on has a ring.

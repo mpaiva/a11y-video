@@ -1,0 +1,7 @@
+[0.6] Tester: Hello. This is the home page of Marcelo Paiva's site, in Safari, with VoiceOver on. I'm the tester. I'll drive VoiceOver and the keyboard, and tell you what I hear.
+[11.9] Reviewer: And I'm the reviewer. When something sounds wrong, I'll name the guideline it falls under, and explain why it matters to the person it stops. When it's fixed, I'll say what changed in the code.
+[24.2] VoiceOver: Marcelo Paiva — Design Engineer web content is in the VoiceOver cursor
+[28.3] Tester: The goal is simple. Can someone using VoiceOver understand this page, find what they need, and use its controls, without seeing it?
+[37.0] Reviewer: This is a first pass, before testing with people with disabilities. It finds problems early, so they can be fixed, and so the time with people goes on what only they can tell us.
+[48.3] Tester: I test in six steps. First, I inspect the page structure in the code. Second, the keyboard on its own. Third, a reading pass with the screen reader, top to bottom. Fourth, jumping by headings, landmarks and links. Fifth, the controls themselves. And sixth, real tasks, start to finish.
+[67.7] Reviewer: Each step gets its own short video. When we find a problem, we fix it, and test again in the same video. At the end, we list what still needs testing with people.

@@ -1,0 +1,21 @@
+[0.6] Narrator: Step two, the keyboard on its own. No screen reader and no mouse, just the keys a keyboard user presses, and the focus ring that shows where I am.
+[10.8] Keyboard: Tab → link, Skip to content
+[12.6] Narrator: The first stop is a skip link. I'll press Return, then Tab, to see whether it really skips the header.
+[19.4] Keyboard: Return → main
+[21.4] Keyboard: Tab → link, Read the writing
+[23.3] Narrator: I'm on Read the writing, past the whole header. The skip link works. Now back up, with Shift-Tab.
+[29.8] Keyboard: Shift-Tab → button, Pause motion
+[31.9] Keyboard: Shift-Tab → button, Set for you, collapsed
+[33.7] Narrator: Pause motion, then Set for you: the same order as on screen, and the focus ring follows every time. That's WCAG 2.4.7, Focus Visible. I'll open it with Return.
+[46.6] Keyboard: Return → button, Set for you, expanded
+[48.6] Keyboard: Tab → pop-up button, Drawings, in calm color
+[50.5] Narrator: It opens, and Tab takes me to the first setting, the drawings. With a dropdown focused, I can type the first letter of a choice. N, for not at all.
+[60.5] Keyboard: Typed n
+[62.9] Keyboard: Focus is on → pop-up button, Drawings, not at all
+[63.8] Narrator: The dropdown says not at all, and the drawings are gone. The setting changed without a mouse. Now Escape.
+[70.8] Keyboard: Escape → button, Set for you, collapsed
+[72.6] Narrator: Escape closes the panel, and puts focus back on the button. Focus isn't trapped, and it isn't lost. Next, Pause motion.
+[81.3] Keyboard: Tab → button, Pause motion
+[83.4] Keyboard: Space → button, Pause motion, pressed
+[85.2] Narrator: Space presses it, and the button now says pressed.
+[88.7] Narrator: Tab, Shift-Tab, Return, Escape, Space, and typing to choose. Every control I used works without a mouse, and the focus ring showed me where I was each time. For what I tested, the goal of step two is met. WCAG 2.1.1, Keyboard, holds here.

@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.600 --> 00:00:02.910
+Narrator: Step four, structural navigation.
+
+2
+00:00:02.910 --> 00:00:06.689
+Narrator: Someone using a screen reader rarely reads every item.
+
+3
+00:00:06.689 --> 00:00:11.450
+Narrator: They jump, by headings, by landmarks, and by links. First, headings.
+
+4
+00:00:12.074 --> 00:00:16.140
+VoiceOver: heading level 1 I design experiences and ship accessible code that runs them.
+
+5
+00:00:16.140 --> 00:00:18.825
+VoiceOver: heading level 2 LATEST WRITING
+
+6
+00:00:18.825 --> 00:00:22.180
+VoiceOver: heading level 3 link Designers don't need Figma anymore
+
+7
+00:00:22.180 --> 00:00:25.467
+VoiceOver: heading level 3 link Who is an accessibility file for?
+
+8
+00:00:25.467 --> 00:00:29.179
+Narrator: One level one, a level two for the latest writing,
+
+9
+00:00:29.179 --> 00:00:32.075
+Narrator: and the essays under it at level three.
+
+10
+00:00:32.075 --> 00:00:37.942
+Narrator: The outline holds, all the way down. That's WCAG 1.3.1, Info and Relationships.
+
+11
+00:00:41.788 --> 00:00:43.513
+Narrator: Now landmarks.
+
+12
+00:00:44.125 --> 00:00:47.133
+VoiceOver: banner visited link Marcelo Paiva
+
+13
+00:00:47.133 --> 00:00:49.408
+VoiceOver: Main navigation
+
+14
+00:00:49.408 --> 00:00:52.009
+VoiceOver: main MARCELO PAIVA group
+
+15
+00:00:52.009 --> 00:00:54.893
+VoiceOver: More essays, by their drawings region
+
+16
+00:00:54.893 --> 00:00:57.240
+VoiceOver: LATEST WRITING region
+
+17
+00:00:57.240 --> 00:00:59.919
+VoiceOver: Work, tools and more complementary
+
+18
+00:00:59.919 --> 00:01:02.108
+Narrator: Each region is announced with a name,
+
+19
+00:01:02.108 --> 00:01:05.719
+Narrator: so I can tell them apart and jump straight to the one I want.
+
+20
+00:01:09.486 --> 00:01:14.061
+Narrator: And links. In a list of links, each one has to make sense on its own.
+
+21
+00:01:14.681 --> 00:01:17.327
+VoiceOver: Marcelo Paiva visited link
+
+22
+00:01:17.327 --> 00:01:19.410
+VoiceOver: Writing link
+
+23
+00:01:19.410 --> 00:01:21.574
+VoiceOver: Work link
+
+24
+00:01:21.574 --> 00:01:23.813
+VoiceOver: Signal link
+
+25
+00:01:23.813 --> 00:01:25.931
+VoiceOver: Tools link
+
+26
+00:01:25.931 --> 00:01:28.061
+VoiceOver: Resume link
+
+27
+00:01:28.061 --> 00:01:30.378
+VoiceOver: Read the writing link
+
+28
+00:01:30.378 --> 00:01:32.720
+VoiceOver: See the work link
+
+29
+00:01:32.720 --> 00:01:35.961
+VoiceOver: How do you keep something powerful approachable? link
+
+30
+00:01:35.961 --> 00:01:41.961
+VoiceOver: Last link How do you keep something powerful approachable? How do you keep something powerful approachable? I spent years being told that good design means less on the screen, and the best interface I ever worked on was one of the densest things I have seen. link
+
+31
+00:01:44.839 --> 00:01:50.839
+VoiceOver: How do we learn a spec nobody reads? How do we learn a spec nobody reads? Nobody learns a language by reading its dictionary, and I think that explains most of what is wrong with how we teach accessibility. link
+
+32
+00:01:52.150 --> 00:01:53.338
+Narrator: Here's a problem.
+
+33
+00:01:53.338 --> 00:01:59.141
+Narrator: The essays in the drawing strip read their title twice, and then the whole summary.
+
+34
+00:01:59.141 --> 00:02:02.148
+Narrator: The purpose is clear, so WCAG 2.4.4 is met…
+
+35
+00:02:02.148 --> 00:02:05.225
+Narrator: but a list like this is slow to get through.

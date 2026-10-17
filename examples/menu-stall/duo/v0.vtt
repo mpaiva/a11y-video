@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.600 --> 00:00:06.137
+Tester: Hello. This is the home page of Marcelo Paiva's site, in Safari, with VoiceOver on.
+
+2
+00:00:06.137 --> 00:00:11.475
+Tester: I'm the tester. I'll drive VoiceOver and the keyboard, and tell you what I hear.
+
+3
+00:00:11.876 --> 00:00:13.161
+Reviewer: And I'm the reviewer.
+
+4
+00:00:13.161 --> 00:00:17.322
+Reviewer: When something sounds wrong, I'll name the guideline it falls under,
+
+5
+00:00:17.322 --> 00:00:20.381
+Reviewer: and explain why it matters to the person it stops.
+
+6
+00:00:20.381 --> 00:00:23.502
+Reviewer: When it's fixed, I'll say what changed in the code.
+
+7
+00:00:24.208 --> 00:00:28.266
+VoiceOver: Marcelo Paiva — Design Engineer web content is in the VoiceOver cursor
+
+8
+00:00:28.266 --> 00:00:29.488
+Tester: The goal is simple.
+
+9
+00:00:29.488 --> 00:00:33.992
+Tester: Can someone using VoiceOver understand this page, find what they need,
+
+10
+00:00:33.992 --> 00:00:36.566
+Tester: and use its controls, without seeing it?
+
+11
+00:00:36.970 --> 00:00:41.119
+Reviewer: This is a first pass, before testing with people with disabilities.
+
+12
+00:00:41.119 --> 00:00:43.968
+Reviewer: It finds problems early, so they can be fixed,
+
+13
+00:00:43.968 --> 00:00:47.870
+Reviewer: and so the time with people goes on what only they can tell us.
+
+14
+00:00:48.272 --> 00:00:52.943
+Tester: I test in six steps. First, I inspect the page structure in the code.
+
+15
+00:00:52.943 --> 00:00:55.110
+Tester: Second, the keyboard on its own.
+
+16
+00:00:55.110 --> 00:00:59.172
+Tester: Third, a reading pass with the screen reader, top to bottom.
+
+17
+00:00:59.172 --> 00:01:04.656
+Tester: Fourth, jumping by headings, landmarks and links. Fifth, the controls themselves.
+
+18
+00:01:04.656 --> 00:01:07.296
+Tester: And sixth, real tasks, start to finish.
+
+19
+00:01:07.698 --> 00:01:09.962
+Reviewer: Each step gets its own short video.
+
+20
+00:01:09.962 --> 00:01:14.360
+Reviewer: When we find a problem, we fix it, and test again in the same video.
+
+21
+00:01:14.360 --> 00:01:18.047
+Reviewer: At the end, we list what still needs testing with people.

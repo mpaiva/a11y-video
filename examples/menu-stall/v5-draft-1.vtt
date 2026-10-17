@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.600 --> 00:00:04.330
+Narrator: Step five, the controls. Finding Set for you isn't enough.
+
+2
+00:00:04.330 --> 00:00:09.025
+Narrator: It has to say what it is, what state it's in, and work from the keyboard.
+
+3
+00:00:09.649 --> 00:00:15.649
+VoiceOver: Set for you collapsed button
+
+4
+00:00:17.414 --> 00:00:23.414
+Narrator: Name, Set for you. Role, button. State, collapsed. That's WCAG 4.1.2.
+
+5
+00:00:24.039 --> 00:00:27.020
+VoiceOver: Set for you expanded button
+
+6
+00:00:27.020 --> 00:00:31.782
+Narrator: When I press it, the state changes to expanded, and VoiceOver says so.
+
+7
+00:00:31.782 --> 00:00:34.095
+Narrator: Now the panel, one item at a time.
+
+8
+00:00:34.717 --> 00:00:37.224
+VoiceOver: THIS SITE, SET FOR YOU group
+
+9
+00:00:37.224 --> 00:00:39.519
+VoiceOver: THIS SITE, SET FOR YOU
+
+10
+00:00:39.519 --> 00:00:41.504
+VoiceOver: Show the drawings
+
+11
+00:00:41.504 --> 00:00:44.866
+VoiceOver: in calm color Drawings collapsed pop up button, group
+
+12
+00:00:44.866 --> 00:00:46.769
+VoiceOver: , with the theme
+
+13
+00:00:46.769 --> 00:00:50.266
+VoiceOver: following my device Theme collapsed pop up button, group
+
+14
+00:00:50.266 --> 00:00:52.022
+VoiceOver: , and motion
+
+15
+00:00:52.022 --> 00:00:55.214
+VoiceOver: allowed Motion collapsed pop up button, group
+
+16
+00:00:55.214 --> 00:00:57.285
+VoiceOver: . The home page as
+
+17
+00:00:57.285 --> 00:01:00.708
+VoiceOver: a list of essays Home page collapsed pop up button, group
+
+18
+00:01:00.708 --> 00:01:05.041
+Narrator: The settings read as a sentence, and each dropdown has its own name…
+
+19
+00:01:05.041 --> 00:01:09.183
+Narrator: Drawings, Theme, Motion, Home page… with its current value first.
+
+20
+00:01:09.785 --> 00:01:12.301
+VoiceOver: Set for you collapsed button
+
+21
+00:01:12.301 --> 00:01:16.867
+Narrator: And Escape closes it, and puts me back on the button, collapsed again.
+
+22
+00:01:16.867 --> 00:01:17.975
+Narrator: Focus isn't lost.

@@ -19,7 +19,8 @@ in an example HR product; read them for the lessons, not the product details.
 | `agents/workflow/` | The instructions those agents follow (shared by Claude Code and Codex) |
 | `tools/demo-video/` | Recorder, voice, builder, cut and QA scripts (`tools/demo-video/README.md`) |
 | `.claude/skills/a11y-demo/` | A second skill: a narrated film of an accessibility test with the real VoiceOver in Safari (its own capture and edit; demo-video's voice, review and QA) |
-| `tools/a11y-demo/` | The VoiceOver scenario runner, the compose step, a static server for before/after builds, and a worked example (`examples/menu-stall/`) |
+| `tools/a11y-demo/` | The VoiceOver scenario runner, the compose step, the report builder and a static server for before/after builds |
+| `examples/` | Worked examples of the accessibility-test skill, one report per folder: open a folder and its `README.md` is the report, with the videos (`menu-stall/`, `menu-stall/duo/`, `wcag/`) |
 
 ## Use it in a project
 

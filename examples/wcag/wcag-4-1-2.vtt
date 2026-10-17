@@ -1,0 +1,157 @@
+WEBVTT
+
+1
+00:00:00.600 --> 00:00:01.806
+Tester: Hi, I'm the tester.
+
+2
+00:00:01.806 --> 00:00:07.074
+Tester: I'll use VoiceOver, the screen reader built into the Mac, and tell you what I hear.
+
+3
+00:00:07.476 --> 00:00:08.797
+Reviewer: And I'm the reviewer.
+
+4
+00:00:08.797 --> 00:00:13.388
+Reviewer: When something sounds wrong, I'll name the WCAG criterion it falls under,
+
+5
+00:00:13.388 --> 00:00:17.602
+Reviewer: say why it matters, and explain what changed in the code to fix it.
+
+6
+00:00:18.003 --> 00:00:21.472
+Reviewer: This video is about WCAG 4.1.2, Name, Role, Value.
+
+7
+00:00:21.472 --> 00:00:27.233
+Reviewer: Every control on a page has to tell a screen reader three things: what it's called,
+
+8
+00:00:27.233 --> 00:00:30.703
+Reviewer: what kind of control it is, and its current state.
+
+9
+00:00:31.104 --> 00:00:35.410
+Tester: Here's a notification settings page, in Safari, with VoiceOver on.
+
+10
+00:00:35.410 --> 00:00:37.563
+Tester: On screen there are two switches.
+
+11
+00:00:37.563 --> 00:00:41.152
+Tester: Replies to my comments is on, and Weekly digest is off.
+
+12
+00:00:41.152 --> 00:00:45.329
+Tester: I'll read the page one item at a time, from the link at the top.
+
+13
+00:00:49.199 --> 00:00:51.734
+VoiceOver: heading level 1 Notifications
+
+14
+00:00:51.734 --> 00:00:54.156
+VoiceOver: Choose what we email you about.
+
+15
+00:00:54.156 --> 00:00:56.426
+VoiceOver: Replies to my comments
+
+16
+00:00:56.426 --> 00:00:58.414
+VoiceOver: Weekly digest
+
+17
+00:00:58.414 --> 00:01:00.388
+VoiceOver: end of main
+
+18
+00:01:00.388 --> 00:01:05.077
+VoiceOver: main
+
+19
+00:01:05.077 --> 00:01:08.849
+Tester: I heard the heading, the sentence under it, and both labels.
+
+20
+00:01:08.849 --> 00:01:13.377
+Tester: Then the end of the main content. VoiceOver never reached either switch.
+
+21
+00:01:13.777 --> 00:01:15.930
+Reviewer: That's a problem under WCAG 4.1.2.
+
+22
+00:01:15.930 --> 00:01:19.984
+Reviewer: The switches work with a mouse, but the code gives them no name,
+
+23
+00:01:19.984 --> 00:01:23.784
+Reviewer: no role and no state, so VoiceOver isn't told they're there.
+
+24
+00:01:23.784 --> 00:01:27.902
+Reviewer: If you're listening, it sounds like this page has nothing to set.
+
+25
+00:01:30.502 --> 00:01:35.882
+Reviewer: In the code, each switch is now a button, with the role switch, an on or off state,
+
+26
+00:01:35.882 --> 00:01:38.216
+Reviewer: and the label beside it as its name.
+
+27
+00:01:38.216 --> 00:01:39.902
+Reviewer: It looks exactly the same.
+
+28
+00:01:40.304 --> 00:01:43.004
+Tester: The same reading pass, on the fixed page.
+
+29
+00:01:46.830 --> 00:01:49.450
+VoiceOver: heading level 1 Notifications
+
+30
+00:01:49.450 --> 00:01:51.849
+VoiceOver: Choose what we email you about.
+
+31
+00:01:51.849 --> 00:01:54.146
+VoiceOver: Replies to my comments
+
+32
+00:01:54.146 --> 00:01:56.911
+VoiceOver: Replies to my comments on switch
+
+33
+00:01:56.911 --> 00:01:58.911
+VoiceOver: Weekly digest
+
+34
+00:01:58.911 --> 00:02:01.247
+VoiceOver: Weekly digest off switch
+
+35
+00:02:01.247 --> 00:02:06.169
+Tester: Now each switch says its name, that it's a switch, and whether it's on or off.
+
+36
+00:02:06.169 --> 00:02:07.872
+Tester: I'll turn on Weekly digest.
+
+37
+00:02:08.497 --> 00:02:10.731
+VoiceOver: on Weekly digest switch
+
+38
+00:02:10.731 --> 00:02:12.981
+Tester: VoiceOver tells me it's on.
+
+39
+00:02:13.382 --> 00:02:18.482
+Reviewer: Name, role and value are all announced. 4.1.2 holds here.

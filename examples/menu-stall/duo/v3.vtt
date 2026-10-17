@@ -1,0 +1,161 @@
+WEBVTT
+
+1
+00:00:00.600 --> 00:00:02.388
+Tester: Step three, the reading pass.
+
+2
+00:00:02.388 --> 00:00:05.657
+Tester: The home page from the top, in Safari with VoiceOver,
+
+3
+00:00:05.657 --> 00:00:09.049
+Tester: the way someone who can't see the screen would meet it.
+
+4
+00:00:13.447 --> 00:00:16.533
+VoiceOver: Skip to content visited link is in the VoiceOver cursor
+
+5
+00:00:16.533 --> 00:00:20.484
+Tester: The first thing it reaches is a skip link, which is a good start.
+
+6
+00:00:20.484 --> 00:00:23.158
+Tester: Now I'll read the header one item at a time.
+
+7
+00:00:23.783 --> 00:00:26.948
+VoiceOver: Describe this page dialog pop up button
+
+8
+00:00:26.948 --> 00:00:28.608
+VoiceOver: banner
+
+9
+00:00:28.608 --> 00:00:31.133
+VoiceOver: visited link Marcelo Paiva
+
+10
+00:00:31.133 --> 00:00:33.309
+VoiceOver: Main navigation
+
+11
+00:00:33.309 --> 00:00:35.230
+VoiceOver: list 5 items
+
+12
+00:00:35.230 --> 00:00:37.609
+VoiceOver: link Writing 1 of 5
+
+13
+00:00:37.609 --> 00:00:39.946
+VoiceOver: link Work 2 of 5
+
+14
+00:00:39.946 --> 00:00:42.226
+VoiceOver: link Signal 3 of 5
+
+15
+00:00:42.226 --> 00:00:44.555
+VoiceOver: link Tools 4 of 5
+
+16
+00:00:44.555 --> 00:00:46.827
+VoiceOver: link Resume 5 of 5
+
+17
+00:00:46.827 --> 00:00:48.493
+VoiceOver: end of list
+
+18
+00:00:48.493 --> 00:00:50.729
+VoiceOver: end of Main navigation
+
+19
+00:00:50.729 --> 00:00:52.970
+VoiceOver: Set for you collapsed button
+
+20
+00:00:52.970 --> 00:00:57.849
+Tester: Set for you… a button, and it tells me it's collapsed. That's what I want to hear.
+
+21
+00:00:57.849 --> 00:00:58.445
+Tester: Next item.
+
+22
+00:00:58.850 --> 00:01:04.325
+Reviewer: A name, a role, and a state. That's what WCAG 4.1.2 asks for.
+
+23
+00:01:05.052 --> 00:01:07.096
+VoiceOver: menu
+
+24
+00:01:07.096 --> 00:01:12.286
+VoiceOver: menu
+
+25
+00:01:12.286 --> 00:01:14.331
+VoiceOver: menu
+
+26
+00:01:14.331 --> 00:01:19.268
+VoiceOver: menu
+
+27
+00:01:19.268 --> 00:01:24.543
+Tester: It says menu… and again… and again. Four presses, and it hasn't moved past it.
+
+28
+00:01:24.945 --> 00:01:26.573
+Reviewer: There's no menu on screen.
+
+29
+00:01:26.573 --> 00:01:31.710
+Reviewer: The settings panel is closed, but its four dropdowns are still reaching VoiceOver.
+
+30
+00:01:31.710 --> 00:01:35.029
+Reviewer: That's a problem under WCAG 4.1.2, Name, Role, Value.
+
+31
+00:01:35.029 --> 00:01:38.600
+Reviewer: If you're listening, it sounds like the page has stopped,
+
+32
+00:01:38.600 --> 00:01:41.795
+Reviewer: right at the control that sets the site up for you.
+
+33
+00:01:44.395 --> 00:01:48.051
+Reviewer: The fix: the panel is now left empty while it's closed.
+
+34
+00:01:48.051 --> 00:01:50.645
+Reviewer: Here's the same page after that change.
+
+35
+00:01:51.046 --> 00:01:53.146
+Tester: I'll go straight to Set for you.
+
+36
+00:01:53.765 --> 00:01:59.765
+VoiceOver: Set for you collapsed button
+
+37
+00:02:01.359 --> 00:02:04.584
+Tester: Collapsed, the same as before. Next item.
+
+38
+00:02:05.219 --> 00:02:11.034
+VoiceOver: Pause motion toggle button
+
+39
+00:02:11.034 --> 00:02:15.859
+Tester: That's Pause motion, the next button on the screen. The silence is gone.
+
+40
+00:02:16.261 --> 00:02:18.611
+Reviewer: 4.1.2 holds here.

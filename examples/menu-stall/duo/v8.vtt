@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.600 --> 00:00:03.486
+Reviewer: One more feature to test: Describe this page.
+
+2
+00:00:03.486 --> 00:00:07.270
+Reviewer: A screen reader reads a page one item at a time, in a line.
+
+3
+00:00:07.270 --> 00:00:10.670
+Reviewer: It doesn't say that the essays fill most of the page,
+
+4
+00:00:10.670 --> 00:00:13.300
+Reviewer: or that a narrow column sits beside them.
+
+5
+00:00:13.705 --> 00:00:16.943
+Reviewer: For someone who's blind, a picture of the layout is a map.
+
+6
+00:00:16.943 --> 00:00:19.846
+Reviewer: It says what's on the page before reading all of it,
+
+7
+00:00:19.846 --> 00:00:24.480
+Reviewer: and where things are when a sighted colleague says it's in the column on the right.
+
+8
+00:00:25.159 --> 00:00:28.403
+VoiceOver: system has new window
+
+9
+00:00:28.403 --> 00:00:31.255
+VoiceOver: Describe this page dialog pop up button
+
+10
+00:00:31.255 --> 00:00:35.855
+Tester: It's the second thing on the page, right after the skip link. I'll press it.
+
+11
+00:00:36.479 --> 00:00:41.719
+VoiceOver: The home page web dialog with 9 items heading level 2 The home page
+
+12
+00:00:41.719 --> 00:00:46.428
+Tester: It says the dialog's name, The home page, and its heading… and stops there.
+
+13
+00:00:46.428 --> 00:00:49.819
+Tester: The picture of the page isn't read until I go looking.
+
+14
+00:00:50.444 --> 00:00:52.519
+VoiceOver: Close button
+
+15
+00:00:52.519 --> 00:00:57.582
+VoiceOver: This is the front page of a magazine. The newest essays take most of the page, and a narrower column beside them lists everything else.
+
+16
+00:00:57.582 --> 00:01:00.164
+VoiceOver: heading level 3 From top to bottom
+
+17
+00:01:00.164 --> 00:01:02.208
+VoiceOver: list 7 items
+
+18
+00:01:02.208 --> 00:01:03.898
+VoiceOver: 1
+
+19
+00:01:03.898 --> 00:01:09.899
+VoiceOver: At the top, the site header: my name, which goes home, then links to Writing, Work, Signal, Tools and Resume, then Set for you, where you choose the drawings, theme and motion. Beside it is a button that pauses everything that moves.
+
+20
+00:01:11.841 --> 00:01:15.364
+Tester: It starts with a picture: the front page of a magazine,
+
+21
+00:01:15.364 --> 00:01:20.297
+Tester: the newest essays taking most of the page, and a narrower column beside them.
+
+22
+00:01:20.297 --> 00:01:23.115
+Tester: Then it walks the layout from top to bottom.
+
+23
+00:01:23.518 --> 00:01:24.892
+Reviewer: What it says is useful.
+
+24
+00:01:24.892 --> 00:01:27.101
+Reviewer: But on opening it only says its name,
+
+25
+00:01:27.101 --> 00:01:30.683
+Reviewer: so someone has to explore to find out what the page is like.
+
+26
+00:01:30.683 --> 00:01:35.518
+Reviewer: That's not a guideline failure, but it holds back the whole point of the feature.
+
+27
+00:01:36.205 --> 00:01:42.205
+VoiceOver: At the top, the site header: my name, which goes home, then links to Writing, Work, Signal, Tools and Resume, then Set for you, where you choose the drawings, theme and motion. Beside it is a button that pauses everything that moves.
+
+28
+00:01:44.109 --> 00:01:47.740
+Reviewer: The fix, now live: the heading carries the description,
+
+29
+00:01:47.740 --> 00:01:50.446
+Reviewer: so it's read the moment the dialog opens.
+
+30
+00:01:50.446 --> 00:01:52.359
+Reviewer: Same steps, on the live site.
+
+31
+00:01:52.988 --> 00:01:55.321
+VoiceOver: link Skip to content
+
+32
+00:01:55.321 --> 00:01:58.199
+VoiceOver: Describe this page dialog pop up button
+
+33
+00:01:58.199 --> 00:02:04.199
+VoiceOver: The home page web dialog with 9 items heading level 2 The home page This is the front page of a magazine. The newest essays take most of the page, and a narrower column beside them lists everything else.
+
+34
+00:02:06.693 --> 00:02:11.500
+Tester: This time it reads the picture straight away: the front page of a magazine,
+
+35
+00:02:11.500 --> 00:02:14.192
+Tester: the newest essays taking most of the page.
+
+36
+00:02:14.594 --> 00:02:17.724
+Reviewer: Now the feature does its job from the first second.
+
+37
+00:02:17.724 --> 00:02:21.469
+Reviewer: Whether the description helps is for blind people to tell us.
+
+38
+00:02:22.122 --> 00:02:26.070
+VoiceOver: Describe this page dialog pop up button

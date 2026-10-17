@@ -1,0 +1,18 @@
+[0.6] Tester: Hi, I'm the tester. I'll use VoiceOver, the screen reader built into the Mac, and tell you what I hear.
+[7.5] Reviewer: And I'm the reviewer. When something sounds wrong, I'll name the WCAG criterion it falls under, say why it matters, and explain what changed in the code to fix it.
+[18.0] Reviewer: This video is about WCAG 1.1.1, Non-text Content. Anything shown as a picture, like a chart, needs a text alternative that gives a listener what the picture gives a viewer.
+[31.1] Tester: Here's a quarterly report, in Safari, with VoiceOver on. Under the heading there's a bar chart of sales for July, August and September. I'll read the page one item at a time, from the link at the top.
+[47.8] VoiceOver: heading level 1 Quarterly report
+[50.3] VoiceOver: How sales went from July to September.
+[53.0] VoiceOver: q3-sales.svg image
+[55.5] VoiceOver: end of main
+[57.3] Tester: After the sentence under the heading, VoiceOver said q three sales dot S V G, image. That's the file name. It never said what the chart shows.
+[67.1] Reviewer: That's a problem under WCAG 1.1.1. The chart has no text alternative, so VoiceOver falls back to its file name. If you're listening, you know there's a picture, but not that sales went up every month.
+[83.2] Reviewer: In the code, the image now has alt text. It says it's a bar chart, what it measures, and the three numbers. The chart looks exactly the same.
+[92.3] Tester: The same reading pass, on the fixed page.
+[98.9] VoiceOver: heading level 1 Quarterly report
+[101.5] VoiceOver: How sales went from July to September.
+[104.1] VoiceOver: Bar chart of sales in the third quarter, in thousands of dollars: July 120, August 150, September 180. image
+[109.9] VoiceOver: end of main
+[111.6] Tester: Now VoiceOver reads the chart: what kind of chart it is, and the sales for each month.
+[117.5] Reviewer: A listener gets what the chart shows. 1.1.1 holds here.

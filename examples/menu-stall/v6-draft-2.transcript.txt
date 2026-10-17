@@ -1,0 +1,41 @@
+[0.6] Narrator: Step six, a real task. I'll turn the drawings off, start to finish, with VoiceOver… and find out whether it tells me it worked.
+[9.1] VoiceOver: Set for you collapsed button
+[17.2] VoiceOver: Set for you expanded button
+[20.5] VoiceOver: THIS SITE, SET FOR YOU group
+[23.1] VoiceOver: THIS SITE, SET FOR YOU
+[25.5] VoiceOver: Show the drawings
+[27.6] VoiceOver: in calm color Drawings collapsed pop up button, group
+[30.9] Narrator: There's the Drawings dropdown, set to calm color. I'll open it, and choose not at all.
+[36.8] VoiceOver: menu 3 items ✓ in calm color
+[39.8] VoiceOver: in full color
+[41.9] VoiceOver: not at all
+[43.9] VoiceOver: in calm color Drawings Drawings collapsed pop up button, group
+[51.1] Narrator: When I choose it, VoiceOver reads the old value… calm color. That seems to be VoiceOver in Safari with a standard dropdown. I have to ask again to hear what's set.
+[62.5] VoiceOver: not at all Drawings collapsed pop up button, group is in the VoiceOver cursor
+[66.7] Narrator: Not at all. It worked… but nothing told me. The panel has a note about it, so I'll go and find it.
+[73.4] VoiceOver: , with the theme
+[75.2] VoiceOver: following my device Theme collapsed pop up button, group
+[78.7] VoiceOver: , and motion
+[80.5] VoiceOver: allowed Motion collapsed pop up button, group
+[83.5] VoiceOver: . The home page as
+[85.4] VoiceOver: a list of essays Home page collapsed pop up button, group
+[88.9] VoiceOver: .
+[90.6] VoiceOver: end of THIS SITE, SET FOR YOU group
+[93.3] VoiceOver: Your device is set to dark, so this site is too. Drawings are off, and their captions go with them. Nothing else on a page depends on them.
+[98.4] Narrator: There it is. Drawings are off, and their captions go with them. That's a status message, and it's only on screen: it should be announced without me going to look. That's a problem under WCAG 4.1.3, Status Messages.
+[113.6] VoiceOver: Set for you collapsed button
+[116.9] VoiceOver: link See the work
+[124.8] VoiceOver: LATEST WRITING region
+[126.9] Narrator: And after See the work, VoiceOver goes straight to Latest writing. The drawings are gone for a listener too. The task works… it just doesn't say so.
+[138.9] Narrator: Since then, the panel says what a change did. Here's the same task on the fixed version, the one that's live now.
+[146.5] VoiceOver: Set for you collapsed button
+[154.6] VoiceOver: Set for you expanded button
+[160.6] VoiceOver: THIS SITE, SET FOR YOU group
+[162.9] VoiceOver: THIS SITE, SET FOR YOU
+[164.9] VoiceOver: Show the drawings
+[166.6] VoiceOver: in calm color Drawings collapsed pop up button
+[169.6] VoiceOver: menu 3 items ✓ in calm color
+[172.4] VoiceOver: in full color
+[174.2] VoiceOver: not at all
+[175.9] VoiceOver: in calm color Drawings Drawings collapsed pop up button, Drawings are off and their captions go with them.
+[185.2] Narrator: There it is. Drawings are off, and their captions go with them. It still reads the old value first… but now the result is spoken, without going to look. WCAG 4.1.3 holds here.
