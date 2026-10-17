@@ -297,6 +297,33 @@ export function keyCommands() {
     up: press(126, 'Up arrow'),
     left: press(123, 'Left arrow'),
     right: press(124, 'Right arrow'),
+    // For a browser tool such as the Web Inspector, outside the page: a key chord, typing, and a click at a
+    // point in Safari's window. Each is captioned with its label, not with the page's focus.
+    chord: async step => {
+      releaseModifiers()
+      osa(`tell application "System Events" to key code ${step.code}${step.mods ? ` using {${step.mods}}` : ''}`)
+      releaseModifiers()
+      await sleep(700)
+      return step.label
+    },
+    type: async step => {
+      // keystroke types the text as written; quotes are escaped for AppleScript.
+      osa(`tell application "System Events" to keystroke ${JSON.stringify(step.text)}`)
+      await sleep(300)
+      if (step.enter !== false) osa('tell application "System Events" to key code 36')
+      await sleep(900)
+      return `Typed ${step.text}`
+    },
+    click: async step => {
+      // A point in Safari's window, in points from its top-left corner (step.window, set by run-scene).
+      const [wx, wy] = step.window
+      const at = [String(wx + step.x), String(wy + step.y)]
+      execFileSync(path.join(here, '.bin', 'vo-panel'), ['move', ...at])
+      await sleep(300)
+      execFileSync(path.join(here, '.bin', 'vo-panel'), ['drag', ...at, ...at])   // press and release in place
+      await sleep(700)
+      return step.label
+    },
   }
 }
 

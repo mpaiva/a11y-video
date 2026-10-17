@@ -16,7 +16,9 @@
 //     "panel": "right",      VoiceOver's caption panel beside Safari: "right", "below" or "none"
 //     "keepStorage": false,  the page's localStorage and sessionStorage are cleared before each take
 //     "voiceover": true,     false for a keyboard-only scene: keys (tab, shiftTab, enter, space, escape, the
-//                            arrows) go to Safari with VoiceOver off; each step logs what got focus
+//                            arrows) go to Safari with VoiceOver off; each step logs what got focus. For a
+//                            browser tool: "chord" (code, mods, label), "type" (text), "click" (x, y, label;
+//                            points in Safari's window), each captioned by its label
 //     "hush": true,          Control after each step, to stop hints; false for a scene listening for a
 //                            live region's announcement, which Control would also cancel
 //     "steps": [
@@ -94,6 +96,12 @@ try {
     vo.js('localStorage.clear(); sessionStorage.clear()')
     await vo.load(scene.url)
   }
+  // Safari keeps the Web Inspector open across loads, and a take that starts with it docked shows half a
+  // page. Close it if the page is much shorter than its window.
+  if (Number(vo.js('outerHeight - innerHeight')) > 250) {
+    vo.osa('tell application "System Events" to key code 34 using {command down, option down}')
+    await vo.sleep(1200)
+  }
   if (place.panel) await vo.placePanel(place.panel, place.film)
   // Dragging the panel takes key-window status from Safari, and a scripted focus in a window that isn't
   // key doesn't reach VoiceOver. Bring Safari back and focus the page again.
@@ -137,9 +145,15 @@ try {
         vo.frontmostSafari(`during "${step.do}" in scene ${scene.id}`)
         if (keyboard) {
           const at = t()
-          const key = await run[step.do](step)
-          const focus = vo.describeFocus()
-          marks.steps.push({ type: 'key', do: step.do, key, at, end: t(), phrase: focus.text, visible: focus.visible })
+          const key = await run[step.do]({ ...step, window: place.safari })
+          // A step on a browser tool (chord, type, click) is captioned by its label alone: the page's focus
+          // isn't what it acted on.
+          if (['chord', 'type', 'click'].includes(step.do)) {
+            marks.steps.push({ type: 'key', do: step.do, key, at, end: t(), phrase: '', tool: true })
+          } else {
+            const focus = vo.describeFocus()
+            marks.steps.push({ type: 'key', do: step.do, key, at, end: t(), phrase: focus.text, visible: focus.visible })
+          }
           await vo.sleep((step.gap ?? GAP) * 1000)
           continue
         }
@@ -172,6 +186,6 @@ try {
   if (!keyboard) await vo.voiceOver.stop().catch(() => undefined)
   fs.writeFileSync(out('-marks.json'), JSON.stringify(marks, null, 2))
 }
-const said = marks.steps.filter(s => (s.type === 'vo' || s.type === 'key') && s.phrase)
+const said = marks.steps.filter(s => (s.type === 'vo' || s.type === 'key') && (s.phrase || s.tool))
 console.log(`${scene.id}: ${marks.steps.length} steps, ${said.length} ${keyboard ? 'key presses' : 'VoiceOver phrases'}, ${out('.mov')}`)
-for (const s of said) console.log(`  ${s.at.toFixed(1)}s  ${(s.key ?? s.do).padEnd(10)} ${s.phrase.slice(0, 90)}${s.type === 'key' && !s.visible ? '  [no focus ring]' : ''}`)
+for (const s of said) console.log(`  ${s.at.toFixed(1)}s  ${(s.key ?? s.do).padEnd(10)} ${(s.phrase || "").slice(0, 90)}${s.type === "key" && !s.tool && !s.visible ? '  [no focus ring]' : ''}`)

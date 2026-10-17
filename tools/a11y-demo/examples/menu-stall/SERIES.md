@@ -13,7 +13,7 @@ minutes each; the overview about one.
 | # | Video | What's on screen | What it shows | Status |
 |---|-------|------------------|---------------|--------|
 | 0 | **Overview** | The home page in Safari, VoiceOver on, VoiceOver naming the page | The goal of the test, the six steps in a sentence each, what the series covers, the two builds | **Draft 1** (0:56, captioned): `series/v0-draft-1.mp4`. VO-F3 named the skip link, not the page title (its cursor was already on the link); no line claims the title |
-| 1 | **Inspect the structure** | Safari's Web Inspector: the elements and the accessibility tree; the site's own axe gate | The intended structure: headings, landmarks, the Set for you disclosure. The closed panel's four selects are in the DOM, hidden, before any screen reader is used | **Needs a new capture**: the runner films VoiceOver, not the Web Inspector (see "To build") |
+| 1 | **Inspect the structure** | Safari's Web Inspector: the elements and the accessibility tree; the site's own axe gate | The intended structure: headings, landmarks, the Set for you disclosure. The closed panel's four selects are in the DOM, hidden, before any screen reader is used | **Draft 1** (1:07, captioned): `series/v1-draft-1.mp4`. Safari's Web Inspector driven by key chords and typed Console commands (no clicks): the button's aria-expanded and aria-controls, then the hidden panel with its four selects ([true, 4]) |
 | 2 | **Keyboard only** | Safari, VoiceOver off, the focus ring | Tab order through the header, focus visible, Set for you opens with Enter and closes with Escape, focus goes back to the button | **Draft 1** (1:08, captioned): `series/v2-draft-1.mp4`. Keyboard-only mode (real keys, VoiceOver off, KEYBOARD captions read from the page's focus, synced by a flash). Skip link works; focus order and ring hold (2.4.7); Escape returns focus (2.1.1) |
 | 3 | **The reading pass** | The before build, VO-Right from the top | The header item by item, then the stall: "menu", four presses (WCAG 4.1.2) | **Draft 2** (1:50, captioned): `series/v3-draft-2.mp4`, the before take with the opener v3-open. Opens on about 5 s of quiet before VoiceOver's first phrase: review it |
 | 4 | **Structural navigation** | The before build: headings, landmarks, links (VO-Command-H, landmarks, VO-Command-L) | Heading outline and landmark names hold (1.3.1, 2.4.6); the drawing strip's links read each title twice (fixed in the after build) | **Draft 1** (2:06, captioned): `series/v4-draft-1.mp4`. Headings (1.3.1 holds), named landmarks, doubled strip links (2.4.4 met, slow). VoiceOver says "Last link" once, its own stumble; captioned, not narrated |
@@ -48,7 +48,7 @@ minutes each; the overview about one.
 3. ~~Videos 4 and 5~~ (draft 1 of each, after a finding check of each: `checks/`).
 4. ~~Video 6~~ (draft 1, after a two-part finding check).
 5. ~~Keyboard-only mode, then video 2~~ (draft 1).
-6. Web Inspector capture, then video 1.
+6. ~~Web Inspector capture, then video 1~~ (draft 1). The series has all eight.
 
 ## Captions
 

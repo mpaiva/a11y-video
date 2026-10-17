@@ -228,7 +228,7 @@ for (const scene of film.scenes) {
     console.log(`${id}: heard the expected "${s.expect}" (${Math.round(found * 100)}% of its words)`)
     s.phrase = `${s.phrase.replace(/[.,]?$/, ',')} ${s.expect}`
   }
-  const vos = marks.steps.filter(s => (s.type === 'vo' || s.type === 'key') && s.phrase)
+  const vos = marks.steps.filter(s => (s.type === 'vo' || s.type === 'key') && (s.phrase || s.tool))
   // A scene may swap a narrator line for another in the same pause ("sayAs": {"b-intro": "v3-open"}), to
   // cut a second video from one take. The new line must fit the pause the take left for the old one.
   const swap = scene.sayAs ?? {}
@@ -249,7 +249,7 @@ for (const scene of film.scenes) {
       const next = events.find(e => e > from + 0.05) ?? dur
       // A key press is captioned as the key and what it reached: "Tab → link, Skip to content".
       return { who: s.type === 'key' ? 'KEYBOARD' : 'VOICEOVER', from, to: Math.min(Math.max(next, from + 1.5), from + 6, dur),
-        text: s.type === 'key' ? `${s.key} → ${s.phrase}` : s.phrase }
+        text: s.tool ? s.key : s.type === 'key' ? `${s.key} → ${s.phrase}` : s.phrase }
     }),
     ...says.flatMap(s => cues(lineText[s.id] ?? s.id, local(s.at), local(s.end)).map(c => ({ who: 'NARRATOR', ...c }))),
   ].sort((x, y) => x.from - y.from)

@@ -44,6 +44,9 @@
     "v2-skipped": "I'm on Read the writing, past the whole header. The skip link works. Now back up, with Shift-Tab.",
     "v2-order": "Pause motion, then Set for you: the same order as on screen, and the focus ring follows every time. That's [WCAG](/wˈʌkæɡ/) two point four point seven, Focus Visible. I'll open it with Return.",
     "v2-panel": "It opens, and Tab moves through each setting, by name. Now Escape.",
-    "v2-escape": "Escape closes it, and puts focus back on the button. Focus isn't trapped, and it isn't lost. [WCAG](/wˈʌkæɡ/) two point one point one, Keyboard, holds here."
+    "v2-escape": "Escape closes it, and puts focus back on the button. Focus isn't trapped, and it isn't lost. [WCAG](/wˈʌkæɡ/) two point one point one, Keyboard, holds here.",
+    "v1-open": "Step one, before any screen reader: the structure in the code. I'm opening Safari's Web Inspector, and making it larger, to see what this page tells assistive technology.",
+    "v1-button": "This is the Set for you button. Its attributes say aria-expanded, false, so it's announced as collapsed… and aria-controls points at the panel it opens. That's what I want to see.",
+    "v1-count": "That panel is marked hidden, and the four dropdowns are still inside it, in the page. Hidden content should stay out of a screen reader's way… so that's the first thing I'll listen for, in the reading pass."
   }
 }
