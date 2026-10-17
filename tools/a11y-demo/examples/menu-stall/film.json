@@ -1,0 +1,7 @@
+{
+  "_note": "Paths are relative to the demo folder this file is copied into.",
+  "takesDir": "takes",
+  "voiceDir": "video/assets/voice",
+  "lines": "voice-lines.json",
+  "scenes": [{ "id": "before" }, { "id": "after" }]
+}

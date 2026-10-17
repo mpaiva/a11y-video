@@ -1,0 +1,48 @@
+{
+  "_note": "The same page after the fix (mpaiva/jupiter 0249bbb), served on port 4602.",
+  "id": "after",
+  "url": "http://localhost:4602/",
+  "display": 2,
+  "panel": "below",
+  "voiceDir": "video/assets/voice",
+  "gap": 0.4,
+  "steps": [
+    {
+      "say": "a-fix"
+    },
+    {
+      "do": "focus",
+      "selector": "button[aria-expanded]"
+    },
+    {
+      "say": "a-next"
+    },
+    {
+      "do": "next",
+      "gap": 0.8
+    },
+    {
+      "say": "a-pause"
+    },
+    {
+      "do": "focus",
+      "selector": "button[aria-expanded]"
+    },
+    {
+      "do": "activate"
+    },
+    {
+      "do": "next",
+      "times": 4
+    },
+    {
+      "say": "a-open"
+    },
+    {
+      "do": "escape"
+    },
+    {
+      "say": "a-close"
+    }
+  ]
+}

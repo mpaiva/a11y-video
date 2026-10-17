@@ -1,0 +1,9 @@
+{
+  "name": "a11y-demo-tools",
+  "private": true,
+  "description": "Guidepup, which drives the real VoiceOver, for the a11y-demo scenario runner. Run `npm install` in this folder. The caption bar uses Playwright and Public Sans from ../demo-video.",
+  "type": "module",
+  "dependencies": {
+    "@guidepup/guidepup": "0.36.3"
+  }
+}

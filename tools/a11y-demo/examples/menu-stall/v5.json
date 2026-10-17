@@ -1,0 +1,12 @@
+{ "_note": "Series video 5, the Set for you control, on the before build.",
+  "id": "v5", "url": "http://localhost:4601/", "display": 2, "panel": "below", "voiceDir": "video/assets/voice", "gap": 0.5,
+  "steps": [
+    { "say": "v5-open" },
+    { "do": "focus", "selector": "button[aria-expanded]" },
+    { "say": "v5-state" },
+    { "do": "activate" },
+    { "say": "v5-expanded" },
+    { "do": "next", "times": 10 },
+    { "say": "v5-selects" },
+    { "do": "escape" },
+    { "say": "v5-escape" } ] }

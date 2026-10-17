@@ -1,0 +1,14 @@
+{ "_note": "Series video 4, structural navigation, on the before build.",
+  "id": "v4", "url": "http://localhost:4601/", "display": 2, "panel": "below", "voiceDir": "video/assets/voice", "gap": 0.5,
+  "steps": [
+    { "say": "v4-open" },
+    { "do": "heading", "times": 4 },
+    { "say": "v4-headings" },
+    { "do": "toStart" },
+    { "say": "v4-landmarks" },
+    { "do": "landmark", "times": 6 },
+    { "say": "v4-landmarks-ok" },
+    { "do": "toStart" },
+    { "say": "v4-links" },
+    { "do": "link", "times": 11 },
+    { "say": "v4-doubled" } ] }

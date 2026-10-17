@@ -1,0 +1,16 @@
+{
+  "_note": "Series video 0, the overview: the goal of the test, the six steps, what the series covers. The before build, as the series tests it.",
+  "id": "overview",
+  "url": "http://localhost:4601/",
+  "display": 2,
+  "panel": "below",
+  "voiceDir": "video/assets/voice",
+  "gap": 0.6,
+  "steps": [
+    { "say": "b-intro" },
+    { "do": "describe" },
+    { "say": "b-goal" },
+    { "say": "b-steps" },
+    { "say": "v0-series" }
+  ]
+}

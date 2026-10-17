@@ -1,0 +1,50 @@
+{
+  "_note": "The home page before the fix (mpaiva/jupiter 31df294), served on port 4601. Thirteen VO-Right presses from the skip link reach Set for you; four more show the stall.",
+  "id": "before",
+  "url": "http://localhost:4601/",
+  "display": 2,
+  "panel": "below",
+  "voiceDir": "video/assets/voice",
+  "gap": 0.4,
+  "steps": [
+    {
+      "say": "b-intro"
+    },
+    {
+      "say": "b-goal"
+    },
+    {
+      "say": "b-steps"
+    },
+    {
+      "say": "b-scope"
+    },
+    {
+      "do": "toStart"
+    },
+    {
+      "do": "describe"
+    },
+    {
+      "say": "b-skip"
+    },
+    {
+      "do": "next",
+      "times": 13
+    },
+    {
+      "say": "b-setforyou"
+    },
+    {
+      "do": "next",
+      "times": 4,
+      "gap": 0.8
+    },
+    {
+      "say": "b-menu"
+    },
+    {
+      "say": "b-why"
+    }
+  ]
+}
