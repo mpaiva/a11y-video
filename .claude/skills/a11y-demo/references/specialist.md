@@ -71,14 +71,37 @@ real moment. Keep the narrator, the layout and the builds the same across the se
 Steps 1 and 2 are not VoiceOver scenes (the Web Inspector, the keyboard on its own), so they need
 captures of their own; say so in the plan rather than faking them with VoiceOver.
 
+## Every series starts with the intro
+
+The first video sets expectations: what is being tested and why, that this is a first pass before
+testing with disabled people, the six steps in a sentence each, and the page and builds. Each later
+video opens by naming its step and what that step is for.
+
 ## Stories that work
 
-- **Find, explain, fix, re-test** (the worked example): one take on the build with the problem, the fix
+- **Find, explain, fix, re-test,** the default for any video that finds something (the worked example's video 6): one take on the build with the problem, the fix
   in one sentence, the same steps on the fixed build. The re-test is the proof; it uses the same
   commands, so the difference is the page and nothing else.
 - **A structured pass:** orientation, structure, names and states, order, with commentary on what
   passes and what doesn't. Works on any page; keep it to the moments worth hearing.
 - **One control, closely:** a disclosure, a dialog, a form field, heard opening, being used and closing.
+
+## Saying a violation, then fixing it
+
+Every violation gets the same four beats, in this order, in the video where it is found:
+
+1. **What was heard,** in VoiceOver's words, short: "It says menu… and again… and again."
+2. **The criterion and why it matters,** together: the WCAG number and name, then one sentence from
+   the side of the person it stops. "That's a problem under WCAG four point one point two, Name, Role,
+   Value. If you're listening, it sounds like the page has stopped, right at the control that sets the
+   site up for you." The why is the point: a viewer remembers who was stopped, not the number.
+3. **What changed in the code,** one line, at the start of the re-test scene: "The panel is now left
+   empty while it's closed." Name the component and the behaviour, never who wrote it.
+4. **The re-test,** with the same commands on the fixed build, and the criterion holding only when the
+   take shows it: "Straight to Pause motion. Four point one point two holds here."
+
+A passing moment is named too, more briefly ("a skip link, which is a good start. That's two point
+four point one, Bypass Blocks"), so viewers learn what good sounds like.
 
 ## Saying the finding
 
