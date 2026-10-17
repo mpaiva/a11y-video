@@ -287,7 +287,11 @@ for (const scene of film.scenes) {
   if (keyboard) inputs.push('-f', 'lavfi', '-t', String(dur), '-i', 'anullsrc=r=48000:cl=stereo')   // a silent bed for the narrator
   else inputs.push('-ss', String(first), '-t', String(dur), '-i', audio)
   says.forEach(s => inputs.push('-i', path.join(voiceDir, `${s.id}-${s.take}.mp3`)))
-  let v = `[0:v]${hold > 0 ? `tpad=stop_mode=clone:stop_duration=${(hold + 0.5).toFixed(3)},` : ''}scale=${PIC.w}:${PIC.h}:flags=lanczos,format=rgba,pad=${W}:${H}:${PIC.x}:${PIC.y}:color=0x1b1b1f[c0]`
+  // fps first: screencapture writes a frame only when the screen changes (18 frames in a 42 s take), and
+  // without it the picture fell behind its own timestamps through the scene, 0.8 s late by the second
+  // VoiceOver phrase and 3.6 s late by the last (the 4.1.2 pilot's re-test, October 17, 2026), with some
+  // changes not shown at all. The fps filter places every frame by its timestamp.
+  let v = `[0:v]fps=30,${hold > 0 ? `tpad=stop_mode=clone:stop_duration=${(hold + 0.5).toFixed(3)},` : ''}scale=${PIC.w}:${PIC.h}:flags=lanczos,format=rgba,pad=${W}:${H}:${PIC.x}:${PIC.y}:color=0x1b1b1f[c0]`
   bars.forEach((_, i) => {
     const c = captions[i]
     v += `;[c${i}][${i + 1}:v]overlay=0:${BAR.y}:enable='between(t,${c.from.toFixed(3)},${c.to.toFixed(3)})'[c${i + 1}]`
