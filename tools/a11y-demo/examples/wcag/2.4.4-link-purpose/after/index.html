@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Latest stories</title>
+<!-- WCAG 2.4.4 Link Purpose (In Context): the fix. Each link still shows "Read more", and its accessible
+     name carries the story's title in visually hidden text ("Read more about a new bridge opens
+     downtown"), so each link says where it goes, on its own. The look is unchanged. -->
+<style>
+  :root { color-scheme: light; --ink: #1b1f24; --muted: #57606a; --line: #d0d7de; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 22px/1.5 -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; color: var(--ink); background: #f6f8fa; }
+  main { max-width: 820px; margin: 56px auto; padding: 40px 48px; background: #fff; border: 1px solid var(--line); border-radius: 16px; }
+  .back { display: inline-block; margin-bottom: 16px; color: #0969da; }
+  h1 { margin: 0 0 8px; font-size: 36px; }
+  p { margin: 0 0 24px; color: var(--muted); }
+  a:focus-visible { outline: 3px solid #0969da; outline-offset: 3px; }
+  .card { padding: 20px 0; border-top: 1px solid var(--line); }
+  .title { font-weight: 600; font-size: 26px; }
+  .card p { margin: 4px 0 8px; }
+  .card a { color: #0969da; }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="#">Back to home</a>
+  <h1>Latest stories</h1>
+  <div class="card">
+    <div class="title">A new bridge opens downtown</div>
+    <p>The river crossing took four years to build.</p>
+    <div><a href="#">Read more<span class="visually-hidden"> about a new bridge opens downtown</span></a></div>
+  </div>
+  <div class="card">
+    <div class="title">Library hours are getting longer</div>
+    <p>Branches will stay open until nine on weeknights.</p>
+    <div><a href="#">Read more<span class="visually-hidden"> about library hours are getting longer</span></a></div>
+  </div>
+  <div class="card">
+    <div class="title">The farmers market moves indoors</div>
+    <p>It runs every Saturday through the winter.</p>
+    <div><a href="#">Read more<span class="visually-hidden"> about the farmers market moves indoors</span></a></div>
+  </div>
+</main>
+</body>
+</html>

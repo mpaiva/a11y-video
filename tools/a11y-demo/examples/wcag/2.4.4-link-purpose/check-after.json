@@ -1,0 +1,20 @@
+{
+  "_note": "Finding check for 2.4.4 on the after page: VoiceOver only, no narration.",
+  "id": "check-after",
+  "url": "http://localhost:4632/",
+  "display": 2,
+  "panel": "below",
+  "gap": 0.6,
+  "steps": [
+    {
+      "do": "toStart"
+    },
+    {
+      "do": "link",
+      "times": 3
+    },
+    {
+      "wait": 1
+    }
+  ]
+}

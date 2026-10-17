@@ -12,7 +12,14 @@ shows the criterion and nothing else.
 
 | Criterion | Folder | Barrier | Fix | Status |
 |-----------|--------|---------|-----|--------|
+| 1.1.1 Non-text Content | `1.1.1-non-text-content/` | A bar chart as an `<img>` with no `alt`; VoiceOver reads its file name, "q3-sales.svg image" | `alt` naming the chart type and its three numbers | **Finding checked**, VoiceOver-only evidence clip (0:33); narrated video to do |
+| 2.4.4 Link Purpose (In Context) | `2.4.4-link-purpose/` | Three stories, each ending in "Read more"; titles are styled `<div>`s and each link sits alone, so nothing ties a link to its story. VO-Command-L: "Read more, link" three times | Visually hidden text adds the title to each link's name | **Finding checked**, VoiceOver-only evidence clip (0:30); narrated video to do |
 | 4.1.2 Name, Role, Value | `4.1.2-name-role-value/` | Two toggle switches built from `<div>`s, operable by mouse and keyboard; VoiceOver's reading pass never reaches them | `<button role="switch" aria-checked>` named by its label with `aria-labelledby` | **Pilot, draft 3** (2:03, captioned), October 17, 2026 |
+
+`report.json` is the report of these three (`node tools/a11y-demo/report.mjs report.json <dir>/index.html`, with
+the videos beside it as `wcag-1-1-1`, `wcag-2-4-4` and `wcag-4-1-2`). Each criterion's `check-before.json`
+and `check-after.json` are its finding check: VoiceOver only, composed into the evidence clip with a film
+of `"lines": []`. Ports: 4.1.2 on 4611/4612, 1.1.1 on 4621/4622, 2.4.4 on 4631/4632.
 
 Still to plan: the intro video (the skill wants one first), and which criteria follow. Criteria a screen
 reader or the keyboard can show come first; visual ones (contrast, reflow) need a capture of their own.
