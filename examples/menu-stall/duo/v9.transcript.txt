@@ -1,34 +1,42 @@
-[0.6] Reviewer: Last, what this first pass can't tell us. A screen reader shows whether things work as built, not whether they help the people they're for. These need people with disabilities, on their own devices and settings.
-[13.7] Keyboard: Tab → link, Skip to content
-[15.9] Keyboard: Tab → button, Describe this page
-[17.9] Keyboard: Return → heading, The home page
-[19.8] Tester: First, Describe this page. Does a written description of the layout help someone picture the page? Is it too long, or too short? Blind people who use a screen reader every day should tell us, on VoiceOver and on JAWS or NVDA.
-[35.5] Keyboard: Escape → button, Describe this page
-[37.3] Reviewer: Second, other screen readers and devices. This pass used VoiceOver in Safari only, and its biggest finding came from how Safari passes hidden content to VoiceOver. JAWS, NVDA, VoiceOver on iPhone and TalkBack all behave differently.
-[54.2] Keyboard: Tab → link, Marcelo Paiva
-[55.8] Keyboard: Tab → link, Writing
-[57.4] Keyboard: Tab → link, Work
-[59.0] Keyboard: Tab → link, Signal
-[60.7] Keyboard: Tab → link, Tools
-[62.3] Keyboard: Tab → link, Resume
-[63.9] Keyboard: Tab → button, Set for you, collapsed
-[65.5] Keyboard: Return → button, Set for you, expanded
-[67.3] Tester: Third, Set for you reads its settings as a sentence. Whether that feels natural, and whether the new announcements are enough, is for screen reader users, and people with cognitive or learning disabilities, to say.
-[80.7] Keyboard: Escape → button, Set for you, collapsed
-[82.5] Reviewer: Fourth, motion. The drawings drift and the background moves. The pause button works… but is it found in time, and is the motion comfortable before it is? People with vestibular disorders can tell us.
-[95.5] Keyboard: Command-Plus: zooms the page
-[97.7] Keyboard: Command-Plus: zooms the page
-[100.0] Keyboard: Command-Plus: zooms the page
-[101.9] Tester: Fifth, zoom and magnification. Zoomed in, the header stays at the top, and some text sits over moving colour. People with low vision who use zoom or a screen magnifier should try it.
-[115.0] Keyboard: Command-0: back to actual size
-[116.9] Reviewer: Sixth, voice control and switch access. Names were checked for what a screen reader says, not for what people say aloud, and the home page has more than fifty stops for someone moving one step at a time.
-[130.1] Keyboard: Return → button, Set for you, expanded
-[132.1] Keyboard: Tab → pop-up button, Drawings, in calm color
-[133.7] Keyboard: Tab → pop-up button, Theme, following my device
-[135.3] Keyboard: Tab → pop-up button, Motion, allowed
-[136.9] Keyboard: Tab → pop-up button, Home page, a list of essays
-[138.5] Keyboard: Focus is on → pop-up button, Home page, a list of essays
-[139.5] Tester: And last, the collage. Set for you can turn the home page into a field of drawings. This pass tested the list only.
-[147.6] Keyboard: Escape → button, Set for you, collapsed
-[149.4] Tester: That's the end of the first pass. Six problems found on the page: five fixed and live, and one still open.
-[156.9] Reviewer: The next test is with people.
+[0.6] Reviewer: Last, what this first pass can't tell us. A screen reader shows whether things work as built, not whether they help the people they're for. These need people with disabilities, on their own devices and settings. I'll show each one on the page as we name it.
+[15.8] Tester: First, Describe this page. I'll press Tab twice, to its button in the skip links, then Return to open it.
+[22.9] Keyboard: Tab → link, Skip to content
+[24.6] Keyboard: Tab → button, Describe this page
+[26.2] Keyboard: Return → heading, The home page
+[28.0] Tester: A dialog sits over the dimmed page, titled The home page: one sentence comparing it to the front page of a magazine, then a numbered list of its parts, top to bottom, and a Close button at the top. Does a description like this help someone picture the page? Is it too long, or too short? Blind people who use a screen reader every day should tell us, on VoiceOver and on JAWS or NVDA.
+[52.0] Tester: I'll press Escape to close it.
+[54.7] Keyboard: Escape → button, Describe this page
+[56.5] Reviewer: Second, other screen readers and devices. We're back on the home page. This pass used VoiceOver in Safari only, and its biggest finding came from how Safari passes hidden content to VoiceOver. JAWS, NVDA, VoiceOver on iPhone and TalkBack all behave differently.
+[74.3] Tester: Third, Set for you. I'll Tab across the header: my name, Writing, Work, Signal, Tools and Resume, then Set for you, and press Return to open it.
+[84.1] Keyboard: Tab → link, Marcelo Paiva
+[85.8] Keyboard: Tab → link, Writing
+[87.4] Keyboard: Tab → link, Work
+[89.0] Keyboard: Tab → link, Signal
+[90.6] Keyboard: Tab → link, Tools
+[92.2] Keyboard: Tab → link, Resume
+[93.9] Keyboard: Tab → button, Set for you, collapsed
+[95.5] Keyboard: Return → button, Set for you, expanded
+[97.3] Tester: A small panel drops down with one sentence: show the drawings in calm color, with the theme following my device, and motion allowed. The home page as a list of essays. Each of those choices is a dropdown. Whether a sentence like that feels natural, and whether the announcements are enough, is for screen reader users, and people with cognitive or learning disabilities, to say.
+[120.7] Tester: Escape closes the panel.
+[123.2] Keyboard: Escape → button, Set for you, collapsed
+[125.0] Reviewer: Fourth, motion. Under the introduction, a band of drawings drifts slowly sideways, and thin lines and points move across the dark background behind the heading. A pause button sits beside Set for you. It works… but is it found in time, and is the motion comfortable before it is? People with vestibular disorders can tell us.
+[143.6] Tester: Fifth, zoom and magnification. I'll zoom in, pressing Command-Plus three times.
+[149.5] Keyboard: Command-Plus: zooms the page
+[151.7] Keyboard: Command-Plus: zooms the page
+[153.9] Keyboard: Command-Plus: zooms the page
+[155.9] Tester: The heading now fills most of the width, the header stays across the top, and the text sits over the moving background. People with low vision who use zoom or a screen magnifier should try it.
+[168.1] Tester: Command-Zero puts the page back to its normal size.
+[172.0] Keyboard: Command-0: back to actual size
+[174.0] Reviewer: Sixth, voice control and switch access. Names were checked for what a screen reader says, not for what people say aloud, and the home page has more than fifty stops for someone moving one step at a time.
+[186.9] Tester: And last, the collage. I'll press Return to open Set for you again, then Tab past Drawings, Theme and Motion, to its last dropdown.
+[196.2] Keyboard: Return → button, Set for you, expanded
+[198.2] Keyboard: Tab → pop-up button, Drawings, in calm color
+[199.8] Keyboard: Tab → pop-up button, Theme, following my device
+[201.4] Keyboard: Tab → pop-up button, Motion, allowed
+[203.0] Keyboard: Tab → pop-up button, Home page, a list of essays
+[204.6] Keyboard: Focus is on → pop-up button, Home page, a list of essays
+[205.6] Tester: The Home page dropdown reads a list of essays. Choosing a collage of drawings there turns the home page into a field of pictures. This pass tested the list only.
+[216.6] Tester: Escape closes it.
+[218.8] Keyboard: Escape → button, Set for you, collapsed
+[220.6] Tester: That's the end of the first pass. Six problems found on the page: five fixed and live, and one still open.
+[228.1] Reviewer: The next test is with people.

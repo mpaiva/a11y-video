@@ -17,7 +17,7 @@
   "brief": {
     "summary": [
       "The home page works with a keyboard and a screen reader for most of what was tested. It has a skip link, a clear outline of headings, named regions, and controls that say what they are and what state they are in. Focus is always visible, and Escape always puts it back where you were.",
-      "The test found five problems on the page. Three are fixed and live, one fix is in review, and one, a small one, is still open. One more thing heard was VoiceOver and Safari, not the page."
+      "The test found six problems on the page. Five are fixed and live, one of them by working around a bug in Safari, and one, a small one, is still open. One more thing heard was VoiceOver and Safari, not the page."
     ],
     "findings": [
       {
@@ -38,10 +38,10 @@
       },
       {
         "title": "Describe this page read only its name when it opened",
-        "status": "in-review",
+        "status": "fixed",
         "criterion": "Not a WCAG failure on its own; it stops the feature doing its job",
         "plain": "When the dialog opened, VoiceOver read its name and heading, but not the description under them, the picture of the page, until you went looking. (An earlier draft of this report said the dialog opened in silence; that came from the test runner, not the page.)",
-        "fix": "A fix gives the heading the description, so VoiceOver reads it the moment the dialog opens. It was heard working, and is in review, not yet live.",
+        "fix": "Fixed: the heading now carries the description, so VoiceOver reads it the moment the dialog opens. Re-tested on mpaiva.com. Live since October 17, 2026.",
         "video": "describe"
       },
       {
@@ -58,6 +58,14 @@
         "criterion": "No WCAG failure; a listening cost",
         "plain": "Reading the page item by item, the preview card for the drawing in the middle of the strip is read after the strip’s links, so one essay’s title and summary are heard a third time.",
         "fix": "Open: hiding the preview from screen readers would stop it, while its summary still reaches the link. Not done yet."
+      },
+      {
+        "title": "Old focus rings stayed on screen as VoiceOver moved",
+        "status": "fixed",
+        "criterion": "WCAG 2.4.7 Focus Visible",
+        "plain": "As VoiceOver jumped from link to link, Safari left focus rings behind on links it had already passed, and kept the skip links showing after focus left them. Someone watching couldn’t tell which link had focus. The page’s styles were right: this is a bug in Safari, and a real Tab press doesn’t show it.",
+        "fix": "Fixed: a small script now makes Safari redraw whatever just lost focus. Tested with VoiceOver over the same ten links: ten rings before, one after. Live since October 17, 2026.",
+        "video": "structure"
       },
       {
         "title": "Choosing from a dropdown reads the old value first",
@@ -150,8 +158,8 @@
       "id": "structure",
       "stem": "v4",
       "title": "Step 4: structural navigation, then the fix",
-      "about": "Jumping by headings, landmarks and links instead of reading everything. The heading outline holds and every landmark has a name. In the drawing strip, each link reads its essay’s title twice, then the whole summary. Then the same links on the fixed page.",
-      "finding": "Headings: WCAG 1.3.1 holds. Links: WCAG 2.4.4 is met, but the doubled titles made the list slow to get through. Fixed: each link now says its title once, then its summary."
+      "about": "Jumping by headings, landmarks and links instead of reading everything. The heading outline holds and every landmark has a name. In the drawing strip, each link reads its essay’s title twice, then the whole summary, and Safari leaves focus rings behind on links already passed. Then the same links on the fixed page.",
+      "finding": "Headings: WCAG 1.3.1 holds. Links: WCAG 2.4.4 is met, but the doubled titles made the list slow to get through. Focus: stale rings fail WCAG 2.4.7 on screen; the cause is a Safari bug. Fixed: each link now says its title once, then its summary, and only the current link has a ring."
     },
     {
       "id": "control",
@@ -172,7 +180,7 @@
       "stem": "v8",
       "title": "Extra: Describe this page, then the fix",
       "about": "A screen reader reads a page in a line, one item at a time; it doesn’t say what the page looks like. Describe this page puts the layout into words, so someone who is blind gets a map: what is on the page before reading all of it, and where things are when a sighted colleague points to “the column on the right”.",
-      "finding": "The description works, but on opening VoiceOver read only its name and heading. The fix, in review, reads the picture of the page straight away."
+      "finding": "The description works, but on opening VoiceOver read only its name and heading. Fixed: on the live site, it reads the picture of the page straight away."
     }
   ],
   "recommendations": [

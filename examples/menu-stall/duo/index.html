@@ -69,7 +69,7 @@
 
     <h2 id="brief">The brief</h2>
     <p>The home page works with a keyboard and a screen reader for most of what was tested. It has a skip link, a clear outline of headings, named regions, and controls that say what they are and what state they are in. Focus is always visible, and Escape always puts it back where you were.</p>
-    <p>The test found five problems on the page. Three are fixed and live, one fix is in review, and one, a small one, is still open. One more thing heard was VoiceOver and Safari, not the page.</p>
+    <p>The test found six problems on the page. Five are fixed and live, one of them by working around a bug in Safari, and one, a small one, is still open. One more thing heard was VoiceOver and Safari, not the page.</p>
     <ol class="findings">
       <li class="finding-item">
         <p class="finding-head"><span class="status status-fixed">Fixed</span> <strong>A hidden menu held VoiceOver for four presses</strong></p>
@@ -84,9 +84,9 @@
         <p class="meta">WCAG 4.1.3 Status Messages · <a href="#task">Watch it</a></p>
       </li>
       <li class="finding-item">
-        <p class="finding-head"><span class="status status-in-review">Fix in review</span> <strong>Describe this page read only its name when it opened</strong></p>
+        <p class="finding-head"><span class="status status-fixed">Fixed</span> <strong>Describe this page read only its name when it opened</strong></p>
         <p>When the dialog opened, VoiceOver read its name and heading, but not the description under them, the picture of the page, until you went looking. (An earlier draft of this report said the dialog opened in silence; that came from the test runner, not the page.)</p>
-        <p class="fix">A fix gives the heading the description, so VoiceOver reads it the moment the dialog opens. It was heard working, and is in review, not yet live.</p>
+        <p class="fix">Fixed: the heading now carries the description, so VoiceOver reads it the moment the dialog opens. Re-tested on mpaiva.com. Live since October 17, 2026.</p>
         <p class="meta">Not a WCAG failure on its own; it stops the feature doing its job · <a href="#describe">Watch it</a></p>
       </li>
       <li class="finding-item">
@@ -100,6 +100,12 @@
         <p>Reading the page item by item, the preview card for the drawing in the middle of the strip is read after the strip’s links, so one essay’s title and summary are heard a third time.</p>
         <p class="fix">Open: hiding the preview from screen readers would stop it, while its summary still reaches the link. Not done yet.</p>
         <p class="meta">No WCAG failure; a listening cost · </p>
+      </li>
+      <li class="finding-item">
+        <p class="finding-head"><span class="status status-fixed">Fixed</span> <strong>Old focus rings stayed on screen as VoiceOver moved</strong></p>
+        <p>As VoiceOver jumped from link to link, Safari left focus rings behind on links it had already passed, and kept the skip links showing after focus left them. Someone watching couldn’t tell which link had focus. The page’s styles were right: this is a bug in Safari, and a real Tab press doesn’t show it.</p>
+        <p class="fix">Fixed: a small script now makes Safari redraw whatever just lost focus. Tested with VoiceOver over the same ten links: ten rings before, one after. Live since October 17, 2026.</p>
+        <p class="meta">WCAG 2.4.7 Focus Visible · <a href="#structure">Watch it</a></p>
       </li>
       <li class="finding-item">
         <p class="finding-head"><span class="status status-not-the-page">Not the page</span> <strong>Choosing from a dropdown reads the old value first</strong></p>
@@ -288,8 +294,8 @@
     </video>
     <p class="meta">3:43 · captions on screen, and as a track · <a href="v4.vtt">captions file</a> · <a href="v4.transcript.txt">transcript as text</a></p>
     <div id="structure-about">
-      <p>Jumping by headings, landmarks and links instead of reading everything. The heading outline holds and every landmark has a name. In the drawing strip, each link reads its essay’s title twice, then the whole summary. Then the same links on the fixed page.</p>
-      <p class="finding"><strong>Finding.</strong> Headings: WCAG 1.3.1 holds. Links: WCAG 2.4.4 is met, but the doubled titles made the list slow to get through. Fixed: each link now says its title once, then its summary.</p>
+      <p>Jumping by headings, landmarks and links instead of reading everything. The heading outline holds and every landmark has a name. In the drawing strip, each link reads its essay’s title twice, then the whole summary, and Safari leaves focus rings behind on links already passed. Then the same links on the fixed page.</p>
+      <p class="finding"><strong>Finding.</strong> Headings: WCAG 1.3.1 holds. Links: WCAG 2.4.4 is met, but the doubled titles made the list slow to get through. Focus: stale rings fail WCAG 2.4.7 on screen; the cause is a Safari bug. Fixed: each link now says its title once, then its summary, and only the current link has a ring.</p>
     </div>
     <details>
       <summary>Transcript</summary>
@@ -454,7 +460,7 @@
     <p class="meta">2:26 · captions on screen, and as a track · <a href="v8.vtt">captions file</a> · <a href="v8.transcript.txt">transcript as text</a></p>
     <div id="describe-about">
       <p>A screen reader reads a page in a line, one item at a time; it doesn’t say what the page looks like. Describe this page puts the layout into words, so someone who is blind gets a map: what is on the page before reading all of it, and where things are when a sighted colleague points to “the column on the right”.</p>
-      <p class="finding"><strong>Finding.</strong> The description works, but on opening VoiceOver read only its name and heading. The fix, in review, reads the picture of the page straight away.</p>
+      <p class="finding"><strong>Finding.</strong> The description works, but on opening VoiceOver read only its name and heading. Fixed: on the live site, it reads the picture of the page straight away.</p>
     </div>
     <details>
       <summary>Transcript</summary>
@@ -494,9 +500,9 @@
     <video controls preload="metadata" playsinline aria-describedby="recommendations-video-about">
       <source src="v9.mp4" type="video/mp4">
       <track kind="captions" src="v9.vtt" srclang="en" label="English">
-      <p>Your browser can’t play this video. <a href="v9.mp4">Download it (2:41)</a>.</p>
+      <p>Your browser can’t play this video. <a href="v9.mp4">Download it (3:52)</a>.</p>
     </video>
-    <p class="meta">2:41 · captions on screen, and as a track · <a href="v9.vtt">captions file</a> · <a href="v9.transcript.txt">transcript as text</a></p>
+    <p class="meta">3:52 · captions on screen, and as a track · <a href="v9.vtt">captions file</a> · <a href="v9.transcript.txt">transcript as text</a></p>
     <div id="recommendations-video-about">
       <p>Each area that needs testing with people with disabilities, shown on the page as it is named: the Describe this page dialog, the Set for you sentence, the moving drawings, the page zoomed in, and the Home page setting that switches to the collage.</p>
       
@@ -504,40 +510,48 @@
     <details>
       <summary>Transcript</summary>
       <ol class="transcript">
-<li><span class="time">0:00</span> <span class="who">Reviewer</span> Last, what this first pass can't tell us. A screen reader shows whether things work as built, not whether they help the people they're for. These need people with disabilities, on their own devices and settings.</li>
-<li><span class="time">0:13</span> <span class="who">Keyboard</span> Tab → link, Skip to content</li>
-<li><span class="time">0:15</span> <span class="who">Keyboard</span> Tab → button, Describe this page</li>
-<li><span class="time">0:17</span> <span class="who">Keyboard</span> Return → heading, The home page</li>
-<li><span class="time">0:19</span> <span class="who">Tester</span> First, Describe this page. Does a written description of the layout help someone picture the page? Is it too long, or too short? Blind people who use a screen reader every day should tell us, on VoiceOver and on JAWS or NVDA.</li>
-<li><span class="time">0:35</span> <span class="who">Keyboard</span> Escape → button, Describe this page</li>
-<li><span class="time">0:37</span> <span class="who">Reviewer</span> Second, other screen readers and devices. This pass used VoiceOver in Safari only, and its biggest finding came from how Safari passes hidden content to VoiceOver. JAWS, NVDA, VoiceOver on iPhone and TalkBack all behave differently.</li>
-<li><span class="time">0:54</span> <span class="who">Keyboard</span> Tab → link, Marcelo Paiva</li>
-<li><span class="time">0:55</span> <span class="who">Keyboard</span> Tab → link, Writing</li>
-<li><span class="time">0:57</span> <span class="who">Keyboard</span> Tab → link, Work</li>
-<li><span class="time">0:59</span> <span class="who">Keyboard</span> Tab → link, Signal</li>
-<li><span class="time">1:00</span> <span class="who">Keyboard</span> Tab → link, Tools</li>
-<li><span class="time">1:02</span> <span class="who">Keyboard</span> Tab → link, Resume</li>
-<li><span class="time">1:03</span> <span class="who">Keyboard</span> Tab → button, Set for you, collapsed</li>
-<li><span class="time">1:05</span> <span class="who">Keyboard</span> Return → button, Set for you, expanded</li>
-<li><span class="time">1:07</span> <span class="who">Tester</span> Third, Set for you reads its settings as a sentence. Whether that feels natural, and whether the new announcements are enough, is for screen reader users, and people with cognitive or learning disabilities, to say.</li>
-<li><span class="time">1:20</span> <span class="who">Keyboard</span> Escape → button, Set for you, collapsed</li>
-<li><span class="time">1:22</span> <span class="who">Reviewer</span> Fourth, motion. The drawings drift and the background moves. The pause button works… but is it found in time, and is the motion comfortable before it is? People with vestibular disorders can tell us.</li>
-<li><span class="time">1:35</span> <span class="who">Keyboard</span> Command-Plus: zooms the page</li>
-<li><span class="time">1:37</span> <span class="who">Keyboard</span> Command-Plus: zooms the page</li>
-<li><span class="time">1:40</span> <span class="who">Keyboard</span> Command-Plus: zooms the page</li>
-<li><span class="time">1:41</span> <span class="who">Tester</span> Fifth, zoom and magnification. Zoomed in, the header stays at the top, and some text sits over moving colour. People with low vision who use zoom or a screen magnifier should try it.</li>
-<li><span class="time">1:55</span> <span class="who">Keyboard</span> Command-0: back to actual size</li>
-<li><span class="time">1:56</span> <span class="who">Reviewer</span> Sixth, voice control and switch access. Names were checked for what a screen reader says, not for what people say aloud, and the home page has more than fifty stops for someone moving one step at a time.</li>
-<li><span class="time">2:10</span> <span class="who">Keyboard</span> Return → button, Set for you, expanded</li>
-<li><span class="time">2:12</span> <span class="who">Keyboard</span> Tab → pop-up button, Drawings, in calm color</li>
-<li><span class="time">2:13</span> <span class="who">Keyboard</span> Tab → pop-up button, Theme, following my device</li>
-<li><span class="time">2:15</span> <span class="who">Keyboard</span> Tab → pop-up button, Motion, allowed</li>
-<li><span class="time">2:16</span> <span class="who">Keyboard</span> Tab → pop-up button, Home page, a list of essays</li>
-<li><span class="time">2:18</span> <span class="who">Keyboard</span> Focus is on → pop-up button, Home page, a list of essays</li>
-<li><span class="time">2:19</span> <span class="who">Tester</span> And last, the collage. Set for you can turn the home page into a field of drawings. This pass tested the list only.</li>
-<li><span class="time">2:27</span> <span class="who">Keyboard</span> Escape → button, Set for you, collapsed</li>
-<li><span class="time">2:29</span> <span class="who">Tester</span> That's the end of the first pass. Six problems found on the page: five fixed and live, and one still open.</li>
-<li><span class="time">2:36</span> <span class="who">Reviewer</span> The next test is with people.</li>
+<li><span class="time">0:00</span> <span class="who">Reviewer</span> Last, what this first pass can't tell us. A screen reader shows whether things work as built, not whether they help the people they're for. These need people with disabilities, on their own devices and settings. I'll show each one on the page as we name it.</li>
+<li><span class="time">0:15</span> <span class="who">Tester</span> First, Describe this page. I'll press Tab twice, to its button in the skip links, then Return to open it.</li>
+<li><span class="time">0:22</span> <span class="who">Keyboard</span> Tab → link, Skip to content</li>
+<li><span class="time">0:24</span> <span class="who">Keyboard</span> Tab → button, Describe this page</li>
+<li><span class="time">0:26</span> <span class="who">Keyboard</span> Return → heading, The home page</li>
+<li><span class="time">0:28</span> <span class="who">Tester</span> A dialog sits over the dimmed page, titled The home page: one sentence comparing it to the front page of a magazine, then a numbered list of its parts, top to bottom, and a Close button at the top. Does a description like this help someone picture the page? Is it too long, or too short? Blind people who use a screen reader every day should tell us, on VoiceOver and on JAWS or NVDA.</li>
+<li><span class="time">0:52</span> <span class="who">Tester</span> I'll press Escape to close it.</li>
+<li><span class="time">0:54</span> <span class="who">Keyboard</span> Escape → button, Describe this page</li>
+<li><span class="time">0:56</span> <span class="who">Reviewer</span> Second, other screen readers and devices. We're back on the home page. This pass used VoiceOver in Safari only, and its biggest finding came from how Safari passes hidden content to VoiceOver. JAWS, NVDA, VoiceOver on iPhone and TalkBack all behave differently.</li>
+<li><span class="time">1:14</span> <span class="who">Tester</span> Third, Set for you. I'll Tab across the header: my name, Writing, Work, Signal, Tools and Resume, then Set for you, and press Return to open it.</li>
+<li><span class="time">1:24</span> <span class="who">Keyboard</span> Tab → link, Marcelo Paiva</li>
+<li><span class="time">1:25</span> <span class="who">Keyboard</span> Tab → link, Writing</li>
+<li><span class="time">1:27</span> <span class="who">Keyboard</span> Tab → link, Work</li>
+<li><span class="time">1:29</span> <span class="who">Keyboard</span> Tab → link, Signal</li>
+<li><span class="time">1:30</span> <span class="who">Keyboard</span> Tab → link, Tools</li>
+<li><span class="time">1:32</span> <span class="who">Keyboard</span> Tab → link, Resume</li>
+<li><span class="time">1:33</span> <span class="who">Keyboard</span> Tab → button, Set for you, collapsed</li>
+<li><span class="time">1:35</span> <span class="who">Keyboard</span> Return → button, Set for you, expanded</li>
+<li><span class="time">1:37</span> <span class="who">Tester</span> A small panel drops down with one sentence: show the drawings in calm color, with the theme following my device, and motion allowed. The home page as a list of essays. Each of those choices is a dropdown. Whether a sentence like that feels natural, and whether the announcements are enough, is for screen reader users, and people with cognitive or learning disabilities, to say.</li>
+<li><span class="time">2:00</span> <span class="who">Tester</span> Escape closes the panel.</li>
+<li><span class="time">2:03</span> <span class="who">Keyboard</span> Escape → button, Set for you, collapsed</li>
+<li><span class="time">2:05</span> <span class="who">Reviewer</span> Fourth, motion. Under the introduction, a band of drawings drifts slowly sideways, and thin lines and points move across the dark background behind the heading. A pause button sits beside Set for you. It works… but is it found in time, and is the motion comfortable before it is? People with vestibular disorders can tell us.</li>
+<li><span class="time">2:23</span> <span class="who">Tester</span> Fifth, zoom and magnification. I'll zoom in, pressing Command-Plus three times.</li>
+<li><span class="time">2:29</span> <span class="who">Keyboard</span> Command-Plus: zooms the page</li>
+<li><span class="time">2:31</span> <span class="who">Keyboard</span> Command-Plus: zooms the page</li>
+<li><span class="time">2:33</span> <span class="who">Keyboard</span> Command-Plus: zooms the page</li>
+<li><span class="time">2:35</span> <span class="who">Tester</span> The heading now fills most of the width, the header stays across the top, and the text sits over the moving background. People with low vision who use zoom or a screen magnifier should try it.</li>
+<li><span class="time">2:48</span> <span class="who">Tester</span> Command-Zero puts the page back to its normal size.</li>
+<li><span class="time">2:52</span> <span class="who">Keyboard</span> Command-0: back to actual size</li>
+<li><span class="time">2:54</span> <span class="who">Reviewer</span> Sixth, voice control and switch access. Names were checked for what a screen reader says, not for what people say aloud, and the home page has more than fifty stops for someone moving one step at a time.</li>
+<li><span class="time">3:06</span> <span class="who">Tester</span> And last, the collage. I'll press Return to open Set for you again, then Tab past Drawings, Theme and Motion, to its last dropdown.</li>
+<li><span class="time">3:16</span> <span class="who">Keyboard</span> Return → button, Set for you, expanded</li>
+<li><span class="time">3:18</span> <span class="who">Keyboard</span> Tab → pop-up button, Drawings, in calm color</li>
+<li><span class="time">3:19</span> <span class="who">Keyboard</span> Tab → pop-up button, Theme, following my device</li>
+<li><span class="time">3:21</span> <span class="who">Keyboard</span> Tab → pop-up button, Motion, allowed</li>
+<li><span class="time">3:23</span> <span class="who">Keyboard</span> Tab → pop-up button, Home page, a list of essays</li>
+<li><span class="time">3:24</span> <span class="who">Keyboard</span> Focus is on → pop-up button, Home page, a list of essays</li>
+<li><span class="time">3:25</span> <span class="who">Tester</span> The Home page dropdown reads a list of essays. Choosing a collage of drawings there turns the home page into a field of pictures. This pass tested the list only.</li>
+<li><span class="time">3:36</span> <span class="who">Tester</span> Escape closes it.</li>
+<li><span class="time">3:38</span> <span class="who">Keyboard</span> Escape → button, Set for you, collapsed</li>
+<li><span class="time">3:40</span> <span class="who">Tester</span> That's the end of the first pass. Six problems found on the page: five fixed and live, and one still open.</li>
+<li><span class="time">3:48</span> <span class="who">Reviewer</span> The next test is with people.</li>
       </ol>
     </details>
   </section>

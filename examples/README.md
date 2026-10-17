@@ -9,7 +9,7 @@ the project's GitHub Pages site.
 
 [![Still from the video: Step 3: the reading pass.](menu-stall/v3-draft-2.jpg)](menu-stall/)
 
-A first-pass screen-reader test of a real personal site's home page, in short videos with one narrator: the structure, the keyboard, a reading pass, the controls and a task, with what it found, what was fixed, and what still needs testing with people with disabilities.
+The first draft. A first-pass screen-reader test of a real personal site's home page, in short videos with one narrator: the structure, the keyboard, a reading pass, the controls and a task, with what it found, what was fixed, and what still needs testing with people with disabilities.
 
 10 videos, about 19 minutes, captioned, with transcripts. 6 findings: 3 fixed, 1 fix in review, 1 open, 1 not the page.
 
@@ -21,9 +21,9 @@ Criteria: WCAG 4.1.2 Name, Role, Value · WCAG 4.1.3 Status Messages
 
 The same home-page test told by two voices: a tester who uses VoiceOver and says what she hears, and a reviewer who names each WCAG criterion, says why it matters and explains the fix.
 
-9 videos, about 21 minutes, captioned, with transcripts. 6 findings: 3 fixed, 1 fix in review, 1 open, 1 not the page.
+9 videos, about 22 minutes, captioned, with transcripts. 7 findings: 5 fixed, 1 open, 1 not the page.
 
-Criteria: WCAG 4.1.2 Name, Role, Value · WCAG 4.1.3 Status Messages
+Criteria: WCAG 4.1.2 Name, Role, Value · WCAG 4.1.3 Status Messages · WCAG 2.4.7 Focus Visible
 
 ## [Three WCAG criteria, heard with VoiceOver](wcag/)
 
