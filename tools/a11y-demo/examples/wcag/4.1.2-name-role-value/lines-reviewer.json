@@ -1,0 +1,12 @@
+{
+  "_note": "The reviewer's lines (am_puck): names the criterion, why it matters, and what changed in the code.",
+  "voice": "am_puck",
+  "speed": 1,
+  "takes": 1,
+  "lines": {
+    "r-open": "This video is about [WCAG](/wˈʌkæɡ/) four point one point two, Name, Role, Value. Every control on a page has to tell a screen reader three things: what it's called, what kind of control it is, and its current state.",
+    "r-finding": "That's a problem under [WCAG](/wˈʌkæɡ/) four point one point two. The switches work with a mouse, but the code gives them no name, no role and no state, so VoiceOver isn't told they're there. If you're listening, it sounds like this page has nothing to set.",
+    "r-fix": "In the code, each switch is now a button, with the role switch, an on or off state, and the label beside it as its name. It looks exactly the same.",
+    "r-holds": "Name, role and value are all announced. Four point one point two holds here."
+  }
+}

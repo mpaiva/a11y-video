@@ -1,0 +1,36 @@
+{
+  "_note": "The re-test: the same reading pass on the fix (after/, port 4612), then the switch used.",
+  "id": "after",
+  "url": "http://localhost:4612/",
+  "display": 2,
+  "panel": "below",
+  "voiceDir": "video/assets/voice",
+  "gap": 0.5,
+  "steps": [
+    {
+      "say": "r-fix"
+    },
+    {
+      "say": "t-again"
+    },
+    {
+      "do": "toStart"
+    },
+    {
+      "do": "next",
+      "times": 6
+    },
+    {
+      "say": "t-heard"
+    },
+    {
+      "do": "activate"
+    },
+    {
+      "say": "t-toggle"
+    },
+    {
+      "say": "r-holds"
+    }
+  ]
+}

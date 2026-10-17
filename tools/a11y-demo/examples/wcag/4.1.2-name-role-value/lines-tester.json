@@ -1,0 +1,13 @@
+{
+  "_note": "The tester's lines (af_heart): drives VoiceOver, says what she hears.",
+  "voice": "af_heart",
+  "speed": 1,
+  "takes": 1,
+  "lines": {
+    "t-open": "Here's a notification settings page, in Safari, with VoiceOver on. On screen there are two switches. Replies to my comments is on, and Weekly digest is off. I'll read the page one item at a time, from the link at the top.",
+    "t-missing": "I heard the heading, the sentence under it, and both labels. Then the end of the main content. VoiceOver never reached either switch.",
+    "t-again": "The same reading pass, on the fixed page.",
+    "t-heard": "Now each switch says its name, that it's a switch, and whether it's on or off. I'll turn on Weekly digest.",
+    "t-toggle": "VoiceOver tells me it's on."
+  }
+}

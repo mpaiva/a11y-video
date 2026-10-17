@@ -1,0 +1,30 @@
+{
+  "_note": "The barrier: switches built from <div>s (before/, served on port 4611).",
+  "id": "before",
+  "url": "http://localhost:4611/",
+  "display": 2,
+  "panel": "below",
+  "voiceDir": "video/assets/voice",
+  "gap": 0.5,
+  "steps": [
+    {
+      "say": "r-open"
+    },
+    {
+      "say": "t-open"
+    },
+    {
+      "do": "toStart"
+    },
+    {
+      "do": "next",
+      "times": 6
+    },
+    {
+      "say": "t-missing"
+    },
+    {
+      "say": "r-finding"
+    }
+  ]
+}
