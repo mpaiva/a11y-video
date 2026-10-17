@@ -1,7 +1,7 @@
 {
   "title": "Testing the home page with VoiceOver",
   "short": "Testing with VoiceOver",
-  "description": "A first-pass screen-reader test of a real personal site's home page, in short videos with one narrator: the structure, the keyboard, a reading pass, the controls and a task, with what it found, what was fixed, and what still needs testing with people with disabilities.",
+  "description": "The first draft. A first-pass screen-reader test of a real personal site's home page, in short videos with one narrator: the structure, the keyboard, a reading pass, the controls and a task, with what it found, what was fixed, and what still needs testing with people with disabilities.",
   "lang": "en",
   "breadcrumbs": [
     {
@@ -69,6 +69,10 @@
     ]
   },
   "notes": [
+    {
+      "label": "An earlier draft.",
+      "text": "This is the first, one-narrator version of the test, kept as it was made. The <a href=\"duo/\">two-voice version</a> is the current one: it adds the fixes made since, and corrects this draft’s Describe this page finding. The dialog did not open in silence; that came from the test runner, not the page."
+    },
     {
       "label": "What these videos are.",
       "text": "VoiceOver in Safari, on macOS 27, driven by a script so each test can be run again the same way. What you hear from VoiceOver is what it said. The narrator is a synthetic voice, describing what a tester listens for."

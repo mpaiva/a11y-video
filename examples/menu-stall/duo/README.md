@@ -8,13 +8,14 @@ Each still opens its video. To watch them in the page, with captions you can tur
 
 The home page works with a keyboard and a screen reader for most of what was tested. It has a skip link, a clear outline of headings, named regions, and controls that say what they are and what state they are in. Focus is always visible, and Escape always puts it back where you were.
 
-The test found five problems on the page. Three are fixed and live, one fix is in review, and one, a small one, is still open. One more thing heard was VoiceOver and Safari, not the page.
+The test found six problems on the page. Five are fixed and live, one of them by working around a bug in Safari, and one, a small one, is still open. One more thing heard was VoiceOver and Safari, not the page.
 
 - **Fixed: A hidden menu held VoiceOver for four presses.** Just after the Set for you button, VoiceOver said “menu” four times and didn’t move. There was no menu on screen: the closed settings panel still held its four dropdowns, and Safari passed them to VoiceOver. Someone listening would think the page had stopped.<br>Fixed: the panel is now left empty while it is closed. Live since October 16, 2026.<br>WCAG 4.1.2 Name, Role, Value · [Watch it](#reading-pass)
 - **Fixed: Changing a setting wasn’t announced.** Turning the drawings off worked, but nothing said so. The note confirming it was only on screen, so someone listening had to go and look for it.<br>Fixed: a status line now says what each change did. VoiceOver says “Drawings are off and their captions go with them.” Live since October 17, 2026.<br>WCAG 4.1.3 Status Messages · [Watch it](#task)
-- **Fix in review: Describe this page read only its name when it opened.** When the dialog opened, VoiceOver read its name and heading, but not the description under them, the picture of the page, until you went looking. (An earlier draft of this report said the dialog opened in silence; that came from the test runner, not the page.)<br>A fix gives the heading the description, so VoiceOver reads it the moment the dialog opens. It was heard working, and is in review, not yet live.<br>Not a WCAG failure on its own; it stops the feature doing its job · [Watch it](#describe)
+- **Fixed: Describe this page read only its name when it opened.** When the dialog opened, VoiceOver read its name and heading, but not the description under them, the picture of the page, until you went looking. (An earlier draft of this report said the dialog opened in silence; that came from the test runner, not the page.)<br>Fixed: the heading now carries the description, so VoiceOver reads it the moment the dialog opens. Re-tested on mpaiva.com. Live since October 17, 2026.<br>Not a WCAG failure on its own; it stops the feature doing its job · [Watch it](#describe)
 - **Fixed: Essay links in the drawing strip read their title twice.** In the band of drawings, each link read its essay’s title twice, then the whole summary. The links made sense, but a list of them was slow to get through.<br>Fixed: each link now says its title once, then the summary. Live since October 16, 2026.<br>WCAG 2.4.4 Link Purpose is met; a listening cost · [Watch it](#structure)
 - **Open: The strip’s preview is read again after its links.** Reading the page item by item, the preview card for the drawing in the middle of the strip is read after the strip’s links, so one essay’s title and summary are heard a third time.<br>Open: hiding the preview from screen readers would stop it, while its summary still reaches the link. Not done yet.<br>No WCAG failure; a listening cost
+- **Fixed: Old focus rings stayed on screen as VoiceOver moved.** As VoiceOver jumped from link to link, Safari left focus rings behind on links it had already passed, and kept the skip links showing after focus left them. Someone watching couldn’t tell which link had focus. The page’s styles were right: this is a bug in Safari, and a real Tab press doesn’t show it.<br>Fixed: a small script now makes Safari redraw whatever just lost focus. Tested with VoiceOver over the same ten links: ten rings before, one after. Live since October 17, 2026.<br>WCAG 2.4.7 Focus Visible · [Watch it](#structure)
 - **Not the page: Choosing from a dropdown reads the old value first.** When you pick a new value in a dropdown, VoiceOver first reads the value it had before. This happens with Safari’s standard dropdown, not because of the page; the status line now follows it with the right answer.<br>VoiceOver in Safari · [Watch it](#task)
 
 > **Two voices.** The tester (af_heart) drives VoiceOver and the keyboard and says what she hears. The reviewer (am_puck) names the guideline a problem falls under, explains why it matters, and says what changed in the code. Both are synthetic voices; the captions label them Tester and Reviewer.
@@ -194,9 +195,9 @@ VoiceOver reads the home page from the top, one item at a time. Just after the S
 
 [Watch the video](v4.mp4) (3:43, captions on screen and as a track) · [captions file](v4.vtt) · [transcript as text](v4.transcript.txt)
 
-Jumping by headings, landmarks and links instead of reading everything. The heading outline holds and every landmark has a name. In the drawing strip, each link reads its essay’s title twice, then the whole summary. Then the same links on the fixed page.
+Jumping by headings, landmarks and links instead of reading everything. The heading outline holds and every landmark has a name. In the drawing strip, each link reads its essay’s title twice, then the whole summary, and Safari leaves focus rings behind on links already passed. Then the same links on the fixed page.
 
-**Finding.** Headings: WCAG 1.3.1 holds. Links: WCAG 2.4.4 is met, but the doubled titles made the list slow to get through. Fixed: each link now says its title once, then its summary.
+**Finding.** Headings: WCAG 1.3.1 holds. Links: WCAG 2.4.4 is met, but the doubled titles made the list slow to get through. Focus: stale rings fail WCAG 2.4.7 on screen; the cause is a Safari bug. Fixed: each link now says its title once, then its summary, and only the current link has a ring.
 
 <details>
 <summary>Transcript</summary>
@@ -361,7 +362,7 @@ Turning the drawings off with VoiceOver, start to finish. It works: the drawings
 
 A screen reader reads a page in a line, one item at a time; it doesn’t say what the page looks like. Describe this page puts the layout into words, so someone who is blind gets a map: what is on the page before reading all of it, and where things are when a sighted colleague points to “the column on the right”.
 
-**Finding.** The description works, but on opening VoiceOver read only its name and heading. The fix, in review, reads the picture of the page straight away.
+**Finding.** The description works, but on opening VoiceOver read only its name and heading. Fixed: on the live site, it reads the picture of the page straight away.
 
 <details>
 <summary>Transcript</summary>
@@ -400,49 +401,57 @@ This was a first pass. It shows whether things work as built, not whether they h
 
 ### The recommendations, on screen
 
-[![Still from the video: The recommendations, on screen. Opens the video, 2:41.](v9.jpg)](v9.mp4)
+[![Still from the video: The recommendations, on screen. Opens the video, 3:52.](v9.jpg)](v9.mp4)
 
-[Watch the video](v9.mp4) (2:41, captions on screen and as a track) · [captions file](v9.vtt) · [transcript as text](v9.transcript.txt)
+[Watch the video](v9.mp4) (3:52, captions on screen and as a track) · [captions file](v9.vtt) · [transcript as text](v9.transcript.txt)
 
 Each area that needs testing with people with disabilities, shown on the page as it is named: the Describe this page dialog, the Set for you sentence, the moving drawings, the page zoomed in, and the Home page setting that switches to the collage.
 
 <details>
 <summary>Transcript</summary>
 
-- 0:00 **Reviewer:** Last, what this first pass can't tell us. A screen reader shows whether things work as built, not whether they help the people they're for. These need people with disabilities, on their own devices and settings.
-- 0:13 **Keyboard:** Tab → link, Skip to content
-- 0:15 **Keyboard:** Tab → button, Describe this page
-- 0:17 **Keyboard:** Return → heading, The home page
-- 0:19 **Tester:** First, Describe this page. Does a written description of the layout help someone picture the page? Is it too long, or too short? Blind people who use a screen reader every day should tell us, on VoiceOver and on JAWS or NVDA.
-- 0:35 **Keyboard:** Escape → button, Describe this page
-- 0:37 **Reviewer:** Second, other screen readers and devices. This pass used VoiceOver in Safari only, and its biggest finding came from how Safari passes hidden content to VoiceOver. JAWS, NVDA, VoiceOver on iPhone and TalkBack all behave differently.
-- 0:54 **Keyboard:** Tab → link, Marcelo Paiva
-- 0:55 **Keyboard:** Tab → link, Writing
-- 0:57 **Keyboard:** Tab → link, Work
-- 0:59 **Keyboard:** Tab → link, Signal
-- 1:00 **Keyboard:** Tab → link, Tools
-- 1:02 **Keyboard:** Tab → link, Resume
-- 1:03 **Keyboard:** Tab → button, Set for you, collapsed
-- 1:05 **Keyboard:** Return → button, Set for you, expanded
-- 1:07 **Tester:** Third, Set for you reads its settings as a sentence. Whether that feels natural, and whether the new announcements are enough, is for screen reader users, and people with cognitive or learning disabilities, to say.
-- 1:20 **Keyboard:** Escape → button, Set for you, collapsed
-- 1:22 **Reviewer:** Fourth, motion. The drawings drift and the background moves. The pause button works… but is it found in time, and is the motion comfortable before it is? People with vestibular disorders can tell us.
-- 1:35 **Keyboard:** Command-Plus: zooms the page
-- 1:37 **Keyboard:** Command-Plus: zooms the page
-- 1:40 **Keyboard:** Command-Plus: zooms the page
-- 1:41 **Tester:** Fifth, zoom and magnification. Zoomed in, the header stays at the top, and some text sits over moving colour. People with low vision who use zoom or a screen magnifier should try it.
-- 1:55 **Keyboard:** Command-0: back to actual size
-- 1:56 **Reviewer:** Sixth, voice control and switch access. Names were checked for what a screen reader says, not for what people say aloud, and the home page has more than fifty stops for someone moving one step at a time.
-- 2:10 **Keyboard:** Return → button, Set for you, expanded
-- 2:12 **Keyboard:** Tab → pop-up button, Drawings, in calm color
-- 2:13 **Keyboard:** Tab → pop-up button, Theme, following my device
-- 2:15 **Keyboard:** Tab → pop-up button, Motion, allowed
-- 2:16 **Keyboard:** Tab → pop-up button, Home page, a list of essays
-- 2:18 **Keyboard:** Focus is on → pop-up button, Home page, a list of essays
-- 2:19 **Tester:** And last, the collage. Set for you can turn the home page into a field of drawings. This pass tested the list only.
-- 2:27 **Keyboard:** Escape → button, Set for you, collapsed
-- 2:29 **Tester:** That's the end of the first pass. Six problems found on the page: five fixed and live, and one still open.
-- 2:36 **Reviewer:** The next test is with people.
+- 0:00 **Reviewer:** Last, what this first pass can't tell us. A screen reader shows whether things work as built, not whether they help the people they're for. These need people with disabilities, on their own devices and settings. I'll show each one on the page as we name it.
+- 0:15 **Tester:** First, Describe this page. I'll press Tab twice, to its button in the skip links, then Return to open it.
+- 0:22 **Keyboard:** Tab → link, Skip to content
+- 0:24 **Keyboard:** Tab → button, Describe this page
+- 0:26 **Keyboard:** Return → heading, The home page
+- 0:28 **Tester:** A dialog sits over the dimmed page, titled The home page: one sentence comparing it to the front page of a magazine, then a numbered list of its parts, top to bottom, and a Close button at the top. Does a description like this help someone picture the page? Is it too long, or too short? Blind people who use a screen reader every day should tell us, on VoiceOver and on JAWS or NVDA.
+- 0:52 **Tester:** I'll press Escape to close it.
+- 0:54 **Keyboard:** Escape → button, Describe this page
+- 0:56 **Reviewer:** Second, other screen readers and devices. We're back on the home page. This pass used VoiceOver in Safari only, and its biggest finding came from how Safari passes hidden content to VoiceOver. JAWS, NVDA, VoiceOver on iPhone and TalkBack all behave differently.
+- 1:14 **Tester:** Third, Set for you. I'll Tab across the header: my name, Writing, Work, Signal, Tools and Resume, then Set for you, and press Return to open it.
+- 1:24 **Keyboard:** Tab → link, Marcelo Paiva
+- 1:25 **Keyboard:** Tab → link, Writing
+- 1:27 **Keyboard:** Tab → link, Work
+- 1:29 **Keyboard:** Tab → link, Signal
+- 1:30 **Keyboard:** Tab → link, Tools
+- 1:32 **Keyboard:** Tab → link, Resume
+- 1:33 **Keyboard:** Tab → button, Set for you, collapsed
+- 1:35 **Keyboard:** Return → button, Set for you, expanded
+- 1:37 **Tester:** A small panel drops down with one sentence: show the drawings in calm color, with the theme following my device, and motion allowed. The home page as a list of essays. Each of those choices is a dropdown. Whether a sentence like that feels natural, and whether the announcements are enough, is for screen reader users, and people with cognitive or learning disabilities, to say.
+- 2:00 **Tester:** Escape closes the panel.
+- 2:03 **Keyboard:** Escape → button, Set for you, collapsed
+- 2:05 **Reviewer:** Fourth, motion. Under the introduction, a band of drawings drifts slowly sideways, and thin lines and points move across the dark background behind the heading. A pause button sits beside Set for you. It works… but is it found in time, and is the motion comfortable before it is? People with vestibular disorders can tell us.
+- 2:23 **Tester:** Fifth, zoom and magnification. I'll zoom in, pressing Command-Plus three times.
+- 2:29 **Keyboard:** Command-Plus: zooms the page
+- 2:31 **Keyboard:** Command-Plus: zooms the page
+- 2:33 **Keyboard:** Command-Plus: zooms the page
+- 2:35 **Tester:** The heading now fills most of the width, the header stays across the top, and the text sits over the moving background. People with low vision who use zoom or a screen magnifier should try it.
+- 2:48 **Tester:** Command-Zero puts the page back to its normal size.
+- 2:52 **Keyboard:** Command-0: back to actual size
+- 2:54 **Reviewer:** Sixth, voice control and switch access. Names were checked for what a screen reader says, not for what people say aloud, and the home page has more than fifty stops for someone moving one step at a time.
+- 3:06 **Tester:** And last, the collage. I'll press Return to open Set for you again, then Tab past Drawings, Theme and Motion, to its last dropdown.
+- 3:16 **Keyboard:** Return → button, Set for you, expanded
+- 3:18 **Keyboard:** Tab → pop-up button, Drawings, in calm color
+- 3:19 **Keyboard:** Tab → pop-up button, Theme, following my device
+- 3:21 **Keyboard:** Tab → pop-up button, Motion, allowed
+- 3:23 **Keyboard:** Tab → pop-up button, Home page, a list of essays
+- 3:24 **Keyboard:** Focus is on → pop-up button, Home page, a list of essays
+- 3:25 **Tester:** The Home page dropdown reads a list of essays. Choosing a collage of drawings there turns the home page into a field of pictures. This pass tested the list only.
+- 3:36 **Tester:** Escape closes it.
+- 3:38 **Keyboard:** Escape → button, Set for you, collapsed
+- 3:40 **Tester:** That's the end of the first pass. Six problems found on the page: five fixed and live, and one still open.
+- 3:48 **Reviewer:** The next test is with people.
 
 </details>
 

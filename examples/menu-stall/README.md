@@ -17,6 +17,8 @@ The test found five problems on the page. Three are fixed and live, one fix is i
 - **Open: The strip’s preview is read again after its links.** Reading the page item by item, the preview card for the drawing in the middle of the strip is read after the strip’s links, so one essay’s title and summary are heard a third time.<br>Open: hiding the preview from screen readers would stop it, while its summary still reaches the link. Not done yet.<br>No WCAG failure; a listening cost
 - **Not the page: Choosing from a dropdown reads the old value first.** When you pick a new value in a dropdown, VoiceOver first reads the value it had before. This happens with Safari’s standard dropdown, not because of the page; the status line now follows it with the right answer.<br>VoiceOver in Safari · [Watch it](#task)
 
+> **An earlier draft.** This is the first, one-narrator version of the test, kept as it was made. The <a href="duo/">two-voice version</a> is the current one: it adds the fixes made since, and corrects this draft’s Describe this page finding. The dialog did not open in silence; that came from the test runner, not the page.
+>
 > **What these videos are.** VoiceOver in Safari, on macOS 27, driven by a script so each test can be run again the same way. What you hear from VoiceOver is what it said. The narrator is a synthetic voice, describing what a tester listens for.
 >
 > **What they are not.** An audit, or a claim that the site conforms to WCAG. It is one specialist, one screen reader and one browser, on one page. Nobody who uses a screen reader every day took part: that comes next, in the recommendations.

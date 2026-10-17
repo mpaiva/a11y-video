@@ -18,7 +18,7 @@
     "r3-holds": "Four point one point two holds here.",
     "r4-headings": "That's [WCAG](/wˈʌkæɡ/) one point three point one, Info and Relationships. Headings are how someone using a screen reader skims a page.",
     "r4-doubled": "Each link still makes sense, so [WCAG](/wˈʌkæɡ/) two point four point four is met. But a list of links is how people scan a page, and this one takes several seconds per link. It's worth fixing.",
-    "r4-fix": "The fix: each link is now described by its summary alone. Here's the same list after that change.",
+    "r4-fix": "Two fixes. Each link is now described by its summary alone, and a small script makes Safari redraw whatever just lost focus. Here's the same list after both changes.",
     "r5-state": "Name, role and state, all three. That's [WCAG](/wˈʌkæɡ/) four point one point two.",
     "r5-escape": "Focus isn't lost. Where focus goes when a panel or a dialog closes is one of the most common keyboard problems, and here it's right.",
     "r6-stale": "That seems to be VoiceOver in Safari, with a standard dropdown. It isn't the page.",
@@ -28,12 +28,13 @@
     "r8-why1": "One more feature to test: Describe this page. A screen reader reads a page one item at a time, in a line. It doesn't say that the essays fill most of the page, or that a narrow column sits beside them.",
     "r8-why2": "For someone who's blind, a picture of the layout is a map. It says what's on the page before reading all of it, and where things are when a sighted colleague says it's in the column on the right.",
     "r8-gap": "What it says is useful. But on opening it only says its name, so someone has to explore to find out what the page is like. That's not a guideline failure, but it holds back the whole point of the feature.",
-    "r8-fix": "The fix, now in review: the heading carries the description, so it's read the moment the dialog opens. Same steps, on that version.",
-    "r9-open": "Last, what this first pass can't tell us. A screen reader shows whether things work as built, not whether they help the people they're for. These need people with disabilities, on their own devices and settings.",
-    "r9-readers": "Second, other screen readers and devices. This pass used VoiceOver in Safari only, and its biggest finding came from how Safari passes hidden content to VoiceOver. JAWS, NVDA, VoiceOver on iPhone and TalkBack all behave differently.",
-    "r9-motion": "Fourth, motion. The drawings drift and the background moves. The pause button works… but is it found in time, and is the motion comfortable before it is? People with vestibular disorders can tell us.",
+    "r8-fix": "The fix, now live: the heading carries the description, so it's read the moment the dialog opens. Same steps, on the live site.",
+    "r9-open": "Last, what this first pass can't tell us. A screen reader shows whether things work as built, not whether they help the people they're for. These need people with disabilities, on their own devices and settings. I'll show each one on the page as we name it.",
+    "r9-readers": "Second, other screen readers and devices. We're back on the home page. This pass used VoiceOver in Safari only, and its biggest finding came from how Safari passes hidden content to VoiceOver. JAWS, NVDA, VoiceOver on iPhone and TalkBack all behave differently.",
+    "r9-motion": "Fourth, motion. Under the introduction, a band of drawings drifts slowly sideways, and thin lines and points move across the dark background behind the heading. A pause button sits beside Set for you. It works… but is it found in time, and is the motion comfortable before it is? People with vestibular disorders can tell us.",
     "r9-voice": "Sixth, voice control and switch access. Names were checked for what a screen reader says, not for what people say aloud, and the home page has more than fifty stops for someone moving one step at a time.",
     "r9-close": "The next test is with people.",
-    "r8-review": "Once that's live, the feature does its job from the first second. Whether the description helps is for blind people to tell us."
+    "r8-review": "Now the feature does its job from the first second. Whether the description helps is for blind people to tell us.",
+    "r4-rings": "That's [WCAG](/wˈʌkæɡ/) two point four point seven, Focus Visible. Someone who sees the screen while using VoiceOver, or a person sitting beside them, needs to find focus at a glance. The page's styles are right: this is a bug in Safari. But people still see it, so the page works around it."
   }
 }

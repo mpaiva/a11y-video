@@ -10,8 +10,13 @@
       "say": "r9-open"
     },
     {
+      "say": "t9-c1",
+      "lead": 0.2
+    },
+    {
       "do": "tab",
-      "times": 2
+      "times": 2,
+      "gap": 0.4
     },
     {
       "do": "enter"
@@ -20,10 +25,18 @@
       "say": "t9-describe"
     },
     {
+      "say": "t9-c2",
+      "lead": 0.2
+    },
+    {
       "do": "escape"
     },
     {
       "say": "r9-readers"
+    },
+    {
+      "say": "t9-c3",
+      "lead": 0.2
     },
     {
       "do": "tab",
@@ -37,10 +50,18 @@
       "say": "t9-sentence"
     },
     {
+      "say": "t9-c4",
+      "lead": 0.2
+    },
+    {
       "do": "escape"
     },
     {
       "say": "r9-motion"
+    },
+    {
+      "say": "t9-c5",
+      "lead": 0.2
     },
     {
       "do": "chord",
@@ -64,6 +85,10 @@
       "say": "t9-zoom"
     },
     {
+      "say": "t9-c6",
+      "lead": 0.2
+    },
+    {
       "do": "chord",
       "code": 29,
       "mods": "command down",
@@ -71,6 +96,10 @@
     },
     {
       "say": "r9-voice"
+    },
+    {
+      "say": "t9-c7",
+      "lead": 0.2
     },
     {
       "do": "enter"
@@ -85,6 +114,10 @@
     },
     {
       "say": "t9-collage"
+    },
+    {
+      "say": "t9-c8",
+      "lead": 0.2
     },
     {
       "do": "escape"
