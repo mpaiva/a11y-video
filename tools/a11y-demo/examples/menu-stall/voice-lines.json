@@ -47,6 +47,11 @@
     "v2-escape": "Escape closes it, and puts focus back on the button. Focus isn't trapped, and it isn't lost. [WCAG](/wˈʌkæɡ/) two point one point one, Keyboard, holds here.",
     "v1-open": "Step one, before any screen reader: the structure in the code. I'm opening Safari's Web Inspector, and making it larger, to see what this page tells assistive technology.",
     "v1-button": "This is the Set for you button. Its attributes say aria-expanded, false, so it's announced as collapsed… and aria-controls points at the panel it opens. That's what I want to see.",
-    "v1-count": "That panel is marked hidden, and the four dropdowns are still inside it, in the page. Hidden content should stay out of a screen reader's way… so that's the first thing I'll listen for, in the reading pass."
+    "v1-count": "That panel is marked hidden, and the four dropdowns are still inside it, in the page. Hidden content should stay out of a screen reader's way… so that's the first thing I'll listen for, in the reading pass.",
+    "v2-type": "It opens, and Tab takes me to the first setting, the drawings. With a dropdown focused, I can type the first letter of a choice. N, for not at all.",
+    "v2-changed": "The dropdown says not at all, and the drawings are gone. The setting changed without a mouse. Now Escape.",
+    "v2-escape2": "Escape closes the panel, and puts focus back on the button. Focus isn't trapped, and it isn't lost. Next, Pause motion.",
+    "v2-pause": "Space presses it, and the button now says pressed.",
+    "v2-close": "Tab, Shift-Tab, Return, Escape, Space, and typing to choose. Every control I used works without a mouse, and the focus ring showed me where I was each time. For what I tested, the goal of step two is met. [WCAG](/wˈʌkæɡ/) two point one point one, Keyboard, holds here."
   }
 }

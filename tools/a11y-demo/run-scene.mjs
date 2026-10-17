@@ -145,10 +145,13 @@ try {
         vo.frontmostSafari(`during "${step.do}" in scene ${scene.id}`)
         if (keyboard) {
           const at = t()
-          const key = await run[step.do]({ ...step, window: place.safari })
+          const pressed = await run[step.do]({ ...step, window: place.safari })
+          const key = step.label && !['chord', 'click'].includes(step.do) ? `${pressed}: ${step.label}` : pressed
           // A step on a browser tool (chord, type, click) is captioned by its label alone: the page's focus
           // isn't what it acted on.
-          if (['chord', 'type', 'click'].includes(step.do)) {
+          // So is a key pressed while a native menu is open ("label", or "readout": false): Safari answers no
+          // JavaScript until the menu closes, so the page's focus can't be read.
+          if (['chord', 'type', 'click'].includes(step.do) || step.readout === false || step.label) {
             marks.steps.push({ type: 'key', do: step.do, key, at, end: t(), phrase: '', tool: true })
           } else {
             const focus = vo.describeFocus()
@@ -180,7 +183,8 @@ try {
       }
     }
   }
-  await vo.sleep(1000)
+  // Keep filming past the last step: compose holds two seconds on the last moment before its fade.
+  await vo.sleep(2500)
 } finally {
   if (capture) await capture.stop()
   if (!keyboard) await vo.voiceOver.stop().catch(() => undefined)

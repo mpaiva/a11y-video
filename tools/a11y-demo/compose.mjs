@@ -207,9 +207,14 @@ for (const scene of film.scenes) {
   // With sound from a separate file, the picture's own start lag is not measured: the two can be a
   // fraction of a second apart, which shows as the VoiceOver cursor moving early or late. Say so.
   const first = Math.max(0, Math.min(...marks.steps.map(s => s.at)) + offset - 0.6)
-  const last = Math.max(...marks.steps.map(s => s.end ?? s.at)) + offset + 1.0
-  const dur = Math.min(last, duration(mov)) - first
-  console.log(`${id}: marks shifted ${offset.toFixed(2)} s (${keyboard ? 'by its sync flash' : `${matched} phrases matched`}), ${dur.toFixed(1)} s${inFile ? '' : ' (audio from a separate file: check lip-sync of the cursor)'}`)
+  // Hold after the last moment before the fade: one second ended a video mid-thought.
+  const last = Math.max(...marks.steps.map(s => s.end ?? s.at)) + offset + (scene.tail ?? film.tail ?? 2.0)
+  // screencapture writes a frame only when the screen changes, so a take whose screen goes still (motion
+  // paused, say) ends early. The screen showed that last frame until the take ended: hold it.
+  const movLength = duration(mov)
+  const dur = last - first
+  const hold = Math.max(0, last - movLength)
+  console.log(`${id}: marks shifted ${offset.toFixed(2)} s (${keyboard ? 'by its sync flash' : `${matched} phrases matched`}), ${dur.toFixed(1)} s${hold > 0 ? `, last frame held ${hold.toFixed(1)} s (the screen went still)` : ''}${inFile ? '' : ' (audio from a separate file: check lip-sync of the cursor)'}`)
 
   // What appears and is heard, on this scene's clock (0 = the scene's first frame).
   const local = at => at + offset - first
@@ -263,7 +268,7 @@ for (const scene of film.scenes) {
   if (keyboard) inputs.push('-f', 'lavfi', '-t', String(dur), '-i', 'anullsrc=r=48000:cl=stereo')   // a silent bed for the narrator
   else inputs.push('-ss', String(first), '-t', String(dur), '-i', audio)
   says.forEach(s => inputs.push('-i', path.join(voiceDir, `${s.id}-${s.take}.mp3`)))
-  let v = `[0:v]scale=${PIC.w}:${PIC.h}:flags=lanczos,format=rgba,pad=${W}:${H}:${PIC.x}:${PIC.y}:color=0x1b1b1f[c0]`
+  let v = `[0:v]${hold > 0 ? `tpad=stop_mode=clone:stop_duration=${(hold + 0.5).toFixed(3)},` : ''}scale=${PIC.w}:${PIC.h}:flags=lanczos,format=rgba,pad=${W}:${H}:${PIC.x}:${PIC.y}:color=0x1b1b1f[c0]`
   bars.forEach((_, i) => {
     const c = captions[i]
     v += `;[c${i}][${i + 1}:v]overlay=0:${BAR.y}:enable='between(t,${c.from.toFixed(3)},${c.to.toFixed(3)})'[c${i + 1}]`
@@ -277,12 +282,16 @@ for (const scene of film.scenes) {
   })
   a += `;[vo]${says.map((_, i) => `[n${i}]`).join('')}amix=inputs=${says.length + 1}:normalize=0:duration=first,afade=in:d=${FADE},afade=out:st=${(dur - FADE).toFixed(3)}:d=${FADE}[a]`
   const part = path.join(work, `${id}.mp4`)
-  ff([...inputs, '-filter_complex', `${v};${a}`, '-map', '[v]', '-map', '[a]', '-r', '30',
+  ff([...inputs, '-filter_complex', `${v};${a}`, '-map', '[v]', '-map', '[a]', '-t', dur.toFixed(3), '-r', '30',
     '-c:v', 'libx264', '-profile:v', 'high', '-preset', draft ? 'veryfast' : 'slow', '-crf', draft ? '26' : '18',
     '-c:a', 'aac', '-b:a', '192k', part])
   parts.push(part)
 
   edl.desktop.push({ id, start: filmT, duration: dur })
+  // Stillness on purpose: the hold after the last moment, and a screen that went still (motion paused).
+  const tailStart = Math.max(...marks.steps.map(s => s.end ?? s.at)) + offset - first
+  edl.holds.push({ start: filmT + tailStart, end: filmT + dur, why: 'end hold before the fade' })
+  if (hold > 0) edl.holds.push({ start: filmT + (movLength - first), end: filmT + dur, why: 'the screen went still (last frame held)' })
   for (const s of says) {
     const from = filmT + local(s.at), to = filmT + local(s.end)
     edl.holds.push({ start: from, end: to, why: `narrated: ${s.id}` })

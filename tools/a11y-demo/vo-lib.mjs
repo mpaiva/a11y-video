@@ -297,6 +297,8 @@ export function keyCommands() {
     up: press(126, 'Up arrow'),
     left: press(123, 'Left arrow'),
     right: press(124, 'Right arrow'),
+    // No key: read what has focus now, after a step that couldn't (typing into a dropdown).
+    look: async () => 'Focus is on',
     // For a browser tool such as the Web Inspector, outside the page: a key chord, typing, and a click at a
     // point in Safari's window. Each is captioned with its label, not with the page's focus.
     chord: async step => {
@@ -389,10 +391,19 @@ export function outputDevice() {
  * VoiceOver has finished a phrase: quiet() waits for that.
  */
 export function startCapture({ video, audio, film, audioDevice = process.env.A11Y_DEMO_AUDIO_DEVICE ?? 'BlackHole 2ch' }) {
+  // An old take of the same name is removed first: screencapture once left one in place and wrote
+  // nothing, and compose then cut the old picture to the new marks.
+  fs.rmSync(video, { force: true })
+  const started = Date.now()
+  const wrote = () => {
+    if (!fs.existsSync(video) || fs.statSync(video).size < 100000 || fs.statSync(video).mtimeMs < started) {
+      throw new Error(`screencapture wrote no new video to ${video}. Is Screen Recording allowed for this app?`)
+    }
+  }
   // No audio (a keyboard-only scene): the picture alone.
   if (!audio) {
     const picture = spawn('screencapture', ['-v', '-x', '-R', film.map(Math.round).join(','), video], { stdio: 'ignore' })
-    return { startedAt: Date.now(), async quiet() { return false }, async stop() { picture.kill('SIGINT'); await new Promise(r => (picture.exitCode !== null ? r() : picture.once('exit', r))) } }
+    return { startedAt: Date.now(), async quiet() { return false }, async stop() { picture.kill('SIGINT'); await new Promise(r => (picture.exitCode !== null ? r() : picture.once('exit', r))); wrote() } }
   }
   const out = outputDevice()
   if (!out.includes(audioDevice)) {
@@ -434,6 +445,7 @@ export function startCapture({ video, audio, film, audioDevice = process.env.A11
       sound.stdin.write('q')
       sound.stdin.end()
       await Promise.all([picture, sound].map(p => new Promise(resolve => (p.exitCode !== null ? resolve() : p.once('exit', resolve)))))
+      wrote()
       if (soundError.trim()) throw new Error(`Recording VoiceOver's audio from "${audioDevice}" failed: ${soundError.trim()}`)
     },
   }

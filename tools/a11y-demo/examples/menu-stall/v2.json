@@ -1,4 +1,4 @@
-{ "_note": "Series video 2, the keyboard on its own: real key presses, VoiceOver off, on the before build (its keyboard behaviour matches the fixed one).",
+{ "_note": "Series video 2, the keyboard on its own: real key presses, VoiceOver off, on the before build (its keyboard behaviour matches the fixed one). Choosing a dropdown value by typing its first letter: a native menu opened by script isn't filmed reliably.",
   "id": "v2", "url": "http://localhost:4601/", "display": 2, "voiceover": false, "voiceDir": "video/assets/voice", "gap": 0.8,
   "steps": [
     { "say": "v2-open" },
@@ -10,7 +10,14 @@
     { "do": "shiftTab", "times": 2 },
     { "say": "v2-order" },
     { "do": "enter" },
-    { "do": "tab", "times": 2 },
-    { "say": "v2-panel" },
+    { "do": "tab" },
+    { "say": "v2-type" },
+    { "do": "type", "text": "n", "enter": false },
+    { "do": "look" },
+    { "say": "v2-changed" },
     { "do": "escape" },
-    { "say": "v2-escape" } ] }
+    { "say": "v2-escape2" },
+    { "do": "tab" },
+    { "do": "space" },
+    { "say": "v2-pause" },
+    { "say": "v2-close" } ] }
