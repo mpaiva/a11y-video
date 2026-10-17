@@ -1,0 +1,30 @@
+{
+  "_note": "The re-test: the same commands on the fix (1.1.1-non-text-content/after, port 4622).",
+  "id": "after",
+  "url": "http://localhost:4622/",
+  "display": 2,
+  "panel": "below",
+  "voiceDir": "video/assets/voice",
+  "gap": 0.5,
+  "steps": [
+    {
+      "say": "r-fix"
+    },
+    {
+      "say": "t-again"
+    },
+    {
+      "do": "toStart"
+    },
+    {
+      "do": "next",
+      "times": 4
+    },
+    {
+      "say": "t-heard"
+    },
+    {
+      "say": "r-holds"
+    }
+  ]
+}

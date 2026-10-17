@@ -3,7 +3,7 @@
   "short": "WCAG series",
   "description": "Three barriers on small example pages, each heard with VoiceOver in Safari, fixed, and heard again: a chart with no text alternative, links that all say Read more, and switches a screen reader can't find.",
   "lang": "en",
-  "lede": "Three common barriers, one per WCAG guideline, each on a small page built to show it. Each was tested with VoiceOver, the screen reader built into the Mac, then fixed and tested again with the same commands. Each finding has a video of what VoiceOver said before and after.",
+  "lede": "Three common barriers, one per WCAG guideline, each on a small page built to show it. In each video, a tester uses VoiceOver, the screen reader built into the Mac, and a reviewer names the problem, says why it matters and explains the fix. Then the same commands run again on the fixed page.",
   "brief": {
     "summary": [
       "The pages were built for this series, one barrier each, so each test shows one criterion and nothing else. All three barriers were heard with VoiceOver in Safari, and all three are fixed in the example code. After each fix, the same commands were run again, and VoiceOver said what a viewer can see.",
@@ -39,7 +39,7 @@
   "notes": [
     {
       "label": "What these videos are.",
-      "text": "VoiceOver in Safari, on macOS 27, driven by a script so each test can be run again the same way. What you hear from VoiceOver is what it said. The 4.1.2 video is narrated by two synthetic voices, a tester and a reviewer. The other two are VoiceOver only, before and then after the fix."
+      "text": "VoiceOver in Safari, on macOS 27, driven by a script so each test can be run again the same way. What you hear from VoiceOver is what it said. Each video is narrated by two synthetic voices that introduce themselves at the start: the tester, who uses VoiceOver and says what she hears, and the reviewer, who names the WCAG criterion, says why it matters and explains the fix. The captions label them Tester and Reviewer."
     },
     {
       "label": "What they are not.",
@@ -47,7 +47,7 @@
     },
     {
       "label": "Captions.",
-      "text": "Every video has captions on screen. They are also in each video as a captions track, and as a file you can download, with a transcript under each video."
+      "text": "Every video has captions for all three voices on screen: the tester, the reviewer and VoiceOver. They are also in each video as a captions track, and as a file you can download, with a transcript under each video."
     }
   ],
   "steps": [
@@ -72,21 +72,21 @@
       "id": "non-text",
       "stem": "wcag-1-1-1",
       "title": "1.1.1 Non-text Content: a chart with no text alternative",
-      "about": "VoiceOver reads the quarterly report from the heading down, first on the page as built and then on the fixed page. VoiceOver only, no narration.",
+      "about": "The tester and the reviewer introduce themselves. The tester reads the quarterly report with VoiceOver, from the heading down, and the reviewer names the problem and why it matters. Then they run the same reading pass on the fixed page.",
       "finding": "Before: “q3-sales.svg image”. After: the chart's type and its three numbers."
     },
     {
       "id": "link-purpose",
       "stem": "wcag-2-4-4",
       "title": "2.4.4 Link Purpose: three links that say Read more",
-      "about": "VoiceOver jumps from link to link (VO-Command-L) through the latest stories, first on the page as built and then on the fixed page. VoiceOver only, no narration.",
+      "about": "The tester and the reviewer introduce themselves. The tester jumps from link to link with VoiceOver (VO-Command-L) through the latest stories, and the reviewer names the problem and why it matters. Then they make the same three jumps on the fixed page.",
       "finding": "Before: “Read more, link” three times. After: each link names its story."
     },
     {
       "id": "name-role-value",
       "stem": "wcag-4-1-2",
       "title": "4.1.2 Name, Role, Value: switches built from boxes",
-      "about": "The tester reads the notification settings page with VoiceOver, and the reviewer names the problem and why it matters. Then they run the same reading pass on the fixed page, and the tester turns on Weekly digest. Draft, in review.",
+      "about": "The tester and the reviewer introduce themselves. The tester reads the notification settings page with VoiceOver, and the reviewer names the problem and why it matters. Then they run the same reading pass on the fixed page, and the tester turns on Weekly digest.",
       "finding": "Before: VoiceOver never reaches either switch. After: “Replies to my comments, on, switch”; turning on Weekly digest is announced."
     }
   ],

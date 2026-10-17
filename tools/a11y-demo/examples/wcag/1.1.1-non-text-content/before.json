@@ -1,0 +1,36 @@
+{
+  "_note": "The barrier (1.1.1-non-text-content/before, port 4621).",
+  "id": "before",
+  "url": "http://localhost:4621/",
+  "display": 2,
+  "panel": "below",
+  "voiceDir": "video/assets/voice",
+  "gap": 0.5,
+  "steps": [
+    {
+      "say": "t-hello"
+    },
+    {
+      "say": "r-hello"
+    },
+    {
+      "say": "r-open"
+    },
+    {
+      "say": "t-open"
+    },
+    {
+      "do": "toStart"
+    },
+    {
+      "do": "next",
+      "times": 4
+    },
+    {
+      "say": "t-missing"
+    },
+    {
+      "say": "r-finding"
+    }
+  ]
+}

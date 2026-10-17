@@ -8,6 +8,12 @@
   "gap": 0.5,
   "steps": [
     {
+      "say": "t-hello"
+    },
+    {
+      "say": "r-hello"
+    },
+    {
       "say": "r-open"
     },
     {

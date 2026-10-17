@@ -1,0 +1,36 @@
+{
+  "_note": "The barrier (2.4.4-link-purpose/before, port 4631).",
+  "id": "before",
+  "url": "http://localhost:4631/",
+  "display": 2,
+  "panel": "below",
+  "voiceDir": "video/assets/voice",
+  "gap": 0.5,
+  "steps": [
+    {
+      "say": "t-hello"
+    },
+    {
+      "say": "r-hello"
+    },
+    {
+      "say": "r-open"
+    },
+    {
+      "say": "t-open"
+    },
+    {
+      "do": "toStart"
+    },
+    {
+      "do": "link",
+      "times": 3
+    },
+    {
+      "say": "t-missing"
+    },
+    {
+      "say": "r-finding"
+    }
+  ]
+}

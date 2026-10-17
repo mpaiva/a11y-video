@@ -1,0 +1,13 @@
+{
+  "_note": "The tester's lines (af_heart): drives VoiceOver, says what she hears.",
+  "voice": "af_heart",
+  "speed": 1,
+  "takes": 1,
+  "lines": {
+    "t-hello": "Hi, I'm the tester. I'll use VoiceOver, the screen reader built into the Mac, and tell you what I hear.",
+    "t-open": "Here's a quarterly report, in Safari, with VoiceOver on. Under the heading there's a bar chart of sales for July, August and September. I'll read the page one item at a time, from the link at the top.",
+    "t-missing": "After the sentence under the heading, VoiceOver said q three sales dot S V G, image. That's the file name. It never said what the chart shows.",
+    "t-again": "The same reading pass, on the fixed page.",
+    "t-heard": "Now VoiceOver reads the chart: what kind of chart it is, and the sales for each month."
+  }
+}
