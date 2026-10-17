@@ -6,6 +6,8 @@ recipe: intake interview, capability check, script, isolated demo data, human-pa
 storyboard pick, local Kokoro voice, a HyperFrames edit (or a plain-ffmpeg cut), a second-by-second
 film review and the final renders.
 
+**Site:** https://mpaiva.github.io/a11y-video/ (how to use it, and the [examples](examples/), with the videos playing in the page).
+
 Nothing here is tied to one product. The worked examples come from a demo of a fictional company
 in an example HR product; read them for the lessons, not the product details.
 
@@ -20,7 +22,8 @@ in an example HR product; read them for the lessons, not the product details.
 | `tools/demo-video/` | Recorder, voice, builder, cut and QA scripts (`tools/demo-video/README.md`) |
 | `.claude/skills/a11y-demo/` | A second skill: a narrated film of an accessibility test with the real VoiceOver in Safari (its own capture and edit; demo-video's voice, review and QA) |
 | `tools/a11y-demo/` | The VoiceOver scenario runner, the compose step, the report builder and a static server for before/after builds |
-| `examples/` | Worked examples of the accessibility-test skill, one report per folder: open a folder and its `README.md` is the report, with the videos (`menu-stall/`, `menu-stall/duo/`, `wcag/`) |
+| `examples/` | Worked examples of the accessibility-test skill, one report per folder: open a folder and its `README.md` is the report, with the videos (`menu-stall/`, `menu-stall/duo/`, `wcag/`). `tools/a11y-demo/examples-index.mjs` lists them in `examples/README.md` and `examples/index.html` |
+| `index.html`, `assets/`, `.nojekyll` | The GitHub Pages site: this landing page, and the examples' own `index.html` pages |
 
 ## Use it in a project
 

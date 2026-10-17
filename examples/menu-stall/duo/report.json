@@ -1,16 +1,16 @@
 {
-  "title": "Testing the home page with VoiceOver",
+  "title": "Testing the home page with VoiceOver, told by two voices",
   "short": "Testing with VoiceOver",
-  "description": "A first-pass screen-reader test of mpaiva.com's home page, step by step, with what it found, what was fixed, and what still needs testing with people with disabilities.",
+  "description": "The same home-page test told by two voices: a tester who uses VoiceOver and says what she hears, and a reviewer who names each WCAG criterion, says why it matters and explains the fix.",
   "lang": "en",
   "breadcrumbs": [
     {
-      "name": "Marcelo Paiva",
-      "href": "https://mpaiva.com/"
+      "name": "a11y-video",
+      "href": "../../../"
     },
     {
-      "name": "Accessibility statement",
-      "href": "https://mpaiva.com/accessibility"
+      "name": "Examples",
+      "href": "../../"
     }
   ],
   "lede": "A first pass at testing this site’s home page with VoiceOver, the screen reader built into the Mac, before testing it with people with disabilities. The goal was to find barriers early and fix them. Each step is a short video; each problem found is fixed and tested again in the same video.",

@@ -1,4 +1,4 @@
-# Testing the home page with VoiceOver
+# Testing the home page with VoiceOver, told by two voices
 
 A first pass at testing this site’s home page with VoiceOver, the screen reader built into the Mac, before testing it with people with disabilities. The goal was to find barriers early and fix them. Each step is a short video; each problem found is fixed and tested again in the same video.
 

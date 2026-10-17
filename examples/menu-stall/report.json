@@ -1,16 +1,16 @@
 {
   "title": "Testing the home page with VoiceOver",
   "short": "Testing with VoiceOver",
-  "description": "A first-pass screen-reader test of mpaiva.com's home page, step by step, with what it found, what was fixed, and what still needs testing with people with disabilities.",
+  "description": "A first-pass screen-reader test of a real personal site's home page, in short videos with one narrator: the structure, the keyboard, a reading pass, the controls and a task, with what it found, what was fixed, and what still needs testing with people with disabilities.",
   "lang": "en",
   "breadcrumbs": [
     {
-      "name": "Marcelo Paiva",
-      "href": "https://mpaiva.com/"
+      "name": "a11y-video",
+      "href": "../../"
     },
     {
-      "name": "Accessibility statement",
-      "href": "https://mpaiva.com/accessibility"
+      "name": "Examples",
+      "href": "../"
     }
   ],
   "lede": "A first pass at testing this site's home page with VoiceOver, the screen reader built into the Mac, before testing it with people with disabilities. The goal was to find barriers early and fix them. Each step is a short video; each problem found was fixed and tested again.",

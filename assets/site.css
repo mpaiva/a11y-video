@@ -1,0 +1,48 @@
+/* The landing page and the examples list. The same tokens as the reports report.mjs builds, so the
+   three read as one site. */
+:root {
+  color-scheme: light dark;
+  --page: light-dark(#f7f7f7, #1a1a1a); --raised: light-dark(#ffffff, #242322);
+  --text: light-dark(#1a1a1a, #ececec); --text-2: light-dark(#373636, #cecdcd);
+  --link: light-dark(#0760c6, #93c0fa); --line: light-dark(#dddbdb, #3d3c3b); --focus: light-dark(#0974eb, #9fc8fa);
+  --code: light-dark(#efeeee, #2c2b2a);
+  --ok: light-dark(#14662f, #8fd6a4); --open: light-dark(#8a3b00, #f2b483); --review: light-dark(#5a3a99, #c7b2f2);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--text); font: 1.0625rem/1.6 "Public Sans", system-ui, sans-serif; }
+.wrap { max-width: 52rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 1rem; top: 1rem; background: var(--raised); padding: .5rem 1rem; z-index: 1; }
+a { color: var(--link); text-underline-offset: .15em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+nav.crumbs { font-size: .9375rem; color: var(--text-2); margin-bottom: 2rem; }
+nav.crumbs ol { list-style: none; padding: 0; margin: 0; display: flex; gap: .5rem; flex-wrap: wrap; }
+nav.crumbs li + li::before { content: "/"; margin-right: .5rem; }
+h1, h2, h3 { font-family: "Atkinson Hyperlegible Next", "Public Sans", system-ui, sans-serif; line-height: 1.2; }
+h1 { font-size: clamp(1.75rem, 1.29rem + 1.9vw, 2.875rem); margin: 0 0 1rem; }
+h2 { font-size: clamp(1.375rem, 1.19rem + .93vw, 2rem); margin: 3rem 0 1rem; }
+h3 { font-size: 1.25rem; margin: 0 0 .5rem; }
+.lede { font-size: 1.1875rem; }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.5rem 0; }
+.button { display: inline-block; padding: .6rem 1.1rem; border-radius: .5rem; border: 1.5px solid var(--link); font-weight: 600; text-decoration: none; }
+.button.primary { background: var(--link); color: var(--page); }
+code { font: .9375em/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--code); padding: .1em .35em; border-radius: .25rem; }
+pre { background: var(--code); border-radius: .5rem; padding: .875rem 1rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+pre code { background: none; padding: 0; }
+ol.how { padding-left: 1.5rem; } ol.how > li { margin: 1rem 0; }
+table { width: 100%; border-collapse: collapse; font-size: .9375rem; }
+th, td { text-align: left; vertical-align: top; padding: .6rem .5rem; border-bottom: 1px solid var(--line); }
+th { font-weight: 600; }
+.table-scroll { overflow-x: auto; }
+.cards { list-style: none; padding: 0; display: grid; gap: 1.25rem; }
+.card { background: var(--raised); border: 1px solid var(--line); border-radius: .75rem; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 44rem) { .card { grid-template-columns: 18rem minmax(0, 1fr); } }
+.card img { display: block; width: 100%; height: auto; align-self: start; aspect-ratio: 16 / 9; background: #000; }
+.card .body { padding: 1rem 1.25rem 1.25rem; }
+.card p { margin: .4rem 0; }
+.facts { font-size: .9375rem; color: var(--text-2); }
+.status { display: inline-block; font-size: .8125rem; font-weight: 600; padding: .05rem .5rem; border: 1.5px solid currentColor; border-radius: 999px; margin: .15rem .25rem .15rem 0; }
+.status-fixed { color: var(--ok); } .status-open { color: var(--open); } .status-in-review { color: var(--review); } .status-not-the-page { color: var(--text-2); }
+.links { font-size: .9375rem; }
+.note { background: var(--raised); border: 1px solid var(--line); border-radius: .5rem; padding: 1rem 1.25rem; }
+footer { margin-top: 4rem; color: var(--text-2); font-size: .9375rem; }

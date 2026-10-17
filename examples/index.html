@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Examples · a11y-video</title>
+<meta name="description" content="Worked examples of the a11y-demo skill: screen-reader tests filmed with the real VoiceOver, each with its report, videos, captions and transcripts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@600;700&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../">a11y-video</a></li>
+      <li><span aria-current="page">Examples</span></li>
+    </ol>
+  </nav>
+  <main id="main">
+    <h1>Examples</h1>
+    <p class="lede">Each example is a first-pass accessibility test made with the a11y-demo skill: real VoiceOver in
+      Safari, filmed and narrated, with every barrier named by its WCAG criterion, fixed, and heard again. Each one
+      is a report you can read, with its videos, captions and transcripts.</p>
+    <h2>All examples</h2>
+    <ul class="cards">
+      <li class="card">
+        <img src="menu-stall/v3-draft-2.jpg" alt="" loading="lazy">
+        <div class="body">
+          <h3><a href="menu-stall/">Testing the home page with VoiceOver</a></h3>
+          <p>A first-pass screen-reader test of a real personal site's home page, in short videos with one narrator: the structure, the keyboard, a reading pass, the controls and a task, with what it found, what was fixed, and what still needs testing with people with disabilities.</p>
+          <p class="facts">10 videos, about 19 minutes, captioned, with transcripts.
+            6 findings: 3 fixed, 1 fix in review, 1 open, 1 not the page.</p>
+          <p class="facts">Criteria: WCAG 4.1.2 Name, Role, Value · WCAG 4.1.3 Status Messages</p>
+          <p class="links"><a href="menu-stall/">Read the report and watch the videos</a> · <a href="https://github.com/mpaiva/a11y-video/tree/main/examples/menu-stall">Scenes, lines and films on GitHub</a></p>
+        </div>
+      </li>
+      <li class="card">
+        <img src="menu-stall/duo/v3.jpg" alt="" loading="lazy">
+        <div class="body">
+          <h3><a href="menu-stall/duo/">Testing the home page with VoiceOver, told by two voices</a></h3>
+          <p>The same home-page test told by two voices: a tester who uses VoiceOver and says what she hears, and a reviewer who names each WCAG criterion, says why it matters and explains the fix.</p>
+          <p class="facts">9 videos, about 21 minutes, captioned, with transcripts.
+            6 findings: 3 fixed, 1 fix in review, 1 open, 1 not the page.</p>
+          <p class="facts">Criteria: WCAG 4.1.2 Name, Role, Value · WCAG 4.1.3 Status Messages</p>
+          <p class="links"><a href="menu-stall/duo/">Read the report and watch the videos</a> · <a href="https://github.com/mpaiva/a11y-video/tree/main/examples/menu-stall/duo">Scenes, lines and films on GitHub</a></p>
+        </div>
+      </li>
+      <li class="card">
+        <img src="wcag/wcag-1-1-1.jpg" alt="" loading="lazy">
+        <div class="body">
+          <h3><a href="wcag/">Three WCAG criteria, heard with VoiceOver</a></h3>
+          <p>Three barriers on small example pages, each heard with VoiceOver in Safari, fixed, and heard again: a chart with no text alternative, links that all say Read more, and switches a screen reader can't find.</p>
+          <p class="facts">3 videos, about 6 minutes, captioned, with transcripts.
+            3 findings: 3 fixed.</p>
+          <p class="facts">Criteria: WCAG 1.1.1 Non-text Content · WCAG 2.4.4 Link Purpose (In Context) · WCAG 4.1.2 Name, Role, Value</p>
+          <p class="links"><a href="wcag/">Read the report and watch the videos</a> · <a href="https://github.com/mpaiva/a11y-video/tree/main/examples/wcag">Scenes, lines and films on GitHub</a></p>
+        </div>
+      </li>
+    </ul>
+    <h2>Make your own</h2>
+    <p>Each example's folder holds the files that made it: the scene files the runner plays, the narrator's lines,
+      and the film files that cut the videos. Copy one into a work folder and rewrite it for your page; the
+      <a href="../#use-it">instructions on the home page</a> cover the setup.</p>
+  </main>
+  <footer>
+    <p>This list is built by <code>tools/a11y-demo/examples-index.mjs</code> from each example's <code>report.json</code>.</p>
+  </footer>
+</div>
+</body>
+</html>

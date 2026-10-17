@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>a11y-video</title>
+<meta name="description" content="Two agent skills for Claude Code and Codex: film a real VoiceOver accessibility test of a web page, with every barrier named, fixed and heard again; or make a narrated product walkthrough.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@600;700&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <main id="main">
+    <h1>a11y-video</h1>
+    <p class="lede">Two agent skills for Claude Code and Codex that turn a web page into short, narrated, captioned
+      videos. <strong>a11y-demo</strong> films a first-pass accessibility test with the real VoiceOver in Safari:
+      each barrier is named with its WCAG criterion, fixed in the code, and heard again on camera, then written
+      up as a plain-language report. <strong>demo-video</strong> makes a narrated walkthrough of a real flow in
+      any web app, for customer feedback.</p>
+    <div class="actions">
+      <a class="button primary" href="examples/">See the examples</a>
+      <a class="button" href="#use-it">Use it in a project</a>
+      <a class="button" href="https://github.com/mpaiva/a11y-video">Source on GitHub</a>
+    </div>
+
+    <h2>See it first</h2>
+    <p>The <a href="examples/">examples</a> are finished reports made with a11y-demo, each with its videos, captions
+      and transcripts:</p>
+    <ul>
+      <li><a href="examples/wcag/">Three WCAG criteria, heard with VoiceOver</a>: a chart with no text alternative,
+        links that all say “Read more”, and switches a screen reader can't find, on small example pages. The
+        quickest to watch, about six minutes.</li>
+      <li><a href="examples/menu-stall/">Testing a home page with VoiceOver</a>: a real site, step by step, through
+        the structure, the keyboard, a reading pass, the controls and a task.</li>
+      <li><a href="examples/menu-stall/duo/">The same test, told by two voices</a>: a tester who uses VoiceOver and
+        a reviewer who names each criterion and the fix.</li>
+    </ul>
+
+    <h2>What each skill does</h2>
+    <h3>a11y-demo: a filmed screen-reader test</h3>
+    <p>Ask your agent to “film a VoiceOver test of <em>your page</em>”. It scripts the scenes, voices the narration
+      before filming so VoiceOver and the narrator never talk over each other, drives the real VoiceOver in Safari
+      (through Guidepup) while recording the screen and VoiceOver's own audio, and cuts each step into a video with
+      captions for every voice. When a take shows a barrier, it names the WCAG criterion, fixes the code, checks
+      the fix by ear and films the re-test. It ends with a report: the brief, the videos, and what still needs
+      testing with people with disabilities. macOS only.</p>
+    <h3>demo-video: a narrated product walkthrough</h3>
+    <p>Ask for “a demo video of <em>a flow</em>”. A gated recipe: intake, a capability check, the script, isolated
+      demo data, human-paced screen capture, a storyboard pick, a local Kokoro voice, the edit, a second-by-second
+      film review and the final renders. Works with any web app you can run locally.</p>
+
+    <h2 id="use-it">Use it in a project</h2>
+    <ol class="how">
+      <li>
+        <p>Copy the skills, agents and tools into the root of the project you want to film. From a clone of this
+          repository, this copies the committed files only:</p>
+        <pre><code>git archive HEAD .claude .agents .codex agents tools | tar -x -C /path/to/your-project</code></pre>
+        <p>It overwrites files of the same name, so merge by hand if the project already has <code>.claude/</code>,
+          <code>.codex/</code> or <code>agents/</code> folders.</p>
+      </li>
+      <li>
+        <p>Install the tools, in the project:</p>
+        <pre><code>cd tools/demo-video &amp;&amp; npm install &amp;&amp; npx playwright install chromium</code></pre>
+        <p>For a11y-demo, also:</p>
+        <pre><code>cd tools/a11y-demo &amp;&amp; npm install</code></pre>
+        <p>then the one-time Mac setup in <a href="https://github.com/mpaiva/a11y-video/blob/main/.claude/skills/a11y-demo/references/setup.md"><code>.claude/skills/a11y-demo/references/setup.md</code></a>:
+          VoiceOver automation, Safari's settings, and BlackHole to record VoiceOver's audio.</p>
+      </li>
+      <li>
+        <p>Check what else is missing:</p>
+        <pre><code>tools/demo-video/doctor.sh</code></pre>
+        <p>(<code>doctor.ps1</code> on Windows.) It lists anything else to install, such as ffmpeg and the Kokoro voice.</p>
+      </li>
+      <li>
+        <p>Ask the agent, for example “film a VoiceOver test of http://localhost:3000/”, or “make a demo video of
+          the sign-up flow”. The intake asks the rest: which pages and builds, who will watch, how the app runs.</p>
+      </li>
+    </ol>
+    <p class="note">Start from an example: each example's folder holds the files that made it (the scenes the runner
+      plays, the narrator's lines, and the films that cut the videos). Copy one into a work folder and rewrite it
+      for your page.</p>
+
+    <h2>What's in the repository</h2>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="What's in the repository">
+      <table>
+        <thead><tr><th scope="col">Path</th><th scope="col">What it is</th></tr></thead>
+        <tbody>
+          <tr><td><code>.claude/skills/a11y-demo/</code></td><td>The accessibility-test skill (<code>SKILL.md</code>) and its references</td></tr>
+          <tr><td><code>tools/a11y-demo/</code></td><td>The VoiceOver scene runner, the compose step, the report builder, the examples list and a static server for before-and-after builds</td></tr>
+          <tr><td><code>.claude/skills/demo-video/</code></td><td>The walkthrough skill, its references and templates</td></tr>
+          <tr><td><code>tools/demo-video/</code></td><td>Recorder, voice, builder, cut and QA scripts</td></tr>
+          <tr><td><code>.claude/agents/</code>, <code>.codex/agents/</code>, <code>agents/workflow/</code></td><td>The storyboarder, film-reviewer and reference-breaker agents, and the instructions they follow</td></tr>
+          <tr><td><code>examples/</code></td><td>Finished a11y-demo reports, one per folder, with their videos and the files that made them</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Add an example</h2>
+    <p>Build the report into a folder under <code>examples/</code>, with its videos, captions and transcripts beside
+      it, then list it:</p>
+    <pre><code>node tools/a11y-demo/report.mjs examples/my-test/report.json examples/my-test/index.html
+node tools/a11y-demo/examples-index.mjs</code></pre>
+    <p><code>report.mjs</code> writes the page and the folder's <code>README.md</code>, with a still for each video.
+      <code>examples-index.mjs</code> rebuilds the <a href="examples/">examples list</a> from every
+      <code>report.json</code>.</p>
+  </main>
+  <footer>
+    <p>The examples are first passes by one specialist with one screen reader and one browser, not audits or
+      conformance claims.</p>
+  </footer>
+</div>
+</body>
+</html>

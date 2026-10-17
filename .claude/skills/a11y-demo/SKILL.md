@@ -156,7 +156,8 @@ drafts and finals. `examples/` at the repository's root holds the worked example
 each folder's `README.md` being its report with the videos beside it: `examples/menu-stall/` is a
 nine-video series testing mpaiva.com's home page, with its scenes, lines, films, `SERIES.md` plan and
 `report.json`; `examples/menu-stall/duo/` is the same series with two narrators; `examples/wcag/` is
-three WCAG criteria on example pages.
+three WCAG criteria on example pages. A new example is a folder there with its built report;
+`node tools/a11y-demo/examples-index.mjs` then lists it on the examples page and in `examples/README.md`.
 
 ## Typical run
 
