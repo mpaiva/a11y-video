@@ -390,6 +390,32 @@ export function outputDevice() {
   return ''
 }
 
+/** When the video's last frame is shown, in seconds (the last packet's pts_time). */
+export function pictureEnd(video) {
+  const times = execFileSync('ffprobe', ['-v', 'error', '-select_streams', 'v:0', '-show_entries', 'packet=pts_time', '-of', 'csv=p=0', video],
+    { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }).split('\n').map(Number).filter(Number.isFinite)
+  return times.length ? Math.max(...times) : 0
+}
+
+/**
+ * Throw if the picture stopped well before the take did. A take's screencapture once stopped writing
+ * after 3.1 s (177 frames) while BlackHole's audio ran the full 74 s, the runner said nothing, and it was
+ * only caught by hand.
+ * screencapture writes a frame only when the screen changes, so neither the frame count nor the take's
+ * end says anything: takes-duo/v2.mov is a keyboard take whose last key (Space on Pause motion, ending at
+ * 99.7 s) stops the page's animation, then two narrator lines run to 118.9 s over a still page, and its
+ * last frame is rightly at 98.6 s. What does change the screen is a "do" step (VoiceOver's caption panel,
+ * or focus), so `end` is when the last of those ended, by the take's clock; `slack` covers the offset
+ * between the marks and the video (compose shifts marks by about a third of a second).
+ */
+export function checkPicture(video, end, slack = 3) {
+  const last = pictureEnd(video)
+  if (last < end - slack) {
+    throw new Error(`The picture in ${video} stops at ${last.toFixed(1)} s, but the take's last step ended at ${end.toFixed(1)} s: screencapture stopped filming. Redo the take.`)
+  }
+  return last
+}
+
 /**
  * Start filming Safari's window: the picture with screencapture, VoiceOver's speech from BlackHole with
  * ffmpeg. ffmpeg also listens as it records (silencedetect, -50 dB for 0.4 s), so the take knows when

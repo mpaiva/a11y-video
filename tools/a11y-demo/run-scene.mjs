@@ -50,6 +50,7 @@ const rel = p => (path.isAbsolute(p) ? p : path.join(base, p))
 const voiceDir = rel(scene.voiceDir ?? 'voice')
 const GAP = scene.gap ?? 0.5
 const LEAD = scene.lead ?? 0.4
+const TAIL = 2.5
 if (process.platform !== 'darwin') throw new Error('VoiceOver runs on macOS only.')
 if (!scene.id || !scene.url || !Array.isArray(scene.steps)) throw new Error('A scene needs "id", "url" and "steps".')
 
@@ -184,12 +185,18 @@ try {
     }
   }
   // Keep filming past the last step: compose holds two seconds on the last moment before its fade.
-  await vo.sleep(2500)
+  await vo.sleep(TAIL * 1000)
 } finally {
   if (capture) await capture.stop()
   if (!keyboard) await vo.voiceOver.stop().catch(() => undefined)
   fs.writeFileSync(out('-marks.json'), JSON.stringify(marks, null, 2))
 }
+// The picture has to reach the last step that changed the screen. screencapture once stopped after 3 s
+// while the audio ran on, and the runner reported success (vo-lib checkPicture). Narrator lines and the
+// tail can film a still page, which screencapture writes no frames for, so only "do" steps count. Marks
+// are kept either way.
+const lastDo = Math.max(0, ...marks.steps.filter(s => s.type === 'vo' || s.type === 'key').map(s => s.end))
+vo.checkPicture(out('.mov'), lastDo)
 const said = marks.steps.filter(s => (s.type === 'vo' || s.type === 'key') && (s.phrase || s.tool))
 console.log(`${scene.id}: ${marks.steps.length} steps, ${said.length} ${keyboard ? 'key presses' : 'VoiceOver phrases'}, ${out('.mov')}`)
 for (const s of said) console.log(`  ${s.at.toFixed(1)}s  ${(s.key ?? s.do).padEnd(10)} ${(s.phrase || "").slice(0, 90)}${s.type === "key" && !s.tool && !s.visible ? '  [no focus ring]' : ''}`)

@@ -29,14 +29,17 @@ import { createRequire } from 'node:module'
 import path from 'node:path'
 
 const args = process.argv.slice(2)
-const [filmPath, out] = args.filter(a => !a.startsWith('--'))
+// Both paths are made absolute here. ffmpeg's concat demuxer reads each 'file' line relative to the list
+// file itself, so a relative output (series-duo/v4.mp4) put "series-duo/v4.mp4.work/v4a.mp4" in a list
+// that lives in series-duo/v4.mp4.work, and ffmpeg looked for series-duo/v4.mp4.work/series-duo/v4.mp4.work/v4a.mp4.
+const [filmPath, out] = args.filter(a => !a.startsWith('--')).map(p => path.resolve(p))
 const draft = args.includes('--draft')
 if (!filmPath || !out) {
   console.error('usage: node compose.mjs <film.json> <out.mp4> [--draft]')
   process.exit(2)
 }
 const film = JSON.parse(fs.readFileSync(filmPath, 'utf8'))
-const base = path.dirname(path.resolve(filmPath))
+const base = path.dirname(filmPath)
 const rel = p => (path.isAbsolute(p) ? p : path.join(base, p))
 const takesDir = rel(film.takesDir ?? 'takes')
 const voiceDir = rel(film.voiceDir ?? 'video/assets/voice')
