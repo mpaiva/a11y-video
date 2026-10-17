@@ -15,6 +15,8 @@
 //     "display": 1,          which display to film (1 = main; A11Y_DEMO_DISPLAY overrides; vo-lib displays())
 //     "panel": "right",      VoiceOver's caption panel beside Safari: "right", "below" or "none"
 //     "keepStorage": false,  the page's localStorage and sessionStorage are cleared before each take
+//     "hush": true,          Control after each step, to stop hints; false for a scene listening for a
+//                            live region's announcement, which Control would also cancel
 //     "steps": [
 //       { "say": "b-intro" },                    narrator line b-intro (its take 1); the take waits it out
 //       { "say": "b-header", "take": 2 },        a different take of the line
@@ -120,7 +122,9 @@ try {
         // Wait for VoiceOver to finish, by ear, then stop the hint it would speak after its delay.
         const spoke = await capture.quiet(since)
         let phrase = step.do === 'toStart' ? '' : await vo.heard()
-        vo.hush()
+        // Control stops VoiceOver's speech, which also cancels a live region's announcement queued
+        // after the phrase. "hush": false keeps it, for a scene that listens for one.
+        if (scene.hush !== false) vo.hush()
         // Guidepup reports nothing new when VoiceOver says the same thing again (a stall: "menu",
         // "menu", "menu"), though it was heard. Then take the item under VoiceOver's cursor, and say so.
         let from = 'spoken'
