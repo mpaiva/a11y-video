@@ -159,9 +159,11 @@ export function frontmostSafari(where) {
  * focusing its heading was silent, and so was a plain move to a link), and Tab doesn't move activeElement:
  * the take reports silence a real person would not get. Activating Finder and then Safari restores it; a
  * plain `activate Safari` while Safari is already in front does not. The element that had focus keeps it.
- * Filmed, the bounce greys Safari's window for a moment; no Finder window came into the frame.
+ * Filmed, the bounce greys Safari's window for a moment (no Finder window came into the frame) and
+ * VoiceOver says the switch, so it is done only when the page has lost focus.
  */
 export async function focusPage(where) {
+  if (js('document.hasFocus()') === 'true') return
   osa('tell application "Finder" to activate')
   await sleep(300)
   osa('tell application "Safari" to activate')
@@ -236,19 +238,36 @@ export async function load(url) {
   await sleep(1200)
 }
 
+const FOCUSABLE = 'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
+
 /**
- * Put VoiceOver on the first focusable thing in the page, the way a tester starts a read-through: focus it,
- * bring the cursor to the focus (VO-Shift-F4), and step in once if the cursor is on the page as a whole.
+ * Put VoiceOver on the first focusable thing in the page, the way a tester starts a read-through: focus at
+ * the top of the page, then Tab. VoiceOver follows the Tab and says the element, and the page keeps
+ * keyboard focus. VO-Shift-F4, which this used to use, takes keyboard focus from the page, and the Finder
+ * bounce that gives it back is heard in the take (focusPage; the 4.1.2 pilot's first takes, October 17,
+ * 2026, read "Link, Back to account, Finder, Safari, Notification settings" at the start of every reading
+ * pass). VoiceOver does follow a scripted focus() while the page has focus, but Guidepup's
+ * lastSpokenPhrase and itemText stay empty for speech VoiceOver starts on its own, so only a key it
+ * presses can be checked. When Tab lands somewhere else (Safari's "Press Tab to highlight each item" off
+ * and a link first, or a positive tabindex), it falls back to VO-Shift-F4 and the bounce.
  */
 export async function toStart() {
-  const kc = voiceOver.keyboardCommands
-  js(`document.querySelector('a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])')?.focus({ preventScroll: true })`)
-  await sleep(800)
-  await voiceOver.perform(kc.moveCursorToKeyboardFocus)
-  releaseModifiers()
-  // VO-Shift-F4 leaves the page without keyboard focus (focusPage).
-  await focusPage('after toStart')
+  await focusPage('before toStart')
+  js(`(() => { const b = document.body; b.setAttribute("tabindex", "-1");
+    b.focus({ preventScroll: true }); b.removeAttribute("tabindex"); })()`)
   await sleep(400)
+  await voiceOver.press('Tab')
+  releaseModifiers()
+  await sleep(400)
+  const first = `document.querySelector(${JSON.stringify(FOCUSABLE)})`
+  if (js(`String(document.activeElement === ${first})`) !== 'true') {
+    js(`${first}?.focus({ preventScroll: true })`)
+    await sleep(800)
+    await voiceOver.perform(voiceOver.keyboardCommands.moveCursorToKeyboardFocus)
+    releaseModifiers()
+    await focusPage('after toStart')
+    await sleep(400)
+  }
   if (/web content/i.test(await heard())) {
     await voiceOver.interact()
     releaseModifiers()
@@ -257,9 +276,10 @@ export async function toStart() {
 }
 
 /**
- * Jump to one control, as a tester tabbing straight to it would: focus it, then VoiceOver to the focus.
- * VO-Shift-F4 takes keyboard focus from the page, and VoiceOver then ignores focus moves the page makes (a
- * dialog focusing its heading), so the page gets it back with focusPage before the step ends.
+ * Jump to one control, as a tester tabbing straight to it would: focus it, then VoiceOver to the focus
+ * (VO-Shift-F4, which also gives the step its phrase). VO-Shift-F4 takes keyboard focus from the page, and
+ * VoiceOver then ignores focus moves the page makes (a dialog focusing its heading), so the page gets it
+ * back with focusPage before the step ends; that bounce is heard ("Finder", "Safari").
  */
 export async function focusOn(selector) {
   const found = js(`(() => { const e = document.querySelector(${JSON.stringify(selector)}); if (!e) return "none";
