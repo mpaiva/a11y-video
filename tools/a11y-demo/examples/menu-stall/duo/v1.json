@@ -1,0 +1,100 @@
+{
+  "id": "v1",
+  "display": 2,
+  "voiceover": false,
+  "voiceDir": "../video/assets/voice",
+  "url": "http://localhost:4601/",
+  "gap": 0.8,
+  "steps": [
+    {
+      "say": "t1-open"
+    },
+    {
+      "do": "chord",
+      "code": 34,
+      "mods": "command down, option down",
+      "label": "Command-Option-I: the Web Inspector"
+    },
+    {
+      "wait": 1
+    },
+    {
+      "do": "chord",
+      "code": 24,
+      "mods": "command down",
+      "label": "Command-Plus: makes the Inspector larger"
+    },
+    {
+      "do": "chord",
+      "code": 24,
+      "mods": "command down",
+      "label": "Command-Plus: larger again"
+    },
+    {
+      "do": "chord",
+      "code": 8,
+      "mods": "command down, option down",
+      "label": "Command-Option-C: the Console"
+    },
+    {
+      "do": "chord",
+      "code": 40,
+      "mods": "command down",
+      "label": "Command-K: clears the Console"
+    },
+    {
+      "do": "type",
+      "text": "inspect(document.querySelector('button[aria-expanded]'))"
+    },
+    {
+      "wait": 1.5
+    },
+    {
+      "say": "t1-button"
+    },
+    {
+      "say": "r1-button"
+    },
+    {
+      "do": "chord",
+      "code": 8,
+      "mods": "command down, option down",
+      "label": "Command-Option-C: back to the Console"
+    },
+    {
+      "do": "chord",
+      "code": 40,
+      "mods": "command down",
+      "label": "Command-K: clears the Console"
+    },
+    {
+      "do": "type",
+      "text": "panel = document.getElementById(document.querySelector('button[aria-expanded]').getAttribute('aria-controls'))"
+    },
+    {
+      "do": "type",
+      "text": "[panel.hidden, panel.querySelectorAll('select').length]"
+    },
+    {
+      "wait": 1
+    },
+    {
+      "say": "t1-count"
+    },
+    {
+      "say": "r1-count"
+    },
+    {
+      "do": "chord",
+      "code": 29,
+      "mods": "command down",
+      "label": "Command-0: the Inspector back to normal size"
+    },
+    {
+      "do": "chord",
+      "code": 34,
+      "mods": "command down, option down",
+      "label": "Command-Option-I: closes the Web Inspector"
+    }
+  ]
+}

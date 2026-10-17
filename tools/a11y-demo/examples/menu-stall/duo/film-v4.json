@@ -1,0 +1,20 @@
+{
+  "takesDir": "../takes-duo",
+  "voiceDir": "../video/assets/voice",
+  "lines": [
+    "lines-tester.json",
+    "lines-reviewer.json"
+  ],
+  "speakers": {
+    "af_heart": "Tester",
+    "am_puck": "Reviewer"
+  },
+  "scenes": [
+    {
+      "id": "v4a"
+    },
+    {
+      "id": "v4b"
+    }
+  ]
+}

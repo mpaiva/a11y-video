@@ -1,0 +1,52 @@
+{
+  "id": "v4a",
+  "display": 2,
+  "panel": "below",
+  "voiceDir": "../video/assets/voice",
+  "url": "http://localhost:4601/",
+  "gap": 0.5,
+  "steps": [
+    {
+      "say": "t4-open"
+    },
+    {
+      "do": "heading",
+      "times": 4
+    },
+    {
+      "say": "t4-headings"
+    },
+    {
+      "say": "r4-headings"
+    },
+    {
+      "do": "toStart"
+    },
+    {
+      "say": "t4-landmarks"
+    },
+    {
+      "do": "landmark",
+      "times": 6
+    },
+    {
+      "say": "t4-landmarks-ok"
+    },
+    {
+      "do": "toStart"
+    },
+    {
+      "say": "t4-links"
+    },
+    {
+      "do": "link",
+      "times": 11
+    },
+    {
+      "say": "t4-doubled"
+    },
+    {
+      "say": "r4-doubled"
+    }
+  ]
+}

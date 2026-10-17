@@ -10,6 +10,8 @@
 // film.json (worked example: examples/menu-stall/film.json). Paths are relative to the film file.
 //   { "takesDir": "takes", "voiceDir": "video/assets/voice", "lines": "voice-lines.json",
 //     "captionBar": true,     the open captions under the picture, both voices (default on; keep it on)
+//     "lines": ["heart.json", "puck.json"], "speakers": {"af_heart": "Tester", "am_puck": "Reviewer"},
+//                             two narrators: one lines file per voice, each captioned by its role
 //     "voGainDb": 6,          lift on VoiceOver's track, to sit level with the narrator
 //     "scenes": [ { "id": "before" }, { "id": "after" } ] }
 //   A scene can also swap narrator lines into the take's pauses, to cut a second video from one take:
@@ -45,8 +47,19 @@ const voiceDir = rel(film.voiceDir ?? 'video/assets/voice')
 const DIGIT = { zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9 }
 const figures = text => text.replace(/\b(zero|one|two|three|four|five|six|seven|eight|nine)((?: point (?:zero|one|two|three|four|five|six|seven|eight|nine))+)\b/gi,
   (_, head, tail) => [head, ...tail.trim().split(/ point /i).filter(Boolean)].map(w => DIGIT[w.replace(/^point /i, '').toLowerCase()]).join('.'))
-const lineText = Object.fromEntries(Object.entries(JSON.parse(fs.readFileSync(rel(film.lines ?? 'voice-lines.json'), 'utf8')).lines)
-  .map(([id, text]) => [id, figures(text.replace(/\[([^\]]+)\]\([^)]*\)/g, '$1'))]))
+// "lines" is one lines file, or several, one per narrator voice (voice.py takes one voice per file).
+// "speakers" names each voice for the captions, by role: {"af_heart": "Tester", "am_puck": "Reviewer"}.
+// Without it, every line is the Narrator's.
+const lineFiles = [film.lines ?? 'voice-lines.json'].flat()
+const lineText = {}, lineWho = {}
+for (const f of lineFiles) {
+  const data = JSON.parse(fs.readFileSync(rel(f), 'utf8'))
+  for (const [id, text] of Object.entries(data.lines)) {
+    if (lineText[id]) throw new Error(`Line "${id}" is in more than one lines file.`)
+    lineText[id] = figures(text.replace(/\[([^\]]+)\]\([^)]*\)/g, '$1'))
+    lineWho[id] = film.speakers?.[data.voice] ?? 'Narrator'
+  }
+}
 const work = `${out}.work`
 fs.mkdirSync(work, { recursive: true })
 
@@ -256,7 +269,7 @@ for (const scene of film.scenes) {
       return { who: s.type === 'key' ? 'KEYBOARD' : 'VOICEOVER', from, to: Math.min(Math.max(next, from + 1.5), from + 6, dur),
         text: s.tool ? s.key : s.type === 'key' ? `${s.key} → ${s.phrase}` : s.phrase }
     }),
-    ...says.flatMap(s => cues(lineText[s.id] ?? s.id, local(s.at), local(s.end)).map(c => ({ who: 'NARRATOR', ...c }))),
+    ...says.flatMap(s => cues(lineText[s.id] ?? s.id, local(s.at), local(s.end)).map(c => ({ who: (lineWho[s.id] ?? 'Narrator').toUpperCase(), ...c }))),
   ].sort((x, y) => x.from - y.from)
   const bars = withBar ? await drawBars(captions) : []
   const PIC = fitPicture(dims(mov))
@@ -295,12 +308,12 @@ for (const scene of film.scenes) {
   for (const s of says) {
     const from = filmT + local(s.at), to = filmT + local(s.end)
     edl.holds.push({ start: from, end: to, why: `narrated: ${s.id}` })
-    transcript.push(`[${from.toFixed(1)}] Narrator: ${lineText[s.id] ?? s.id}`)
+    transcript.push(`[${from.toFixed(1)}] ${lineWho[s.id] ?? 'Narrator'}: ${lineText[s.id] ?? s.id}`)
   }
   for (const c of captions) {
-    const who = { VOICEOVER: 'VoiceOver', KEYBOARD: 'Keyboard', NARRATOR: 'Narrator' }[c.who]
+    const who = { VOICEOVER: 'VoiceOver', KEYBOARD: 'Keyboard' }[c.who] ?? c.who.charAt(0) + c.who.slice(1).toLowerCase()
     vtt.push({ from: filmT + c.from, to: filmT + c.to, text: `${who}: ${c.text}` })
-    if (who !== 'Narrator') transcript.push(`[${(filmT + c.from).toFixed(1)}] ${who}: ${c.text}`)
+    if (who === 'VoiceOver' || who === 'Keyboard') transcript.push(`[${(filmT + c.from).toFixed(1)}] ${who}: ${c.text}`)
   }
   filmT += dur
 }

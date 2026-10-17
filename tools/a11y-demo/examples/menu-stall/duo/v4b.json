@@ -1,0 +1,23 @@
+{
+  "id": "v4b",
+  "display": 2,
+  "panel": "below",
+  "voiceDir": "../video/assets/voice",
+  "url": "http://localhost:4602/",
+  "gap": 0.5,
+  "steps": [
+    {
+      "say": "r4-fix"
+    },
+    {
+      "do": "toStart"
+    },
+    {
+      "do": "link",
+      "times": 13
+    },
+    {
+      "say": "t4-after"
+    }
+  ]
+}

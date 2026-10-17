@@ -1,0 +1,43 @@
+{
+  "id": "v3a",
+  "display": 2,
+  "panel": "below",
+  "voiceDir": "../video/assets/voice",
+  "url": "http://localhost:4601/",
+  "gap": 0.4,
+  "steps": [
+    {
+      "say": "t3-open"
+    },
+    {
+      "do": "toStart"
+    },
+    {
+      "do": "describe"
+    },
+    {
+      "say": "t3-skip"
+    },
+    {
+      "do": "next",
+      "times": 13
+    },
+    {
+      "say": "t3-sfy"
+    },
+    {
+      "say": "r3-sfy"
+    },
+    {
+      "do": "next",
+      "times": 4,
+      "gap": 0.8
+    },
+    {
+      "say": "t3-menu"
+    },
+    {
+      "say": "r3-why"
+    }
+  ]
+}

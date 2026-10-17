@@ -1,0 +1,86 @@
+{
+  "id": "v2",
+  "display": 2,
+  "voiceover": false,
+  "voiceDir": "../video/assets/voice",
+  "url": "http://localhost:4601/",
+  "gap": 0.8,
+  "steps": [
+    {
+      "say": "t2-open"
+    },
+    {
+      "do": "tab"
+    },
+    {
+      "say": "t2-skip"
+    },
+    {
+      "do": "enter"
+    },
+    {
+      "do": "tab"
+    },
+    {
+      "say": "t2-skipped"
+    },
+    {
+      "say": "r2-skip"
+    },
+    {
+      "say": "t2-back"
+    },
+    {
+      "do": "shiftTab",
+      "times": 2
+    },
+    {
+      "say": "t2-order"
+    },
+    {
+      "say": "r2-focus"
+    },
+    {
+      "say": "t2-open-panel"
+    },
+    {
+      "do": "enter"
+    },
+    {
+      "do": "tab"
+    },
+    {
+      "say": "t2-type"
+    },
+    {
+      "do": "type",
+      "text": "n",
+      "enter": false
+    },
+    {
+      "do": "look"
+    },
+    {
+      "say": "t2-changed"
+    },
+    {
+      "do": "escape"
+    },
+    {
+      "say": "t2-escape"
+    },
+    {
+      "do": "tab"
+    },
+    {
+      "do": "space",
+      "gap": 0.2
+    },
+    {
+      "say": "t2-pause"
+    },
+    {
+      "say": "r2-close"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "id": "overview",
+  "display": 2,
+  "panel": "below",
+  "voiceDir": "../video/assets/voice",
+  "url": "http://localhost:4601/",
+  "gap": 0.6,
+  "steps": [
+    {
+      "say": "t0-hello"
+    },
+    {
+      "say": "r0-hello"
+    },
+    {
+      "do": "describe"
+    },
+    {
+      "say": "t0-goal"
+    },
+    {
+      "say": "r0-first"
+    },
+    {
+      "say": "t0-steps"
+    },
+    {
+      "say": "r0-series"
+    }
+  ]
+}

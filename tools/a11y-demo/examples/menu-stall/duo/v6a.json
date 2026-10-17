@@ -1,0 +1,77 @@
+{
+  "id": "v6a",
+  "display": 2,
+  "panel": "below",
+  "voiceDir": "../video/assets/voice",
+  "url": "http://localhost:4601/",
+  "gap": 0.6,
+  "steps": [
+    {
+      "say": "t6-open"
+    },
+    {
+      "do": "focus",
+      "selector": "button[aria-expanded]"
+    },
+    {
+      "do": "activate"
+    },
+    {
+      "do": "next",
+      "times": 4,
+      "gap": 0.4
+    },
+    {
+      "say": "t6-found"
+    },
+    {
+      "do": "activate"
+    },
+    {
+      "do": "down",
+      "times": 2
+    },
+    {
+      "do": "enter"
+    },
+    {
+      "say": "t6-stale"
+    },
+    {
+      "say": "r6-stale"
+    },
+    {
+      "say": "t6-ask"
+    },
+    {
+      "do": "describe"
+    },
+    {
+      "say": "t6-silent"
+    },
+    {
+      "do": "next",
+      "times": 9,
+      "gap": 0.4
+    },
+    {
+      "say": "t6-note"
+    },
+    {
+      "say": "r6-note"
+    },
+    {
+      "do": "escape"
+    },
+    {
+      "do": "focus",
+      "selector": "main a[href='/work']"
+    },
+    {
+      "do": "next"
+    },
+    {
+      "say": "t6-gone"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "v3b",
+  "display": 2,
+  "panel": "below",
+  "voiceDir": "../video/assets/voice",
+  "url": "http://localhost:4602/",
+  "gap": 0.4,
+  "steps": [
+    {
+      "say": "r3-fix"
+    },
+    {
+      "say": "t3-retest"
+    },
+    {
+      "do": "focus",
+      "selector": "button[aria-expanded]"
+    },
+    {
+      "say": "t3-next"
+    },
+    {
+      "do": "next",
+      "gap": 0.8
+    },
+    {
+      "say": "t3-pause"
+    },
+    {
+      "say": "r3-holds"
+    }
+  ]
+}

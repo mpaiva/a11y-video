@@ -1,0 +1,46 @@
+{
+  "id": "v6b",
+  "display": 2,
+  "panel": "below",
+  "voiceDir": "../video/assets/voice",
+  "url": "http://localhost:4604/",
+  "gap": 0.6,
+  "hush": false,
+  "steps": [
+    {
+      "say": "r6-fix"
+    },
+    {
+      "do": "focus",
+      "selector": "button[aria-expanded]"
+    },
+    {
+      "do": "activate"
+    },
+    {
+      "do": "next",
+      "times": 4,
+      "gap": 0.4
+    },
+    {
+      "do": "activate"
+    },
+    {
+      "do": "down",
+      "times": 2
+    },
+    {
+      "do": "enter",
+      "expect": "Drawings are off and their captions go with them."
+    },
+    {
+      "wait": 1
+    },
+    {
+      "say": "t6-heard"
+    },
+    {
+      "say": "r6-holds"
+    }
+  ]
+}

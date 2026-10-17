@@ -1,0 +1,47 @@
+{
+  "id": "v8a",
+  "display": 2,
+  "panel": "below",
+  "voiceDir": "../video/assets/voice",
+  "url": "http://localhost:4604/",
+  "gap": 0.6,
+  "hush": false,
+  "steps": [
+    {
+      "say": "r8-why1"
+    },
+    {
+      "say": "r8-why2"
+    },
+    {
+      "do": "tab",
+      "times": 2
+    },
+    {
+      "say": "t8-press"
+    },
+    {
+      "do": "activate"
+    },
+    {
+      "wait": 1.5
+    },
+    {
+      "say": "t8-opened"
+    },
+    {
+      "do": "next",
+      "times": 6
+    },
+    {
+      "say": "t8-like"
+    },
+    {
+      "say": "r8-gap"
+    },
+    {
+      "do": "escape"
+    }
+  ],
+  "_note": "Reached with Tab, not the focus step: after VO-Shift-F4, VoiceOver ignores focus moves the page makes, such as the dialog focusing its heading."
+}

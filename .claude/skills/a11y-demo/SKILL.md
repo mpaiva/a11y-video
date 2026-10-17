@@ -118,6 +118,16 @@ small data file (worked example: `examples/menu-stall/report.json`), next to the
 The page meets the bar it reports on: real headings, captions on every video, transcripts, no
 autoplay, light and dark, and no axe violations. Check it before sending it.
 
+## Two narrators
+
+A run can be narrated by two voices with jobs, which reads as a team and maps onto the four beats of a
+finding: the **tester** (af_heart in the worked example) drives VoiceOver and the keyboard and says what
+she hears; the **reviewer** (am_puck) names the guideline, why it matters, and what changed in the code.
+The intro introduces both and how they split the work. Give each voice its own lines file (voice.py
+takes one voice per file), and in `film.json` list both files under `"lines"` with
+`"speakers": {"af_heart": "Tester", "am_puck": "Reviewer"}`: the captions, the track and the transcript
+then label each line by role, not by a name. `examples/menu-stall/duo/` is the worked example.
+
 ## Rules that change
 
 - **Every video is captioned, three ways, for both voices.** Open captions in the bar under the

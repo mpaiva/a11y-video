@@ -227,7 +227,12 @@ export async function toStart() {
   }
 }
 
-/** Jump to one control, as a tester tabbing straight to it would: focus it, then VoiceOver to the focus. */
+/**
+ * Jump to one control, as a tester tabbing straight to it would: focus it, then VoiceOver to the focus.
+ * Caution, found by a jupiter session: after VO-Shift-F4 the page no longer holds keyboard focus as far as
+ * VoiceOver is concerned, and it ignores focus moves the page makes afterwards (a dialog focusing its
+ * heading). When a step depends on the page moving focus, reach the control with Tab instead.
+ */
 export async function focusOn(selector) {
   const found = js(`(() => { const e = document.querySelector(${JSON.stringify(selector)}); if (!e) return "none";
     e.focus({ preventScroll: false }); return "ok" })()`)

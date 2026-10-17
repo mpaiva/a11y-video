@@ -1,0 +1,45 @@
+{
+  "id": "v5",
+  "display": 2,
+  "panel": "below",
+  "voiceDir": "../video/assets/voice",
+  "url": "http://localhost:4601/",
+  "gap": 0.5,
+  "steps": [
+    {
+      "say": "t5-open"
+    },
+    {
+      "do": "focus",
+      "selector": "button[aria-expanded]"
+    },
+    {
+      "say": "t5-state"
+    },
+    {
+      "say": "r5-state"
+    },
+    {
+      "do": "activate"
+    },
+    {
+      "say": "t5-expanded"
+    },
+    {
+      "do": "next",
+      "times": 10
+    },
+    {
+      "say": "t5-selects"
+    },
+    {
+      "do": "escape"
+    },
+    {
+      "say": "t5-escape"
+    },
+    {
+      "say": "r5-escape"
+    }
+  ]
+}

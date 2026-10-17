@@ -1,0 +1,34 @@
+{
+  "id": "v8b",
+  "display": 2,
+  "panel": "below",
+  "voiceDir": "../video/assets/voice",
+  "url": "http://localhost:4605/",
+  "gap": 0.6,
+  "hush": false,
+  "steps": [
+    {
+      "say": "r8-fix"
+    },
+    {
+      "do": "tab",
+      "times": 2
+    },
+    {
+      "do": "activate",
+      "expect": "This is the front page of a magazine. The newest essays take most of the page"
+    },
+    {
+      "wait": 1
+    },
+    {
+      "say": "t8-heard"
+    },
+    {
+      "say": "r8-review"
+    },
+    {
+      "do": "escape"
+    }
+  ]
+}

@@ -39,7 +39,7 @@ const length = stem => {
   return `${Math.floor(s / 60)}:${String(Math.round(s % 60)).padStart(2, '0')}`
 }
 const transcript = stem => fs.readFileSync(path.join(dir, `${stem}.transcript.txt`), 'utf8').split('\n')
-  .map(line => line.match(/^\[([\d.]+)\] (Narrator|VoiceOver|Keyboard): (.*)$/))
+  .map(line => line.match(/^\[([\d.]+)\] ([A-Z][A-Za-z]+): (.*)$/))
   .filter(Boolean)
   .map(([, t, who, text]) => `<li><span class="time">${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}</span> <span class="who">${who}</span> ${esc(text)}</li>`)
   .join('\n')

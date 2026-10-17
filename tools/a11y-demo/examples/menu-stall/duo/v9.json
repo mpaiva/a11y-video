@@ -1,0 +1,99 @@
+{
+  "id": "v9",
+  "display": 2,
+  "voiceover": false,
+  "voiceDir": "../video/assets/voice",
+  "url": "http://localhost:4604/",
+  "gap": 0.8,
+  "steps": [
+    {
+      "say": "r9-open"
+    },
+    {
+      "do": "tab",
+      "times": 2
+    },
+    {
+      "do": "enter"
+    },
+    {
+      "say": "t9-describe"
+    },
+    {
+      "do": "escape"
+    },
+    {
+      "say": "r9-readers"
+    },
+    {
+      "do": "tab",
+      "times": 7,
+      "gap": 0.4
+    },
+    {
+      "do": "enter"
+    },
+    {
+      "say": "t9-sentence"
+    },
+    {
+      "do": "escape"
+    },
+    {
+      "say": "r9-motion"
+    },
+    {
+      "do": "chord",
+      "code": 24,
+      "mods": "command down",
+      "label": "Command-Plus: zooms the page"
+    },
+    {
+      "do": "chord",
+      "code": 24,
+      "mods": "command down",
+      "label": "Command-Plus: zooms the page"
+    },
+    {
+      "do": "chord",
+      "code": 24,
+      "mods": "command down",
+      "label": "Command-Plus: zooms the page"
+    },
+    {
+      "say": "t9-zoom"
+    },
+    {
+      "do": "chord",
+      "code": 29,
+      "mods": "command down",
+      "label": "Command-0: back to actual size"
+    },
+    {
+      "say": "r9-voice"
+    },
+    {
+      "do": "enter"
+    },
+    {
+      "do": "tab",
+      "times": 4,
+      "gap": 0.4
+    },
+    {
+      "do": "look"
+    },
+    {
+      "say": "t9-collage"
+    },
+    {
+      "do": "escape"
+    },
+    {
+      "say": "t9-close"
+    },
+    {
+      "say": "r9-close"
+    }
+  ]
+}
