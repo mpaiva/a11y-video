@@ -52,6 +52,14 @@
     "v2-changed": "The dropdown says not at all, and the drawings are gone. The setting changed without a mouse. Now Escape.",
     "v2-escape2": "Escape closes the panel, and puts focus back on the button. Focus isn't trapped, and it isn't lost. Next, Pause motion.",
     "v2-pause": "Space presses it, and the button now says pressed.",
-    "v2-close": "Tab, Shift-Tab, Return, Escape, Space, and typing to choose. Every control I used works without a mouse, and the focus ring showed me where I was each time. For what I tested, the goal of step two is met. [WCAG](/wˈʌkæɡ/) two point one point one, Keyboard, holds here."
+    "v2-close": "Tab, Shift-Tab, Return, Escape, Space, and typing to choose. Every control I used works without a mouse, and the focus ring showed me where I was each time. For what I tested, the goal of step two is met. [WCAG](/wˈʌkæɡ/) two point one point one, Keyboard, holds here.",
+    "v8-open": "One more feature to test: Describe this page. A screen reader reads a page one item at a time, in a line. It doesn't say that the essays fill most of the page, or that a narrow column sits beside them. A sighted visitor takes that in at a glance.",
+    "v8-why": "For someone who's blind, a picture of the layout is a map. It says what's on the page before reading all of it, and where things are when a sighted colleague says it's in the column on the right. This button describes the layout in words.",
+    "v8-press": "It's the second thing on the page, right after the skip link. I'll press it.",
+    "v8-silent": "The dialog opened on screen… but VoiceOver didn't say so. Someone listening wouldn't know it's there. I'll move on, to find it.",
+    "v8-in": "There it is: a dialog called The home page. I'll step into it.",
+    "v8-like": "This is what the button is for. It starts with a picture: the front page of a magazine, the newest essays taking most of the page, and a narrower column beside them. Then it walks the layout from top to bottom, in order.",
+    "v8-close": "Escape closes it, and puts me back on the button. What it says is useful. The gap is the opening: VoiceOver in Safari should hear that the dialog appeared. And nobody who relies on a description like this has told me yet whether it helps. That's the next test, with people.",
+    "v8-close2": "Escape closes it, and puts me back on the button. What it says is useful. The gap is the opening: when the dialog appears, VoiceOver should say so. And nobody who relies on a description like this has told me yet whether it helps. That's the next test, with people."
   }
 }

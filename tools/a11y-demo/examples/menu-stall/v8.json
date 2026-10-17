@@ -1,0 +1,17 @@
+{ "_note": "Series extra, Describe this page: VoiceOver on the build closest to the live site (jupiter 1ad6053). Control press off.",
+  "id": "v8", "url": "http://localhost:4604/", "display": 2, "panel": "below", "voiceDir": "video/assets/voice", "gap": 0.6, "hush": false,
+  "steps": [
+    { "say": "v8-open" },
+    { "say": "v8-why" },
+    { "do": "focus", "selector": "button[aria-haspopup='dialog']" },
+    { "say": "v8-press" },
+    { "do": "activate" },
+    { "wait": 1.5 },
+    { "say": "v8-silent" },
+    { "do": "next" },
+    { "say": "v8-in" },
+    { "do": "interact" },
+    { "do": "next", "times": 7 },
+    { "say": "v8-like" },
+    { "do": "escape" },
+    { "say": "v8-close" } ] }

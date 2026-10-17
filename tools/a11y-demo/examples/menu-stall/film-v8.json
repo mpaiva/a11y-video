@@ -1,0 +1,1 @@
+{ "_note": "Series extra: Describe this page.", "takesDir": "takes", "voiceDir": "video/assets/voice", "lines": "voice-lines.json", "scenes": [{ "id": "v8", "sayAs": { "v8-close": "v8-close2" } }] }
