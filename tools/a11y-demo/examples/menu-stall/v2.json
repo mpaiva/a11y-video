@@ -1,0 +1,16 @@
+{ "_note": "Series video 2, the keyboard on its own: real key presses, VoiceOver off, on the before build (its keyboard behaviour matches the fixed one).",
+  "id": "v2", "url": "http://localhost:4601/", "display": 2, "voiceover": false, "voiceDir": "video/assets/voice", "gap": 0.8,
+  "steps": [
+    { "say": "v2-open" },
+    { "do": "tab" },
+    { "say": "v2-skip" },
+    { "do": "enter" },
+    { "do": "tab" },
+    { "say": "v2-skipped" },
+    { "do": "shiftTab", "times": 2 },
+    { "say": "v2-order" },
+    { "do": "enter" },
+    { "do": "tab", "times": 2 },
+    { "say": "v2-panel" },
+    { "do": "escape" },
+    { "say": "v2-escape" } ] }

@@ -38,6 +38,12 @@
     "v6-note": "There it is. Drawings are off, and their captions go with them. That's a status message, and it's only on screen: it should be announced without me going to look. That's a problem under [WCAG](/wˈʌkæɡ/) four point one point three, Status Messages.",
     "v6-gone": "And after See the work, VoiceOver goes straight to Latest writing. The drawings are gone for a listener too. The task works… it just doesn't say so.",
     "v6b-open": "Since then, the panel says what a change did. Here's the same task on the fixed version, the one that's live now.",
-    "v6b-heard": "There it is. Drawings are off, and their captions go with them. It still reads the old value first… but now the result is spoken, without going to look. [WCAG](/wˈʌkæɡ/) four point one point three holds here."
+    "v6b-heard": "There it is. Drawings are off, and their captions go with them. It still reads the old value first… but now the result is spoken, without going to look. [WCAG](/wˈʌkæɡ/) four point one point three holds here.",
+    "v2-open": "Step two, the keyboard on its own. No screen reader and no mouse, just the keys a keyboard user presses, and the focus ring that shows where I am.",
+    "v2-skip": "The first stop is a skip link. I'll press Return, then Tab, to see whether it really skips the header.",
+    "v2-skipped": "I'm on Read the writing, past the whole header. The skip link works. Now back up, with Shift-Tab.",
+    "v2-order": "Pause motion, then Set for you: the same order as on screen, and the focus ring follows every time. That's [WCAG](/wˈʌkæɡ/) two point four point seven, Focus Visible. I'll open it with Return.",
+    "v2-panel": "It opens, and Tab moves through each setting, by name. Now Escape.",
+    "v2-escape": "Escape closes it, and puts focus back on the button. Focus isn't trapped, and it isn't lost. [WCAG](/wˈʌkæɡ/) two point one point one, Keyboard, holds here."
   }
 }

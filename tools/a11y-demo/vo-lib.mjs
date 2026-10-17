@@ -276,6 +276,66 @@ export function commands() {
 }
 
 /**
+ * Keys for a keyboard-only scene (no VoiceOver), sent to the front app with System Events. Each returns
+ * the key's name for the caption.
+ */
+export function keyCommands() {
+  const press = (code, name, mods = '') => async () => {
+    releaseModifiers()
+    osa(`tell application "System Events" to key code ${code}${mods ? ` using {${mods}}` : ''}`)
+    releaseModifiers()
+    await sleep(350)
+    return name
+  }
+  return {
+    tab: press(48, 'Tab'),
+    shiftTab: press(48, 'Shift-Tab', 'shift down'),
+    enter: press(36, 'Return'),
+    space: press(49, 'Space'),
+    escape: press(53, 'Escape'),
+    down: press(125, 'Down arrow'),
+    up: press(126, 'Up arrow'),
+    left: press(123, 'Left arrow'),
+    right: press(124, 'Right arrow'),
+  }
+}
+
+/**
+ * What has keyboard focus, as a tester would say it: role, name, state ("button, Set for you,
+ * collapsed"), and whether the browser draws a focus indicator (:focus-visible). Read from the page.
+ */
+export function describeFocus() {
+  return JSON.parse(js(`(() => {
+    const e = document.activeElement
+    if (!e || e === document.body) return JSON.stringify({ text: 'the page itself', visible: false, body: true })
+    const tag = e.tagName.toLowerCase()
+    const role = e.getAttribute('role') || ({ a: 'link', button: 'button', select: 'pop-up button', input: e.type === 'checkbox' ? 'checkbox' : 'text field',
+      textarea: 'text field', summary: 'disclosure', main: 'main', h1: 'heading', h2: 'heading' })[tag] || tag
+    const label = e.getAttribute('aria-labelledby')?.split(' ').map(id => document.getElementById(id)?.textContent).join(' ')
+    let name = (e.getAttribute('aria-label') || label || (tag === 'select' ? '' : e.textContent) || e.getAttribute('title') || e.getAttribute('alt') || '').replace(/\\s+/g, ' ').trim()
+    if (tag === 'main') name = ''
+    const state = [e.getAttribute('aria-expanded') === 'true' ? 'expanded' : e.getAttribute('aria-expanded') === 'false' ? 'collapsed' : '',
+      e.getAttribute('aria-pressed') === 'true' ? 'pressed' : '', tag === 'select' ? e.options[e.selectedIndex]?.text : ''].filter(Boolean).join(', ')
+    const parts = [role, tag === 'select' ? e.getAttribute('aria-label') : name.slice(0, 90), state].filter(Boolean)
+    return JSON.stringify({ text: parts.join(', '), visible: e.matches(':focus-visible') })
+  })()`))
+}
+
+/**
+ * Flash the page for half a second (white on a dark page, black on a light one), so compose can find a known
+ * moment in a take with no VoiceOver audio to line it up by. Done in the lead-in, which compose cuts.
+ */
+export function syncFlash() {
+  // Written without regex escapes: this source sits in a template literal, where a backslash is eaten.
+  const done = js(`(() => { const d = document.createElement('div');
+    const bg = getComputedStyle(document.documentElement).backgroundColor.replace(/[^0-9,]/g, '').split(',').map(Number);
+    const dark = bg.length < 3 || (bg[0] * 0.299 + bg[1] * 0.587 + bg[2] * 0.114) < 128;
+    d.style.cssText = 'position:fixed;inset:0;z-index:2147483647;background:' + (dark ? '#fff' : '#000');
+    document.documentElement.appendChild(d); setTimeout(() => d.remove(), 500); return 'flashed' })()`)
+  if (done !== 'flashed') throw new Error(`The sync flash did not run in the page (Safari returned "${done}").`)
+}
+
+/**
  * Stop VoiceOver speaking: Control, its own "stop speech" key. Pressed once a phrase has ended, it cancels
  * the hint VoiceOver would speak after its delay ("You are currently on a link…"). Hints can't be turned
  * off for the take itself: Guidepup runs VoiceOver on its own preference set, mounted fresh each time.
@@ -302,6 +362,11 @@ export function outputDevice() {
  * VoiceOver has finished a phrase: quiet() waits for that.
  */
 export function startCapture({ video, audio, film, audioDevice = process.env.A11Y_DEMO_AUDIO_DEVICE ?? 'BlackHole 2ch' }) {
+  // No audio (a keyboard-only scene): the picture alone.
+  if (!audio) {
+    const picture = spawn('screencapture', ['-v', '-x', '-R', film.map(Math.round).join(','), video], { stdio: 'ignore' })
+    return { startedAt: Date.now(), async quiet() { return false }, async stop() { picture.kill('SIGINT'); await new Promise(r => (picture.exitCode !== null ? r() : picture.once('exit', r))) } }
+  }
   const out = outputDevice()
   if (!out.includes(audioDevice)) {
     throw new Error(`The Mac's sound output is "${out}". Set it to ${audioDevice} for the take (System Settings › Sound › Output), or VoiceOver isn't recorded.`)

@@ -15,6 +15,8 @@
 //     "display": 1,          which display to film (1 = main; A11Y_DEMO_DISPLAY overrides; vo-lib displays())
 //     "panel": "right",      VoiceOver's caption panel beside Safari: "right", "below" or "none"
 //     "keepStorage": false,  the page's localStorage and sessionStorage are cleared before each take
+//     "voiceover": true,     false for a keyboard-only scene: keys (tab, shiftTab, enter, space, escape, the
+//                            arrows) go to Safari with VoiceOver off; each step logs what got focus
 //     "hush": true,          Control after each step, to stop hints; false for a scene listening for a
 //                            live region's announcement, which Control would also cancel
 //     "steps": [
@@ -59,7 +61,9 @@ for (const step of scene.steps.filter(s => s.say)) {
   if (!fs.existsSync(file)) throw new Error(`No narrator take ${file}. Run voice.py for the scene's lines first.`)
   lines[file] = duration(file)
 }
-const run = vo.commands()
+// A keyboard-only scene ("voiceover": false): real key presses, no VoiceOver, no audio track.
+const keyboard = scene.voiceover === false
+const run = keyboard ? vo.keyCommands() : vo.commands()
 for (const step of scene.steps.filter(s => s.do)) {
   if (!run[step.do]) throw new Error(`Unknown command "${step.do}". Known: ${Object.keys(run).join(', ')}`)
   if (step.do === 'focus' && !step.selector) throw new Error('A "focus" step needs a "selector".')
@@ -67,14 +71,15 @@ for (const step of scene.steps.filter(s => s.do)) {
 
 fs.mkdirSync(outDir, { recursive: true })
 const out = name => path.join(outDir, `${scene.id}${name}`)
-const marks = { scene: scene.id, url: scene.url, recordedAt: new Date().toISOString(), voSettings: vo.VO_SETTINGS, steps: [] }
+const marks = { scene: scene.id, url: scene.url, recordedAt: new Date().toISOString(), mode: keyboard ? 'keyboard' : 'voiceover',
+  ...(keyboard ? {} : { voSettings: vo.VO_SETTINGS }), steps: [] }
 
 if (vo.closeVoiceOverUtility()) console.log('Closed VoiceOver Utility, which takes VoiceOver\'s cursor away from the page.')
-await vo.voiceOver.start({ settings: vo.VO_SETTINGS })
+if (!keyboard) await vo.voiceOver.start({ settings: vo.VO_SETTINGS })
 // Where it all goes: the display to film, and VoiceOver's caption panel beside Safari. The panel's size
 // is measured, so the layout leaves exactly its room.
 const display = Number(process.env.A11Y_DEMO_DISPLAY ?? scene.display ?? 1)
-const panelMode = scene.panel ?? 'right'
+const panelMode = keyboard ? 'none' : (scene.panel ?? 'right')
 const shown = panelMode === 'none' ? null : vo.findPanel()
 if (panelMode !== 'none' && !shown) throw new Error('VoiceOver shows no caption panel (VO-Command-F10 toggles it), or set "panel": "none".')
 const place = vo.layout({ display, panel: panelMode, panelSize: shown ?? undefined })
@@ -97,16 +102,27 @@ try {
     b.focus({ preventScroll: true }); b.removeAttribute("tabindex"); })()`)
   await vo.sleep(800)
   vo.frontmostSafari('before the take')
-  capture = vo.startCapture({ video: out('.mov'), audio: out('-vo.wav'), film: place.film })
+  capture = vo.startCapture({ video: out('.mov'), audio: keyboard ? null : out('-vo.wav'), film: place.film })
   // Starting a screen recording makes VoiceOver say "System has new window". Let it, in a lead-in that
   // compose cuts, then silence VoiceOver before the first step.
   // (VO-F3 here, to leave the page's name on the panel instead, left VoiceOver's cursor on the page as a
   // whole: the next jump to a control said nothing. So the panel keeps "System has new window" until
   // the first step speaks.)
+  // A flash 1.5 s after starting the recording never reached the video (its first frames weren't updating
+  // yet); at 3 s it lands, a tenth of a second off its mark.
   await vo.sleep(3000)
-  vo.hush()
-  await vo.sleep(400)
   const t = () => (Date.now() - capture.startedAt) / 1000
+  if (keyboard) {
+    // No VoiceOver audio to line the marks up by: a flash at a known moment in the lead-in instead.
+    // Twice, 0.8 s apart: Safari doesn't always paint one (a take had none). compose uses the first it finds.
+    marks.sync = t()
+    vo.syncFlash()
+    await vo.sleep(800)
+    marks.sync2 = t()
+    vo.syncFlash()
+    await vo.sleep(1000)
+  } else vo.hush()
+  await vo.sleep(400)
 
   for (const step of scene.steps) {
     if (step.say) {
@@ -119,6 +135,14 @@ try {
     } else {
       for (let i = 0; i < (step.times ?? 1); i++) {
         vo.frontmostSafari(`during "${step.do}" in scene ${scene.id}`)
+        if (keyboard) {
+          const at = t()
+          const key = await run[step.do](step)
+          const focus = vo.describeFocus()
+          marks.steps.push({ type: 'key', do: step.do, key, at, end: t(), phrase: focus.text, visible: focus.visible })
+          await vo.sleep((step.gap ?? GAP) * 1000)
+          continue
+        }
         const at = t()
         const since = Date.now()
         await run[step.do](step)
@@ -145,9 +169,9 @@ try {
   await vo.sleep(1000)
 } finally {
   if (capture) await capture.stop()
-  await vo.voiceOver.stop().catch(() => undefined)
+  if (!keyboard) await vo.voiceOver.stop().catch(() => undefined)
   fs.writeFileSync(out('-marks.json'), JSON.stringify(marks, null, 2))
 }
-const said = marks.steps.filter(s => s.type === 'vo' && s.phrase)
-console.log(`${scene.id}: ${marks.steps.length} steps, ${said.length} VoiceOver phrases, ${out('.mov')}`)
-for (const s of said) console.log(`  ${s.at.toFixed(1)}s  ${s.do.padEnd(9)} ${s.phrase.slice(0, 90)}`)
+const said = marks.steps.filter(s => (s.type === 'vo' || s.type === 'key') && s.phrase)
+console.log(`${scene.id}: ${marks.steps.length} steps, ${said.length} ${keyboard ? 'key presses' : 'VoiceOver phrases'}, ${out('.mov')}`)
+for (const s of said) console.log(`  ${s.at.toFixed(1)}s  ${(s.key ?? s.do).padEnd(10)} ${s.phrase.slice(0, 90)}${s.type === 'key' && !s.visible ? '  [no focus ring]' : ''}`)

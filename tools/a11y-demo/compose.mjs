@@ -2,7 +2,7 @@
 //
 //   node tools/a11y-demo/compose.mjs <film.json> <out.mp4> [--draft]
 //
-// Each scene: Safari's window, VoiceOver's own speech, the narrator's lines in the pauses the take left for
+// Each scene: Safari's window (a keyboard-only scene: its key presses captioned KEYBOARD), VoiceOver's own speech, the narrator's lines in the pauses the take left for
 // them, and a caption bar for both voices (VOICEOVER phrase by phrase, NARRATOR in timed cues). Scenes are joined with a short fade through the
 // background, with an English captions track inside the MP4. Also writes <out>.vtt (the same captions), <out>.transcript.txt and
 // <out>.edl.json (scene starts and narrated holds, the shape qa.sh reads).
@@ -80,6 +80,29 @@ function onsets(file) {
   const found = [...log.matchAll(/silence_end: ([\d.]+)/g)].map(m => Number(m[1]))
   const leadsWithSound = !/silence_start: 0(\.0+)?\b/.test(log)
   return leadsWithSound ? [0, ...found] : found
+}
+
+/**
+ * Shift that lines a keyboard take's marks up with its picture: the frame where the sync flash (made at
+ * marks.sync) appears is the biggest jump in brightness in the take's opening seconds.
+ */
+function flashOffset(mov, sync, sync2) {
+  if (typeof sync !== 'number') throw new Error(`${mov}: a keyboard take needs its sync mark; re-shoot it.`)
+  const until = (sync2 ?? sync) + 4
+  const log = spawnSync('ffmpeg', ['-hide_banner', '-t', String(until), '-i', mov, '-vf', 'scale=160:-1,signalstats,metadata=print:key=lavfi.signalstats.YAVG', '-f', 'null', '-'],
+    { encoding: 'utf8', maxBuffer: 64 << 20 }).stderr
+  const frames = [...log.matchAll(/pts_time:([\d.]+)[\s\S]*?lavfi\.signalstats\.YAVG=([\d.]+)/g)].map(m => [Number(m[1]), Number(m[2])])
+  // The first frame that jumps in brightness by 30 or more: the start of a flash.
+  const hit = frames.find((f, i) => i > 0 && f[1] - frames[i - 1][1] >= 30 || i > 0 && frames[i - 1][1] - f[1] >= 30)
+  if (!hit) {
+    // Measured: screencapture films within about 0.1 s of starting. Close enough for key captions; say so.
+    console.warn(`${mov}: no sync flash reached the video; lining the marks up by screencapture's measured start lag (0.1 s).`)
+    return { offset: -0.1, matched: 0 }
+  }
+  // Which flash was it? The one whose mark is nearest, counting the measured lag.
+  const marks = [sync, sync2].filter(x => typeof x === 'number')
+  const mark = marks.reduce((a, b) => (Math.abs(b - hit[0]) < Math.abs(a - hit[0]) ? b : a))
+  return { offset: hit[0] - mark, matched: 1 }
 }
 
 /** Shift that lines the marks up with the speech: the median of each VoiceOver step to its nearest onset. */
@@ -176,15 +199,17 @@ for (const scene of film.scenes) {
   const marks = JSON.parse(fs.readFileSync(path.join(takesDir, `${id}-marks.json`), 'utf8'))
   const mov = path.join(takesDir, `${id}.mov`)
   // Sound: the picture's own audio track when it has one (locked to the picture), else the BlackHole file.
-  const inFile = hasAudio(mov)
-  const audio = inFile ? mov : path.join(takesDir, `${id}-vo.wav`)
-  const { offset, matched } = offsetFor(marks, onsets(audio))
+  // A keyboard-only take has no VoiceOver audio: it is lined up by the flash it made in its lead-in.
+  const keyboard = marks.mode === 'keyboard'
+  const inFile = keyboard || hasAudio(mov)
+  const audio = keyboard ? null : inFile ? mov : path.join(takesDir, `${id}-vo.wav`)
+  const { offset, matched } = keyboard ? flashOffset(mov, marks.sync, marks.sync2) : offsetFor(marks, onsets(audio))
   // With sound from a separate file, the picture's own start lag is not measured: the two can be a
   // fraction of a second apart, which shows as the VoiceOver cursor moving early or late. Say so.
   const first = Math.max(0, Math.min(...marks.steps.map(s => s.at)) + offset - 0.6)
   const last = Math.max(...marks.steps.map(s => s.end ?? s.at)) + offset + 1.0
   const dur = Math.min(last, duration(mov)) - first
-  console.log(`${id}: marks shifted ${offset.toFixed(2)} s (${matched} phrases matched), ${dur.toFixed(1)} s${inFile ? '' : ' (audio from a separate file: check lip-sync of the cursor)'}`)
+  console.log(`${id}: marks shifted ${offset.toFixed(2)} s (${keyboard ? 'by its sync flash' : `${matched} phrases matched`}), ${dur.toFixed(1)} s${inFile ? '' : ' (audio from a separate file: check lip-sync of the cursor)'}`)
 
   // What appears and is heard, on this scene's clock (0 = the scene's first frame).
   const local = at => at + offset - first
@@ -203,7 +228,7 @@ for (const scene of film.scenes) {
     console.log(`${id}: heard the expected "${s.expect}" (${Math.round(found * 100)}% of its words)`)
     s.phrase = `${s.phrase.replace(/[.,]?$/, ',')} ${s.expect}`
   }
-  const vos = marks.steps.filter(s => s.type === 'vo' && s.phrase)
+  const vos = marks.steps.filter(s => (s.type === 'vo' || s.type === 'key') && s.phrase)
   // A scene may swap a narrator line for another in the same pause ("sayAs": {"b-intro": "v3-open"}), to
   // cut a second video from one take. The new line must fit the pause the take left for the old one.
   const swap = scene.sayAs ?? {}
@@ -222,7 +247,9 @@ for (const scene of film.scenes) {
     ...vos.map(s => {
       const from = local(s.at)
       const next = events.find(e => e > from + 0.05) ?? dur
-      return { who: 'VOICEOVER', from, to: Math.min(Math.max(next, from + 1.5), from + 6, dur), text: s.phrase }
+      // A key press is captioned as the key and what it reached: "Tab → link, Skip to content".
+      return { who: s.type === 'key' ? 'KEYBOARD' : 'VOICEOVER', from, to: Math.min(Math.max(next, from + 1.5), from + 6, dur),
+        text: s.type === 'key' ? `${s.key} → ${s.phrase}` : s.phrase }
     }),
     ...says.flatMap(s => cues(lineText[s.id] ?? s.id, local(s.at), local(s.end)).map(c => ({ who: 'NARRATOR', ...c }))),
   ].sort((x, y) => x.from - y.from)
@@ -233,7 +260,8 @@ for (const scene of film.scenes) {
   const inputs = ['-ss', String(first), '-t', String(dur), '-i', mov]
   bars.forEach(b => inputs.push('-i', b))
   const audioIn = inputs.filter(a => a === '-i').length   // index of the next input, VoiceOver's audio
-  inputs.push('-ss', String(first), '-t', String(dur), '-i', audio)
+  if (keyboard) inputs.push('-f', 'lavfi', '-t', String(dur), '-i', 'anullsrc=r=48000:cl=stereo')   // a silent bed for the narrator
+  else inputs.push('-ss', String(first), '-t', String(dur), '-i', audio)
   says.forEach(s => inputs.push('-i', path.join(voiceDir, `${s.id}-${s.take}.mp3`)))
   let v = `[0:v]scale=${PIC.w}:${PIC.h}:flags=lanczos,format=rgba,pad=${W}:${H}:${PIC.x}:${PIC.y}:color=0x1b1b1f[c0]`
   bars.forEach((_, i) => {
@@ -242,7 +270,7 @@ for (const scene of film.scenes) {
   })
   v += `;[c${bars.length}]fade=in:0:d=${FADE},fade=out:st=${(dur - FADE).toFixed(3)}:d=${FADE},format=yuv420p[v]`
   // Sound: VoiceOver's track, plus each narrator line at its gap.
-  let a = `[${audioIn}:a]aresample=48000,aformat=channel_layouts=stereo,volume=${VO_GAIN}dB[vo]`
+  let a = `[${audioIn}:a]aresample=48000,aformat=channel_layouts=stereo,volume=${keyboard ? 0 : VO_GAIN}dB[vo]`
   says.forEach((s, i) => {
     const ms = Math.max(0, Math.round(local(s.at) * 1000))
     a += `;[${audioIn + 1 + i}:a]aresample=48000,aformat=channel_layouts=stereo,adelay=${ms}|${ms}[n${i}]`
@@ -261,9 +289,9 @@ for (const scene of film.scenes) {
     transcript.push(`[${from.toFixed(1)}] Narrator: ${lineText[s.id] ?? s.id}`)
   }
   for (const c of captions) {
-    const who = c.who === 'VOICEOVER' ? 'VoiceOver' : 'Narrator'
+    const who = { VOICEOVER: 'VoiceOver', KEYBOARD: 'Keyboard', NARRATOR: 'Narrator' }[c.who]
     vtt.push({ from: filmT + c.from, to: filmT + c.to, text: `${who}: ${c.text}` })
-    if (who === 'VoiceOver') transcript.push(`[${(filmT + c.from).toFixed(1)}] VoiceOver: ${c.text}`)
+    if (who !== 'Narrator') transcript.push(`[${(filmT + c.from).toFixed(1)}] ${who}: ${c.text}`)
   }
   filmT += dur
 }
