@@ -131,6 +131,10 @@ try {
     vo.syncFlash()
     await vo.sleep(1000)
   } else vo.hush()
+  // Starting VoiceOver and starting the capture each leave Safari's page without keyboard focus, though
+  // Safari stays in front, and VoiceOver then follows no focus move the page makes (vo-lib focusPage).
+  // The bounce through Finder happens in the lead-in, which compose cuts.
+  await vo.focusPage('before the first step')
   await vo.sleep(400)
 
   for (const step of scene.steps) {
